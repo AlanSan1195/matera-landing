@@ -8,17 +8,17 @@ import FooterMenu from './FooterMenu.astro';
   data-header-color={color}
   id={id}
 >
-  <div class="bg-slate-400 bg-transparent opacity-85 z-30 relative h-[300px] text-end mt-52 md:text-center lg:w-[700px] xl:w-[800px] flex flex-col flex-wrap text-wrap ml-auto md:mt-32 lg:mt-60">
+  <div class="bg-slate-400 bg-transparent opacity-85 z-30 relative h-[300px] text-end mt-52 md: lg:w-[700px] xl:w-[800px] flex flex-col flex-wrap text-wrap ml-auto md:mt-60 lg:mt-60">
     <header>
       <h2 class={`${textColor} mr-10 pt-10 lg:pt-20 text-2xl lg:text-4xl xl:text-5xl font-medium`}>
         {title}
       </h2>
-      <p class={`${textColor}  mr-10 text-sm lg:text-base`}>
+      <p class={`${textColor}  mr-10 text-sm lg:text-base mt-4`}>
         {subtitle}
       </p>
     </header>
 
-    <footer class="flex flex-col flex-grow justify-end lg:pb-20">
+    <footer class="flex flex-col flex-grow justify-end lg:pb-20 mr-auto ml-auto md:mr-14">
       <slot name="footer" />
       <!-- Condicionamente cargar el pie de página: -->
       {showFooterContent && <FooterMenu />}
