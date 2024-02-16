@@ -12,11 +12,20 @@ import FooterMenu from "./FooterMenu.astro";
 <section 
     class="my-40 flex w-3/5 h-[330px] mx-auto [&>img]:w-0 [&>img]:flex-grow [&>img]:object-cover [&>img]:opacity-50 rounded-sm gap-1"
   >
+  <article class=" flex flex-col justify-center hover:[&>div]:scale-150">
     <img
-      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
+      class="hover:cursor-crosshair w-[300px] h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
       src="public/imagenes/pollo.webp"
       alt=""
-    />
+      >
+      
+      <div class=" flex flex-col justify-end opacity-50 ">
+        <h1>  Pollo Malazo</h1>
+        <p>Esquicito, el favorito de Juanqui</p>
+      </div>
+
+  </article>
+    
     <img
       class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-cente hover:z-10"
       src="public/imagenes/vino.webp"
@@ -42,4 +51,6 @@ import FooterMenu from "./FooterMenu.astro";
   <div class="absolute top-0 bottom-0 h-full w-full z-10">
     <slot name="background" />
   </div>
-</section>
+</section> 
+
+
