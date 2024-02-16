@@ -1,0 +1,45 @@
+---
+const { color, title, subtitle, id, showFooterContent } = Astro.props;
+const textColor = `text-${color}`;
+import FooterMenu from "./FooterMenu.astro";
+---
+
+<section
+  class="landing-section bg-zinc-900 h-screen w-screen text-center overflow-hidden"
+  data-header-color={color}
+  id={id}
+>
+<section 
+    class="my-40 flex w-3/5 h-[330px] mx-auto [&>img]:w-0 [&>img]:flex-grow [&>img]:object-cover [&>img]:opacity-50 rounded-sm gap-1"
+  >
+    <img
+      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
+      src="public/imagenes/pollo.webp"
+      alt=""
+    />
+    <img
+      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-cente hover:z-10"
+      src="public/imagenes/vino.webp"
+      alt=""
+    />
+    <img
+      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
+      src="public/imagenes/carne.webp"
+      alt=""
+    />
+    <img
+      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
+      src="public/imagenes/boquete.webp"
+      alt=""
+    />
+    <img
+      class="hover:cursor-crosshair hover:w-[100px] hover:h-[400px] hover:rounded-lg hover:scale-125 hover:opacity-100 hover:contrast-125 ease-out duration-300 transform origin-center hover:z-10"
+      src="public/imagenes/camarones.webp"
+      alt=""
+    />
+  </section>
+
+  <div class="absolute top-0 bottom-0 h-full w-full z-10">
+    <slot name="background" />
+  </div>
+</section>
