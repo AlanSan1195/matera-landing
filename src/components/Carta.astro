@@ -1,6 +1,13 @@
 ---
 import Caurosel from "./Caurosel.astro";
+const { color, title, subtitle, id, showFooterContent } = Astro.props;
+const textColor = `text-${color}`;
 ---
+<section
+  class="landing-sec h-full w-full overflow-hidden "
+  data-header-color={color}
+  id={id}
+>
 
 <Caurosel
   title="carta"
@@ -9,3 +16,6 @@ import Caurosel from "./Caurosel.astro";
   id="carta"
 >
 </Caurosel>
+  
+</section>
+
