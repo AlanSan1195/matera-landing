@@ -4,98 +4,132 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<!-- public/imagenes/pollo.webp -->
-<div class="container " data-header-color={color} id={id}>
-  <div class="slider"></div>
-</div>
+<div class=" flex flex-wrap w-[700px] ">
 
-<script>
-  (() => {
-    const slideImages = [
-      {
-        img: "public/imagenes/pollo.webp",
-        title: "Ea id minim",
-        description:
-          "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
-      },
-      {
-        img: "public/imagenes/vino.webp",
-        title: "Nisi sint qui",
-        description: "Irure elit ex deserunt cupidatat enim.",
-      },
-      {
-        img: "public/imagenes/carne.webp",
-        title: "Mollit non",
-        description:
-          "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
-      },
-      {
-        img: "public/imagenes/boquete.webp",
-        title: "Id incididunt",
-        description:
-          "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
-      },
-      {
-        img: "public/imagenes/camarones.webp",
-        title: "Commodo ad ",
-        description:
-          "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-      },
-    ];
-
-    const createHtmlStructure = (sliderSelector, images) => {
-      const parent = document.querySelector(sliderSelector, images);
-
-      // Slides
-      images.forEach((slideImg, index) => {
-        const { img, title, description } = slideImg;
-        const slideItem = `
-    <div
-      class="item"
-      style="background-image: url('${img}')"
-      data-attribute="${index}"
-    >
-      <div class="content">
-        <div class="name">${title}</div>
-        <div class="description">${description}</div>
-        <button>Ver más</button>
+  <div class="container" data-header-color={color} id={id}>
+    <div class="slider"></div>
+  </div>
+  
+  <script>
+    (() => {
+      const slideImages = [
+        {
+          img: "public/imagenes/pollo.webp",
+        
+          title: "Ea id minim",
+          description:
+            "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
+        },
+        {
+          img: "public/imagenes/vino.webp",
+          title: "Nisi sint qui",
+          description: "Irure elit ex deserunt cupidatat enim.",
+        },
+        {
+          img: "public/imagenes/carne.webp",
+          title: "Mollit non",
+          description:
+            "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+        },
+        {
+          img: "public/imagenes/boquete.webp",
+          title: "Id incididunt",
+          description:
+            "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+        {
+          img: "public/imagenes/camarones.webp",
+          title: "Commodo ad ",
+          description:
+            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+        },
+      ];
+  
+      const createHtmlStructure = (sliderSelector, images) => {
+        const parent = document.querySelector(sliderSelector, images);
+  
+        // Slides
+        images.forEach((slideImg, index) => {
+          const { img, title, description } = slideImg;
+          const slideItem = `
+      <div
+        class="item"
+        style="background-image: url('${img}')"
+        data-attribute="${index}"
+      >
+        <div class="content">
+          <div class="name">${title}</div>
+          <div class="description">${description}</div>
+          <button>Ver más</button>
+        </div>
       </div>
+      `;
+          const divFragment = document
+            .createRange()
+            .createContextualFragment(slideItem);
+          parent.appendChild(divFragment);
+        });
+  
+        // Buttons
+        const html = `
+    <div class="buttons">
+      <button class="prev"> Prev</button>
+      <button class="next"> Next</button>
     </div>
     `;
-        const divFragment = document
-          .createRange()
-          .createContextualFragment(slideItem);
-        parent.appendChild(divFragment);
+        const fragment = document.createRange().createContextualFragment(html);
+        parent.parentElement.appendChild(fragment);
+      };
+  
+      // Initializations
+      createHtmlStructure(".slider", slideImages);
+  
+      // References
+      const $slider = document.querySelector(".slider");
+      const $next = document.querySelector(".next");
+      const $prev = document.querySelector(".prev");
+  
+      // Listeners
+      $next.addEventListener("click", () => {
+        const items = document.querySelectorAll(".item");
+        $slider.appendChild(items[0]);
       });
+  
+      $prev.addEventListener("click", () => {
+        const items = document.querySelectorAll(".item");
+        $slider.prepend(items[items.length - 1]);
+      });
+    })();
+  </script>
 
-      // Buttons
-      const html = `
-  <div class="buttons">
-    <button class="prev"> Prev</button>
-    <button class="next"> Next</button>
-  </div>
-  `;
-      const fragment = document.createRange().createContextualFragment(html);
-      parent.parentElement.appendChild(fragment);
-    };
-
-    // Initializations
-    createHtmlStructure(".slider", slideImages);
-
-    // References
-    const $slider = document.querySelector(".slider");
-    const $next = document.querySelector(".next");
-    const $prev = document.querySelector(".prev");
-
-    // Listeners
-    $next.addEventListener("click", () => {
-      const items = document.querySelectorAll(".item");
-      $slider.appendChild(items[0]);
-    });
-
-    $prev.addEventListener("click", () => {
-      const items = document.querySelectorAll(".item");
-      $slider.prepend(items[items.length - 1]);
-    });
-  })();
-</script>
+</div>
