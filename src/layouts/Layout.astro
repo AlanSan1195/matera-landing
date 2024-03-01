@@ -1,7 +1,7 @@
 ---
 // Supports weights 100-900
-import "@fontsource/merriweather";
-import "@fontsource-variable/lexend";
+import '@fontsource-variable/lora';
+// Supports weights 400-700
 export interface Props {
   title: string;
 }
@@ -28,8 +28,10 @@ const { title } = Astro.props;
     color-scheme: light dark;
   }
   html {
-    font-family: "Lexend Variable", "Courier New", Courier, monospace;
+    font-family: 'Lora Variable',  "Courier New", Courier, monospace;
   }
+
+  /* estilos de las imagenes de la carta  */
   * {
   margin: 0;
   padding: 0;
@@ -186,5 +188,5 @@ const { title } = Astro.props;
 }
 
 
-  /* estilos de las imagenes de la carta  */
+  
 </style>
