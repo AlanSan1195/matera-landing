@@ -1,57 +1,106 @@
 ---
-
-
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
-
 ---
+
 <section
-  class="landing-section bg-orange-100 h-screen w-screen text-center overflow-hidden  py-16 "
+  class="landing-section bg-orange-100 h-screen w-screen text-center overflow-hidden py-16"
   data-header-color={color}
   id={id}
-> 
-<header class=" bg-slate-400 py-12 ">
-  <h1 class=" text-5xl font-semibold ">Menú
-  </h1>
-  <h3 class=" text-3xl font-medium">Apetito por lo que hacemos </h3>
-</header>
-<nav id="cartanavegacion" class=" hidden md:block object-fill w-full py-6 ">
-  <ul class="flex mx-8 [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl ">
-    <li>
-      <a href="#home" class=" font-semibold text-slate-400 text-sm ">Empanadas</a>
-    </li>
-    <li>
-      <a href="#about" class=" text-sm font-semibold text-slate-400 ">Entradas</a>
-    </li>
-    <li>
-      <a href="#services" class=" text-sm font-semibold text-slate-400">Ensaladas</a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Pizzas </a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Pastas </a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Nuestra cocina</a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Mar </a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Granja </a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Carne </a>
-    </li>
-    <li>
-      <a href="#contact" class=" text-sm font-semibold text-slate-400"> Postres </a>
-    </li>
-  </ul>
-</nav>
+>
+  <header class="bg-slate-400 py-12">
+    <h1 class="text-5xl font-semibold">Menú</h1>
+    <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
+  </header>
+  <nav id="navegacion-carta" class="hidden md:block object-fill w-full py-6">
+    <ul
+      class="flex mx-8 [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl"
+    >
+      <li>
+        <a href="#home" class="font-semibold text-slate-400 text-sm  hover:text-red-500"
+          >Empanadas</a
+        >
+      </li>
+      <li>
+        <a href="#about" class="text-sm font-semibold text-slate-400  hover:text-red-500"
+          >Entradas</a
+        >
+      </li>
+      <li>
+        <a href="#services" class="text-sm font-semibold text-slate-400  hover:text-red-500"
+          >Ensaladas</a
+        >
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Pizzas
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Pastas
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Nuestra cocina</a
+        >
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500"> Mar</a>
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Granja
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Carne
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+          Postres
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div
+    id="menu-backdropBlue"
+    class={` 
+      absolute bg-blue-500 backdrop-blur-lg rounded
+      translate-x-[var(--left)] translate-y-[var(--top)]
+      left-0 top-0
+      w-[var(--width)] h-[var(--height)]
+      transition-all duration-400
+      ease-in-out opacity-0 -z-10
+    `}
+  >
+  </div>
+  <script>
 
-
-
-
-
+    const lisItem = document.querySelectorAll("#navegacion-carta li");
+    const backDropblue = document.querySelector("#menu-backdropBlue") as HTMLElement;
+  
+    lisItem.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+  
+        backDropblue.style.setProperty("--left", `${left}px`);
+        backDropblue.style.setProperty("--top", `${top}px`);
+        backDropblue.style.setProperty("--width", `${width}px`);
+        backDropblue.style.setProperty("--height", `${height}px`);
+  
+        backDropblue.style.opacity = "1";
+        backDropblue.style.visibility = "visible";
+      });
+  
+      item.addEventListener("mouseleave", () => {
+        backDropblue.style.opacity = "0";
+        backDropblue.style.visibility = "hidden";
+      });
+    });
+  
+  </script>
 </section>

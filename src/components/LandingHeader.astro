@@ -24,7 +24,8 @@ import Logo from "./Logo.astro";
       </li>
       <li>
         <a class="hover:text-red-500" href="#nosotros" aria-label="nosotros"
-          >Nosotros</a>
+          >Nosotros</a
+        >
       </li>
       <li><a class="hover:text-red-500" href="#eventos">Eventos</a></li>
       <li><a class="hover:text-red-500" href="#contacto">Contacto</a></li>
@@ -116,17 +117,12 @@ import Logo from "./Logo.astro";
   });
 </script>
 
-
-
-
-
-
 <script>
   const listItem = document.querySelectorAll("#landing-header li");
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
 
   listItem.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
+    item.addEventListener ("mouseenter", () => {
       const { left, top, width, height } = item.getBoundingClientRect();
 
       menuBackDrop.style.setProperty("--left", `${left}px`);
