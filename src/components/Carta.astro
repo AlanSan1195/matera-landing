@@ -2,20 +2,19 @@
 import Caurosel from "./Caurosel.astro";
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
+import CartaContenedorr from "./CartaContenedor.astro";
 ---
-<section
-  class="landing-sec h-screen w-screen overflow-hidden "
-  data-header-color={color}
-  id={id}
->
 
-<Caurosel
+<CartaContenedorr 
   title="carta"
-  subtitle="ve nuestros platillos"
-  color="white"
+  subtitle="vea nuestro menu"
+  color="black"
   id="carta"
 >
-</Caurosel>
-  
-</section>
 
+
+</CartaContenedorr>
+
+  
+
+  
