@@ -12,95 +12,175 @@ const textColor = `text-${color}`;
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
-  <nav id="navegacion-carta" class="hidden md:block object-fill w-full py-6">
+  <nav id="" class="hidden md:block object-fill w-full py-6">
     <ul
+      id="navegacion-carta"
       class="flex mx-8 [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl"
     >
       <li>
-        <a href="#home" class="font-semibold text-slate-400 text-sm  hover:text-red-500"
+        <a
+          id="empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
           >Empanadas</a
         >
+        <ul id="ver-empanadas" class="font-light text-black text-sm">
+          <li>Carne</li>
+          <li>Humita</li>
+          <li>Espincaca</li>
+        </ul>
       </li>
       <li>
-        <a href="#about" class="text-sm font-semibold text-slate-400  hover:text-red-500"
+        <a
+          id="entradas"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
           >Entradas</a
         >
+        <ul id="ver-entradas" class="font-light text-black text-sm">
+          <li>Bocaditos de espinaca</li>
+          <li>Mollejas Tiernas</li>
+          <li>Chinchulines</li>
+        </ul>
       </li>
       <li>
-        <a href="#services" class="text-sm font-semibold text-slate-400  hover:text-red-500"
+        <a
+          id="ensaladas"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
           >Ensaladas</a
-        >
+        > <ul id="ver-ensaladas"  class="font-light text-black text-sm">
+          <li>Verde</li>
+          <li>Palmito</li>
+          <li>Mikonos</li>
+        </ul>
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Pizzas
         </a>
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Pastas
         </a>
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Nuestra cocina</a
         >
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500"> Mar</a>
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
+          Mar</a
+        >
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Granja
         </a>
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Carne
         </a>
       </li>
       <li>
-        <a href="#contact" class="text-sm font-semibold text-slate-400  hover:text-red-500">
+        <a
+          href="#contact"
+          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+        >
           Postres
         </a>
       </li>
     </ul>
   </nav>
-  <div
-    id="menu-backdropBlue"
-    class={` 
-      absolute bg-blue-500 backdrop-blur-lg rounded
-      translate-x-[var(--left)] translate-y-[var(--top)]
-      left-0 top-0
-      w-[var(--width)] h-[var(--height)]
-      transition-all duration-400
-      ease-in-out opacity-0 -z-10
-    `}
-  >
-  </div>
   <script>
+    //empanadas
+    function mostrarEmpanadas() {
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtén el elemento <a> con id "empanadas"
+        const empanadasLink = document.getElementById("empanadas");
 
-    const lisItem = document.querySelectorAll("#navegacion-carta li");
-    const backDropblue = document.querySelector("#menu-backdropBlue") as HTMLElement;
-  
-    lisItem.forEach((item) => {
-      item.addEventListener("mouseenter", () => {
-        const { left, top, width, height } = item.getBoundingClientRect();
-  
-        backDropblue.style.setProperty("--left", `${left}px`);
-        backDropblue.style.setProperty("--top", `${top}px`);
-        backDropblue.style.setProperty("--width", `${width}px`);
-        backDropblue.style.setProperty("--height", `${height}px`);
-  
-        backDropblue.style.opacity = "1";
-        backDropblue.style.visibility = "visible";
+        // Agrega un evento de clic al enlace <a>
+        empanadasLink.addEventListener("click", function () {
+          // Obtén el elemento <ul> con id "empanadas2"
+          const empanadasUl = document.getElementById("ver-empanadas");
+
+          // Cambia la visibilidad de todos los elementos <li> dentro del <ul>
+          const empanadasItems = empanadasUl.querySelectorAll("li");
+          empanadasItems.forEach(function (item) {
+            if (
+              item.style.visibility === "hidden" ||
+              item.style.visibility === ""
+            ) {
+              item.style.visibility = "visible";
+            } else {
+              item.style.visibility = "hidden";
+            }
+          });
+        });
       });
-  
-      item.addEventListener("mouseleave", () => {
-        backDropblue.style.opacity = "0";
-        backDropblue.style.visibility = "hidden";
+    }
+    mostrarEmpanadas();
+
+    //entradas
+    function mostrarEntradas() {
+      document.addEventListener("DOMContentLoaded", function () {
+        const entradasLink = document.getElementById("entradas");
+        entradasLink.addEventListener("click", function () {
+          const entradasUl = document.getElementById("ver-entradas");
+          const entradasItems = entradasUl.querySelectorAll("li");
+          entradasItems.forEach(function (items) {
+            if (
+              items.style.visibility === "hidden" ||
+              items.style.visibility === ""
+            ) {
+              items.style.visibility = "visible";
+            } else {
+              items.style.visibility = "hidden";
+            }
+          });
+        });
       });
-    });
-  
+    }
+    mostrarEntradas();
+
+    //ensaladas
+    function mostrarEnsaladas() {
+      document.addEventListener("DOMContentLoaded", function () {
+        const ensaladasLink = document.getElementById("ensaladas");
+        ensaladasLink.addEventListener("click",()=> {
+          const ensaladasUl = document.getElementById("ver-ensaladas");
+          const ensaladasItems = ensaladasUl.querySelectorAll("li");
+          ensaladasItems.forEach((item) => {
+            if (
+              item.style.visibility === "hidden" ||
+              item.style.visibility === ""
+            ) {
+              item.style.visibility = "visible";
+            } else {
+              item.style.visibility = "hidden";
+            }
+          });
+        });
+      });
+    }
+    mostrarEnsaladas();
   </script>
 </section>

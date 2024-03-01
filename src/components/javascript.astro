@@ -1,0 +1,24 @@
+// empanadas.js
+function mostrarEmpanadas(){
+  document.addEventListener("DOMContentLoaded", function () {
+  // Obtén el elemento <a> con id "empanadas"
+  const empanadasLink = document.getElementById("empanadas");
+
+  // Agrega un evento de clic al enlace <a>
+  empanadasLink.addEventListener("click", function () {;
+
+    // Obtén el elemento <ul> con id "empanadas2"
+    const empanadasUl = document.getElementById("ver-empanadas");
+
+    // Cambia la visibilidad de todos los elementos <li> dentro del <ul>
+    const empanadasItems = empanadasUl.querySelectorAll("li");
+    empanadasItems.forEach(function (item) {
+      if (item.style.visibility === "hidden" || item.style.visibility === "") {
+        item.style.visibility = "visible";
+      } else {
+        item.style.visibility = "hidden";
+      }
+    });
+  });
+});
+}
