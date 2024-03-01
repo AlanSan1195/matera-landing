@@ -1,2 +1,1 @@
-
-<img width="958" alt="Captura de pantalla 2024-02-29 a la(s) 9 15 43 p m" src="https://github.com/AlanSan1195/matera-prototipe/assets/130740412/7a02255a-3af1-4578-9b7c-b1a85f7eeefe">
+![476shots_so](https://github.com/AlanSan1195/matera-prototipe/assets/130740412/5415a0f9-748a-412b-80d5-1da5aefb1e02)
