@@ -4,11 +4,109 @@ const textColor = `text-${color}`;
 ---
 
 <section
-  class="landing-section bg-orange-100 h-screen w-screen text-center overflow-hidden py-16"
+  class="landing-section bg-orange-100 h-screen w-screen text-center overflow-hidden py-24"
   data-header-color={color}
   id={id}
 >
-  <header class="bg-slate-400 py-12">
+  <!-- //navegacion sm -->
+
+  <nav
+    id="modal-menu"
+    class=" md:hidden  "
+  >
+    <button
+      id="boton-carta"
+      class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
+    >
+      Carta
+    </button>
+    <ul id="lista" 
+      class=" w-60 border-solid border-black border-1 rounded-md bg-orange-50  flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center  [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium  [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md  "
+    >
+      <li>
+        <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
+          Empanadas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-s"
+          >Entradas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-3">
+          Ensaladas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-x"
+          >Pizzas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-y"
+          >Nuetsra Cocina<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
+          >Mar<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
+          >Granja<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
+          >Carne<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
+          >Postres<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+    </ul>
+  </nav>
+  <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    const boton = document.getElementById("boton-carta");
+    // Obtén el botón y el elemento <ul>
+    const ul = document.getElementById("lista");
+    const items = ul.querySelectorAll("li");
+
+    boton.addEventListener("click", function () {
+      items.forEach((item) => {
+        if (item.style.visibility === "hidden" || item.style.visibility === "") {
+          item.style.visibility = "visible";
+        } else {
+          item.style.visibility = "hidden"; 
+        }
+        if (ul.style.visibility === "hidden" || item.style.visibility === "") {
+          ul.style.visibility = "visible";
+        } else {
+          ul.style.visibility = "hidden"; 
+        }
+        if( item.style.visibility === "visible"){
+          ul.style.visibility = "visible";
+        }
+      });
+    });
+
+  });
+    // toggleDropdownMenu();
+  </script>
+
+
+
+
+
+
+
+  <!-- // navegacion media  -->
+  <header class="hidden md:block bg-slate-400 py-12">
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
@@ -23,9 +121,14 @@ const textColor = `text-${color}`;
           class="font-semibold text-slate-400 text-sm hover:text-red-500"
           >Empanadas</a
         >
-        <ul id="ver-empanadas" class="font-light text-black text-sm">
+        <ul
+          id="ver-empanadas"
+          class="font-light text-black text-sm grid grid-cols-2 [&>li]:p-7"
+        >
           <li>Carne</li>
           <li>Humita</li>
+          <li>Espincaca</li>
+          <li>Espincaca</li>
           <li>Espincaca</li>
         </ul>
       </li>
@@ -46,7 +149,8 @@ const textColor = `text-${color}`;
           id="ensaladas"
           class="text-sm font-semibold text-slate-400 hover:text-red-500"
           >Ensaladas</a
-        > <ul id="ver-ensaladas"  class="font-light text-black text-sm">
+        >
+        <ul id="ver-ensaladas" class="font-light text-black text-sm">
           <li>Verde</li>
           <li>Palmito</li>
           <li>Mikonos</li>
@@ -111,6 +215,25 @@ const textColor = `text-${color}`;
     </ul>
   </nav>
   <script>
+    function mostrarCarta() {
+      document.addEventListener("DOMCountentLoaded", function () {
+        const menuLink = document.getElementById("menu");
+        menuLink.addEventListener("click", function () {
+          const menuUl = document.getElementById("ver-menu");
+          const menuItems = menuUl.querySelectorAll("li");
+          menuItems.forEach(function (item) {
+            if (
+              item.style.visibility === "hidden" ||
+              item.style.visibility === ""
+            ) {
+              item.style.visibility = "visible";
+            } else {
+              item.style.visibility = "hidden";
+            }
+          });
+        });
+      });
+    }
     //empanadas
     function mostrarEmpanadas() {
       document.addEventListener("DOMContentLoaded", function () {
@@ -137,7 +260,6 @@ const textColor = `text-${color}`;
         });
       });
     }
-    mostrarEmpanadas();
 
     //entradas
     function mostrarEntradas() {
@@ -159,13 +281,12 @@ const textColor = `text-${color}`;
         });
       });
     }
-    mostrarEntradas();
 
     //ensaladas
     function mostrarEnsaladas() {
       document.addEventListener("DOMContentLoaded", function () {
         const ensaladasLink = document.getElementById("ensaladas");
-        ensaladasLink.addEventListener("click",()=> {
+        ensaladasLink.addEventListener("click", () => {
           const ensaladasUl = document.getElementById("ver-ensaladas");
           const ensaladasItems = ensaladasUl.querySelectorAll("li");
           ensaladasItems.forEach((item) => {
@@ -181,6 +302,13 @@ const textColor = `text-${color}`;
         });
       });
     }
-    mostrarEnsaladas();
+
+    function mostrarMenu() {
+      mostrarEmpanadas();
+      mostrarEntradas();
+      mostrarEnsaladas();
+      mostrarCarta();
+    }
+    mostrarMenu();
   </script>
 </section>

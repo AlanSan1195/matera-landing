@@ -1,0 +1,43 @@
+<li>
+  <a id="boton" class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
+    >Empanadas</a
+  >
+  <ul
+    id="menu"
+    class="font-light text-black text-sm grid grid-cols-2 [&>li]:p-7"
+  >
+    <li>Carne</li>
+    <li>Humita</li>
+    <li>Espincaca</li>
+    <li>Espincaca</li>
+    <li>Espincaca</li>
+  </ul>
+</li>
+<script>
+  function mostrarMenu() {
+    document.addEventListener("DOMContentLoaded", function () {
+      // Obtén el elemento <a> con id "empanadas"
+      const botonCarta = document.getElementById("boton");
+
+      // Agrega un evento de clic al enlace <a>
+      botonCarta.addEventListener("click", function () {
+        // Obtén el elemento <ul> con id "empanadas2"
+        const menuabierto = document.getElementById("menu");
+
+        // Cambia la visibilidad de todos los elementos <li> dentro del <ul>
+        const menuItems = menuabierto.querySelectorAll("li");
+        menuItems.forEach(function (item) {
+          if (
+            item.style.visibility === "hidden" ||
+            item.style.visibility === ""
+          ) {
+            item.style.visibility = "visible";
+          } else {
+            item.style.visibility = "hidden";
+          }
+        });
+      });
+    });
+  }
+
+</script>
