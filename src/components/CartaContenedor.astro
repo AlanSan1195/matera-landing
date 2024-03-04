@@ -1,27 +1,27 @@
 ---
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
+import ExMenu from "./exMenu.astro";
+import EXMENU from "./exMenu.astro";
 ---
 
 <section
-  class="landing-section bg-orange-100 h-screen w-screen text-center overflow-hidden py-24"
+  class="landing-section bg-orange-100 h-screen w-screen overflow-hidden py-24"
   data-header-color={color}
   id={id}
 >
   <!-- //navegacion sm -->
 
-  <nav
-    id="modal-menu"
-    class=" md:hidden  "
-  >
+  <nav id="modal-menu" class="md:hidden text-center">
     <button
       id="boton-carta"
       class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
     >
       Carta
     </button>
-    <ul id="lista" 
-      class=" w-60 border-solid border-black border-1 rounded-md bg-orange-50  flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center  [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium  [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md  "
+    <ul
+      id="lista"
+      class="w-60 border-solid border-black border-1 rounded-md bg-orange-50 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
     >
       <li>
         <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
@@ -45,7 +45,11 @@ const textColor = `text-${color}`;
       </li>
       <li>
         <a class="hover:bg-blue-200 hover:text-red-500" href="#model-y"
-          >Nuetsra Cocina<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+          >Nuetsra Cocina<img
+            class="h-5"
+            alt="arrow icon"
+            src="/arrow-icon.svg"
+          /></a
         >
       </li>
       <li>
@@ -71,42 +75,40 @@ const textColor = `text-${color}`;
     </ul>
   </nav>
   <script>
-   document.addEventListener("DOMContentLoaded", function () {
-    const boton = document.getElementById("boton-carta");
-    // Obtén el botón y el elemento <ul>
-    const ul = document.getElementById("lista");
-    const items = ul.querySelectorAll("li");
+    document.addEventListener("DOMContentLoaded", function () {
+      const boton = document.getElementById("boton-carta");
+      // Obtén el botón y el elemento <ul>
+      const ul = document.getElementById("lista");
+      const items = ul.querySelectorAll("li");
 
-    boton.addEventListener("click", function () {
-      items.forEach((item) => {
-        if (item.style.visibility === "hidden" || item.style.visibility === "") {
-          item.style.visibility = "visible";
-        } else {
-          item.style.visibility = "hidden"; 
-        }
-        if (ul.style.visibility === "hidden" || item.style.visibility === "") {
-          ul.style.visibility = "visible";
-        } else {
-          ul.style.visibility = "hidden"; 
-        }
-        if( item.style.visibility === "visible"){
-          ul.style.visibility = "visible";
-        }
+      boton.addEventListener("click", function () {
+        items.forEach((item) => {
+          if (
+            item.style.visibility === "hidden" ||
+            item.style.visibility === ""
+          ) {
+            item.style.visibility = "visible";
+          } else {
+            item.style.visibility = "hidden";
+          }
+          if (
+            ul.style.visibility === "hidden" ||
+            item.style.visibility === ""
+          ) {
+            ul.style.visibility = "visible";
+          } else {
+            ul.style.visibility = "hidden";
+          }
+          if (item.style.visibility === "visible") {
+            ul.style.visibility = "visible";
+          }
+        });
       });
     });
-
-  });
-    // toggleDropdownMenu();
   </script>
 
-
-
-
-
-
-
   <!-- // navegacion media  -->
-  <header class="hidden md:block bg-slate-400 py-12">
+  <header class="hidden md:block text-center bg-slate-400 py-12">
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
@@ -115,200 +117,44 @@ const textColor = `text-${color}`;
       id="navegacion-carta"
       class="flex mx-8 [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl"
     >
-      <li>
+      <li id="empanadas">
         <a
-          id="empanadas"
+          id="ver-empanadas"
           class="font-semibold text-slate-400 text-sm hover:text-red-500"
           >Empanadas</a
         >
-        <ul
-          id="ver-empanadas"
-          class="font-light text-black text-sm grid grid-cols-2 [&>li]:p-7"
-        >
-          <li>Carne</li>
-          <li>Humita</li>
-          <li>Espincaca</li>
-          <li>Espincaca</li>
-          <li>Espincaca</li>
-        </ul>
-      </li>
-      <li>
         <a
-          id="entradas"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-entradas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
           >Entradas</a
         >
-        <ul id="ver-entradas" class="font-light text-black text-sm">
-          <li>Bocaditos de espinaca</li>
-          <li>Mollejas Tiernas</li>
-          <li>Chinchulines</li>
-        </ul>
-      </li>
-      <li>
         <a
-          id="ensaladas"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-ensaladas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
           >Ensaladas</a
         >
-        <ul id="ver-ensaladas" class="font-light text-black text-sm">
-          <li>Verde</li>
-          <li>Palmito</li>
-          <li>Mikonos</li>
-        </ul>
-      </li>
-      <li>
         <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Pizzas</a
         >
-          Pizzas
-        </a>
-      </li>
-      <li>
         <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Nuestra cocina</a
         >
-          Pastas
-        </a>
-      </li>
-      <li>
         <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Parrilla</a
         >
-          Nuestra cocina</a
-        >
-      </li>
-      <li>
         <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
+          id="ver-empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Postres</a
         >
-          Mar</a
-        >
-      </li>
-      <li>
-        <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
-        >
-          Granja
-        </a>
-      </li>
-      <li>
-        <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
-        >
-          Carne
-        </a>
-      </li>
-      <li>
-        <a
-          href="#contact"
-          class="text-sm font-semibold text-slate-400 hover:text-red-500"
-        >
-          Postres
-        </a>
+        <EXMENU />
       </li>
     </ul>
   </nav>
-  <script>
-    function mostrarCarta() {
-      document.addEventListener("DOMCountentLoaded", function () {
-        const menuLink = document.getElementById("menu");
-        menuLink.addEventListener("click", function () {
-          const menuUl = document.getElementById("ver-menu");
-          const menuItems = menuUl.querySelectorAll("li");
-          menuItems.forEach(function (item) {
-            if (
-              item.style.visibility === "hidden" ||
-              item.style.visibility === ""
-            ) {
-              item.style.visibility = "visible";
-            } else {
-              item.style.visibility = "hidden";
-            }
-          });
-        });
-      });
-    }
-    //empanadas
-    function mostrarEmpanadas() {
-      document.addEventListener("DOMContentLoaded", function () {
-        // Obtén el elemento <a> con id "empanadas"
-        const empanadasLink = document.getElementById("empanadas");
-
-        // Agrega un evento de clic al enlace <a>
-        empanadasLink.addEventListener("click", function () {
-          // Obtén el elemento <ul> con id "empanadas2"
-          const empanadasUl = document.getElementById("ver-empanadas");
-
-          // Cambia la visibilidad de todos los elementos <li> dentro del <ul>
-          const empanadasItems = empanadasUl.querySelectorAll("li");
-          empanadasItems.forEach(function (item) {
-            if (
-              item.style.visibility === "hidden" ||
-              item.style.visibility === ""
-            ) {
-              item.style.visibility = "visible";
-            } else {
-              item.style.visibility = "hidden";
-            }
-          });
-        });
-      });
-    }
-
-    //entradas
-    function mostrarEntradas() {
-      document.addEventListener("DOMContentLoaded", function () {
-        const entradasLink = document.getElementById("entradas");
-        entradasLink.addEventListener("click", function () {
-          const entradasUl = document.getElementById("ver-entradas");
-          const entradasItems = entradasUl.querySelectorAll("li");
-          entradasItems.forEach(function (items) {
-            if (
-              items.style.visibility === "hidden" ||
-              items.style.visibility === ""
-            ) {
-              items.style.visibility = "visible";
-            } else {
-              items.style.visibility = "hidden";
-            }
-          });
-        });
-      });
-    }
-
-    //ensaladas
-    function mostrarEnsaladas() {
-      document.addEventListener("DOMContentLoaded", function () {
-        const ensaladasLink = document.getElementById("ensaladas");
-        ensaladasLink.addEventListener("click", () => {
-          const ensaladasUl = document.getElementById("ver-ensaladas");
-          const ensaladasItems = ensaladasUl.querySelectorAll("li");
-          ensaladasItems.forEach((item) => {
-            if (
-              item.style.visibility === "hidden" ||
-              item.style.visibility === ""
-            ) {
-              item.style.visibility = "visible";
-            } else {
-              item.style.visibility = "hidden";
-            }
-          });
-        });
-      });
-    }
-
-    function mostrarMenu() {
-      mostrarEmpanadas();
-      mostrarEntradas();
-      mostrarEnsaladas();
-      mostrarCarta();
-    }
-    mostrarMenu();
-  </script>
 </section>
