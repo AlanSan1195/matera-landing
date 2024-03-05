@@ -3,6 +3,7 @@ const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
 import ExMenu from "./exMenu.astro";
 import EXMENU from "./exMenu.astro";
+import LogoMatera from "./Logo.astro";
 ---
 
 <section
@@ -10,6 +11,7 @@ import EXMENU from "./exMenu.astro";
   data-header-color={color}
   id={id}
 >
+
   <!-- //navegacion sm -->
 
   <nav id="modal-menu" class="md:hidden text-center">
@@ -110,6 +112,7 @@ import EXMENU from "./exMenu.astro";
 
   <!-- // navegacion media  -->
   <header class="hidden md:block text-center bg-slate-400 py-12 ">
+    
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
