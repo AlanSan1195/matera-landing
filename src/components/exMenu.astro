@@ -1,4 +1,5 @@
 ---
+let { id } = Astro.props;
 const empanada = [
   {
     src: "/imagenes/empanadas.webp",
@@ -42,115 +43,72 @@ const empanada = [
     Description: "",
     Price: "$60",
   },
-];
-const entradas = [
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Papas fritas con cheddar y panceta",
+    name: "Siciliana",
     Description: "",
     Price: "$60",
   },
 ];
-const ensaladas = [
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga y tomate",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga, tomate y huevo",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga, tomate, huevo y jamon",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga, tomate, huevo, jamon y queso",
-    Description: "",
-    Price: "$60",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Ensalada de lechuga, tomate, huevo, jamon, queso y aceitunas",
-    Description: "",
-    Price: "$60",
-  },
-
-]
 ---
 
 <!-- // crea el grid de empanadas -->
-<div id="conteiner" class=" bg-zinc-500 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full md:w-3/4 lg:w-[1100px] mx-auto">
+<div
+  id={id}
+  class="hidden overflow-auto   text-black bg-zinc-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 w-full md:w-3/4 lg:w-auto mx-auto "
+  style="grid-template-columns: repeat(auto-fill, minmax(min-content, max-content));"
+>
   {
     empanada.map((item) => (
-      <div class=" bg-zinc-500 flex flex-col items-center py-6 ">
+      <div class=" flex flex-col items-center py-4">
         <img class=" size-32 rounded-lg" src={item.src} alt={item.src} />
         <h1>{item.name}</h1>
         <p>{item.Description}</p>
@@ -159,17 +117,3 @@ const ensaladas = [
     ))
   }
 </div>
-<script>
-  //muestra y oculta el contenedor de empanadas
-  document.addEventListener("DOMContentLoaded", function () {
-    const content = document.getElementById("conteiner");
-    const empanadas = document.getElementById("ver-empanadas");
-
-    empanadas.addEventListener("click", () => {
-      content.classList.toggle("hidden");
-    });
-  });
-  
-
-
-</script>

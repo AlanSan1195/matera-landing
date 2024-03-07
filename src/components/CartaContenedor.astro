@@ -2,16 +2,15 @@
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
 import ExMenu from "./exMenu.astro";
-import EXMENU from "./exMenu.astro";
-import LogoMatera from "./Logo.astro";
+import ExMenuEnsaladas from "./exMenuEnsaladas.astro";
+import ExMenuEntradas from "./exMenuEntradas.astro";
 ---
 
 <section
-  class="landing-section bg-orange-100 h-screen w-screen overflow-hidden  py-[60px]"
+  class="landing-section bg-orange-100 h-screen w-screen overflow-hidden py-[60px]"
   data-header-color={color}
   id={id}
 >
-
   <!-- //navegacion sm -->
 
   <nav id="modal-menu" class="md:hidden text-center">
@@ -23,13 +22,12 @@ import LogoMatera from "./Logo.astro";
     </button>
     <ul
       id="lista"
-      class="w-60 border-solid border-black border-1 rounded-md bg-orange-50 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
+      class="  w-60 border-solid border-black border-1 rounded-md bg-orange-50 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
     >
       <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
+        <a class=" hover:bg-blue-200 hover:text-red-500" href="#home">
           Empanadas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
-        
       </li>
       <li>
         <a class="hover:bg-blue-200 hover:text-red-500" href="#model-s"
@@ -111,55 +109,91 @@ import LogoMatera from "./Logo.astro";
   </script>
 
   <!-- // navegacion media  -->
-  <header class="hidden md:block text-center bg-slate-400 py-12 ">
-    
+  <header class="hidden md:block text-center bg-slate-400 py-12">
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
-  <nav id="" class="hidden md:block object-fill w-full py-6">
+  <nav id="" class="hidden md:block object-fill w-full ">
     <ul
       id="navegacion-carta"
-      class="flex py-5 mx-8 [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl"
+      class="flex py-1 mx-auto  [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-xl lg:felx sticky top-0"
     >
-      <li id="empanadas">
+      <li >
         <a
           id="ver-empanadas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500 "
+        >
+          Empanadas</a
+        >
+
+        <a
+          id="ver-entradas"
           class="font-semibold text-slate-400 text-sm hover:text-red-500"
-          >Empanadas</a
+          >Entradas</a
         >
         <a
-        id="ver-entradas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Entradas</a
+          id="ver-ensaladas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Ensaladas</a
         >
         <a
-        id="ver-ensaladas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Ensaladas</a
+          id="ver-pizzas"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Pizzas</a
         >
         <a
-        id="ver-empanadas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Pizzas</a
+          id="ver-cocina"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Nuestra cocina</a
         >
         <a
-        id="ver-empanadas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Nuestra cocina</a
+          id="ver-parrilla"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500"
+          >Parrilla</a
         >
         <a
-        id="ver-empanadas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Parrilla</a
+          id="ver-postres"
+          class="font-semibold text-slate-400 text-sm hover:text-red-500 "
+          >Postres</a
         >
-        <a
-        id="ver-empanadas"
-        class="font-semibold text-slate-400 text-sm hover:text-red-500"
-        >Postres</a
-        >
-        
-        <EXMENU />
+        <ExMenu id="empanadas-container"   />
+        <ExMenuEnsaladas id="ensaladas-container" class="menu-component"  />
+        <ExMenuEntradas id="entradas-container"/>
       </li>
     </ul>
   </nav>
 </section>
+<script>
+//muestra y oculta el contenedor de empanadas
+document.addEventListener("DOMContentLoaded", function () {
+  // Obtén todos los elementos de la lista
+  const items = document.querySelectorAll("#navegacion-carta li a");
+
+  // Para cada elemento de la lista
+  items.forEach((item) => {
+    // Agrega un evento de clic
+    item.addEventListener("click", function () {
+      // Obtén los componentes que deseas ocultar/mostrar
+      const empanadasContainer = document.getElementById("empanadas-container");
+      const entradasContainer = document.getElementById("entradas-container");
+      const ensaladasContainer = document.getElementById("ensaladas-container");
+
+      // Oculta todos los componentes
+      empanadasContainer.style.display = "none";
+      ensaladasContainer.style.display = "none";
+      entradasContainer.style.display = "none";
+
+      // Muestra el componente correspondiente al elemento de la lista clickeado
+      if (item.id === "ver-empanadas") {
+        empanadasContainer.style.display = "grid";
+      }else if( item.id === "ver-entradas"){
+        entradasContainer.style.display = "grid";
+      } else if (item.id === "ver-ensaladas") {
+        ensaladasContainer.style.display = "grid";
+      }
+    });
+  });
+});
+  
+</script>
+<!-- estsos dos componentes ceuntan con un click, al hacerlo lo que hacen es un claslist.toogle ("hidden") cada uno de ellos, en este archivo quiero crear un script que me ayude a alternar las clases removidas para asi solo mostrar simpre en el mismo espacio el elemento al que se le dio click y el resto ocultarlo  -->
