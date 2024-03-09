@@ -186,6 +186,18 @@ const { title } = Astro.props;
   background: #ababab;
   color: #fff;
 }
+/* estudiar estilo  */
+.blur-edge::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: inherit ;
+  z-index: -1;
+  filter: blur(10px);
+}
 
 
   
