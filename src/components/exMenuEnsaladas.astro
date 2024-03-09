@@ -49,12 +49,12 @@ const ensalada = [
 <!-- // crea el grid de empanadas -->
 <div
   id={id}
-  class="hidden text-black bg-zinc-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full md:w-3/4 lg:w-auto mx-auto grid "
+  class="hidden text-black bg-zinc-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full md:w-3/4 lg:w-auto mx-auto grid"
   style="grid-template-columns: repeat(auto-fill, minmax(min-content, max-content));"
 >
   {
     ensalada.map((item) => (
-      <div id="container-" class=" flex flex-col items-center py-4 ">
+      <div id="container-" class=" flex flex-col items-center py-4  ">
         <img class=" size-52 rounded-lg" src={item.src} alt={item.src} />
         <h1>{item.name}</h1>
         <p>{item.Description}</p>
