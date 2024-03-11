@@ -1,121 +1,132 @@
 ---
-// - TENEMOS EL PROBLEMA DE QUE SI EL TEXTO DEL ARTICULO ES MUY LARGO EL DIV SE EXTENDERA Y NO RESPETARA SUS PROPIEDADES -->
-let { id } = Astro.props;
-const entrada = [
+let { id,myClas} = Astro.props;
+
+const Entradas = [
   {
-    src: "/imagenes/empanadas.webp",
-    name: "Esparragos al vapor",
-    Description: "",
-    Price: "$155",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Bocaditos de espinca",
-    Description: "",
-    Price: "$185",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Berenjenas a la parmesana",
-    Description: "",
-    Price: "$185",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Pimiento morrón asado",
-    Description: "",
-    Price: "$90",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Hongos al ajillo",
-    Description: "",
-    Price: "$170",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Chirizo argentino",
-    Description: "Fabricado en casa",
-    Price: "$110",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Chistorra",
-    Description: "Fabricada en casa",
-    Price: "$135",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Mollejas a la parrilla",
-    Description: "",
-    Price: "$310",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Mollejas al verdeo",
-    Description: "",
-    Price: "$290",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Chinculines a la parrilla",
-    Description: "",
-    Price: "$210",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Malfati ñoqui de ricotta y espinca",
-    Description: "",
-    Price: "$250",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Tartara de Rib-Eye",
-    Description: "",
-    Price: "$250",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Provoleta tomate, pimiento",
-    Description: "",
-    Price: "$220",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Provoleta jamón serrano y arugula",
-    Description: "",
-    Price: "$260",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Carpaccio de jamón serrano",
-    Description: "",
-    Price: "$260",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Mejillones con chsitorra",
-    Description: "",
-    Price: "$235",
+    name: "Entradas",
+    menu: {
+      platillos: [
+        {
+          src: "/imagenes/empanadas.webp",
+          platillo: "Bocaditos de espinaca",
+          description: "Con queso parmesano",
+          price: "$135",
+        },
+        {
+          src: "/imagenes/empanadas.webp",
+          platillo: "Espárragos al vapor",
+          description: "",
+          price: "$155",
+        },
+        { platillo: "Pimiento morrón asado", description: "", price: "$90" },
+
+        { platillo: "Hongos al ajoillo", description: "", price: "$170" },
+        {
+          platillo: "Berenjenas a la parmesana",
+          description: "",
+          price: "$185",
+        },
+        {
+          platillo: "Chorizo argentino",
+          decription: "Fabricado encasa",
+          price: "$110",
+        },
+
+        {
+          platillo: "Chistorra",
+          description: "Fabricada en casa",
+          price: "$135",
+        },
+        {
+          platillo: "Mollejas a la parrilla",
+          description: "",
+          price: "$310",
+        },
+        {
+          platillo: "Mollejas al verdeo",
+          description: "",
+          price: "$290",
+        },
+        {
+          platillo: "Chicnhulines a la parrilla",
+          description: "",
+          price: "$210",
+        },
+        {
+          platillo: "Malfatti de espinaca",
+          description: "",
+          price: "$250",
+        },
+        {
+          platillo: "Provoleta tomate y pimiento",
+          description: "",
+          price: "$220",
+        },
+        {
+          platillo: "provoleta arugula y jamón serrano ",
+          description: "",
+          price: "$260",
+        },
+        {
+          platillo: "Tartara de Rib-Eye",
+          description: "",
+          price: "$250",
+        },
+        {
+          platillo: "Carpaccio de jamón serrano",
+          description: "",
+          price: "$260",
+        },
+        {
+          platillo: "Mejillones con chistorra",
+          description: "",
+          price: "$335",
+        },
+      ],
+    },
   },
 ];
 ---
 
-<!-- // crea el grid de empanadass -->
-<div
-  id={id}
-  class="hidden overflow-auto h-[700px]   text-black bg-zinc-100 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 w-full md:w-3/4 lg:w-auto mx-auto "
-  style="grid-template-columns: repeat(auto-fill, minmax(min-content, max-content));"
->
-  {
-    entrada.map((item) => (
-      <div class=" flex flex-col items-center py-4">
-        <img class=" size-52 rounded-lg" src={item.src} alt={item.src} />
-        <h1 class=" break-words" >{item.name}</h1>
-        <p class=" break-words">{item.Description}</p>
-        <p>{item.Price}</p>
-      </div>
-    ))
-  }
-</div>
+{
+  Entradas.map((item, index) => (
+    <div class="flex flex-col items-center mt-1 mx-auto ">
+      {typeof item.menu === "object" && item.menu.platillos ? (
+        <>
+          <button
+            class="bg-red-500 text-white rounded p-2 font-medium text-2xl py-1"
+            onclick={`document.getElementById('Entradas').classList.toggle('opacity-0'); document.getElementById('Entradas').classList.toggle('scale-0');`}
+          >
+            {item.name}
+          </button>
+          <div
+            id="Entradas"
+           
+            class="   flex flex-wrap bg-white bg-opacity-20 border-2 border-red-500 p-2 rounded-lg transition-all duration-2000 ease-out transform opacity-0 scale-0 mt-1 blur-edge relative mx-20 "
+          >
+            {item.menu.platillos.map((platillo) => (
+              <div class="w-1/5 p-1 flex flex-col justify-center items-center  ">
+                <img
+                  class="  size-20 rounded-lg "
+                  src={platillo.src}
+                  alt={platillo.src}
+                />
+                <p class="text-center text-white text-2xl font-bold">
+                  {platillo.platillo}
+                </p>
+                <p class="text-center text-white ">{platillo.description}</p>
+                <p class="text-center text-white font-semibold text-lg">
+                  {platillo.price}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p class="text-center text-white">{item.name}</p>
+      )}
+    </div>
+  ))
+  
+}
 

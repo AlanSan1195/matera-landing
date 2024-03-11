@@ -1,0 +1,90 @@
+---
+let { id } = Astro.props;
+
+const Empanadas = [
+  {
+    name: "Empanadas",
+    menu: {
+      platillos: [
+        {
+          src: "/imagenes/empanadas.webp",
+          platillo: "Carne",
+          description: "Con queso parmesano",
+          price: "$60",
+        },
+        {
+          src: "/imagenes/empanadas.webp",
+          platillo: "Carne picante",
+          description: "",
+          price: "$60",
+        },
+        { platillo: "Espinaca", description: "", price: "$60" },
+
+        { platillo: "Humita", description: "", price: "$60" },
+        {
+          platillo: "Queso con cebolla",
+          description: "",
+          price: "$60",
+        },
+        {
+          platillo: "Roquefort",
+          decription: "Fabricado encasa",
+          price: "$70",
+        },
+
+        {
+          platillo: "Siciliana",
+          description: "",
+          price: "$90",
+        },
+      ],
+    },
+  },
+];
+---
+
+{
+  Empanadas.map((item, index) => (
+    <div class="flex flex-col items-center mt-1 mx-auto">
+      {typeof item.menu === "object" && item.menu.platillos ? (
+        <>
+          <button
+            class="bg-red-500 text-white rounded p-2 font-medium text-2xl py-1"
+            onclick={`document.getElementById('Empanadas').classList.toggle('opacity-0'); document.getElementById('Empanadas').classList.toggle('scale-0');`}
+          >
+            {item.name}
+          </button>
+          <div
+            id="Empanadas"
+            class=" hidden  flex flex-wrap bg-white bg-opacity-20 border-2 border-red-500 p-2 rounded-lg transition-all duration-2000 ease-out transform opacity-0 scale-0 mt-1 blur-edge relative mx-20 "
+          >
+            {item.menu.platillos.map((platillo) => (
+              <div class="w-1/5 p-1 flex flex-col justify-center items-center  ">
+                <img
+                  class="  size-20 rounded-lg "
+                  src={platillo.src}
+                  alt={platillo.src}
+                />
+                <p class="text-center text-white text-2xl font-bold">
+                  {platillo.platillo}
+                </p>
+                <p class="text-center text-white ">{platillo.description}</p>
+                <p class="text-center text-white font-semibold text-lg">
+                  {platillo.price}
+                </p>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <p class="text-center text-white">{item.name}</p>
+      )}
+    </div>
+  ))
+}
+
+
+  <script>
+  
+  </script>
+
