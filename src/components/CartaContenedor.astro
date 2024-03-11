@@ -7,8 +7,6 @@ import ExMenuEntradas from "./exMenuEntradas.astro";
 import ExMenuEmpanadas from "./exMenuEmpanadas.astro";
 import ExMenuPizzas from "./exMenuPizzas.astro";
 import ExMenuCocina from "./exMenuCocina.astro";
-
-
 ---
 
 <section
@@ -18,7 +16,7 @@ import ExMenuCocina from "./exMenuCocina.astro";
 >
   <!-- //navegacion sm -->
 
-  <nav id="modal-menu" class="  md:hidden text-center ">
+  <nav id="modal-menu" class="md:hidden text-center">
     <button
       id="boton-carta"
       class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
@@ -27,7 +25,7 @@ import ExMenuCocina from "./exMenuCocina.astro";
     </button>
     <ul
       id="lista"
-      class=" w-60 border-solid border-black border-1 rounded-md bg-white bg-opacity-20 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md "
+      class="w-60 border-solid border-black border-1 rounded-md bg-white bg-opacity-20 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
     >
       <li>
         <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
@@ -118,129 +116,101 @@ import ExMenuCocina from "./exMenuCocina.astro";
     <h1 class="text-5xl font-semibold">Menú</h1>
     <h3 class="text-3xl font-medium">Apetito por lo que hacemos</h3>
   </header>
-  <nav id="" class=" my-blur hidden md:block object-fill w-full">
-    <!-- <ul
-      id="navegacion-carta"
-      class="flex py-5 mx-auto  [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-0 "
-    >
-      <li class=" ">
-        <a
-          id="ver-empanadas"
-          class="font-semibold text-white text-sm hover:text-red-500"
-        >
-          Empanadas</a
-        >
 
-        <a
-          id="ver-entradas"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Entradas</a
-        >
-        <a
-          id="ver-ensaladas"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Ensaladas</a
-        >
-        <a
-          id="ver-pizzas"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Pizzas</a
-        >
-        <a
-          id="ver-cocina"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Nuestra cocina</a
-        >
-        <a
-          id="ver-parrilla"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Parrilla</a
-        >
-        <a
-          id="ver-postres"
-          class="font-semibold text-white text-sm hover:text-red-500"
-          >Postres</a
-        >
+  <ul
+    id="navegacion-carta"
+    class="flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-0"
+  >
+    <li class="">
+      <a
+        id="ver-empanadas"
         
-      </li>
-    </ul> -->
-    <div class=" flex flex-row justify-center m-2  ">
-
-      <ExMenuEntradas id="entradas-container" />
-      <ExMenuEmpanadas id="empanadas-container" />
-    </div>
-  </nav>
+        class="font-semibold text-white text-sm hover:text-red-500">Empanadas</a
+      >
+      <a
+        id="ver-entradas"
+        
+        class="font-semibold text-white text-sm hover:text-red-500">Entradas</a
+      >
+      <a
+        id="ver-ensaladas"
+        
+        class="font-semibold text-white text-sm hover:text-red-500">Ensaladas</a
+      >
+      <a
+        id="ver-pizzas"
+        
+        class="font-semibold text-white text-sm hover:text-red-500">Pizzas</a
+      >
+      <a
+        id="ver-cocina"
+        onclick="toggleDiv('NuestraCocina')"
+        class="font-semibold text-white text-sm hover:text-red-500"
+        >Nuestra cocina</a
+      >
+      <a
+        id="ver-parrilla"
+        
+        class="font-semibold text-white text-sm hover:text-red-500">Parrilla</a
+      >
+      <a
+        id="ver-postres"
+        
+        class="font-semibold text-white text-sm hover:text-red-500">Postres</a
+      >
+    </li>
+  </ul>
+  <div
+    id="Empanadas"
+    class="flex justify-center justify-between mr-10 ml-10 p-7 bg-zinc-400 opacity-70"
+    style=" "
+  >
+    <p>Carne $60</p>
+    <p>Carne picante $60</p>
+    <p>Humita $60</p>
+    <p>Queso con cebolla $60</p>
+    <p>Espinaca $60</p>
+    <p>Roquefort $70</p>
+    <p>Siciliana $110</p>
+  </div>
+  <div
+    id="Pizzas"
+    class=" hidden flex justify-center justify-between mr-10 ml-10 p-7 bg-slate-600 opacity-70"
+    style=" "
+  >
+    <p>Hongios $660</p>
+    <p>Carbon $30</p>
+    <p>Humitcdscva $760</p>
+    <p>Queso con cebolla $60</p>
+    <p>Espinaca $60</p>
+    <p>Roquefort $70</p>
+    <p>Siciliana $110</p>
+    <p>Siciliana $110</p>
+    <p>Siciliana $110</p>
+  </div>
 </section>
 <script>
-  // Remover la clase "hidden" del elemento "entradas-container" al hacer clic
-  const entradasContainer = document.getElementById("entradas-container");
-  entradasContainer.addEventListener("click", function() {
-    entradasContainer.classList.remove("hidden");
-  });
-</script>
-<!-- <script>
-  //muestra y oculta el contenedor de empanadas
-  document.addEventListener("DOMContentLoaded", function () {
-    // Obtén todos los elementos de la lista
-    const items = document.querySelectorAll("#navegacion-carta li a");
+  document.addEventListener("DOMContentLoaded", function (){
+    const empanadas = document.getElementById("ver-empanadas");
+    const pizzas = document.getElementById("ver-pizzas");
 
-    // Para cada elemento de la lista
-    items.forEach((item) => {
-      // Agrega un evento de clic
-      item.addEventListener("click", function () {
-        // Obtén los componentes que deseas ocultar/mostrar
-        const empanadasContainer = document.getElementById(
-          "empanadas-container"
-        );
-        const entradasContainer = document.getElementById("entradas-container");
-        const ensaladasContainer = document.getElementById(
-          "ensaladas-container"
-        );
-        const pizzasContainer = document.getElementById("pizzas-container");
-        const cocinaContainer = document.getElementById("cocina-container");
-        const postresContainer = document.getElementById("postres-container");
+    const empanadasDiv = document.getElementById("Empanadas");
+    const pizzasDiv = document.getElementById("Pizzas");
 
-        // Oculta todos los componentes
+    empanadas.addEventListener("click", function(){
+      empanadasDiv.style.opacity = "1";
+      empanadasDiv.style.display = "flex";
+      pizzasDiv.style.opacity = "0";
       
-        
-        empanadasContainer.style.visibility = "hidden";
-        pizzasContainer.style.visibility = "hidden";
-        cocinaContainer.style.visibility = "hidden";
-        entradasContainer.style.visibility = "hidden";
-        postresContainer.style.visibility = "visible";
-        ensaladasContainer.style.visibility = "hidden";
-       
+      
+    })
+    pizzas.addEventListener("click", function(){
+      pizzasDiv.style.opacity = "1";
+      pizzasDiv.style.display = "flex";
+      empanadasDiv.style.opacity = "0";
+      setTimeout(() => { empanadasDiv.style.display = "none"; }, 100);
+    })
+  })
+</script>
 
-        // Muestra el componente correspondiente al elemento de la lista clickeado
-        if (item.id === "ver-empanadas") {
-          empanadasContainer.style.display = "grid";
-         empanadasContainer.classList.remove("hidden");
-          empanadasContainer.style.visibility = "visible";
-          
-        } else if (item.id === "ver-entradas") {
-          entradasContainer.style.display = "grid";
-          entradasContainer.style.visibility = "visible";
-          
-        } else if (item.id === "ver-ensaladas") {
-          ensaladasContainer.style.display = "grid";
-          ensaladasContainer.style.visibility = "visible";
-          
 
-        } else if (item.id === "ver-pizzas") {
-          pizzasContainer.style.display = "grid";
-          pizzasContainer.style.visibility = "visible";
-          
-        } else if (item.id === "ver-cocina") {
-          cocinaContainer.style.display = "grid";
-          cocinaContainer.style.visibility = "visible";
-          
-        } else if (item.id === "ver-postres") {
-          postresContainer.style.display = "grid";
-          postresContainer.style.visibility = "visible";
-          
-        }
-      });
-    });
-  });
-</script> -->
-<!-- estsos dos componentes ceuntan con un click, al hacerlo lo que hacen es un claslist.toogle ("hidden") cada uno de ellos, en este archivo quiero crear un script que me ayude a alternar las clases removidas para asi solo mostrar simpre en el mismo espacio el elemento al que se le dio click y el resto ocultarlo  -->
