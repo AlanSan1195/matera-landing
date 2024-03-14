@@ -1,12 +1,351 @@
 ---
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
-const textColor = `text-${color}`;
+const empanadas = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Carne",
+    description: "Con queso parmesano",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Carne picante",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Espinaca",
+    description: "",
+    price: "$60",
+  },
 
-import ExMenuEnsaladas from "./exMenuEnsaladas.astro";
-import ExMenuEntradas from "./exMenuEntradas.astro";
-import ExMenuEmpanadas from "./exMenuEmpanadas.astro";
-import ExMenuPizzas from "./exMenuPizzas.astro";
-import ExMenuCocina from "./exMenuCocina.astro";
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Humita",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Queso con cebolla",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Roquefort",
+    decription: "Fabricado encasa",
+    price: "$70",
+  },
+
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Siciliana",
+    description: "",
+    price: "$90",
+  },
+];
+const pizzas = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Margarita",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Hongos",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "4 Quesos",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Tomate con anchoas",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Jamón con burrata",
+    description: " Jamón fabricado en casa",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Pancceta y provolone",
+    description: "",
+    price: "$60",
+  },
+];
+const entradas = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Bocaditos de espinaca",
+    description: "",
+    price: "$135",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Espárragos al vapor",
+    description: "",
+    price: "$155",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Pimiento morrón asado",
+    description: "",
+    price: "$90",
+  },
+
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Hongos al ajoillo",
+    description: "",
+    price: "$170",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Berenjenas a la parmesana",
+    description: "",
+    price: "$185",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Chorizo argentino",
+    decription: "Fabricado encasa",
+    price: "$110",
+  },
+
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Chistorra",
+    description: "Fabricada en casa",
+    price: "$135",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Mollejas a la parrilla",
+    description: "",
+    price: "$310",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Mollejas al verdeo",
+    description: "",
+    price: "$290",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Chicnhulines a la parrilla",
+    description: "",
+    price: "$210",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Malfatti de espinaca",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Provoleta tomate y pimiento",
+    description: "",
+    price: "$220",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "provoleta arugula y jamón serrano ",
+    description: "",
+    price: "$260",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Tartara de Rib-Eye",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Carpaccio de jamón serrano",
+    description: "",
+    price: "$260",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Mejillones con chistorra",
+    description: "",
+    price: "$335",
+  },
+];
+const ensaladas = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Ensalada de pollo",
+    description: "",
+    price: "$90",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Ensalada de atun",
+    description: "",
+    price: "$90",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Queso con cebolla",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Humita",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Espinaca",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Roquefor",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Siciliana",
+    description: "",
+    price: "$60",
+  },
+];
+const cocina = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Fettuccine Bolognesa",
+    description: "",
+    price: "$230",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: " Fettuccine con crema de hongos",
+    description: "",
+    price: "$195",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Fetucciine negro con calamares en su tinta",
+    description: "",
+    price: "$275",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Ravioles de espianaca al pomodoro",
+    description: "",
+    price: "$230",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Farroto: vegetales y grana padano",
+    description: "",
+    price: "$210",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Sorrentinos de ricota con salsa rosa",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Lasagna bolognesa",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Hamburguesa al estilo de la matera",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Milanesa de pollo",
+    description: "",
+    price: "$220",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Milanesa de res",
+    description: "",
+    price: "$320",
+  },
+];
+const postres = [
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Alfajor de hojaldre",
+    description: "",
+    price: "$175",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Martín fierro",
+    description: "Helado de vainilla con fresas flameadas",
+    price: "$150",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: " Musse de chocolate",
+    description: "",
+    price: "$125",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Patel de chocolate",
+    description: "",
+    price: "$115",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Ate con queso",
+    description: "",
+    price: "$125",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Helados",
+    description: "",
+    price: "$40",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Crepa Matera",
+    description: "con mascarpone y salsa de dulce de leche",
+    price: "$165",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Tarta de manzana",
+    description: "",
+    price: "$150",
+  },
+  {
+   src: "/imagenes/empanadas.webp",
+    name: "Camote al rescoldo",
+    description: "",
+    price: "$145",
+  },
+];
 ---
 
 <section
@@ -121,96 +460,180 @@ import ExMenuCocina from "./exMenuCocina.astro";
     id="navegacion-carta"
     class="flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-0"
   >
-    <li class="">
+    <li class="sm:hidden md:block">
       <a
         id="ver-empanadas"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Empanadas</a
       >
       <a
         id="ver-entradas"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Entradas</a
       >
       <a
         id="ver-ensaladas"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Ensaladas</a
       >
       <a
         id="ver-pizzas"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Pizzas</a
       >
       <a
         id="ver-cocina"
-        onclick="toggleDiv('NuestraCocina')"
         class="font-semibold text-white text-sm hover:text-red-500"
         >Nuestra cocina</a
       >
       <a
         id="ver-parrilla"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Parrilla</a
       >
       <a
         id="ver-postres"
-        
         class="font-semibold text-white text-sm hover:text-red-500">Postres</a
       >
     </li>
   </ul>
   <div
     id="Empanadas"
-    class="flex justify-center justify-between mr-10 ml-10 p-7 bg-zinc-400 opacity-70"
+    class="hidden justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
-    <p>Carne $60</p>
-    <p>Carne picante $60</p>
-    <p>Humita $60</p>
-    <p>Queso con cebolla $60</p>
-    <p>Espinaca $60</p>
-    <p>Roquefort $70</p>
-    <p>Siciliana $110</p>
+    {
+      empanadas.map((empanada) => (
+        <div class="flex flex-col items-center">
+          <img class="h-20 w-20 object-cover " src={empanada.src} alt="empanada" />
+          <p class=" font-semibold text-xl">{empanada.name}</p>
+          <p class=" font-light">{empanada.description}</p>
+          <p>{empanada.price}</p>
+        </div>
+      ))
+    }
   </div>
   <div
     id="Pizzas"
-    class=" hidden flex justify-center justify-between mr-10 ml-10 p-7 bg-slate-600 opacity-70"
+    class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
-    <p>Hongios $660</p>
-    <p>Carbon $30</p>
-    <p>Humitcdscva $760</p>
-    <p>Queso con cebolla $60</p>
-    <p>Espinaca $60</p>
-    <p>Roquefort $70</p>
-    <p>Siciliana $110</p>
-    <p>Siciliana $110</p>
-    <p>Siciliana $110</p>
+    {
+      pizzas.map((pizza) => (
+        <div class="flex flex-col items-center">
+          <img class="h-20 w-20 object-cover " src={pizza.src} alt="pizza" />
+          <p class=" font-semibold text-xl">{pizza.name}</p>
+          <p class=" font-light">{pizza.description}</p>
+          <p>{pizza.price}</p>
+        </div>
+      ))
+    }
   </div>
+  <div id="Entradas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+    {
+      entradas.map((entrada) => (
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center ">
+          <img class=" h-40 w-40 object-cover rounded-lg" src={entrada.src} alt="entrada" />
+          <p class="mt-3 font-semibold text-lg text-center text-pretty">{entrada.name}</p>
+          <p class=" font-light">{entrada.description}</p>
+          <p class="mb-3">{entrada.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+    {
+      ensaladas.map((ensalada) => (
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+          <img class="h-20 w-20 object-cover " src={ensalada.src} alt="ensalada" />
+          <p class=" font-semibold text-xl">{ensalada.name}</p>
+          <p class=" font-light">{ensalada.description}</p>
+          <p>{ensalada.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+    {
+      cocina.map((cocina) => (
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+          <img class="h-20 w-20 object-cover " src={cocina.src} alt="cocina" />
+          <p class=" font-semibold text-xl text-center text-pretty">{cocina.name}</p>
+          <p class=" font-light">{cocina.description}</p>
+          <p>{cocina.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <div id="Postres" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+    {
+      postres.map((postre) => (
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+          <img class="h-20 w-20 object-cover " src={postre.src} alt="postre" />
+          <p class=" font-semibold text-xl">{postre.name}</p>
+          <p class=" font-light">{postre.description}</p>
+          <p>{postre.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      //nuetsro menu un objeto para irterar en el menu seria como hojearlo
+      const menu = {
+        empanadas: document.getElementById("Empanadas"),
+        pizzas: document.getElementById("Pizzas"),
+        entradas: document.getElementById("Entradas"),
+        ensaldas: document.getElementById("Ensaladas"),
+        cocina: document.getElementById("Cocina"),
+        postres: document.getElementById("Postres"),
+      };
+      // funcion para mostrar el div que queremos
+      function mostrarDiv(name) {
+        Object.keys(menu).forEach((key) => {
+          if (key === name) {
+            menu[key].style.opacity = "1";
+            setTimeout(() => {
+              menu[key].style.display = "flex";
+            }, 500);
+          } else {
+            menu[key].style.opacity = "0";
+            setTimeout(() => {
+              menu[key].style.display = "none";
+            }, 500);
+          }
+        });
+      }
+
+      //en los enlaces hacemos el click y mostramos su div
+      document
+        .getElementById("ver-empanadas")
+        .addEventListener("click", function () {
+          mostrarDiv("empanadas");
+        });
+
+      document
+        .getElementById("ver-pizzas")
+        .addEventListener("click", function () {
+          mostrarDiv("pizzas");
+        });
+
+      document
+        .getElementById("ver-entradas")
+        .addEventListener("click", function () {
+          mostrarDiv("entradas");
+        });
+
+      document
+        .getElementById("ver-ensaladas")
+        .addEventListener("click", function () {
+          mostrarDiv("ensaldas");
+        });
+      document
+        .getElementById("ver-cocina")
+        .addEventListener("click", function () {
+          mostrarDiv("cocina");
+        });
+      document
+        .getElementById("ver-postres")
+        .addEventListener("click", function () {
+          mostrarDiv("postres");
+        });
+    });
+  </script>
 </section>
-<script>
-  document.addEventListener("DOMContentLoaded", function (){
-    const empanadas = document.getElementById("ver-empanadas");
-    const pizzas = document.getElementById("ver-pizzas");
-
-    const empanadasDiv = document.getElementById("Empanadas");
-    const pizzasDiv = document.getElementById("Pizzas");
-
-    empanadas.addEventListener("click", function(){
-      empanadasDiv.style.opacity = "1";
-      empanadasDiv.style.display = "flex";
-      pizzasDiv.style.opacity = "0";
-      
-      
-    })
-    pizzas.addEventListener("click", function(){
-      pizzasDiv.style.opacity = "1";
-      pizzasDiv.style.display = "flex";
-      empanadasDiv.style.opacity = "0";
-      setTimeout(() => { empanadasDiv.style.display = "none"; }, 100);
-    })
-  })
-</script>
-
-
