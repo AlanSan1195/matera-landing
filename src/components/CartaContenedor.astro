@@ -292,56 +292,56 @@ const cocina = [
 ];
 const postres = [
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Alfajor de hojaldre",
     description: "",
     price: "$175",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Martín fierro",
     description: "Helado de vainilla con fresas flameadas",
     price: "$150",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: " Musse de chocolate",
     description: "",
     price: "$125",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Crepa Matera",
     description: "con mascarpone y salsa de dulce de leche",
     price: "$165",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Patel de chocolate",
     description: "",
     price: "$115",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Ate con queso",
     description: "",
     price: "$125",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Helados",
     description: "",
     price: "$40",
   },
-  
+
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Tarta de manzana",
     description: "",
     price: "$150",
   },
   {
-   src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadas.webp",
     name: "Camote al rescoldo",
     description: "",
     price: "$145",
@@ -495,14 +495,20 @@ const postres = [
   </ul>
   <div
     id="Empanadas"
-    class="hidden justify-center justify-between mr-10 ml-10 p-7"
+    class=" hidden justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
     {
       empanadas.map((empanada) => (
         <div class="flex flex-col items-center">
-          <img class="h-20 w-20 object-cover " src={empanada.src} alt="empanada" />
-          <p class=" font-semibold text-base text-center text-pretty">{empanada.name}</p>
+          <img
+            class="h-20 w-20 object-cover "
+            src={empanada.src}
+            alt="empanada"
+          />
+          <p class=" font-semibold text-base text-center text-pretty">
+            {empanada.name}
+          </p>
           <p class=" font-light">{empanada.description}</p>
           <p>{empanada.price}</p>
         </div>
@@ -518,20 +524,31 @@ const postres = [
       pizzas.map((pizza) => (
         <div class="flex flex-col items-center">
           <img class="h-20 w-20 object-cover " src={pizza.src} alt="pizza" />
-          <p class=" font-semibold text-base text-center text-pretty">{pizza.name}</p>
+          <p class=" font-semibold text-base text-center text-pretty">
+            {pizza.name}
+          </p>
           <p class=" font-light text-center text-pretty">{pizza.description}</p>
           <p>{pizza.price}</p>
         </div>
       ))
     }
   </div>
-  <div id="Entradas" class="hidden flex flex-wrap mr-10 ml-10 p-7 bg-slate-400  ">
+  <!-- //totalmente responsive no tocar clase de cc en el layout -->
+  <div id="Entradas" class=" entradas-div flex flex-wrap mr-10 ml-10 ">
     {
       entradas.map((entrada) => (
-        <div class="w-1/6 p-1 flex flex-col justify-center items-center ">
-          <img class=" h-32 w-32 object-cover rounded-lg" src={entrada.src} alt="entrada" />
-          <p class="mt-3 font-semibold text-base text-center text-pretty">{entrada.name}</p>
-          <p class=" font-light text-center text-pretty">{entrada.description}</p>
+        <div class="w-1/4 p-2 flex flex-col justify-center items-center   lg:w-1/6 ">
+          <img
+            class=" h-32 w-32 object-cover rounded-lg"
+            src={entrada.src}
+            alt="entrada"
+          />
+          <p class="mt-3 font-semibold text-base text-center text-pretty">
+            {entrada.name}
+          </p>
+          <p class=" font-light text-center text-pretty">
+            {entrada.description}
+          </p>
           <p class="mb-3">{entrada.price}</p>
         </div>
       ))
@@ -541,9 +558,17 @@ const postres = [
     {
       ensaladas.map((ensalada) => (
         <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
-          <img class="h-20 w-20 object-cover " src={ensalada.src} alt="ensalada" />
-          <p class=" font-semibold text-base text-center text-pretty">{ensalada.name}</p>
-          <p class=" font-light text-center text-pretty">{ensalada.description}</p>
+          <img
+            class="h-20 w-20 object-cover "
+            src={ensalada.src}
+            alt="ensalada"
+          />
+          <p class=" font-semibold text-base text-center text-pretty">
+            {ensalada.name}
+          </p>
+          <p class=" font-light text-center text-pretty">
+            {ensalada.description}
+          </p>
           <p>{ensalada.price}</p>
         </div>
       ))
@@ -554,8 +579,12 @@ const postres = [
       cocina.map((cocina) => (
         <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
           <img class="h-20 w-20 object-cover " src={cocina.src} alt="cocina" />
-          <p class=" font-semibold text-base text-center text-pretty">{cocina.name}</p>
-          <p class=" font-light text-center text-pretty">{cocina.description}</p>
+          <p class=" font-semibold text-base text-center text-pretty">
+            {cocina.name}
+          </p>
+          <p class=" font-light text-center text-pretty">
+            {cocina.description}
+          </p>
           <p>{cocina.price}</p>
         </div>
       ))
@@ -566,8 +595,12 @@ const postres = [
       postres.map((postre) => (
         <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
           <img class="h-20 w-20 object-cover " src={postre.src} alt="postre" />
-          <p class=" font-semibold text-base text-center text-pretty">{postre.name}</p>
-          <p class=" font-light text-center text-pretty">{postre.description}</p>
+          <p class=" font-semibold text-base text-center text-pretty">
+            {postre.name}
+          </p>
+          <p class=" font-light text-center text-pretty">
+            {postre.description}
+          </p>
           <p>{postre.price}</p>
         </div>
       ))
@@ -591,11 +624,17 @@ const postres = [
             menu[key].style.opacity = "1";
             setTimeout(() => {
               menu[key].style.display = "flex";
+              if (key === "empanadas") {
+                menu[key].classList.add("empanadas-div");
+              }
             }, 500);
           } else {
             menu[key].style.opacity = "0";
             setTimeout(() => {
               menu[key].style.display = "none";
+              if (key === "empanadas") {
+                menu[key].classList.remove("empanadas-div");
+              }
             }, 500);
           }
         });
