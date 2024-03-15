@@ -350,13 +350,30 @@ const postres = [
 ---
 
 <section
-  class="landing-section bg-neutral-900 h-screen w-screen overflow-hidden py-[60px]"
+  class="landing-section bg-neutral-900 h-screen w-screen overflow-hidden py-[60px]  "
   data-header-color={color}
+ 
   id={id}
->
-  <!-- //navegacion sm -->
 
-  <nav id="modal-menu" class="md:hidden text-center">
+> 
+  <!-- //navegacion sm -->
+  <nav class="md:hidden">
+    <h1 class="ml-12 mt-24 font-bold text-2xl">Empanadas</h1>
+    <div class="flex overflow-x-auto ml-10">
+      {
+        empanadas.map((empanada)=>(
+          <div class="flex flex-col  bg-red-500 rounded-xl m-3 min-w-24">
+            <img class="h-12  h-w-12 object-cover mt-2 ml-auto mr-2" src={empanada.src} alt="empanada" />
+            <p class="font-semibold text-sm text-start mt-4 ml-2">{empanada.name}</p>
+            <p class="font-light text-xs ml-2">{empanada.description}</p>
+            <p class="ml-2">{empanada.price}</p>
+          </div>
+        ))
+      }
+    </div>
+  </nav>
+
+  <!-- <nav id="modal-menu" class="md:hidden text-center">
     <button
       id="boton-carta"
       class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
@@ -365,7 +382,7 @@ const postres = [
     </button>
     <ul
       id="lista"
-      class="w-60 border-solid border-black border-1 rounded-md bg-white bg-opacity-20 flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
+      class="w-60 border-solid border-black border-1 rounded-md bg-white flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
     >
       <li>
         <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
@@ -417,7 +434,7 @@ const postres = [
         >
       </li>
     </ul>
-  </nav>
+  </nav> -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const boton = document.getElementById("boton-carta");
@@ -459,7 +476,7 @@ const postres = [
 
   <ul
     id="navegacion-carta"
-    class="flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-auto"
+    class=" hidden flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-auto"
   >
     <li class="sm:hidden md:block">
       <a
@@ -495,7 +512,7 @@ const postres = [
   </ul>
   <div
     id="Empanadas"
-    class=" hidden justify-center justify-between mr-10 ml-10 p-7"
+    class="hidden justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
     {
@@ -534,7 +551,7 @@ const postres = [
     }
   </div>
   <!-- //totalmente responsive no tocar clase de cc en el layout -->
-  <div id="Entradas" class=" entradas-div flex flex-wrap mr-10 ml-10 ">
+  <div id="Entradas" class="entradas-div flex flex-wrap mr-10 ml-10">
     {
       entradas.map((entrada) => (
         <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 ">
