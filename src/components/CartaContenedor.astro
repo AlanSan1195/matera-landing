@@ -357,16 +357,42 @@ const postres = [
 
 > 
   <!-- //navegacion sm -->
-  <nav class="md:hidden">
-    <h1 class="ml-12 mt-24 font-bold text-2xl">Empanadas</h1>
-    <div class="flex overflow-x-auto ml-10">
+  <nav class="md:hidden max-h-full  overflow-y-auto ">
+    <h1 class="ml-12 mt-20 font-bold text-2xl">Empanadas</h1>
+    <div class="flex overflow-x-auto ml-10 bg-slate-100/10">
       {
         empanadas.map((empanada)=>(
           <div class="flex flex-col  bg-red-500 rounded-xl m-3 min-w-24">
-            <img class="h-12  h-w-12 object-cover mt-2 ml-auto mr-2" src={empanada.src} alt="empanada" />
+            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={empanada.src} alt="empanada" />
             <p class="font-semibold text-sm text-start mt-4 ml-2">{empanada.name}</p>
             <p class="font-light text-xs ml-2">{empanada.description}</p>
             <p class="ml-2">{empanada.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <h1 class="ml-12 mt-6 font-bold text-2xl">Entradas</h1>
+    <div class="flex overflow-x-auto ml-10">
+      {
+        entradas.map((entrada)=>(
+          <div class="flex flex-col  bg-red-500 rounded-xl m-3 min-w-24">
+            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={entrada.src} alt="empanada" />
+            <p class="font-semibold text-sm text-start mt-4 ml-2">{entrada.name}</p>
+            <p class="font-light text-xs ml-2">{entrada.description}</p>
+            <p class="ml-2">{entrada.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <h1 class="ml-12 mt-6 font-bold text-2xl">Ensaladas</h1>
+    <div class="flex overflow-x-auto ml-10">
+      {
+        ensaladas.map((ensalada)=>(
+          <div class="flex flex-col  bg-red-500 rounded-xl m-3 min-w-24">
+            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={ensalada.src} alt="empanada" />
+            <p class="font-semibold text-sm text-start mt-4 ml-2">{ensalada.name}</p>
+            <p class="font-light text-xs ml-2">{ensalada.description}</p>
+            <p class="ml-2">{ensalada.price}</p>
           </div>
         ))
       }
