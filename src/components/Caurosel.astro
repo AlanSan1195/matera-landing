@@ -4,12 +4,12 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<div class=" flex flex-wrap w-[700px] mx-auto ">
+<div class=" flex flex-wrap ">
 
   <div class="container" data-header-color={color} id={id}>
     <div class="slider"></div>
+    
   </div>
-  
   <script>
     (() => {
       const slideImages = [
@@ -76,7 +76,7 @@ import FooterMenu from "./FooterMenu.astro";
       ];
   
       const createHtmlStructure = (sliderSelector, images) => {
-        const parent = document.querySelector(sliderSelector, images);
+        const parent = document.querySelector(sliderSelector,);
   
         // Slides
         images.forEach((slideImg, index) => {
@@ -131,5 +131,6 @@ import FooterMenu from "./FooterMenu.astro";
       });
     })();
   </script>
+  
 
 </div>
