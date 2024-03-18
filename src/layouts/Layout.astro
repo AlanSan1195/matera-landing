@@ -207,4 +207,27 @@ const { title } = Astro.props;
   max-height:500px;
   overflow-y: auto;
 }
+.image-drop-shadow-empanadas {
+  height: 6rem; /* Altura fija de 12rem */
+  width: 6rem; /* Ancho fijo de 12rem */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
+   /* Margen superior de 0.5rem */
+  margin-right: 0.5rem; /* Margen derecho de 0.5rem */
+  margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
+  filter: drop-shadow(2px 4px 6px black);/* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
+
+  
+}
+.image-drop-shadow {
+  height: 5rem; /* Altura fija de 12rem */
+  width: 5rem; /* Ancho fijo de 12rem */
+  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
+   /* Margen superior de 0.5rem */
+  margin-right: 0.5rem; /* Margen derecho de 0.5rem */
+  margin-bottom: 0.9rem;
+  margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
+  filter: drop-shadow(2px 4px 6px black);/* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
+  transform: rotate(45deg);
+  
+}
 </style>

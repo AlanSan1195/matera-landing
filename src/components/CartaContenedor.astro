@@ -2,45 +2,45 @@
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Carne",
-    description: "Con queso parmesano",
+    description: "",
     price: "$60",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Carne picante",
     description: "",
     price: "$60",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Espinaca",
     description: "",
     price: "$60",
   },
 
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Humita",
     description: "",
     price: "$60",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Queso con cebolla",
     description: "",
     price: "$60",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Roquefort",
     decription: "Fabricado encasa",
     price: "$70",
   },
 
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/empanadaCarne.webp",
     name: "Siciliana",
     description: "",
     price: "$90",
@@ -187,45 +187,45 @@ const entradas = [
 const ensaladas = [
   {
     src: "/imagenes/empanadas.webp",
-    name: "Ensalada de pollo",
+    name: "Verde",
     description: "",
-    price: "$90",
+    price: "$170",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Ensalada de atun",
+    name: "Ensalada de tomate con burrata",
     description: "",
-    price: "$90",
+    price: "$280",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Queso con cebolla",
-    description: "",
-    price: "$60",
+    name: "Mykonos",
+    description: "Tomate, Kalamatas, pepino, pimiento, queso feta",
+    price: "$180",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Humita",
+    name: "Corazones de lechuga asados",
     description: "",
-    price: "$60",
+    price: "$210",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Espinaca",
-    description: "",
-    price: "$60",
+    name: "Arúgula",
+    description: "ajo, limón",
+    price: "$150",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Roquefor",
-    description: "",
-    price: "$60",
+    name: "Arugula",
+    description: "ajas de grana padano, tomates cherry",
+    price: "$170",
   },
   {
     src: "/imagenes/empanadas.webp",
-    name: "Siciliana",
+    name: "Palmito con alcahofa",
     description: "",
-    price: "$60",
+    price: "$150",
   },
 ];
 const cocina = [
@@ -293,6 +293,12 @@ const cocina = [
 const postres = [
   {
     src: "/imagenes/empanadas.webp",
+    name: "Helados:",
+    description: "Vainilla, Chocolate, Mascarphone, Alfajor, Ferrero.",
+    price: "$40",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
     name: "Alfajor de hojaldre",
     description: "",
     price: "$175",
@@ -327,12 +333,6 @@ const postres = [
     description: "",
     price: "$125",
   },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Helados",
-    description: "",
-    price: "$40",
-  },
 
   {
     src: "/imagenes/empanadas.webp",
@@ -350,149 +350,125 @@ const postres = [
 ---
 
 <section
-  class="landing-section bg-neutral-950 h-screen w-screen overflow-hidden py-[80px] "
+  class="landing-section bg-neutral-950 h-screen w-screen overflow-hidden py-[80px]"
   data-header-color={color}
- 
   id={id}
-
-> 
+>
   <!-- //navegacion sm -->
-  <nav class="md:hidden max-h-full  overflow-y-auto ">
-    <h1 class=" ml-6 mt-20 font-bold text-2xl">Empanadas</h1>
-    <div class="flex overflow-x-auto ml-3 ">
+  <nav class="md:hidden max-h-full overflow-y-auto">
+    <h1 class="ml-6 mt-8 font-bold text-4xl">Empanadas</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
       {
-        empanadas.map((empanada)=>(
-          <div class="flex flex-col  bg-red-600 rounded-xl m-3 min-w-24">
-            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={empanada.src} alt="empanada" />
-            <p class="font-semibold text-sm text-start mt-4 ml-2">{empanada.name}</p>
-            <p class="font-light text-xs ml-2">{empanada.description}</p>
-            <p class="ml-2">{empanada.price}</p>
+        empanadas.map((empanada) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow-empanadas relative bottom-5 "
+              src={empanada.src}
+              alt="empanada"
+            />
+            <p class="font-bold text-md ml-2 text-pretty">{empanada.name}</p>
+            <p class="font-light text-xs ml-2 ">{empanada.description}</p>
+            <p class="ml-2 mb-1 ">{empanada.price}</p>
           </div>
         ))
       }
     </div>
-    <h1 class=" ml-6 mt-6 font-bold text-2xl">Entradas</h1>
-    <div class="flex overflow-x-auto ml-3">
+    <h1 class="ml-6 mt-6 font-bold text-4xl">Entradas</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
       {
-        entradas.map((entrada)=>(
-          <div class="flex flex-col  bg-red-600 rounded-xl m-3 min-w-24">
-            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={entrada.src} alt="empanada" />
-            <p class="font-semibold text-sm text-start mt-4 ml-2">{entrada.name}</p>
+        entradas.map((entrada) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl"
+              src={entrada.src}
+              alt="empanada"
+            />
+            <p class="font-semibold text-sm text-start mt-3 ml-2">
+              {entrada.name}
+            </p>
             <p class="font-light text-xs ml-2">{entrada.description}</p>
             <p class="ml-2">{entrada.price}</p>
           </div>
         ))
       }
     </div>
-    <h1 class=" ml-6 mt-6 font-bold text-2xl">Ensaladas</h1>
-    <div class="flex overflow-x-auto ml-3">
+    <h1 class="ml-6 mt-6 font-bold text-4xl">Ensaladas</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
       {
-        ensaladas.map((ensalada)=>(
-          <div class="flex flex-col  bg-red-600 rounded-xl m-3 min-w-24">
-            <img class="h-12 w-12 object-cover mt-2 ml-auto mr-2" src={ensalada.src} alt="empanada" />
-            <p class="font-semibold text-sm text-start mt-4 ml-2">{ensalada.name}</p>
+        ensaladas.map((ensalada) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={ensalada.src}
+              alt="empanada"
+            />
+            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+              {ensalada.name}
+            </p>
             <p class="font-light text-xs ml-2">{ensalada.description}</p>
             <p class="ml-2">{ensalada.price}</p>
           </div>
         ))
       }
     </div>
+    <h1 class="ml-6 mt-6 font-bold text-4xl">Pizzas</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
+      {
+        pizzas.map((pizza) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={pizza.src}
+              alt="empanada"
+            />
+            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+              {pizza.name}
+            </p>
+            <p class="font-light text-xs ml-2">{pizza.description}</p>
+            <p class="ml-2">{pizza.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <h1 class="ml-6 mt-6 font-bold text-4xl">Cocina</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
+      {
+        cocina.map((platillo) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={platillo.src}
+              alt="empanada"
+            />
+            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+              {platillo.name}
+            </p>
+            <p class="font-light text-xs ml-2">{platillo.description}</p>
+            <p class="ml-2">{platillo.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <h1 class="ml-6 mt-6 font-bold text-4xl">Postres</h1>
+    <div class="flex overflow-x-auto ml-3 mt-2">
+      {
+        postres.map((postre) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={postre.src}
+              alt="empanada"
+            />
+            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+              {postre.name}
+            </p>
+            <p class="font-light text-xs ml-2">{postre.description}</p>
+            <p class="ml-2">{postre.price}</p>
+          </div>
+        ))
+      }
+    </div>
   </nav>
-
-  <!-- <nav id="modal-menu" class="md:hidden text-center">
-    <button
-      id="boton-carta"
-      class="md:hidden border-[2px] backdrop-blur-sm font-bold text-xl rounded-xl text-white px-12 py-2 inline-block hover:scale-105 bg-red-500 hover:text-white transition-colors"
-    >
-      Carta
-    </button>
-    <ul
-      id="lista"
-      class="w-60 border-solid border-black border-1 rounded-md bg-white flex flex-col mx-auto mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-center [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:px-6 [&>li>a]:py-2 [&>li>a]:rounded-md"
-    >
-      <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
-          Empanadas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-s"
-          >Entradas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-3">
-          Ensaladas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-x"
-          >Pizzas<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#model-y"
-          >Nuetsra Cocina<img
-            class="h-5"
-            alt="arrow icon"
-            src="/arrow-icon.svg"
-          /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
-          >Mar<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
-          >Granja<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
-          >Carne<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-      <li>
-        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
-          >Postres<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
-    </ul>
-  </nav> -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const boton = document.getElementById("boton-carta");
-      // Obtén el botón y el elemento <ul>
-      const ul = document.getElementById("lista");
-      const items = ul.querySelectorAll("li");
-
-      boton.addEventListener("click", function () {
-        items.forEach((item) => {
-          if (
-            item.style.visibility === "hidden" ||
-            item.style.visibility === ""
-          ) {
-            item.style.visibility = "visible";
-          } else {
-            item.style.visibility = "hidden";
-          }
-          if (
-            ul.style.visibility === "hidden" ||
-            item.style.visibility === ""
-          ) {
-            ul.style.visibility = "visible";
-          } else {
-            ul.style.visibility = "hidden";
-          }
-          if (item.style.visibility === "visible") {
-            ul.style.visibility = "visible";
-          }
-        });
-      });
-    });
-  </script>
 
   <!-- // navegacion media  -->
   <header class="hidden md:block text-center py-10">
@@ -502,7 +478,7 @@ const postres = [
 
   <ul
     id="navegacion-carta"
-    class=" hidden flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-auto"
+    class="hidden flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-5 lg:[&>li>a]:text-2xl lg:flex sticky top-auto"
   >
     <li class="sm:hidden md:block">
       <a
@@ -545,7 +521,7 @@ const postres = [
       empanadas.map((empanada) => (
         <div class="flex flex-col items-center">
           <img
-            class="h-32 w-32 object-cover "
+            class=" h-32 w-32 object-cover "
             src={empanada.src}
             alt="empanada"
           />
