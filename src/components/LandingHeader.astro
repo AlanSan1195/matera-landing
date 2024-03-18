@@ -32,12 +32,13 @@ import Logo from "./Logo.astro";
     </ul>
   </nav>
 
-  <nav class="flex flex-grow justify-end basis-0">
+  <nav class="flex flex-grow justify-end basis-0 ">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <li class="hidden md:block hover:text-red-500" ><a href="#">Tienda</a></li>
-      <li class="md:hidden"><a id="menu-btn" href="#carta">Menú</a></li>
+      <li class="hidden md:block font-bold text-xl hover:text-red-600" ><a href="#">Tienda</a></li>
+      <li class="md:hidden border-[2px] border-red-600 bg-white/5 backdrop-blur-sm text-xl rounded font-medium text-white inline-block hover:bg-red-600 hover:text-white transition-colors -mr-4 "><a id="menu-btn" href="#carta">
+        ☰</a></li>
     </ul>
   </nav>
 

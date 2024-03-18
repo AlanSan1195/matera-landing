@@ -9,9 +9,9 @@ import FooterMenu from './FooterMenu.astro';
   id={id}
 >
 
-  <div class="bg-slate-400 bg-transparent opacity-85 z-30 relative h-auto text-end sm:mt-12  md:w-[900px] xl:w-[1000px] flex flex-col flex-wrap ml-auto md:mt-60 lg:mt-60 text-pretty">
+  <div class=" opacity-85 z-30 relative h-auto text-end sm:mt-12  md:w-[900px] xl:w-[1000px] flex flex-col flex-wrap ml-auto md:mt-60 lg:mt-60 text-pretty">
     <header>
-      <h2 class={`${textColor} mr-10 pt-10 text-6xl xl:text-8xl  font-semibold`}>
+      <h2 class={`${textColor} mr-10 pt-28 text-6xl xl:text-8xl  font-semibold`}>
         {title}
       </h2>
       <p class={`${textColor}  mr-10 text-sm lg:text-base mt-4`}>
@@ -19,7 +19,7 @@ import FooterMenu from './FooterMenu.astro';
       </p>
     </header>
 
-    <footer class=" py-14 flex flex-col flex-grow justify-end  mr-auto ml-auto md:mr-14">
+    <footer class=" py-8 flex flex-col flex-grow justify-end  mr-auto ml-auto md:mr-14">
       <slot name="footer" />
       <!-- Condicionamente cargar el pie de página: -->
       {showFooterContent && <FooterMenu />}
