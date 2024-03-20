@@ -506,7 +506,7 @@ const postres = [
 
   <ul
     id="navegacion-carta"
-    class="flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
+    class="hidden md:flex flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
   >
     <li class="sm:hidden md:block">
       <a
@@ -542,12 +542,12 @@ const postres = [
   </ul>
   <div
     id="Empanadas"
-    class="hidden justify-center justify-between mr-10 ml-10 p-7"
+    class="hidden  justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
     {
       empanadas.map((empanada) => (
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center sm:hidden md:flex">
           <img
             class=" h-32 w-32 object-cover "
             src={empanada.src}
@@ -569,7 +569,7 @@ const postres = [
   >
     {
       pizzas.map((pizza) => (
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center sm:hidden md:flex">
           <img class="h-32 w-32 object-cover " src={pizza.src} alt="pizza" />
           <p class=" font-semibold text-base text-center text-pretty">
             {pizza.name}
@@ -584,7 +584,7 @@ const postres = [
   <div id="Entradas" class="entradas-div flex flex-wrap mr-10 ml-10">
     {
       entradas.map((entrada) => (
-        <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 ">
+        <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 sm:hidden md:flex ">
           <img
             class=" h-32 w-32 object-cover rounded-lg"
             src={entrada.src}
@@ -604,7 +604,7 @@ const postres = [
   <div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       ensaladas.map((ensalada) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
           <img
             class="h-32 w-32 object-cover "
             src={ensalada.src}
@@ -624,7 +624,7 @@ const postres = [
   <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       cocina.map((cocina) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
           <img class="h-32 w-32 object-cover " src={cocina.src} alt="cocina" />
           <p class=" font-semibold text-base text-center text-pretty">
             {cocina.name}
@@ -640,7 +640,7 @@ const postres = [
   <div id="Postres" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       postres.map((postre) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center">
+        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
           <img class="h-32 w-32 object-cover " src={postre.src} alt="postre" />
           <p class=" font-semibold text-base text-center text-pretty">
             {postre.name}
