@@ -1,0 +1,108 @@
+<div id="smoke-bkg" class="fixed top-0 h-full w-full"></div>
+
+<script>
+  //importamos la biobleoteca de Three.js
+
+  import * as THREE from "three";
+
+  const $bkg = document.getElementById("smoke-bkg");
+
+  const w = window.innerWidth;
+  const h = window.innerHeight;
+
+  //inicializar Three.js
+  // 3 cosas basiscas:   Escena, Camara, Rednderizador
+
+  //Escena
+  const scene = new THREE.Scene();
+
+  //Camara   el "h" es el frente y la "w" es los lados 1000 es la maxima para que mas ya no s eve esta muy lejos
+  const camara = new THREE.PerspectiveCamera(75, w / h, 1, 1000);
+  //activamos la profundidad deceada
+  camara.position.z = 10;
+  //a esta ecena le agregamos la camara
+  scene.add(camara);
+
+  //Renderizador ▶️   HAY DIFERENTES TIPOS PERO USAREMOS EL WEBGL
+  const renderer = new THREE.WebGLRenderer();
+  renderer.setSize(w, h);
+
+  //color de fondo
+  renderer.setClearColor(0x999999, 1);
+
+  $bkg?.appendChild(renderer.domElement);
+
+  // para crear un objeto neceitamos 3 cosas
+  //1. gueometria
+  const geometry = new THREE.BoxGeometry(1, 1, 1);
+
+  // 2. Material
+  const material = new THREE.MeshBasicMaterial({
+    color: 0x00ff00,
+  });
+  //3. Malla
+  const cube = new THREE.Mesh(geometry, material);
+  scene.add(cube);
+
+  // crear particulas de humo
+  const smokeParticles = [];
+
+  const loader = new THREE.TextureLoader();
+  loader.crossOrigin = ""; //<--- en locallhost no pasa nada pero si desplegamos a un servidor puede ser necesario
+
+  loader.load("/smoke.webp", (texture) => {
+    // 1. Geometria
+    //crear un plano geometrico de 300 x 300
+    const smokeGeo = new THREE.PlaneGeometry(300, 300);
+
+    //2. Material
+    const smikeMaterial = new THREE.MeshLambertMaterial({
+      map: texture,
+      transparent: true,
+    });
+
+    // 3. Malla
+    //creeamos las particulas y las posicionamos aleatoriamente
+    const NUM_OF_PARTICLES = 300;
+
+    for (let p = 0; p < NUM_OF_PARTICLES; p++) {
+      const particle = new THREE.Mesh(smokeGeo, smikeMaterial);
+
+      particle.position.set(
+        Math.random() * 500 - 250,
+        Math.random() * 500 - 250,
+        Math.random() * 1000 - 100
+      );
+
+      particle.rotation.z = Math.random() * 360;
+      scene.add(particle);
+      smokeParticles.push(particle);
+      function animateSmoke(){
+          requestAnimationFrame(animateSmoke);
+          particle.rotation.z += 0.001;
+           particle.position.y += 0.01;
+           particle.position.x += 0.04;
+
+      }
+      animateSmoke();
+    }
+
+    const smokeMesh = new THREE.Mesh(smokeGeo, smikeMaterial);
+  });
+
+  // animamos la ecena
+  function animate() {
+    //ir llamando en cada frame a esta funciion que anima
+    requestAnimationFrame(animate);
+    cube.rotation.x += 0.01;
+    cube.rotation.y += 0.01;
+    cube.position.z += 0.01;
+    cube.position.x += 0.01;
+    cube.position.y += 0.01;
+
+    //renderizamos la escena
+    renderer.render(scene, camara);
+  }
+  //llamamos a la funcion animate para que se ejecute en cada frame
+  animate();
+</script>
