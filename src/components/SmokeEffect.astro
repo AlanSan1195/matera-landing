@@ -7,8 +7,8 @@
 
   const $bkg = document.getElementById("smoke-bkg");
 
-  const w = window.innerWidth;
-  const h = window.innerHeight;
+  let w = window.innerWidth;
+  let h = window.innerHeight;
 
   //inicializar Three.js
   // 3 cosas basiscas:   Escena, Camara, Rednderizador
@@ -22,6 +22,9 @@
   camara.position.z = 10;
   //a esta ecena le agregamos la camara
   scene.add(camara);
+
+
+
 
   //Renderizador ▶️   HAY DIFERENTES TIPOS PERO USAREMOS EL WEBGL
   const renderer = new THREE.WebGLRenderer();
@@ -79,6 +82,16 @@
     const smokeMesh = new THREE.Mesh(smokeGeo, smikeMaterial);
   });
 
+  // RENDERIZAR LA CAMARA CUANDO SE CAMBIEN LOS PARAMAETRO DE LA LA PANTALLA 
+
+  function reize (){
+    w = window.innerWidth;
+    h = window.innerHeight;
+    camara.aspect = w / h;  
+    camara.updateProjectionMatrix(); // funcion necesaria en THREE.JS  a la hjora de cambiar los aspectos de la ventana
+    renderer.setSize(w, h);
+  }
+
   // animamos la ecena
   function animate() {
     //ir llamando en cada frame a esta funciion que anima
@@ -88,5 +101,7 @@
     renderer.render(scene, camara);
   }
   //llamamos a la funcion animate para que se ejecute en cada frame
+
   animate();
+  window.addEventListener("resize", reize);
 </script>
