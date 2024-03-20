@@ -7,14 +7,17 @@ import Eventos from "../components/Eventos.astro";
 import Nosotros from "../components/Nosotros.astro";
 import Layout from "../layouts/Layout.astro";
 import SectionBackground from "../components/Caurosel.astro";
+import SmokeEffect from "@/components/SmokeEffect.astro";
 ---
 
 <Layout title="La Matera - El sabor de argentina en casa">
   <LandingHeader />
 
   <main
-    class=""
+  class=""
   >
+  <SmokeEffect />
+  
     <HomeReserva />
     <Eventos />
     <Carta />

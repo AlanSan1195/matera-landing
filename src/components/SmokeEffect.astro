@@ -1,4 +1,4 @@
-<div id="smoke-bkg" class="fixed top-0 h-full w-full"></div>
+<div id="smoke-bkg" class="fixed top-0 h-full w-full -z-10 opacity-45 "></div>
 
 <script>
   //importamos la biobleoteca de Three.js
@@ -32,17 +32,6 @@
 
   $bkg?.appendChild(renderer.domElement);
 
-  // para crear un objeto neceitamos 3 cosas
-  //1. gueometria
-  const geometry = new THREE.BoxGeometry(1, 1, 1);
-
-  // 2. Material
-  const material = new THREE.MeshBasicMaterial({
-    color: 0x00ff00,
-  });
-  //3. Malla
-  const cube = new THREE.Mesh(geometry, material);
-  scene.add(cube);
 
   // crear particulas de humo
   const smokeParticles = [];
@@ -94,12 +83,7 @@
   function animate() {
     //ir llamando en cada frame a esta funciion que anima
     requestAnimationFrame(animate);
-    cube.rotation.x += 0.01;
-    cube.rotation.y += 0.01;
-    cube.position.z += 0.01;
-    cube.position.x += 0.01;
-    cube.position.y += 0.01;
-
+ 
     //renderizamos la escena
     renderer.render(scene, camara);
   }
