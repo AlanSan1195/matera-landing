@@ -1,14 +1,17 @@
 ---
 import Logo from "./Logo.astro";
+
 ---
 
 <header
   id="landing-header"
-  class="py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white"
+  class="py-5 px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl"
 >
+
   <div class="flex flex-grow basis-0">
     <a href="./"><Logo /></a>
   </div>
+
 
   <nav class="hidden md:block">
     <ul
@@ -123,9 +126,9 @@ import Logo from "./Logo.astro";
 <script>
   const listItem = document.querySelectorAll("#landing-header li");
   const menuBackDrop = document.querySelector("#menu-backdrop") as HTMLElement;
-  const menuBackDrop2 = document.querySelector("#menu-backdrop2") as HTMLElement;
+  
 
-
+  // desavilitamos interseccion de pagina 
   listItem.forEach((item) => {
     item.addEventListener ("mouseenter", () => {
       const { left, top, width, height } = item.getBoundingClientRect();

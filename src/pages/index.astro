@@ -1,5 +1,4 @@
 ---
-
 import HomeReserva from "../components/HomeReserva.astro";
 import LandingHeader from "../components/LandingHeader.astro";
 import Carta from "../components/Carta.astro";
@@ -14,16 +13,10 @@ import SectionBackground from "../components/Caurosel.astro";
   <LandingHeader />
 
   <main
-    class="snap-y snap-mandatory relative w-full h-screen overflow-y-auto overflow-x-hidden scroll-smooth"
+    class=""
   >
-    <div class="snap-center">
-      <HomeReserva />
-    </div>
-    <div class="snap-center">
-      <Carta />
-    </div>
-    <div class="snap-center">
-      <Eventos />
-    </div>
+    <HomeReserva />
+    <Carta />
+    <Eventos />
   </main>
 </Layout>

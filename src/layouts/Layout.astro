@@ -18,7 +18,8 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body>
+  <body >
+   
     <slot />
   </body>
 </html>
@@ -26,6 +27,7 @@ const { title } = Astro.props;
 <style is:global>
   :root {
     color-scheme: light dark;
+    --primary: #090909;
   }
   html {
     font-family: 'Lora Variable',  "Courier New", Courier, monospace;
@@ -36,6 +38,15 @@ const { title } = Astro.props;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+body{
+  background-color: var(--primary);
+}
+#Logo2 {
+  transition: opacity 0.5s ease;
+}
+.invisible {
+  display: none;
 }
 
 .container {
@@ -175,11 +186,13 @@ const { title } = Astro.props;
   transition: opacity .5s ease-in-out;
   opacity: 0;
   display: none;
-}
-.entradas-div {
+}  
+
+
+/* .entradas-div {
   max-height:500px;
   overflow-y: auto;
-}
+} */
 .image-drop-shadow-empanadas {
   height: 6rem; /* Altura fija de 12rem */
   width: 6rem; /* Ancho fijo de 12rem */
