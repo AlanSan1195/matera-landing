@@ -350,17 +350,22 @@ const postres = [
 ---
 
 <section
-  class="landing-section  h-screen w-screen overflow-hidden"
+  class="landing-section h-full w-screen overflow-hidden"
   data-header-color={color}
   id={id}
 >
   <!-- //navegacion sm -->
-  <nav class="md:hidden max-h-full overflow-y-auto">
-    <h1 class="ml-6 mt-8 font-bold text-4xl">Empanadas</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+  <nav class="md:hidden max-h-full mt-28">
+    <h1 class=" text-red-600 text-2xl font-semibold flex justify-center items-center">Menú</h1>
+    <a
+      id="botonempanadas"
+      class="hover:cursor-pointer  mt-8 font-bold text-4xl flex justify-center"
+      >Empanadas</a
+    >
+    <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 ml-12 mt-2">
       {
         empanadas.map((empanada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
             <img
               class="image-drop-shadow-empanadas relative bottom-5 "
               src={empanada.src}
@@ -372,9 +377,14 @@ const postres = [
           </div>
         ))
       }
+      {}
     </div>
-    <h1 class="ml-6 mt-6 font-bold text-4xl">Entradas</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+    <a
+      id="botonEntradas"
+      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      >Entradas</a
+    >
+    <div id="divEntradas" class="flex overflow-x-auto ml-14 hidden ml-3 mt-2">
       {
         entradas.map((entrada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -392,8 +402,12 @@ const postres = [
         ))
       }
     </div>
-    <h1 class="ml-6 mt-6 font-bold text-4xl">Ensaladas</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+    <a
+      id="botonEnsaladas"
+      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      >Ensaladas</a
+    >
+    <div id="divEnsaldas" class="flex overflow-x-auto ml-14 hidden ml-3 mt-2">
       {
         ensaladas.map((ensalada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -411,8 +425,12 @@ const postres = [
         ))
       }
     </div>
-    <h1 class="ml-6 mt-6 font-bold text-4xl">Pizzas</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+    <a
+      id="botonPizzas"
+      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      >Pizzas</a
+    >
+    <div id="divPizzas" class="flex overflow-x-auto ml-14 hidden ml-3 mt-2">
       {
         pizzas.map((pizza) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -430,8 +448,12 @@ const postres = [
         ))
       }
     </div>
-    <h1 class="ml-6 mt-6 font-bold text-4xl">Cocina</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+    <a
+      id="botonCocina"
+      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      >Cocina</a
+    >
+    <div id="divCocina" class="flex overflow-x-auto ml-14 hidden ml-3 mt-2">
       {
         cocina.map((platillo) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -449,8 +471,12 @@ const postres = [
         ))
       }
     </div>
-    <h1 class="ml-6 mt-6 font-bold text-4xl">Postres</h1>
-    <div class="flex overflow-x-auto ml-3 mt-2">
+    <a
+      id="botonpostres"
+      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      >Postres</a
+    >
+    <div id="divPostres" class="flex overflow-x-auto ml-14 hidden ml-3 mt-2">
       {
         postres.map((postre) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -471,44 +497,46 @@ const postres = [
   </nav>
 
   <!-- // navegacion media  -->
-  <header class="hidden md:block text-center mt-28  text-4xl lg:text-6xl md:mb-6 ">
-    <h1 class="xl:text-8xl font-semibold">Menú</h1>
+  <header
+    class="hidden md:block text-center mt-28 text-4xl lg:text-6xl md:mb-6"
+  >
+    <a class="xl:text-8xl font-semibold">Menú</a>
     <h3 class="xl:text-5xl font-medium">Apetito por lo que hacemos</h3>
   </header>
 
   <ul
     id="navegacion-carta"
-    class=" flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap  lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl  lg:flex sticky top-auto"
+    class="flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
   >
     <li class="sm:hidden md:block">
       <a
         id="ver-empanadas"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Empanadas</a
+        class="font-semibold text-white text-sm hover:text-red-500">Empanadas</a
       >
       <a
         id="ver-entradas"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Entradas</a
+        class="font-semibold text-white text-sm hover:text-red-500">Entradas</a
       >
       <a
         id="ver-ensaladas"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Ensaladas</a
+        class="font-semibold text-white text-sm hover:text-red-500">Ensaladas</a
       >
       <a
         id="ver-pizzas"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Pizzas</a
+        class="font-semibold text-white text-sm hover:text-red-500">Pizzas</a
       >
       <a
         id="ver-cocina"
-        class="font-semibold text-white text-sm hover:text-red-500 "
+        class="font-semibold text-white text-sm hover:text-red-500"
         >Nuestra cocina</a
       >
       <a
         id="ver-parrilla"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Parrilla</a
+        class="font-semibold text-white text-sm hover:text-red-500">Parrilla</a
       >
       <a
         id="ver-postres"
-        class="font-semibold text-white text-sm hover:text-red-500 ">Postres</a
+        class="font-semibold text-white text-sm hover:text-red-500">Postres</a
       >
     </li>
   </ul>
@@ -696,3 +724,36 @@ const postres = [
     });
   </script>
 </section>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const empanadas = document.getElementById("botonempanadas");
+    const empanadasDiv = document.getElementById("divEmpanadas");
+    const entradas = document.getElementById("botonEntradas");
+    const entradasDiv = document.getElementById("divEntradas");
+    const ensaladas = document.getElementById("botonEnsaladas");
+    const ensaladasDiv = document.getElementById("divEnsaldas");
+    const pizzas = document.getElementById("botonPizzas");
+    const pizzasDiv = document.getElementById("divPizzas");
+    const cocina = document.getElementById("botonCocina");
+    const cocinaDiv = document.getElementById("divCocina");
+    const postres = document.getElementById("botonpostres");
+    const postresDiv = document.getElementById("divPostres");
+
+    function mostrarDiv(boton, div) {
+      boton.addEventListener("click", function () {
+        div.classList.toggle("hidden");
+      });
+    }
+    mostrarDiv(empanadas, empanadasDiv);
+    mostrarDiv(entradas, entradasDiv);
+    mostrarDiv(ensaladas, ensaladasDiv);
+    mostrarDiv(pizzas, pizzasDiv);
+    mostrarDiv(cocina, cocinaDiv);
+    mostrarDiv(postres, postresDiv);
+  });
+
+  //   empanadas.addEventListener("click", function () {
+  //     empanadasDiv.classList.toggle("hidden");
+  //   });
+  // });
+</script>
