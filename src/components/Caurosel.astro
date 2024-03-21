@@ -4,32 +4,34 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<div class=" flex flex-wrap ">
-
-  <div class="container" data-header-color={color} id={id}>
+<div class="flex flex-wrap relative w-full">
+  <div
+    class="container max-w-[1950px] object-cover"
+    data-header-color={color}
+    id={id}
+  >
     <div class="slider"></div>
-    
   </div>
   <script>
     (() => {
       const slideImages = [
-        {
-          img: "public/imagenes/pollo.webp",
-        
-          title: "Ea id minim",
-          description:
-            "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
-        },
         {
           img: "public/imagenes/vino.webp",
           title: "Nisi sint qui",
           description: "Irure elit ex deserunt cupidatat enim.",
         },
         {
+          img: "public/imagenes/lamatera7.webp",
+
+          title: "Ea id minim",
+          description:
+            "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
+        },
+        {
           img: "public/imagenes/carne.webp",
           title: "Mollit non",
           description:
-            "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+          "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
         },
         {
           img: "public/imagenes/boquete.webp",
@@ -43,41 +45,11 @@ import FooterMenu from "./FooterMenu.astro";
           description:
             "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
         },
-        {
-          img: "public/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-        },
-        {
-          img: "public/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-        },
-        {
-          img: "public/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-        },
-        {
-          img: "public/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-        },
-        {
-          img: "public/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
-        },
       ];
-  
+
       const createHtmlStructure = (sliderSelector, images) => {
-        const parent = document.querySelector(sliderSelector,);
-  
+        const parent = document.querySelector(sliderSelector);
+
         // Slides
         images.forEach((slideImg, index) => {
           const { img, title, description } = slideImg;
@@ -89,8 +61,8 @@ import FooterMenu from "./FooterMenu.astro";
       >
         <div class="content">
           <div class="name">${title}</div>
-          <div class="description">${description}</div>
-          <button>Ver más</button>
+          <div class="description ">${description}</div>
+          <button class="border-[2px] border-red-600 bg-white/5 backdrop-blur-sm text-sm rounded font-medium text-white px-12 py-2 inline-block hover:bg-red-600 hover:text-white transition-colors lg:text-2xl">Ver más</button>
         </div>
       </div>
       `;
@@ -99,38 +71,36 @@ import FooterMenu from "./FooterMenu.astro";
             .createContextualFragment(slideItem);
           parent.appendChild(divFragment);
         });
-  
+
         // Buttons
         const html = `
     <div class="buttons">
-      <button class="prev"> Prev</button>
+      <button class="prev "> Prev</button>
       <button class="next"> Next</button>
     </div>
     `;
         const fragment = document.createRange().createContextualFragment(html);
         parent.parentElement.appendChild(fragment);
       };
-  
+
       // Initializations
       createHtmlStructure(".slider", slideImages);
-  
+
       // References
       const $slider = document.querySelector(".slider");
       const $next = document.querySelector(".next");
       const $prev = document.querySelector(".prev");
-  
+
       // Listeners
       $next.addEventListener("click", () => {
         const items = document.querySelectorAll(".item");
         $slider.appendChild(items[0]);
       });
-  
+
       $prev.addEventListener("click", () => {
         const items = document.querySelectorAll(".item");
         $slider.prepend(items[items.length - 1]);
       });
     })();
   </script>
-  
-
 </div>

@@ -1,7 +1,7 @@
 ---
 // Supports weights 100-900
-import SmokeEffect from '@/components/SmokeEffect.astro';
-import '@fontsource-variable/lora';
+import SmokeEffect from "@/components/SmokeEffect.astro";
+import "@fontsource-variable/lora";
 // Supports weights 400-700
 export interface Props {
   title: string;
@@ -15,13 +15,15 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo.svg"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body >
-   
-   
+  <body>
     <slot />
   </body>
 </html>
@@ -32,190 +34,238 @@ const { title } = Astro.props;
     --primary: #090909;
   }
   html {
-    font-family: 'Lora Variable',  "Courier New", Courier, monospace;
+    font-family: "Lora Variable", "Courier New", Courier, monospace;
   }
 
   /* estilos de las imagenes de la carta  */
   * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-body{
-  background-color: var(--primary);
-}
-#Logo2 {
-  transition: opacity 0.5s ease;
-}
-.invisible {
-  display: none;
-}
-
-.container {
-  position: relative; 
-  top: 0px;
-
-  width: 100%;
-  height: 100vh;
-  background: #f5f5f5;
-  box-shadow: 0 10px 30px #dbdbdb;
-}
-
-.container .slider .item {
-  width: 145px;
-  height: 220px;
-  position: absolute;
-  top: 70%;
-  transform: translate(0, -50%);
-  border-radius: 20px;
-  box-shadow: 0 30px 50px #505050;
-  background-position: 50% 50%;
-  background-size: cover;
-  display: inline-block;
-  transition: 0.5s;
-  z-index: 1;
-}
-
-.slider .item:nth-child(1),
-.slider .item:nth-child(2) {
-  top: 0;
-  left: 0;
-  transform: translate(0, 0);
-  border-radius: 5px;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-
-.slider .item:nth-child(3) {
-  left: 50%
-}
-
-.slider .item:nth-child(4) {
-  left: calc(50% + 210px)
-}
-
-.slider .item:nth-child(5) {
-  left: calc(50% + 430px)
-}
-
-.slider .item:nth-child(6) {
-  left: calc(50% + 650px);
-}
-
-/* Hide all after nth child 5 */
-.slider .item:nth-child(n+7) {
-  display: none;
-}
-
-.item .content {
-  position: absolute;
-  top: 50%;
-  left: 50px;
-  width: 300px;
-  text-align: left;
-  color: #eee;
-  transform: translate(0, -50%);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  display: none;
-}
-
-.slider .item:nth-child(2) .content {
-  display: block;
-}
-
-.content .name {
-  font-size: 40px;
-  text-transform: uppercase;
-  font-weight: bold;
-  opacity: 0;
-  animation: animate 1s ease-in-out 1 forwards;
-}
-
-.content .description {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.3s 1 forwards;
-}
-
-.content button {
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.6s 1 forwards;
-}
-
-@keyframes animate {
-  from {
-    opacity: 0;
-    transform: translate(0, 100px);
-    filter: blur(33px);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  to {
-    opacity: 1;
+  body {
+    background-color: var(--primary);
+  }
+  #Logo2 {
+    transition: opacity 0.5s ease;
+  }
+  .invisible {
+    display: none;
+  }
+
+  .container {
+    position: relative;
+    top: 0px;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+
+    background: #f5f5f5;
+    box-shadow: 0 10px 30px #dbdbdb;
+  }
+
+  .container .slider .item {
+    width: 345px;
+    height: 220px;
+    position: absolute;
+    top: 70%;
+    transform: translate(0, -50%);
+    border-radius: 20px;
+    box-shadow: 0 30px 50px #505050;
+    background-position: 50% 50%;
+    background-size: cover;
+    display: inline-block;
+    transition: 0.5s;
+    z-index: 1;
+  }
+  @media (max-width: 670px) {
+    .container .slider .item {
+      width: 245px;
+      height: 120px;
+    }
+  }
+
+  .slider .item:nth-child(1),
+  .slider .item:nth-child(2) {
+    top: 0;
+    left: 0;
     transform: translate(0, 0);
-    filter: blur(0);
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
   }
-}
 
-.buttons {
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  bottom: 20px;
-  z-index: 10;
-}
+  .slider .item:nth-child(3) {
+    left: 50%;
+  }
 
-.buttons button {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  /* border: none; */
-  cursor: pointer;
-  margin: 0 5px;
-  border: 1px solid #000;
-  transition: 0.3s;
-}
+  .slider .item:nth-child(4) {
+    left: calc(50% + 210px);
+  }
+  @media (max-width: 670px) {
+    .slider .item:nth-child(3) {
+      left: 80%;
+    }
+    .slider .item:nth-child(4) {
+      left: 90%;
+    }
+  }
 
-.buttons button:hover {
-  background: #ababab;
-  color: #fff;
-}
-#Empanadas, #Entradas, #Pizzas, #Ensaladas, #Cocina {
-  transition: opacity .5s ease-in-out;
-  opacity: 0;
-  display: none;
-}  
+  .slider .item:nth-child(5) {
+    left: calc(50% + 430px);
+  }
 
+  .slider .item:nth-child(6) {
+    left: calc(50% + 650px);
+  }
 
-/* .entradas-div {
+  /* Hide all after nth child 5 */
+  .slider .item:nth-child(n + 7) {
+    display: none;
+  }
+
+  .item .content {
+    position: absolute;
+    top: 50%;
+    left: 50px;
+    width: 500px;
+    text-align: left;
+    color: #eee;
+    transform: translate(0, -50%);
+    font-family: "Lora Variable", "Open Sans", "Helvetica Neue", sans-serif;
+    display: none;
+  }
+
+  .slider .item:nth-child(2) .content {
+    display: block;
+  }
+
+  .content .name {
+    font-size: 128px;
+    text-transform: uppercase;
+    font-weight: bold;
+    opacity: 0;
+    width: 880px;
+    animation: animate 1s ease-in-out 1 forwards;
+  }
+  @media (max-width: 768px) {
+    .item .content {
+      top: 56%;
+      width: 280px;
+      left: 20px;
+    }
+  }
+
+  /* // medidas en sm */
+
+  .content .description {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    font-size: 28px;
+    animation: animate 1s ease-in-out 0.3s 1 forwards;
+  }
+  
+  @media (max-width: 768px) {
+    .content .name {
+      font-size: 32px;
+      width: 300px;
+    }
+    .content .description {
+      font-size: 12px;
+    }
+  }
+
+  .content button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+  }
+
+  @keyframes animate {
+    from {
+      opacity: 0;
+      transform: translate(0, 100px);
+      filter: blur(33px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0, 0);
+      filter: blur(0);
+    }
+  }
+
+  .buttons {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 70px;
+    z-index: 10;
+  }
+
+  .buttons button {
+    background-color: #dc2626;
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    /* border: none; */
+    cursor: pointer;
+    margin: 0 5px;
+    border: 3px solid #dc2626;
+    transition: 0.3s;
+    box-shadow: 0 0 1px #dc2626;
+  }
+  @media (max-width: 768px) {
+    .buttons button {
+      width: 80px;
+      height: 40px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .buttons button:hover {
+    color: #fff;
+    scale: 1.1;
+  }
+  #Empanadas,
+  #Entradas,
+  #Pizzas,
+  #Ensaladas,
+  #Cocina {
+    transition: opacity 0.5s ease-in-out;
+    opacity: 0;
+    display: none;
+  }
+
+  /* .entradas-div {
   max-height:500px;
   overflow-y: auto;
 } */
-.image-drop-shadow-empanadas {
-  height: 6rem; /* Altura fija de 12rem */
-  width: 6rem; /* Ancho fijo de 12rem */
-  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
-   /* Margen superior de 0.5rem */
-  margin-right: 0.5rem; /* Margen derecho de 0.5rem */
-  margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
-  filter: drop-shadow(2px 4px 6px black);/* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
-
-  
-}
-.image-drop-shadow {
-  height: 5rem; /* Altura fija de 12rem */
-  width: 5rem; /* Ancho fijo de 12rem */
-  object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
-   /* Margen superior de 0.5rem */
-  margin-right: 0.5rem; /* Margen derecho de 0.5rem */
-  margin-bottom: 0.9rem;
-  margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
-  filter: drop-shadow(2px 4px 6px black);/* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
-  transform: rotate(45deg);
-  
-}
+  .image-drop-shadow-empanadas {
+    height: 6rem; /* Altura fija de 12rem */
+    width: 6rem; /* Ancho fijo de 12rem */
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
+    /* Margen superior de 0.5rem */
+    margin-right: 0.5rem; /* Margen derecho de 0.5rem */
+    margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
+    filter: drop-shadow(
+      2px 4px 6px black
+    ); /* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
+  }
+  .image-drop-shadow {
+    height: 5rem; /* Altura fija de 12rem */
+    width: 5rem; /* Ancho fijo de 12rem */
+    object-fit: cover; /* Asegura que la imagen cubra todo el espacio asignado sin deformarse */
+    /* Margen superior de 0.5rem */
+    margin-right: 0.5rem; /* Margen derecho de 0.5rem */
+    margin-bottom: 0.9rem;
+    margin-left: auto; /* Margen izquierdo automático para centrar horizontalmente */
+    filter: drop-shadow(
+      2px 4px 6px black
+    ); /* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
+    transform: rotate(45deg);
+  }
 </style>
