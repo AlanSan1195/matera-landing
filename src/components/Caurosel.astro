@@ -4,7 +4,7 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<div class="flex flex-wrap relative w-full">
+<div  class="flex flex-wrap relative w-full">
   <div
     class="container max-w-[1950px] object-cover"
     data-header-color={color}
@@ -21,18 +21,19 @@ import FooterMenu from "./FooterMenu.astro";
           description: "Irure elit ex deserunt cupidatat enim.",
         },
         {
+          img: "public/imagenes/champagne.webp",
+          title: "Mollit non",
+          description:
+          "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+        },
+        {
           img: "public/imagenes/lamatera7.webp",
 
           title: "Ea id minim",
           description:
             "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
         },
-        {
-          img: "public/imagenes/carne.webp",
-          title: "Mollit non",
-          description:
-          "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
-        },
+        
         {
           img: "public/imagenes/boquete.webp",
           title: "Id incididunt",
@@ -62,7 +63,7 @@ import FooterMenu from "./FooterMenu.astro";
         <div class="content">
           <div class="name">${title}</div>
           <div class="description ">${description}</div>
-          <button class="border-[2px] border-red-600 bg-white/5 backdrop-blur-sm text-sm rounded font-medium text-white px-12 py-2 inline-block hover:bg-red-600 hover:text-white transition-colors lg:text-2xl">Ver más</button>
+          <button class="">Ver más</button>
         </div>
       </div>
       `;

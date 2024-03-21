@@ -31,7 +31,7 @@ const { title } = Astro.props;
 <style is:global>
   :root {
     color-scheme: light dark;
-    --primary: #090909;
+    --primary: #0E191A;
   }
   html {
     font-family: "Lora Variable", "Courier New", Courier, monospace;
@@ -46,6 +46,10 @@ const { title } = Astro.props;
   body {
     background-color: var(--primary);
   }
+  video{
+    mask-image: linear-gradient(black 90%, transparent); 
+  }
+
   #Logo2 {
     transition: opacity 0.5s ease;
   }
@@ -65,8 +69,8 @@ const { title } = Astro.props;
   }
 
   .container .slider .item {
-    width: 345px;
-    height: 220px;
+    width: 245px;
+    height: 180px;
     position: absolute;
     top: 70%;
     transform: translate(0, -50%);
@@ -97,23 +101,16 @@ const { title } = Astro.props;
   }
 
   .slider .item:nth-child(3) {
-    left: 50%;
+    left: 84%;
   }
 
   .slider .item:nth-child(4) {
-    left: calc(50% + 210px);
+    left: calc(74% + 210px);
   }
-  @media (max-width: 670px) {
-    .slider .item:nth-child(3) {
-      left: 80%;
-    }
-    .slider .item:nth-child(4) {
-      left: 90%;
-    }
-  }
+ 
 
   .slider .item:nth-child(5) {
-    left: calc(50% + 430px);
+    left: calc(65% + 430px);
   }
 
   .slider .item:nth-child(6) {
@@ -124,7 +121,17 @@ const { title } = Astro.props;
   .slider .item:nth-child(n + 7) {
     display: none;
   }
-
+  @media (max-width: 670px) {
+    .slider .item:nth-child(3) {
+      left: 80%;
+    }
+    .slider .item:nth-child(4) {
+      left: 87%;
+    }
+    .slider .item:nth-child(5) {
+    left: calc(8% + 430px);
+  }
+  }
   .item .content {
     position: absolute;
     top: 50%;
@@ -142,11 +149,11 @@ const { title } = Astro.props;
   }
 
   .content .name {
-    font-size: 128px;
+    font-size: 4rem;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0;
-    width: 880px;
+    width: 800px;
     animation: animate 1s ease-in-out 1 forwards;
   }
   @media (max-width: 768px) {
@@ -163,7 +170,7 @@ const { title } = Astro.props;
     margin-top: 10px;
     margin-bottom: 20px;
     opacity: 0;
-    font-size: 28px;
+    font-size: 1rem;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
   
@@ -177,12 +184,19 @@ const { title } = Astro.props;
     }
   }
 
+  /* //botn VER MAS */
   .content button {
-    padding: 10px 20px;
-    border: none;
+    padding: 2px 12px;
+    border: 2px solid #dc2626;
+    border-radius: 12px;
     cursor: pointer;
     opacity: 0;
     animation: animate 1s ease-in-out 0.6s 1 forwards;
+    font-size:smaller;
+  }
+  .content button:hover {
+    background-color: #dc2626;
+    scale: 1.1;
   }
 
   @keyframes animate {
@@ -197,6 +211,7 @@ const { title } = Astro.props;
       filter: blur(0);
     }
   }
+ 
 
   .buttons {
     width: 100%;
@@ -208,28 +223,28 @@ const { title } = Astro.props;
 
   .buttons button {
     background-color: #dc2626;
-    width: 120px;
-    height: 50px;
+    width: 80px;
+    height: 30px;
     border-radius: 12px;
     /* border: none; */
     cursor: pointer;
     margin: 0 5px;
-    border: 3px solid #dc2626;
+    
     transition: 0.3s;
     box-shadow: 0 0 1px #dc2626;
   }
   @media (max-width: 768px) {
     .buttons button {
-      width: 80px;
-      height: 40px;
+      width: 50px;
+      height: 30px;
       margin-bottom: 20px;
     }
   }
 
-  .buttons button:hover {
+  /* .buttons button:hover {
     color: #fff;
     scale: 1.1;
-  }
+  } */
   #Empanadas,
   #Entradas,
   #Pizzas,
@@ -268,4 +283,8 @@ const { title } = Astro.props;
     ); /* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
     transform: rotate(45deg);
   }
+  /* Estilos para la barra de desplazamiento */
+
+
+
 </style>
