@@ -46,9 +46,19 @@ import Logo2 from "./Logo2.astro";
   document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", function () {
       let logo = document.getElementById("Logo2");
-      let windowPosition = window.scrollY > 220;
+      if (window.innerWidth >= 1024){
+        if(window.scrollY >50){
+          logo.style.transition="opacity 0.5s";
+          logo.style.opacity="0";
+        }else{
+          logo.style.transition="opacity 0.5s";
+          logo.style.opacity="1";
+        
+        }
+      }
+      // let windowPosition = window.scrollY > 220;
 
-      logo.classList.toggle("invisible", windowPosition);
+      // logo.classList.toggle("invisible", windowPosition);
     });
   });
 </script>

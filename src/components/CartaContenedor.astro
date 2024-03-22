@@ -584,10 +584,10 @@ const postres = [
     }
   </div>
   <!-- //totalmente responsive no tocar clase de cc en el layout -->
-  <div id="Entradas" class="entradas-div flex flex-wrap mr-10 ml-10">
+  <div id="Entradas" class="entradas-div hidden flex visible flex-wrap mr-10 ml-10">
     {
       entradas.map((entrada) => (
-        <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 sm:hidden md:flex ">
+        <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 sm:hidden md:flex  ">
           <img
             class=" h-32 w-32 object-cover rounded-lg"
             src={entrada.src}
