@@ -10,7 +10,7 @@ import Logo2 from "./Logo2.astro";
   data-header-color={color}
   id={id}
 >
-  <div id="Logo2" class="flex flex-grow basis-0 hidden lg:block">
+  <div id="Logo2" class="flex flex-grow basis-0 hidden lg:block ">
     <a href="./"><Logo2 /></a>
   </div>
 
@@ -19,17 +19,17 @@ import Logo2 from "./Logo2.astro";
   >
     <header>
       <h2
-        class={`${textColor} mr-10 pt-28 text-7xl xl:text-7xl  font-semibold`}
+        class={`${textColor} mr-6 pt-28 text-7xl xl:text-7xl  font-semibold`}
       >
         {title}
       </h2>
-      <p class={`${textColor}  mr-10 text-xs md:text-xl mt-4`}>
+      <p class={`${textColor}  mr-6 text-xs md:text-xl mt-4`}>
         {subtitle}
       </p>
     </header>
 
     <footer
-      class="py-8 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
+      class="py-6 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
     >
       <slot name="footer" />
       <!-- Condicionamente cargar el pie de página: -->

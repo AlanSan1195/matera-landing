@@ -4,7 +4,7 @@ const textColor = `text-${color}`;
 import FooterMenu from "./FooterMenu.astro";
 ---
 
-<div  class="flex flex-wrap relative w-full">
+<div  class="flex flex-wrap relative w-screen h-screen">
   <div
     class="container max-w-[1950px] object-cover"
     data-header-color={color}
@@ -16,18 +16,18 @@ import FooterMenu from "./FooterMenu.astro";
     (() => {
       const slideImages = [
         {
-          img: "public/imagenes/vino.webp",
+          img: "/imagenes/vino.webp",
           title: "Nisi sint qui",
           description: "Irure elit ex deserunt cupidatat enim.",
         },
         {
-          img: "public/imagenes/champagne.webp",
+          img: "/imagenes/champagne.webp",
           title: "Mollit non",
           description:
           "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
         },
         {
-          img: "public/imagenes/lamatera7.webp",
+          img: "/imagenes/lamatera7.webp",
 
           title: "Ea id minim",
           description:
@@ -35,13 +35,13 @@ import FooterMenu from "./FooterMenu.astro";
         },
         
         {
-          img: "public/imagenes/boquete.webp",
+          img: "/imagenes/boquete.webp",
           title: "Id incididunt",
           description:
             "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
         },
         {
-          img: "public/imagenes/camarones.webp",
+          img: "/imagenes/camarones.webp",
           title: "Commodo ad ",
           description:
             "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",

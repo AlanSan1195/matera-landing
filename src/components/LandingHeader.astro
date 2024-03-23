@@ -176,6 +176,7 @@ import Logo from "./Logo.astro";
     let logo1 = document.getElementById("logo1");
     if (window.innerWidth >= 768) {
       if (window.scrollY > 400) {
+        logo1.style.transition = "opacity 0.5s";
         logo1.style.opacity = "0";
       } else {
         logo1.style.opacity = "1";

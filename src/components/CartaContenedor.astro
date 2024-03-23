@@ -218,7 +218,7 @@ const ensaladas = [
   {
     src: "/imagenes/empanadas.webp",
     name: "Arugula",
-    description: "ajas de grana padano, tomates cherry",
+    description: "lajas de grana padano, tomates cherry",
     price: "$170",
   },
   {
@@ -347,7 +347,6 @@ const postres = [
     price: "$145",
   },
 ];
-
 ---
 
 <section
@@ -355,17 +354,19 @@ const postres = [
   data-header-color={color}
   id={id}
 >
-
-
   <!-- //navegacion sm -->
   <nav class="md:hidden max-h-full mt-28">
-    <h1 class=" text-red-600 text-2xl font-semibold flex justify-center items-center">Menú</h1>
+    <h1
+      class="text-red-600 text-2xl font-semibold flex justify-center items-center"
+    >
+      Menú
+    </h1>
     <a
       id="botonempanadas"
-      class="hover:cursor-pointer  mt-8 font-bold text-4xl flex justify-center"
+      class="hover:cursor-pointer mt-8 font-bold text-4xl flex justify-center"
       >Empanadas</a
     >
-    <div id="divEmpanadas" class="hidden flex overflow-x-auto  ml-14 mt-2">
+    <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 mt-2">
       {
         empanadas.map((empanada) => (
           <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -384,10 +385,13 @@ const postres = [
     </div>
     <a
       id="botonEntradas"
-      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 font-bold text-4xl"
       >Entradas</a
     >
-    <div id="divEntradas" class="flex overflow-x-auto bg-scroll ml-14 hidden  mt-2">
+    <div
+      id="divEntradas"
+      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+    >
       {
         entradas.map((entrada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -407,10 +411,13 @@ const postres = [
     </div>
     <a
       id="botonEnsaladas"
-      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 font-bold text-4xl"
       >Ensaladas</a
     >
-    <div id="divEnsaldas" class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2">
+    <div
+      id="divEnsaldas"
+      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+    >
       {
         ensaladas.map((ensalada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -430,10 +437,13 @@ const postres = [
     </div>
     <a
       id="botonPizzas"
-      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 font-bold text-4xl"
       >Pizzas</a
     >
-    <div id="divPizzas" class="flex overflow-x-auto bg-scroll ml-14 hidden  mt-2">
+    <div
+      id="divPizzas"
+      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+    >
       {
         pizzas.map((pizza) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -453,10 +463,13 @@ const postres = [
     </div>
     <a
       id="botonCocina"
-      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 font-bold text-4xl"
       >Cocina</a
     >
-    <div id="divCocina" class="flex overflow-x-auto bg-scroll ml-14 hidden  mt-2">
+    <div
+      id="divCocina"
+      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+    >
       {
         cocina.map((platillo) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -476,10 +489,13 @@ const postres = [
     </div>
     <a
       id="botonpostres"
-      class="hover:cursor-pointer flex justify-center  mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 font-bold text-4xl"
       >Postres</a
     >
-    <div id="divPostres" class="flex overflow-x-auto bg-scroll ml-14 hidden  mt-2">
+    <div
+      id="divPostres"
+      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+    >
       {
         postres.map((postre) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
@@ -545,7 +561,7 @@ const postres = [
   </ul>
   <div
     id="Empanadas"
-    class="hidden  justify-center justify-between mr-10 ml-10 p-7"
+    class="hidden justify-center justify-between mr-10 ml-10 p-7"
     style=" "
   >
     {
@@ -565,35 +581,16 @@ const postres = [
       ))
     }
   </div>
-  <div
-    id="Pizzas"
-    class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
-    style=" "
-  >
-    {
-      pizzas.map((pizza) => (
-        <div class="flex flex-col items-center sm:hidden md:flex">
-          <img class="h-32 w-32 object-cover " src={pizza.src} alt="pizza" />
-          <p class=" font-semibold text-base text-center text-pretty">
-            {pizza.name}
-          </p>
-          <p class=" font-light text-center text-pretty">{pizza.description}</p>
-          <p>{pizza.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <!-- //totalmente responsive no tocar clase de cc en el layout -->
-  <div id="Entradas" class="entradas-div flex  flex-wrap mr-10 ml-10">
+  <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7  ">
     {
       entradas.map((entrada) => (
-        <div class="w-1/4  flex flex-col justify-center items-center   lg:w-1/6 sm:hidden md:flex  ">
+        <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
           <img
             class=" h-32 w-32 object-cover rounded-lg"
             src={entrada.src}
             alt="entrada"
           />
-          <p class="mt-1 font-semibold text-base text-center text-pretty">
+          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {entrada.name}
           </p>
           <p class=" font-light text-center text-pretty">
@@ -607,108 +604,132 @@ const postres = [
   <div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       ensaladas.map((ensalada) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
+        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
           <img
             class="h-32 w-32 object-cover "
             src={ensalada.src}
             alt="ensalada"
           />
-          <p class=" font-semibold text-base text-center text-pretty">
+          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {ensalada.name}
           </p>
-          <p class=" font-light text-center text-pretty">
+          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
             {ensalada.description}
           </p>
-          <p>{ensalada.price}</p>
+          <p class=" mt-1">{ensalada.price}</p>
         </div>
       ))
     }
   </div>
+  <div
+    id="Pizzas"
+    class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
+    style=" "
+  >
+    {
+      pizzas.map((pizza) => (
+        <div class=" h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex  ">
+          <img class=" h-24 w-24 lg:h-32 lg:w-32 object-cover " src={pizza.src} alt="pizza" />
+          <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+            {pizza.name}
+          </p>
+          <p class=" mt-1 font-light text-center text-pretty md:text-xs">{pizza.description}</p>
+          <p class="mt-1">{pizza.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <!-- //totalmente responsive no tocar clase de cc en el layout -->
+  
+ 
   <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       cocina.map((cocina) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
+        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
           <img class="h-32 w-32 object-cover " src={cocina.src} alt="cocina" />
-          <p class=" font-semibold text-base text-center text-pretty">
+          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {cocina.name}
           </p>
-          <p class=" font-light text-center text-pretty">
+          <p class="  mt-1 font-light text-center text-pretty md:text-xs">
             {cocina.description}
           </p>
-          <p>{cocina.price}</p>
+          <p class="mt-1">{cocina.price}</p>
         </div>
       ))
     }
   </div>
-  <div id="Postres" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+  <div id="Postres" class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7">
     {
       postres.map((postre) => (
-        <div class=" w-1/5 p-1 flex flex-col justify-center items-center sm:hidden md:flex">
+        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
           <img class="h-32 w-32 object-cover " src={postre.src} alt="postre" />
-          <p class=" font-semibold text-base text-center text-pretty">
+          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {postre.name}
           </p>
-          <p class=" font-light text-center text-pretty">
+          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
             {postre.description}
           </p>
-          <p>{postre.price}</p>
+          <p class="mt-1">{postre.price}</p>
         </div>
       ))
     }
   </div>
+
+  <!-- //script para mostrar y ver menu en TAMAÑO MD -->
   <script>
     document.addEventListener("DOMContentLoaded", function () {
-      //nuetsro menu un objeto para irterar en el menu seria como hojearlo
       const menu = {
         empanadas: document.getElementById("Empanadas"),
         pizzas: document.getElementById("Pizzas"),
         entradas: document.getElementById("Entradas"),
-        ensaldas: document.getElementById("Ensaladas"),
+        ensaladas: document.getElementById("Ensaladas"),
         cocina: document.getElementById("Cocina"),
         postres: document.getElementById("Postres"),
       };
-      // funcion para mostrar el div que queremos
+
       function mostrarDiv(name) {
         Object.keys(menu).forEach((key) => {
           if (key === name) {
             menu[key].style.opacity = "1";
-            setTimeout(() => {
-              menu[key].style.display = "flex";
-              if (key === "empanadas") {
-                menu[key].classList.add("empanadas-div");
-              }
-            }, 500);
+            menu[key].style.display = "flex"; // Muestra el div seleccionado.
           } else {
             menu[key].style.opacity = "0";
-            setTimeout(() => {
-              menu[key].style.display = "none";
-              if (key === "empanadas") {
-                menu[key].classList.remove("empanadas-div");
-              }
-            }, 500);
+            menu[key].style.display = "none"; // Oculta los otros divs.
           }
         });
       }
+      function ajustarResponsive() {
+        if (window.innerWidth < 640) {
+          // Asumiendo que 640px es el breakpoint para 'sm'
+          Object.keys(menu).forEach((key) => {
+            menu[key].style.opacity = "0";
+            menu[key].style.display = "none";
+          });
+        }
+      }
 
-      //en los enlaces hacemos el click y mostramos su div
+      // Agrega el evento listener para cambios en el tamaño de la ventana
+      window.addEventListener("resize", ajustarResponsive);
+
+      // Llama a la función al cargar para establecer el estado inicial adecuado
+      ajustarResponsive();
+
+      // Event listeners para los botones o enlaces
       document
         .getElementById("ver-empanadas")
         .addEventListener("click", function () {
           mostrarDiv("empanadas");
         });
-
       document
         .getElementById("ver-pizzas")
         .addEventListener("click", function () {
           mostrarDiv("pizzas");
         });
-
       document
         .getElementById("ver-entradas")
         .addEventListener("click", function () {
           mostrarDiv("entradas");
         });
-
       document
         .getElementById("ver-ensaladas")
         .addEventListener("click", function () {
@@ -727,6 +748,7 @@ const postres = [
     });
   </script>
 </section>
+<!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const empanadas = document.getElementById("botonempanadas");
