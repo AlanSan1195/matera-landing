@@ -63,7 +63,7 @@
       particle.position.set(
         Math.random() * 500 - 250,
         Math.random() * 500 - 250,
-        Math.random() * 1000 - 100
+        Math.random() * 1200 - 100
       );
 
       particle.rotation.z = Math.random() * 360;
@@ -71,8 +71,8 @@
       smokeParticles.push(particle);
       function animateSmoke(){
           requestAnimationFrame(animateSmoke);
-          particle.rotation.z += 0.001;
-           particle.position.y += 0.01;
+          particle.rotation.z += 0.005;
+           particle.position.y += 0.1;
            particle.position.x += 0.04;
 
       }
