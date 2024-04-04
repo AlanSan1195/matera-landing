@@ -1,5 +1,7 @@
 ---
 // Supports weights 100-900
+
+import LightsBackground from "@/components/LightsBackground.astro";
 import SmokeEffect from "@/components/SmokeEffect.astro";
 import "@fontsource-variable/lora";
 // Supports weights 400-700
@@ -24,6 +26,7 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <LightsBackground />
     <slot />
   </body>
 </html>
@@ -34,7 +37,7 @@ const { title } = Astro.props;
     --primary: #0e191a;
   }
   html {
-    font-family: "Lora Variable", "Courier New", Courier, monospace;
+    font-family: "Lora Variable", Courier, monospace;
   }
 
   /* estilos de las imagenes de la carta  */
@@ -49,9 +52,6 @@ const { title } = Astro.props;
   video {
     mask-image: linear-gradient(grey 90%, transparent 100%);
   }
- 
-  
-
 
   /* #Logo2 {
     transition: opacity 0.5s ease;
@@ -76,9 +76,9 @@ const { title } = Astro.props;
     height: 180px;
     position: absolute;
     top: 70%;
-    transform: translate(0, -50%);
+    transform: translate(0, -25%);
     border-radius: 20px;
-    box-shadow: 0 30px 50px #505050;
+    box-shadow: 0 30px 70px #505050;
     background-position: 50% 50%;
     background-size: cover;
     display: inline-block;
@@ -124,8 +124,6 @@ const { title } = Astro.props;
     display: none;
   }
 
-
-  
   @media (max-width: 640px) {
     .slider .item:nth-child(3) {
       left: 78%;
@@ -179,6 +177,22 @@ const { title } = Astro.props;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
 
+  /* //correo */
+  .content .contacto {
+    padding: 5px 12px;
+    border: 2px solid #dc2626;
+    margin-left: 10px;
+    border-radius: 12px;
+    cursor: pointer;
+    opacity: 0;
+    animation: animate 1s ease-in-out 0.6s 1 forwards;
+    font-size: smaller;
+  }
+  .content .contacto:hover {
+    background-color: #501313;
+    border: #501313;
+    scale: 1.1;
+  }
   @media (max-width: 768px) {
     .content .name {
       font-size: 32px;
@@ -191,7 +205,7 @@ const { title } = Astro.props;
 
   /* //botn VER MAS */
   .content button {
-    padding: 2px 12px;
+    padding: 5px 12px;
     border: 2px solid #dc2626;
     border-radius: 12px;
     cursor: pointer;
@@ -199,8 +213,10 @@ const { title } = Astro.props;
     animation: animate 1s ease-in-out 0.6s 1 forwards;
     font-size: smaller;
   }
+  
   .content button:hover {
-    background-color: #dc2626;
+    background-color: #501313;
+    border: #501313;
     scale: 1.1;
   }
 
@@ -226,9 +242,10 @@ const { title } = Astro.props;
   }
 
   /* //botones NEXT y PREV  */
+
   .buttons button {
     background-color: #dc2626;
-    
+
     width: 100px;
     height: 40px;
     border-radius: 12px;
@@ -246,6 +263,11 @@ const { title } = Astro.props;
       height: 30px;
       margin-bottom: 20px;
     }
+  }
+  .buttons button:hover {
+    background-color: #501313;
+    color: #fff;
+    scale: 1.1;
   }
 
   /* .buttons button:hover {

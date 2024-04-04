@@ -25,6 +25,7 @@ import FooterMenu from "./FooterMenu.astro";
           title: "Mollit non",
           description:
           "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+          contacto: "rahgme.casaMatera@gmail.com",
         },
         {
           img: "/imagenes/lamatera7.webp",
@@ -53,7 +54,7 @@ import FooterMenu from "./FooterMenu.astro";
 
         // Slides
         images.forEach((slideImg, index) => {
-          const { img, title, description } = slideImg;
+          const { img, title, description, contacto } = slideImg;
           const slideItem = `
       <div
         class="item"
@@ -64,6 +65,7 @@ import FooterMenu from "./FooterMenu.astro";
           <div class="name">${title}</div>
           <div class="description ">${description}</div>
           <button class="">Ver más</button>
+          <a href="mailto:${contacto}" class="contacto">Correo</a>
         </div>
       </div>
       `;

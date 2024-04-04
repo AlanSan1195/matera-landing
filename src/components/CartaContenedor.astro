@@ -366,17 +366,17 @@ const postres = [
       class="hover:cursor-pointer mt-8 font-bold text-4xl text-white flex justify-center"
       >Empanadas</a
     >
-    <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 mt-2">
+    <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 mt-2 rounded-lg ">
       {
         empanadas.map((empanada) => (
-          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  text-white">
             <img
               class="image-drop-shadow-empanadas relative bottom-5 "
               src={empanada.src}
               alt="empanada"
             />
             <p class="font-bold text-md ml-2 text-pretty">{empanada.name}</p>
-            <p class="font-light text-xs ml-2 ">{empanada.description}</p>
+            <p class="font-light text-xs ml-2  ">{empanada.description}</p>
             <p class="ml-2 mb-1 ">{empanada.price}</p>
           </div>
         ))
@@ -394,7 +394,7 @@ const postres = [
     >
       {
         entradas.map((entrada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white  ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl"
               src={entrada.src}
@@ -403,7 +403,7 @@ const postres = [
             <p class="font-semibold text-sm text-start mt-3 ml-2">
               {entrada.name}
             </p>
-            <p class="font-light text-xs ml-2">{entrada.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">{entrada.description}</p>
             <p class="ml-2">{entrada.price}</p>
           </div>
         ))
@@ -420,7 +420,7 @@ const postres = [
     >
       {
         ensaladas.map((ensalada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={ensalada.src}
@@ -429,7 +429,7 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {ensalada.name}
             </p>
-            <p class="font-light text-xs ml-2">{ensalada.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75 ">{ensalada.description}</p>
             <p class="ml-2">{ensalada.price}</p>
           </div>
         ))
@@ -446,7 +446,7 @@ const postres = [
     >
       {
         pizzas.map((pizza) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={pizza.src}
@@ -455,7 +455,7 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {pizza.name}
             </p>
-            <p class="font-light text-xs ml-2">{pizza.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">{pizza.description}</p>
             <p class="ml-2">{pizza.price}</p>
           </div>
         ))
@@ -472,7 +472,7 @@ const postres = [
     >
       {
         cocina.map((platillo) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={platillo.src}
@@ -481,7 +481,7 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {platillo.name}
             </p>
-            <p class="font-light text-xs ml-2">{platillo.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">{platillo.description}</p>
             <p class="ml-2">{platillo.price}</p>
           </div>
         ))
@@ -498,7 +498,7 @@ const postres = [
     >
       {
         postres.map((postre) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={postre.src}
@@ -507,7 +507,7 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {postre.name}
             </p>
-            <p class="font-light text-xs ml-2">{postre.description}</p>
+            <p class="font-light text-xs ml-2 text-white/75">{postre.description}</p>
             <p class="ml-2">{postre.price}</p>
           </div>
         ))
