@@ -14,7 +14,7 @@ const { title } = Astro.props;
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+  <head >
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link
@@ -135,6 +135,18 @@ const { title } = Astro.props;
       left: calc(19% + 430px);
     }
   }
+  /* pantalla xl */
+  @media (min-width: 1900px) {
+    .slider .item:nth-child(3) {
+      left: 85%;
+    }
+    .slider .item:nth-child(4) {
+      left: 88%;
+    }
+    .slider .item:nth-child(5) {
+      left: 91%;
+    }
+  }
   .item .content {
     position: absolute;
     top: 50%;
@@ -167,14 +179,32 @@ const { title } = Astro.props;
     }
   }
 
+  /* // medidad en xl */
+  @media (min-width: 1900px) {
+    .content .name{
+      font-size: 6rem;
+  
+    }
+    
+  }
+
+
+
   /* // medidas en sm */
 
   .content .description {
     margin-top: 10px;
     margin-bottom: 20px;
     opacity: 0;
-    font-size: 1rem;
+    font-size: 18px;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
+  }
+  @media (min-width: 1900px) {
+    .content .description{
+      font-size: 19px;
+  
+    }
+    
   }
 
   /* //correo */

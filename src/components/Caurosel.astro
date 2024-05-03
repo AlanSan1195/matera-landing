@@ -69,7 +69,7 @@ const textColor = `text-${color}`;
         <div class="content">
           <div class="name">${title}</div>
           <div class="description ">${description}</div>
-        ${contacto ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="contacto">Cotiza tu evento</a>` : ""}
+        ${contacto ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>` : ""}
           
          
         </div>
@@ -81,11 +81,11 @@ const textColor = `text-${color}`;
           parent.appendChild(divFragment);
         });
 
-        // Buttons
+        // Buttons prev y nexts
         const html = `
     <div class="buttons">
-      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center  "><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
-      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center "> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
+      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center hover:scale-125 transition  "><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
+      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center hover:scale-125 transition "> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
     </div>
     `;
         const fragment = document.createRange().createContextualFragment(html);
