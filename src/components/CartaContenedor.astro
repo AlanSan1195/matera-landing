@@ -298,6 +298,12 @@ const postres = [
     price: "$40",
   },
   {
+    src: "/imagenes/flanCasero.webp",
+    name: "Flan casero",
+    description: "",
+    price: "$125",
+  },
+  {
     src: "/imagenes/empanadas.webp",
     name: "Alfajor de hojaldre",
     description: "",
@@ -369,7 +375,7 @@ const postres = [
     <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 mt-2 rounded-lg ">
       {
         empanadas.map((empanada) => (
-          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28  text-white">
+          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32  text-white">
             <img
               class="image-drop-shadow-empanadas relative bottom-5 "
               src={empanada.src}
@@ -394,7 +400,7 @@ const postres = [
     >
       {
         entradas.map((entrada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white  ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white  ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl"
               src={entrada.src}
@@ -420,7 +426,7 @@ const postres = [
     >
       {
         ensaladas.map((ensalada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={ensalada.src}
@@ -446,7 +452,7 @@ const postres = [
     >
       {
         pizzas.map((pizza) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={pizza.src}
@@ -472,7 +478,7 @@ const postres = [
     >
       {
         cocina.map((platillo) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={platillo.src}
@@ -498,13 +504,13 @@ const postres = [
     >
       {
         postres.map((postre) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-28 text-white   ">
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white relative    ">
             <img
               class="image-drop-shadow relative left-4 rounded-2xl "
               src={postre.src}
               alt="empanada"
             />
-            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
               {postre.name}
             </p>
             <p class="font-light text-xs ml-2 text-white/75">{postre.description}</p>
@@ -661,8 +667,8 @@ const postres = [
   <div id="Postres" class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7">
     {
       postres.map((postre) => (
-        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
-          <img class="h-32 w-32 object-cover " src={postre.src} alt="postre" />
+        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
+          <img class="h-32 w-32 object-cover  " src={postre.src} alt="postre" />
           <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {postre.name}
           </p>
