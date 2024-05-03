@@ -1,10 +1,11 @@
 ---
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
-import FooterMenu from "./FooterMenu.astro";
+
+
 ---
 
-<div  class="flex flex-wrap relative w-screen h-screen">
+<div class="flex flex-wrap relative w-screen h-screen">
   <div
     class="container max-w-[1950px] object-cover"
     data-header-color={color}
@@ -13,6 +14,8 @@ import FooterMenu from "./FooterMenu.astro";
     <div class="slider"></div>
   </div>
   <script>
+   
+
     (() => {
       const slideImages = [
         {
@@ -24,8 +27,14 @@ import FooterMenu from "./FooterMenu.astro";
           img: "/imagenes/champagne.webp",
           title: "Mollit non",
           description:
-          "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+            "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
           contacto: "rahgme.casaMatera@gmail.com",
+        },
+        {
+          img: "/imagenes/casaMatera1.webp",
+          title: "Id incididunt",
+          description:
+            "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
         },
         {
           img: "/imagenes/lamatera7.webp",
@@ -34,13 +43,7 @@ import FooterMenu from "./FooterMenu.astro";
           description:
             "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
         },
-        
-        {
-          img: "/imagenes/boquete.webp",
-          title: "Id incididunt",
-          description:
-            "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
-        },
+
         {
           img: "/imagenes/camarones.webp",
           title: "Commodo ad ",
@@ -48,6 +51,8 @@ import FooterMenu from "./FooterMenu.astro";
             "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
         },
       ];
+
+      // este slice fue logrador por Fernando Herrera,divulgador de la programacion solo fue adaptado responsivamente,  dejo el repositorio https://github.com/Klerith/js-slider-from-codetheword
 
       const createHtmlStructure = (sliderSelector, images) => {
         const parent = document.querySelector(sliderSelector);
@@ -64,8 +69,9 @@ import FooterMenu from "./FooterMenu.astro";
         <div class="content">
           <div class="name">${title}</div>
           <div class="description ">${description}</div>
-          <button class="">Ver más</button>
-          <a href="mailto:${contacto}" class="contacto">Correo</a>
+        ${contacto ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="contacto">Cotiza tu evento</a>` : ""}
+          
+         
         </div>
       </div>
       `;
@@ -78,8 +84,8 @@ import FooterMenu from "./FooterMenu.astro";
         // Buttons
         const html = `
     <div class="buttons">
-      <button class="prev "> Prev</button>
-      <button class="next"> Next</button>
+      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center  "><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
+      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center "> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
     </div>
     `;
         const fragment = document.createRange().createContextualFragment(html);
