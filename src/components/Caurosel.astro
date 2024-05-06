@@ -1,8 +1,6 @@
 ---
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
-
-
 ---
 
 <div class="flex flex-wrap relative w-screen h-screen">
@@ -14,8 +12,6 @@ const textColor = `text-${color}`;
     <div class="slider"></div>
   </div>
   <script>
-   
-
     (() => {
       const slideImages = [
         {
@@ -35,6 +31,13 @@ const textColor = `text-${color}`;
           title: "Id incididunt",
           description:
             "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
+        },
+        {
+          img: "/imagenes/panNuestro.webp",
+          title: "De nuestra mesa a tu mesa ",
+          description: "conoce toda la variedad de productos",
+          href: "https://www.instagram.com/pannuestrogdl/?hl=es",
+          id: "panNuestro",
         },
         {
           img: "/imagenes/lamatera7.webp",
@@ -59,17 +62,29 @@ const textColor = `text-${color}`;
 
         // Slides
         images.forEach((slideImg, index) => {
-          const { img, title, description, contacto } = slideImg;
+          const { img, title, description, contacto, href, id  } = slideImg;
           const slideItem = `
       <div
-        class="item"
+        class="item "
         style="background-image: url('${img}')"
         data-attribute="${index}"
       >
-        <div class="content">
+        <div class="content ">
           <div class="name">${title}</div>
           <div class="description ">${description}</div>
-        ${contacto ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>` : ""}
+        ${
+          contacto
+            ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>`
+            : ""
+        }
+        ${
+          href
+            ? `<a href="https://www.instagram.com/pannuestrogdl/?hl=es target="_blank" rel="noopener noreferrer"  class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Ver mas</a>`
+            : ""
+        }
+        
+      
+
           
          
         </div>
