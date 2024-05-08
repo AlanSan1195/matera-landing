@@ -2,22 +2,20 @@
 // Supports weights 100-900
 
 import LightsBackground from "@/components/LightsBackground.astro";
-import SmokeEffect from "@/components/SmokeEffect.astro";
+
 import "@fontsource-variable/lora";
 // Supports weights 400-700
 export interface Props {
   title: string;
   description: string;
-  
-  
 }
 
-const { title, description,  } = Astro.props;
+const { title, description } =Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
-  <head >
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link
@@ -105,21 +103,21 @@ const { title, description,  } = Astro.props;
     height: 100%;
     z-index: 0;
   }
-
+/* casamatera imagen  */
   .slider .item:nth-child(3) {
-    left: 84%;
+    left: 85%;
   }
-
+/* pan nuestro imagen  */
   .slider .item:nth-child(4) {
-    left: calc(74% + 210px);
+    left: calc(89%);
   }
-
+/* mesa imagen */
   .slider .item:nth-child(5) {
-    left: calc(65% + 430px);
+    left: calc(92%);
   }
-
+  /* camarones imagen  */
   .slider .item:nth-child(6) {
-    left: calc(50% + 650px);
+    left: calc(97%);
   }
 
   /* Hide all after nth child 5 */
@@ -132,23 +130,30 @@ const { title, description,  } = Astro.props;
       left: 78%;
     }
     .slider .item:nth-child(4) {
-      left: 85%;
+      left: 83%;
     }
     .slider .item:nth-child(5) {
-      left: calc(19% + 430px);
+      left: calc(89%);
     }
   }
   /* pantalla xl */
+  /* casa matera */
   @media (min-width: 1900px) {
     .slider .item:nth-child(3) {
-      left: 85%;
+      left:85%;
     }
+    /* pan nuestro */
     .slider .item:nth-child(4) {
       left: 88%;
     }
+    /* mesa */
     .slider .item:nth-child(5) {
       left: 91%;
     }
+    /* camarones imagen  */
+    .slider .item:nth-child(6) {
+    left: calc(95%);
+  }
   }
   .item .content {
     position: absolute;
@@ -161,10 +166,6 @@ const { title, description,  } = Astro.props;
     font-family: "Lora Variable", "Open Sans", "Helvetica Neue", sans-serif;
     display: none;
   }
-  
-
- 
-
 
   .slider .item:nth-child(2) .content {
     display: block;
@@ -188,14 +189,10 @@ const { title, description,  } = Astro.props;
 
   /* // medidad en xl */
   @media (min-width: 1900px) {
-    .content .name{
+    .content .name {
       font-size: 6rem;
-  
     }
-    
   }
-
-
 
   /* // medidas en sm */
 
@@ -207,11 +204,9 @@ const { title, description,  } = Astro.props;
     animation: animate 1s ease-in-out 0.3s 1 forwards;
   }
   @media (min-width: 1900px) {
-    .content .description{
+    .content .description {
       font-size: 19px;
-  
     }
-    
   }
 
   /* //correo */
