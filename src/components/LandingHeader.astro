@@ -1,5 +1,6 @@
 ---
 import Logo from "./Logo.astro";
+import Book from "./Book.astro";
 ---
 
 <header
@@ -55,35 +56,40 @@ import Logo from "./Logo.astro";
       <img class="text-black h-6" src="/close-icon.svg" alt="close image" />
     </button>
     <ul
-      class="flex flex-col mt-4 [&>li>a]:transition-colors [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+      class="flex flex-col mt-4  [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
     >
       <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#home">
+        <a class=" hover:bg-slate-300 hover:text-red-500" href="#home">
           Resrevar <img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
       <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#carta"
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#carta"
           >Carta<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
     
       <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#nosotros"
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#nosotros"
           >Nosotros<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
       <li>
-        <a class="hover:bg-blue-200 hover:text-red-500" href="#eventos"
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#eventos"
           >Eventos<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
       <li>
-        <a class="hover:bg-slate-100 hover:text-red-500" href="#powerwall"
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#powerwall"
           >Tienda<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
     </ul>
+     <a class=" mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 rounded font-medium  w-20 rounded-full mx-auto" target="_blank" rel=" noopener noreferrer" href="/Dropbox" >
+      <img class=" font-bold text-lg "  > <Book class=" size-8 text-black"/>
+      </img>
+    </a>
+    <p class=" flex justify-center mx-auto text-black mt-1  text-lg "> Usuario</p>
   </nav>
 
   <div
@@ -135,6 +141,7 @@ import Logo from "./Logo.astro";
 
       menuBackDrop.style.opacity = "1";
       menuBackDrop.style.visibility = "visible";
+      if( window.innerWidth < 768) menuBackDrop.style.opacity = "0";
     });
 
     item.addEventListener("mouseleave", () => {
