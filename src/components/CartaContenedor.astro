@@ -290,6 +290,67 @@ const cocina = [
     price: "$320",
   },
 ];
+const parrilla = [
+{
+    type: "Granja",
+    src: "/imagenes/carta/parrilla/cerdo.webp",
+    items: [
+      {
+        src: "",
+        name: "Pollo",
+        description: "description2",
+        price: "price2",
+      },
+      {
+        src: "",
+        name: "Cerdo",
+        description: "description2",
+        price: "price2",
+      },
+      // Más objetos aquí si es necesario
+    ],
+  },
+  {
+    type: "Mar",
+    src: " /imagenes/carta/parrilla/camaron.webp",
+    items: [
+      {
+        src: "",
+        name: "Camarones",
+        description: "description1",
+        price: "price1",
+      },
+      {
+        src: "",
+        name: "Pulpo",
+        description: "description1",
+        price: "price1",
+      },
+      // Más objetos aquí si es necesario
+    ],
+  },
+  
+  {
+    type: "Campo",
+    src: "/imagenes/carta/parrilla/vaca.webp",
+    items: [
+      {
+        src: "",
+        name: "Vaca",
+        description: "description3",
+        price: "price3",
+      },
+      {
+        src: "",
+        name: "Especial",
+        description: "description3",
+        price: "price3",
+      },
+      // Más objetos aquí si es necesario
+    ],
+  },
+];
+
 const postres = [
   {
     src: "/imagenes/empanadas.webp",
@@ -372,7 +433,10 @@ const postres = [
       class="hover:cursor-pointer mt-8 font-bold text-4xl text-white flex justify-center"
       >Empanadas</a
     >
-    <div id="divEmpanadas" class="hidden flex overflow-x-auto ml-14 mt-2 rounded-lg ">
+    <div
+      id="divEmpanadas"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
+    >
       {
         empanadas.map((empanada) => (
           <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32  text-white">
@@ -396,7 +460,7 @@ const postres = [
     >
     <div
       id="divEntradas"
-      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         entradas.map((entrada) => (
@@ -409,7 +473,9 @@ const postres = [
             <p class="font-semibold text-sm text-start mt-3 ml-2">
               {entrada.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">{entrada.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+              {entrada.description}
+            </p>
             <p class="ml-2">{entrada.price}</p>
           </div>
         ))
@@ -422,7 +488,7 @@ const postres = [
     >
     <div
       id="divEnsaldas"
-      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         ensaladas.map((ensalada) => (
@@ -435,7 +501,9 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {ensalada.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75 ">{ensalada.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75 ">
+              {ensalada.description}
+            </p>
             <p class="ml-2">{ensalada.price}</p>
           </div>
         ))
@@ -448,7 +516,7 @@ const postres = [
     >
     <div
       id="divPizzas"
-      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         pizzas.map((pizza) => (
@@ -461,7 +529,9 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {pizza.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">{pizza.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+              {pizza.description}
+            </p>
             <p class="ml-2">{pizza.price}</p>
           </div>
         ))
@@ -474,7 +544,7 @@ const postres = [
     >
     <div
       id="divCocina"
-      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         cocina.map((platillo) => (
@@ -487,9 +557,44 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
               {platillo.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">{platillo.description}</p>
+            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+              {platillo.description}
+            </p>
             <p class="ml-2">{platillo.price}</p>
           </div>
+        ))
+      }
+    </div>
+    <a
+      id="botonparrilla"
+      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+      >Parrilla</a
+    >
+    <div
+      id="divParrilla"
+      class="flex mt-2 w-full justify-center "
+    >
+      {
+        parrilla.map((parrilla) => (
+          <ul class="flex justify-center ">
+            <li class="  felx justify-center">
+              <img class=" h-auto w-auto p-4 flex justify-center" src={parrilla.src} alt=" imagen" />
+              <h2 class=" flex justify-center font-bold  text-xl">
+                {parrilla.type}
+              </h2>
+              <ul class=" hidden ">
+                {parrilla.items.map((item) => (
+                  <li class="p-4 
+                  " >
+                    <img src="" alt="" />
+                    <p class=" font-bold mb-1 text-2xl">{item.name}</p>
+                    <p class=" text-lg">{item.description}</p>
+                    <p class=" font-bold">{item.price}</p>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          </ul>
         ))
       }
     </div>
@@ -500,7 +605,7 @@ const postres = [
     >
     <div
       id="divPostres"
-      class="flex overflow-x-auto bg-scroll ml-14 hidden mt-2"
+      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         postres.map((postre) => (
@@ -513,7 +618,9 @@ const postres = [
             <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
               {postre.name}
             </p>
-            <p class="font-light text-xs ml-2 text-white/75">{postre.description}</p>
+            <p class="font-light text-xs ml-2 text-white/75">
+              {postre.description}
+            </p>
             <p class="ml-2">{postre.price}</p>
           </div>
         ))
@@ -587,7 +694,7 @@ const postres = [
       ))
     }
   </div>
-  <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7  ">
+  <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7">
     {
       entradas.map((entrada) => (
         <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
@@ -635,19 +742,24 @@ const postres = [
     {
       pizzas.map((pizza) => (
         <div class=" h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex  ">
-          <img class=" h-24 w-24 lg:h-32 lg:w-32 object-cover " src={pizza.src} alt="pizza" />
+          <img
+            class=" h-24 w-24 lg:h-32 lg:w-32 object-cover "
+            src={pizza.src}
+            alt="pizza"
+          />
           <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
             {pizza.name}
           </p>
-          <p class=" mt-1 font-light text-center text-pretty md:text-xs">{pizza.description}</p>
+          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+            {pizza.description}
+          </p>
           <p class="mt-1">{pizza.price}</p>
         </div>
       ))
     }
   </div>
   <!-- //totalmente responsive no tocar clase de cc en el layout -->
-  
- 
+
   <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
     {
       cocina.map((cocina) => (
@@ -664,7 +776,10 @@ const postres = [
       ))
     }
   </div>
-  <div id="Postres" class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7">
+  <div
+    id="Postres"
+    class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7"
+  >
     {
       postres.map((postre) => (
         <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
@@ -690,6 +805,7 @@ const postres = [
         entradas: document.getElementById("Entradas"),
         ensaladas: document.getElementById("Ensaladas"),
         cocina: document.getElementById("Cocina"),
+        parrilla: document.getElementById("Parrilla"),
         postres: document.getElementById("Postres"),
       };
 
@@ -746,11 +862,16 @@ const postres = [
         .addEventListener("click", function () {
           mostrarDiv("cocina");
         });
+      document.getElementById("ver-parrilla").addEventListener("click", function () {
+        mostrarDiv("parrilla");
+      });
+
       document
         .getElementById("ver-postres")
         .addEventListener("click", function () {
           mostrarDiv("postres");
         });
+
     });
   </script>
 </section>
@@ -767,6 +888,8 @@ const postres = [
     const pizzasDiv = document.getElementById("divPizzas");
     const cocina = document.getElementById("botonCocina");
     const cocinaDiv = document.getElementById("divCocina");
+    const parrilla = document.getElementById("botonparrilla");
+    const parrillaDiv = document.getElementById("divParrilla");
     const postres = document.getElementById("botonpostres");
     const postresDiv = document.getElementById("divPostres");
 
@@ -780,6 +903,7 @@ const postres = [
     mostrarDiv(ensaladas, ensaladasDiv);
     mostrarDiv(pizzas, pizzasDiv);
     mostrarDiv(cocina, cocinaDiv);
+    mostrarDiv(parrilla, parrillaDiv);
     mostrarDiv(postres, postresDiv);
   });
 
