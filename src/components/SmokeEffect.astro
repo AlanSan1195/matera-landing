@@ -65,7 +65,7 @@
         Math.random() * 500 - 250,
         Math.random() * 500 - 250,
         // REDUCIR LAS PARTICULAS O AUMENTAR LA CANTIDAD 
-        Math.random() * 1050 - 90
+        Math.random() * 1100 - 90
       );
 
       particle.rotation.z = Math.random() * 360;
@@ -73,7 +73,7 @@
       smokeParticles.push(particle);
       function animateSmoke(){
           requestAnimationFrame(animateSmoke);
-          particle.rotation.z += 0.005;
+          particle.rotation.z += 0.008;
            particle.position.y += 0.1;
            particle.position.x += 0.04;
 
