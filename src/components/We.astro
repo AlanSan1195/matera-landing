@@ -1,0 +1,29 @@
+---
+const { title, id, color } = Astro.props;
+---
+
+<section
+  class="bg-black/80 h-screen w-screen text-white relative"
+  id={id}
+  title={title}
+>
+  <div class="flex p-2 justify-center absolute inset-0 mt-24">
+    <h1 class="text-3xl text-white font-bold">Nosotros</h1>
+  </div>
+
+  <article
+    class="flex flex-col items-center justify-center h-min absolute inset-0 top-56 p-4 gap-y-4 md:flex-row"
+  >
+    <img
+      src="/imagenes/nosotros/nosotros1.webp"
+      alt="foto del personal"
+      class="h-[350px] w-[270px] rounded-3xl shadow-slate-100/20 shadow-lg md:mr-12 md:h-[450px] md:w-[330px]"
+    />
+    <div>
+      <h1 class="text-3xl font-bold">Nosotros</h1>
+      <p class="text-md">
+        Somos una empresa dedicada a la venta de productos de calidad
+      </p>
+    </div>
+  </article>
+</section>

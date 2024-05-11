@@ -1,8 +1,15 @@
 ---
-import CartaContenedor from "./CartaContenedor.astro"
-import ContenedorFull from "./CartaContenedor.astro"
-import Section from "./Portada.astro"
+const { title, id, color } = Astro.props
+
+import We from "./We.astro"
 ---
+<section
+  class="landing-section w-screen h-screen text-center overflow-hidden   "
+  data-header-color={color}
+ 
+>
 
+<We title="nosotros" id="nosotros" />
 
+</section>
 
