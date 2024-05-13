@@ -10,7 +10,7 @@ export interface Props {
   description: string;
 }
 
-const { title, description } =Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -105,15 +105,15 @@ const { title, description } =Astro.props;
     height: 100%;
     z-index: 0;
   }
-/* casamatera imagen  */
+  /* casamatera imagen  */
   .slider .item:nth-child(3) {
     left: 85%;
   }
-/* pan nuestro imagen  */
+  /* pan nuestro imagen  */
   .slider .item:nth-child(4) {
     left: calc(89%);
   }
-/* mesa imagen */
+  /* mesa imagen */
   .slider .item:nth-child(5) {
     left: calc(92%);
   }
@@ -142,7 +142,7 @@ const { title, description } =Astro.props;
   /* casa matera */
   @media (min-width: 1900px) {
     .slider .item:nth-child(3) {
-      left:85%;
+      left: 85%;
     }
     /* pan nuestro */
     .slider .item:nth-child(4) {
@@ -154,8 +154,8 @@ const { title, description } =Astro.props;
     }
     /* camarones imagen  */
     .slider .item:nth-child(6) {
-    left: calc(95%);
-  }
+      left: calc(95%);
+    }
   }
   .item .content {
     position: absolute;
@@ -277,6 +277,19 @@ const { title, description } =Astro.props;
     z-index: 10;
     filter: drop-shadow(2px 4px 6px black);
   }
+
+  /* efecto de REFELEJO para imagen de nostros */
+  .nosotros-img {
+    border-radius: 13px;
+
+    object-fit: cover;
+    background: hsl(10 80% 100%);
+    -webkit-box-reflect: below 6px
+      linear-gradient(transparent 0 80%, hsl(0 0% 100% / 0.6) 100%);
+
+    
+  }
+ 
 
   /* //botones NEXT y PREV  */
 
