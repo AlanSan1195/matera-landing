@@ -362,4 +362,17 @@ const { title, description } = Astro.props;
     ); /* Sombra con desplazamiento horizontal de 2px, vertical de 4px y difuminado de 6px */
   }
   /* Estilos para la barra de desplazamiento */
+
+  .mostrar {
+  opacity: 1;
+  max-height: 1000px; /* Ajusta este valor según tus necesidades */
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.ocultar {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.5s ease, max-height 0.5s ease;
+}
 </style>
