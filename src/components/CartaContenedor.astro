@@ -291,7 +291,7 @@ const cocina = [
   },
 ];
 const parrilla = [
-{
+  {
     type: "Granja",
     src: "/imagenes/carta/parrilla/cerdo.webp",
     items: [
@@ -311,26 +311,6 @@ const parrilla = [
     ],
   },
   {
-    type: "Mar",
-    src: " /imagenes/carta/parrilla/camaron.webp",
-    items: [
-      {
-        src: "",
-        name: "Camarones",
-        description: "description1",
-        price: "price1",
-      },
-      {
-        src: "",
-        name: "Pulpo",
-        description: "description1",
-        price: "price1",
-      },
-      // Más objetos aquí si es necesario
-    ],
-  },
-  
-  {
     type: "Campo",
     src: "/imagenes/carta/parrilla/vaca.webp",
     items: [
@@ -345,6 +325,25 @@ const parrilla = [
         name: "Especial",
         description: "description3",
         price: "price3",
+      },
+      // Más objetos aquí si es necesario
+    ],
+  },
+  {
+    type: "Mar",
+    src: " /imagenes/carta/parrilla/camaron.webp",
+    items: [
+      {
+        src: "",
+        name: "Camarones",
+        description: "description1",
+        price: "price1",
+      },
+      {
+        src: "",
+        name: "Pulpo",
+        description: "description1",
+        price: "price1",
       },
       // Más objetos aquí si es necesario
     ],
@@ -435,7 +434,7 @@ const postres = [
     >
     <div
       id="divEmpanadas"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
+      class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
     >
       {
         empanadas.map((empanada) => (
@@ -458,10 +457,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Entradas</a
     >
-    <div
-      id="divEntradas"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
+    <div id="divEntradas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         entradas.map((entrada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white  ">
@@ -486,10 +482,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Ensaladas</a
     >
-    <div
-      id="divEnsaldas"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
+    <div id="divEnsaldas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         ensaladas.map((ensalada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
@@ -514,10 +507,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Pizzas</a
     >
-    <div
-      id="divPizzas"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
+    <div id="divPizzas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         pizzas.map((pizza) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
@@ -542,10 +532,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center mt-6 text-white font-bold text-4xl"
       >Cocina</a
     >
-    <div
-      id="divCocina"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
+    <div id="divCocina" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         cocina.map((platillo) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
@@ -570,22 +557,25 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Parrilla</a
     >
-    <div
-      id="divParrilla"
-      class="flex mt-2 w-full justify-center "
-    >
+    <div id="divParrilla" class="flex mt-2 w-full justify-center">
       {
-        parrilla.map((parrilla) => (
+        parrilla.map((svg) => (
           <ul class="flex justify-center ">
             <li class="  felx justify-center">
-              <img class=" h-auto w-auto p-4 flex justify-center" src={parrilla.src} alt=" imagen" />
+              <img
+                class=" h-auto w-auto p-4 flex justify-center hover:cursor-pointer"
+                src={svg.src}
+                alt=" imagen"
+              />
               <h2 class=" flex justify-center font-bold  text-xl">
-                {parrilla.type}
+                {svg.type}
               </h2>
               <ul class=" hidden ">
-                {parrilla.items.map((item) => (
-                  <li class="p-4 
-                  " >
+                {svg.items.map((item) => (
+                  <li
+                    class="p-4 
+                  "
+                  >
                     <img src="" alt="" />
                     <p class=" font-bold mb-1 text-2xl">{item.name}</p>
                     <p class=" text-lg">{item.description}</p>
@@ -603,10 +593,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Postres</a
     >
-    <div
-      id="divPostres"
-      class="hidden flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
+    <div id="divPostres" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         postres.map((postre) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white relative    ">
@@ -810,16 +797,19 @@ const postres = [
       };
 
       function mostrarDiv(name) {
-        Object.keys(menu).forEach((key) => {
-          if (key === name) {
-            menu[key].style.opacity = "1";
-            menu[key].style.display = "flex"; // Muestra el div seleccionado.
-          } else {
-            menu[key].style.opacity = "0";
-            menu[key].style.display = "none"; // Oculta los otros divs.
-          }
-        });
+  Object.keys(menu).forEach((key) => {
+    if (menu[key] !== null && menu[key] !== undefined) {
+      if (key === name) {
+        menu[key].style.opacity = "1";
+        menu[key].style.display = "flex"; // Muestra el div seleccionado.
+      } else {
+        // Agrega una transición de 0.5 segundos a la propiedad de opacidad.
+        menu[key].style.opacity = "0";
+        menu[key].style.display = "none";
       }
+    }
+  });
+}
       function ajustarResponsive() {
         if (window.innerWidth < 640) {
           // Asumiendo que 640px es el breakpoint para 'sm'
@@ -862,16 +852,17 @@ const postres = [
         .addEventListener("click", function () {
           mostrarDiv("cocina");
         });
-      document.getElementById("ver-parrilla").addEventListener("click", function () {
-        mostrarDiv("parrilla");
-      });
+      document
+        .getElementById("ver-parrilla")
+        .addEventListener("click", function () {
+          mostrarDiv("parrilla");
+        });
 
       document
         .getElementById("ver-postres")
         .addEventListener("click", function () {
           mostrarDiv("postres");
         });
-
     });
   </script>
 </section>
@@ -893,22 +884,46 @@ const postres = [
     const postres = document.getElementById("botonpostres");
     const postresDiv = document.getElementById("divPostres");
 
-    function mostrarDiv(boton, div) {
-      boton.addEventListener("click", function () {
-        div.classList.toggle("hidden");
+    const botones = [
+      empanadas,
+      entradas,
+      ensaladas,
+      pizzas,
+      cocina,
+      parrilla,
+      postres,
+    ];
+    const divs = [
+      empanadasDiv,
+      entradasDiv,
+      ensaladasDiv,
+      pizzasDiv,
+      cocinaDiv,
+      parrillaDiv,
+      postresDiv,
+    ];
+
+    function mostrarDiv(botones, divs) {
+      botones.forEach((boton, index) => {
+        boton.addEventListener("click", function () {
+          const div = divs[index];
+          if (
+            div.classList.contains("ocultar") ||
+            !div.classList.contains("mostrar")
+          ) {
+            div.classList.remove("ocultar");
+            div.classList.add("mostrar");
+          } else {
+            div.classList.remove("mostrar");
+            div.classList.add("ocultar");
+          }
+        });
+      });
+
+      divs.forEach((div) => {
+        div.classList.add("ocultar");
       });
     }
-    mostrarDiv(empanadas, empanadasDiv);
-    mostrarDiv(entradas, entradasDiv);
-    mostrarDiv(ensaladas, ensaladasDiv);
-    mostrarDiv(pizzas, pizzasDiv);
-    mostrarDiv(cocina, cocinaDiv);
-    mostrarDiv(parrilla, parrillaDiv);
-    mostrarDiv(postres, postresDiv);
+    mostrarDiv(botones, divs);
   });
-
-  //   empanadas.addEventListener("click", function () {
-  //     empanadasDiv.classList.toggle("hidden");
-  //   });
-  // });
 </script>
