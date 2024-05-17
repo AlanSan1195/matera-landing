@@ -1,4 +1,6 @@
 ---
+import { InstancedMesh } from "three";
+
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
   {
@@ -316,34 +318,46 @@ const parrilla = [
     items: [
       {
         src: "/imagenes/carta/parrilla/campo/filetes.webp",
-        name: "Bife de lomo",
+        carne: "Bife de lomo",
         description: "Cortes suabes totalmente magros ",
+        subItems: [
+          { platillo: "lomito", gramaje: "300g" },
+          { platillo: "Bife de lomo", gramaje: "350g" },
+          { platillo: "Bife de lomo en caña", gramaje: "800g" },
+          { platillo: "tocino", gramaje: "150g" },
+          { platillo: "Bife de lomo en caña", gramaje: "1200g" },
+        ],
       },
       {
         src: "/imagenes/carta/parrilla/campo/vacios.webp",
-        name: "Vacio",
+        carne: "Vacio",
         description: "Corte jugoso, con marmoleo intermedio y textura firme",
+        subItems: [
+          { platillo: "Vacío", gramaje: "400g" },
+          { platillo: "Vacío", gramaje: "650g" },
+          { platillo: "Vacío", gramaje: "1300g" },
+        ],
       },
       {
         src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
+        carne: "Asado de tira",
         description:
           "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
       },
       {
         src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
+        carne: "Entraña",
         description:
           " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
       },
       {
         src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
+        carne: "Bife de chorizo",
         description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
       },
       {
         src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Easpeciales",
+        carne: "Easpeciales",
         description: "Nuestros cortes especiales son bajo desiponibilidad",
       },
       // Más objetos aquí si es necesario
@@ -573,13 +587,13 @@ const postres = [
       }
     </div>
     <a
-      id="botonparrilla"
+      id="botonParrilla"
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Parrilla</a
     >
 
-    <div id="divParrilla" class="flex mt-2 w-full justify-center text-white">
-      <ul class="flex justify-center">
+    <div id="divParrilla" class="mt-2 text-white">
+      <ul class="flex items-center justify-center">
         <li class="">
           <button id="botonGranja" class="hover:cursor-pointe">
             <img
@@ -607,37 +621,50 @@ const postres = [
           </button>
         </li>
       </ul>
-    </div>
-
-    <div
-      id="divCampo"
-      class="grid grid-cols-3 justify-center text-center text-white m-2 bg"
-    >
-      {
-        parrilla[1].items.map((item) => (
-          <div class="flex flex-col justify-center  m-2 ">
-            <img
-              class=" size-32 mx-auto hover:cursor-pointer  "
-              src={item.src}
-              alt="cortes"
-            />
-            <h1 class=" text-base font-bold">{item.name}</h1>
-            <p class=" text-[10px]">{item.description}</p>
-          </div>
-        ))
-      }
       <div
-        class="justify-center col-span-3 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+        id="divCampo"
+        class="grid grid-cols-3 justify-center text-center text-white m-2 bg-slate-600"
       >
-        <p class="text-xs m-2">
-          Los cortes que aquí servimos son de la más alta calidad, por lo tanto,
-          no requieren ser sometidos a ningún proceso de marinado o suavizado
-          que altere su textura y/o sabor natural.
-        </p>
+        {
+          parrilla[1].items.map((item) => (
+            <div class="flex flex-col justify-center  m-2  ">
+              <img id={item.carne}
+                class=" size-32 mx-auto hover:cursor-pointer  "
+                src={item.src}
+                alt="cortes"
+              />
+              <h1 class=" text-base font-bold">{item.carne}</h1>
+              <p class=" text-[10px]">{item.description}</p>
+              {item.subItems && (
+                <div id={`${item.carne}Div`} class="grid z-50 bg-black grid-cols-3 justify-center items-center ml-16 mt-8  h-full w-[420px] rounded-s-3xl shadow-xl shadow-slate-300/20 border-2 border-red-600/40 p-2">
+                  <h1 class="col-span-3 text-red-600 font-bold text-xl flex justify-center ">
+                    {item.carne}
+                  </h1>
+
+                  {item.subItems.map((subItem) => (
+                    <div class=" bg-slate-400 m-4  ">
+                      <p>{subItem.platillo}</p>
+                      <p>{subItem.gramaje}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          ))
+        }
+        <div
+          class="justify-center col-span-3 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+        >
+          <p class="text-xs m-2">
+            Los cortes que aquí servimos son de la más alta calidad, por lo
+            tanto, no requieren ser sometidos a ningún proceso de marinado o
+            suavizado que altere su textura y/o sabor natural.
+          </p>
+        </div>
       </div>
     </div>
     <a
-      id="botonpostres"
+      id="botonPostres"
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Postres</a
     >
@@ -661,321 +688,394 @@ const postres = [
         ))
       }
     </div>
-  </nav>
 
-  <!-- // navegacion media  -->
-  <header
-    class="hidden md:block text-center mt-28 text-4xl lg:text-6xl md:mb-6"
-  >
-    <a class="xl:text-8xl font-semibold">Menú</a>
-    <h3 class="xl:text-5xl font-medium">Apetito por lo que hacemos</h3>
-  </header>
+    <!-- // navegacion media  -->
+    <header
+      class="hidden md:block text-center mt-28 text-4xl lg:text-6xl md:mb-6"
+    >
+      <a class="xl:text-8xl font-semibold">Menú</a>
+      <h3 class="xl:text-5xl font-medium">Apetito por lo que hacemos</h3>
+    </header>
 
-  <ul
-    id="navegacion-carta"
-    class="hidden md:flex flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
-  >
-    <li class="sm:hidden md:block">
-      <a
-        id="ver-empanadas"
-        class="font-semibold text-white text-sm hover:text-red-500">Empanadas</a
-      >
-      <a
-        id="ver-entradas"
-        class="font-semibold text-white text-sm hover:text-red-500">Entradas</a
-      >
-      <a
-        id="ver-ensaladas"
-        class="font-semibold text-white text-sm hover:text-red-500">Ensaladas</a
-      >
-      <a
-        id="ver-pizzas"
-        class="font-semibold text-white text-sm hover:text-red-500">Pizzas</a
-      >
-      <a
-        id="ver-cocina"
-        class="font-semibold text-white text-sm hover:text-red-500"
-        >Nuestra cocina</a
-      >
-      <a
-        id="ver-parrilla"
-        class="font-semibold text-white text-sm hover:text-red-500">Parrilla</a
-      >
-      <a
-        id="ver-postres"
-        class="font-semibold text-white text-sm hover:text-red-500">Postres</a
-      >
-    </li>
-  </ul>
-  <div
-    id="Empanadas"
-    class="hidden justify-center justify-between mr-10 ml-10 p-7"
-    style=" "
-  >
-    {
-      empanadas.map((empanada) => (
-        <div class="flex flex-col items-center sm:hidden md:flex">
-          <img
-            class="image-drop-shadow-empanadas h-32 w-32 object-cover "
-            src={empanada.src}
-            alt="empanada"
-          />
-          <p class=" font-semibold text-base text-center text-pretty">
-            {empanada.name}
-          </p>
-          <p class=" font-light">{empanada.description}</p>
-          <p>{empanada.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7">
-    {
-      entradas.map((entrada) => (
-        <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
-          <img
-            class=" h-32 w-32 object-cover rounded-lg"
-            src={entrada.src}
-            alt="entrada"
-          />
-          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {entrada.name}
-          </p>
-          <p class=" font-light text-center text-pretty">
-            {entrada.description}
-          </p>
-          <p class="mb-1">{entrada.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
-    {
-      ensaladas.map((ensalada) => (
-        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
-          <img
-            class="h-32 w-32 object-cover "
-            src={ensalada.src}
-            alt="ensalada"
-          />
-          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {ensalada.name}
-          </p>
-          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-            {ensalada.description}
-          </p>
-          <p class=" mt-1">{ensalada.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <div
-    id="Pizzas"
-    class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
-    style=" "
-  >
-    {
-      pizzas.map((pizza) => (
-        <div class=" h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex  ">
-          <img
-            class=" h-24 w-24 lg:h-32 lg:w-32 object-cover "
-            src={pizza.src}
-            alt="pizza"
-          />
-          <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {pizza.name}
-          </p>
-          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-            {pizza.description}
-          </p>
-          <p class="mt-1">{pizza.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <!-- //totalmente responsive no tocar clase de cc en el layout -->
-
-  <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
-    {
-      cocina.map((cocina) => (
-        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
-          <img class="h-32 w-32 object-cover " src={cocina.src} alt="cocina" />
-          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {cocina.name}
-          </p>
-          <p class="  mt-1 font-light text-center text-pretty md:text-xs">
-            {cocina.description}
-          </p>
-          <p class="mt-1">{cocina.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <div
-    id="Postres"
-    class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7"
-  >
-    {
-      postres.map((postre) => (
-        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
-          <img class="h-32 w-32 object-cover  " src={postre.src} alt="postre" />
-          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {postre.name}
-          </p>
-          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-            {postre.description}
-          </p>
-          <p class="mt-1">{postre.price}</p>
-        </div>
-      ))
-    }
-  </div>
-
-  <!-- //script para mostrar y ver menu en TAMAÑO MD -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menu = {
-        empanadas: document.getElementById("Empanadas"),
-        pizzas: document.getElementById("Pizzas"),
-        entradas: document.getElementById("Entradas"),
-        ensaladas: document.getElementById("Ensaladas"),
-        cocina: document.getElementById("Cocina"),
-        parrilla: document.getElementById("Parrilla"),
-        postres: document.getElementById("Postres"),
-      };
-
-      function mostrarDiv(name) {
-        Object.keys(menu).forEach((key) => {
-          if (menu[key] !== null && menu[key] !== undefined) {
-            if (key === name) {
-              menu[key].style.opacity = "1";
-              menu[key].style.display = "flex"; // Muestra el div seleccionado.
-            } else {
-              // Agrega una transición de 0.5 segundos a la propiedad de opacidad.
-              menu[key].style.opacity = "0";
-              menu[key].style.display = "none";
-            }
-          }
-        });
+    <ul
+      id="navegacion-carta"
+      class="hidden md:flex flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
+    >
+      <li class="sm:hidden md:block">
+        <a
+          id="ver-empanadas"
+          class="font-semibold text-white text-sm hover:text-red-500"
+          >Empanadas</a
+        >
+        <a
+          id="ver-entradas"
+          class="font-semibold text-white text-sm hover:text-red-500"
+          >Entradas</a
+        >
+        <a
+          id="ver-ensaladas"
+          class="font-semibold text-white text-sm hover:text-red-500"
+          >Ensaladas</a
+        >
+        <a
+          id="ver-pizzas"
+          class="font-semibold text-white text-sm hover:text-red-500">Pizzas</a
+        >
+        <a
+          id="ver-cocina"
+          class="font-semibold text-white text-sm hover:text-red-500"
+          >Nuestra cocina</a
+        >
+        <a
+          id="ver-parrilla"
+          class="font-semibold text-white text-sm hover:text-red-500"
+          >Parrilla</a
+        >
+        <a
+          id="ver-postres"
+          class="font-semibold text-white text-sm hover:text-red-500">Postres</a
+        >
+      </li>
+    </ul>
+    <div
+      id="Empanadas"
+      class="hidden justify-center justify-between mr-10 ml-10 p-7"
+      style=" "
+    >
+      {
+        empanadas.map((empanada) => (
+          <div class="flex flex-col items-center sm:hidden md:flex">
+            <img
+              class="image-drop-shadow-empanadas h-32 w-32 object-cover "
+              src={empanada.src}
+              alt="empanada"
+            />
+            <p class=" font-semibold text-base text-center text-pretty">
+              {empanada.name}
+            </p>
+            <p class=" font-light">{empanada.description}</p>
+            <p>{empanada.price}</p>
+          </div>
+        ))
       }
-      function ajustarResponsive() {
-        if (window.innerWidth < 640) {
-          // Asumiendo que 640px es el breakpoint para 'sm'
+    </div>
+    <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7">
+      {
+        entradas.map((entrada) => (
+          <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
+            <img
+              class=" h-32 w-32 object-cover rounded-lg"
+              src={entrada.src}
+              alt="entrada"
+            />
+            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {entrada.name}
+            </p>
+            <p class=" font-light text-center text-pretty">
+              {entrada.description}
+            </p>
+            <p class="mb-1">{entrada.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+      {
+        ensaladas.map((ensalada) => (
+          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
+            <img
+              class="h-32 w-32 object-cover "
+              src={ensalada.src}
+              alt="ensalada"
+            />
+            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {ensalada.name}
+            </p>
+            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+              {ensalada.description}
+            </p>
+            <p class=" mt-1">{ensalada.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      id="Pizzas"
+      class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
+      style=" "
+    >
+      {
+        pizzas.map((pizza) => (
+          <div class=" h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex  ">
+            <img
+              class=" h-24 w-24 lg:h-32 lg:w-32 object-cover "
+              src={pizza.src}
+              alt="pizza"
+            />
+            <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {pizza.name}
+            </p>
+            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+              {pizza.description}
+            </p>
+            <p class="mt-1">{pizza.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <!-- //totalmente responsive no tocar clase de cc en el layout -->
+
+    <div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+      {
+        cocina.map((cocina) => (
+          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
+            <img
+              class="h-32 w-32 object-cover "
+              src={cocina.src}
+              alt="cocina"
+            />
+            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {cocina.name}
+            </p>
+            <p class="  mt-1 font-light text-center text-pretty md:text-xs">
+              {cocina.description}
+            </p>
+            <p class="mt-1">{cocina.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      id="Postres"
+      class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7"
+    >
+      {
+        postres.map((postre) => (
+          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
+            <img
+              class="h-32 w-32 object-cover  "
+              src={postre.src}
+              alt="postre"
+            />
+            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {postre.name}
+            </p>
+            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+              {postre.description}
+            </p>
+            <p class="mt-1">{postre.price}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <!-- //script para mostrar y ver menu en TAMAÑO MD -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menu = {
+          empanadas: document.getElementById("Empanadas"),
+          pizzas: document.getElementById("Pizzas"),
+          entradas: document.getElementById("Entradas"),
+          ensaladas: document.getElementById("Ensaladas"),
+          cocina: document.getElementById("Cocina"),
+          parrilla: document.getElementById("Parrilla"),
+          postres: document.getElementById("Postres"),
+        };
+
+        function mostrarDiv(name) {
           Object.keys(menu).forEach((key) => {
-            menu[key].style.opacity = "0";
-            menu[key].style.display = "none";
+            if (menu[key] !== null && menu[key] !== undefined) {
+              if (key === name) {
+                menu[key].style.opacity = "1";
+                menu[key].style.display = "flex"; // Muestra el div seleccionado.
+              } else {
+                // Agrega una transición de 0.5 segundos a la propiedad de opacidad.
+                menu[key].style.opacity = "0";
+                menu[key].style.display = "none";
+              }
+            }
           });
         }
-      }
-
-      // Agrega el evento listener para cambios en el tamaño de la ventana
-      window.addEventListener("resize", ajustarResponsive);
-
-      // Llama a la función al cargar para establecer el estado inicial adecuado
-      ajustarResponsive();
-
-      // Event listeners para los botones o enlaces
-      document
-        .getElementById("ver-empanadas")
-        .addEventListener("click", function () {
-          mostrarDiv("empanadas");
-        });
-      document
-        .getElementById("ver-pizzas")
-        .addEventListener("click", function () {
-          mostrarDiv("pizzas");
-        });
-      document
-        .getElementById("ver-entradas")
-        .addEventListener("click", function () {
-          mostrarDiv("entradas");
-        });
-      document
-        .getElementById("ver-ensaladas")
-        .addEventListener("click", function () {
-          mostrarDiv("ensaladas");
-        });
-      document
-        .getElementById("ver-cocina")
-        .addEventListener("click", function () {
-          mostrarDiv("cocina");
-        });
-      document
-        .getElementById("ver-parrilla")
-        .addEventListener("click", function () {
-          mostrarDiv("parrilla");
-        });
-
-      document
-        .getElementById("ver-postres")
-        .addEventListener("click", function () {
-          mostrarDiv("postres");
-        });
-    });
-  </script>
-</section>
-<!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const empanadas = document.getElementById("botonempanadas");
-    const empanadasDiv = document.getElementById("divEmpanadas");
-    const entradas = document.getElementById("botonEntradas");
-    const entradasDiv = document.getElementById("divEntradas");
-    const ensaladas = document.getElementById("botonEnsaladas");
-    const ensaladasDiv = document.getElementById("divEnsaldas");
-    const pizzas = document.getElementById("botonPizzas");
-    const pizzasDiv = document.getElementById("divPizzas");
-    const cocina = document.getElementById("botonCocina");
-    const cocinaDiv = document.getElementById("divCocina");
-    const parrilla = document.getElementById("botonparrilla");
-    const parrillaDiv = document.getElementById("divParrilla");
-    const postres = document.getElementById("botonpostres");
-    const postresDiv = document.getElementById("divPostres");
-    const campo = document.getElementById("botonCampo");
-    const campoDiv = document.getElementById("divCampo");
-
-    const botones = [
-      empanadas,
-      entradas,
-      ensaladas,
-      pizzas,
-      cocina,
-      parrilla,
-      postres,
-      campo,
-    ];
-    const divs = [
-      empanadasDiv,
-      entradasDiv,
-      ensaladasDiv,
-      pizzasDiv,
-      cocinaDiv,
-      parrillaDiv,
-      postresDiv,
-      campoDiv,
-    ];
-
-    function mostrarDiv(botones, divs) {
-      botones.forEach((boton, index) => {
-        boton.addEventListener("click", function () {
-          const div = divs[index];
-          if (
-            div.classList.contains("ocultar") ||
-            !div.classList.contains("mostrar")
-          ) {
-            div.classList.remove("ocultar");
-            div.classList.add("mostrar");
-          } else {
-            div.classList.remove("mostrar");
-            div.classList.add("ocultar");
+        function ajustarResponsive() {
+          if (window.innerWidth < 640) {
+            // Asumiendo que 640px es el breakpoint para 'sm'
+            Object.keys(menu).forEach((key) => {
+              menu[key].style.opacity = "0";
+              menu[key].style.display = "none";
+            });
           }
+        }
+
+        // Agrega el evento listener para cambios en el tamaño de la ventana
+        window.addEventListener("resize", ajustarResponsive);
+
+        // Llama a la función al cargar para establecer el estado inicial adecuado
+        ajustarResponsive();
+
+        // Event listeners para los botones o enlaces
+        document
+          .getElementById("ver-empanadas")
+          .addEventListener("click", function () {
+            mostrarDiv("empanadas");
+          });
+        document
+          .getElementById("ver-pizzas")
+          .addEventListener("click", function () {
+            mostrarDiv("pizzas");
+          });
+        document
+          .getElementById("ver-entradas")
+          .addEventListener("click", function () {
+            mostrarDiv("entradas");
+          });
+        document
+          .getElementById("ver-ensaladas")
+          .addEventListener("click", function () {
+            mostrarDiv("ensaladas");
+          });
+        document
+          .getElementById("ver-cocina")
+          .addEventListener("click", function () {
+            mostrarDiv("cocina");
+          });
+        document
+          .getElementById("ver-parrilla")
+          .addEventListener("click", function () {
+            mostrarDiv("parrilla");
+          });
+
+        document
+          .getElementById("ver-postres")
+          .addEventListener("click", function () {
+            mostrarDiv("postres");
+          });
+      });
+    </script>
+  </nav>
+  <!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const item = JSON.parse(`{
+      "item1": {
+        "carne": "Bife de lomo",
+        "description": "Cortes suabes totalmente magros ",
+        "subItems": [
+          { "platillo": "lomito", "gramaje": "300g" },
+          { "platillo": "Bife de lomo", "gramaje": "350g" },
+          { "platillo": "Bife de lomo en caña", "gramaje": "800g" },
+          { "platillo": "tocino", "gramaje": "150g" },
+          { "platillo": "Bife de lomo en caña", "gramaje": "1200g" }
+        ]
+      },
+      "item2": {
+        "carne": "Vacio",
+        "description": "Corte jugoso, con marmoleo intermedio y textura firme",
+        "subItems": [
+          { "platillo": "Vacío", "gramaje": "400g" },
+          { "platillo": "Vacío", "gramaje": "650g" },
+          { "platillo": "Vacío", "gramaje": "1300g" }
+        ]
+      }
+    }`);
+    
+      
+      
+      const empanadas = document.getElementById("botonempanadas");
+      const empanadasDiv = document.getElementById("divEmpanadas");
+      const entradas = document.getElementById("botonEntradas");
+      const entradasDiv = document.getElementById("divEntradas");
+      const ensaladas = document.getElementById("botonEnsaladas");
+      const ensaladasDiv = document.getElementById("divEnsaldas");
+      const pizzas = document.getElementById("botonPizzas");
+      const pizzasDiv = document.getElementById("divPizzas");
+      const cocina = document.getElementById("botonCocina");
+      const cocinaDiv = document.getElementById("divCocina");
+      const parrilla = document.getElementById("botonParrilla");
+      const parrillaDiv = document.getElementById("divParrilla");
+      const postres = document.getElementById("botonPostres");
+      const postresDiv = document.getElementById("divPostres");
+      const campo = document.getElementById("botonCampo");
+      const campoDiv = document.getElementById("divCampo");
+      const filetes = document.getElementById(item.item1.carne)
+      const filetesDiv = document.getElementById(`${item.item1.carne}Div`)
+      const vacios = document.getElementById(item.item2.carne)
+      const vaciosDiv = document.getElementById(`${item.item2.carne}Div`)
+      
+    
+      
+
+      const botones = [
+        empanadas,
+        entradas,
+        ensaladas,
+        pizzas,
+        cocina,
+        parrilla,
+        postres,
+        campo,
+        filetes,
+        vacios,
+       
+        
+      ];
+      const divs = [
+        empanadasDiv,
+        entradasDiv,
+        ensaladasDiv,
+        pizzasDiv,
+        cocinaDiv,
+        parrillaDiv,
+        postresDiv,
+        campoDiv,
+        filetesDiv,
+        vaciosDiv,
+        
+      ];
+
+  
+
+      function mostrarDiv(botones, divs ) {
+        botones.forEach((boton, index) => {
+          boton.addEventListener("click", function () {
+            const div = divs[index];
+            if (
+              div.classList.contains("ocultar") ||
+              !div.classList.contains("mostrar")
+            ) {
+              div.classList.remove("ocultar");
+              div.classList.add("mostrar");
+            } else {
+              div.classList.remove("mostrar");
+              div.classList.add("ocultar");
+            }
+          });
         });
+
+        divs.forEach((div) => {
+          div.classList.add("ocultar");
+        });
+      }
+      mostrarDiv(botones, divs);
+       filetes.addEventListener("click", function () {
+        campoDiv.classList.remove("mostrar");
+        filetesDiv.classList.add("mostrar");
+        
       });
 
-      divs.forEach((div) => {
-        div.classList.add("ocultar");
+      vacios.addEventListener("click", function () {
+        campoDiv.classList.remove("mostrar");
+        campoDiv.classList.add("block");
       });
-    }
-    mostrarDiv(botones, divs);
-  });
-</script>
+
+      // ...resto del código...
+ 
+      
+      
+    });
+   
+   
+  </script>
+  
+  
+
+</section>
