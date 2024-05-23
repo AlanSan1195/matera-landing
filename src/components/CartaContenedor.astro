@@ -294,79 +294,112 @@ const parrilla = [
   {
     type: "Granja",
     src: "/imagenes/carta/parrilla/cerdo.webp",
-    items: [
-      {
-        src: "",
-        name: "Pollo",
-        description: "description2",
-        price: "price2",
-      },
-      {
-        src: "",
-        name: "Cerdo",
-        description: "description2",
-        price: "price2",
-      },
-      // Más objetos aquí si es necesario
-    ],
   },
   {
     type: "Campo",
     src: "/imagenes/carta/parrilla/vaca.webp",
-    items: [
-      {
-        src: "/imagenes/carta/parrilla/campo/filetes.webp",
-        name: "Bife de lomo",
-        description: "Cortes suabes totalmente magros ",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/vacios.webp",
-        name: "Vacio",
-        description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
-        description:
-          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
-        description:
-          " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
-        description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Easpeciales",
-        description: "Nuestros cortes especiales son bajo desiponibilidad",
-      },
-      // Más objetos aquí si es necesario
-    ],
   },
   {
     type: "Mar",
     src: " /imagenes/carta/parrilla/camaron.webp",
-    items: [
-      {
-        src: "",
-        name: "Camarones",
-        description: "description1",
-        price: "price1",
-      },
-      {
-        src: "",
-        name: "Pulpo",
-        description: "description1",
-        price: "price1",
-      },
-      // Más objetos aquí si es necesario
-    ],
+  },
+];
+const campoData = [
+  {
+    src: "/imagenes/carta/parrilla/campo/filetes.webp",
+    name: "Bife de lomo",
+    description: "Cortes suabes totalmente magros ",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/vacios.webp",
+    name: "Vacio",
+    description: "Corte jugoso, con marmoleo intermedio y textura firme",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/entrana.webp",
+    name: "Entraña",
+    description:
+      " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/asado.webp",
+    name: "Asado de tira",
+    description:
+      "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+    name: "Bife de chorizo",
+    description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+    name: "Easpeciales",
+    description: "Nuestros cortes especiales son bajo desiponibilidad",
+  },
+  // Más objetos aquí si es necesario
+];
+const filetes = [
+  {
+    name: "Lomito",
+    size: "300gr / 11oz",
+    price: "$338",
+  },
+  {
+    name: "Bife de lomo",
+    size: "400gr / 14oz",
+    price: "$450",
+  },
+  {
+    name: "Bife de lomo en caña",
+    size: "800gr / 28oz",
+    price: "$900",
+  },
+  {
+    name: "Bife de lomo en caña",
+    size: "1,200gr / 42oz",
+    price: "$1350",
+  },
+];
+const vacios = [
+  {
+    name: "Vacío",
+    size: "400gr / 14oz",
+    price: "$500",
+  },
+  {
+    name: "Vacío",
+    size: "650rg / 23oz",
+    price: "$830",
+  },
+  {
+    name: "Vacío",
+    size: "1,300gr / 46oz",
+    price: "$1650",
+  },
+];
+const entrañas = [
+  {
+    name: "Entraña",
+    size: "500gr / 18oz",
+    price: "$ 670",
+  },
+  {
+    name: "Entraña",
+    size: "850gr / 30oz",
+    price: "$1100",
+  },
+];
+const asados = [
+  {
+    name: "Asado de tira",
+    size: "350gr / 12.3oz",
+    price: "$ 470",
+  },
+  {
+    name: "Asado completo (pedido especial)",
+    size: "3,400gr / 120oz",
+    price: "$1100",
   },
 ];
 
@@ -433,6 +466,12 @@ const postres = [
     price: "$145",
   },
 ];
+
+const imgCarne = campoData.map((item) => ({
+  src: item.src,
+  name: item.name,
+  description: item.description,
+}));
 ---
 
 <section
@@ -609,18 +648,60 @@ const postres = [
       </ul>
     </div>
 
+    <!-- esturcutura de corte seleccionado -->
+    <!--     
+    {
+      [{ name: "Filetes /Tenderloins", img: imgCarne[0], items: filetes}, { name: "Vacíos", img: imgCarne[1], items: vacios}].map((grupo, index)=>(
+        
+        <div id={`div${grupo.name}`} class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"> 
+         <h1
+        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+        >
+        {grupo.name}
+      </h1>
+
+      <div class="flex flex-col justify-center items-center">
+        <img
+          class="size-28 mx-auto"
+          src={grupo.img.src}
+          alt={grupo.img.name}
+          />
+        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+          {grupo.img.description}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 m-4 justify-center gap-8">
+        {
+          grupo.items.map((item) => (
+            <div class="justify-between flex flex-col text-sm leading-none">
+              <p class="font-bold">{item.name}</p>
+              <p class="text-sm opacity-50">{item.size}</p>
+              <p class="font-light">{item.price}</p>
+            </div>
+          ))
+        }
+      </div>
+
+        </div>
+      ))
+      
+      
+    } -->
     <div
       id="divCampo"
-      class="grid grid-cols-3 justify-center text-center text-white m-2 bg"
+      class="grid grid-cols-3 justify-center text-center text-white m-2"
     >
       {
-        parrilla[1].items.map((item) => (
-          <div class="flex flex-col justify-center  m-2 ">
+        campoData.map((item, index) => (
+          <div id="divCortes" class="flex flex-col justify-center  m-2  ">
             <img
+              id={item.name}
               class=" size-32 mx-auto hover:cursor-pointer  "
               src={item.src}
               alt="cortes"
             />
+
             <h1 class=" text-base font-bold">{item.name}</h1>
             <p class=" text-[10px]">{item.description}</p>
           </div>
@@ -636,12 +717,120 @@ const postres = [
         </p>
       </div>
     </div>
+    <div
+      id="divFiletes"
+      class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white "
+    >
+      <h1
+        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+      >
+        Filetes / Tenderloins
+      </h1>
+
+      <div class="flex flex-col justify-center items-center">
+        <img
+          class="size-28 mx-auto"
+          src={imgCarne[0].src}
+          alt={imgCarne[0].name}
+        />
+        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+          {imgCarne[0].description}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-4 m-4 justify-center gap-8">
+        {
+          filetes.map((filete) => (
+            <div class="justify-between flex flex-col text-sm leading-none  text-center   ">
+              <p class=" font-bold">{filete.name}</p>
+              <p class=" text-sm opacity-50">{filete.size}</p>
+              <p class=" font-light ">{filete.price}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+  
+
+    <div
+      id="divVacios"
+      class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-whit   "
+    >
+      <h1
+        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+      >
+        Vacíos
+      </h1>
+
+      <div class="flex flex-col justify-center items-center">
+        <img
+          class="size-28 mx-auto"
+          src={imgCarne[1].src}
+          alt={imgCarne[1].name}
+        />
+        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+          {imgCarne[1].description}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-3 m-4 justify-center gap-8 text-center">
+        {
+          vacios.map((vacio) => (
+            <div class="justify-between flex flex-col text-sm leading-none  ">
+              <p class=" font-bold">{vacio.name}</p>
+              <p class=" text-sm opacity-50">{vacio.size}</p>
+              <p class=" font-light ">{vacio.price}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+   <div id="divEntrañas"
+   class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white">
+      <h1
+        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+      >
+        Entrañas
+      </h1>
+      <div class="flex flex-col justify-center items-center">
+        <img
+          class="size-28 mx-auto"
+          src={imgCarne[2].src}
+          alt={imgCarne[2].name}
+        />
+        <p class="text-sm mb-4 top-0 w-[280px] text-center">{imgCarne[2].description}</p>
+      </div>
+      <div class=" flex m-4 justify-center gap-8">
+        {
+          entrañas.map((entrana) => (
+            <div class="justify-between flex flex-col text-sm leading-none items-center">
+              <p class="font-bold">{entrana.name}</p>
+              <p class="text-sm opacity-50">{entrana.size}</p>
+              <p class="font-light">{entrana.price}</p>
+            </div>
+          ))
+        }
+      </div>
+
+   </div>
+
+      
+
+
+
+      
+   
+    </nav>
     <a
       id="botonpostres"
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Postres</a
     >
-    <div id="divPostres" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
+    <div
+      id="divPostres"
+      class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
+    >
       {
         postres.map((postre) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white relative    ">
@@ -661,7 +850,6 @@ const postres = [
         ))
       }
     </div>
-  </nav>
 
   <!-- // navegacion media  -->
   <header
@@ -913,70 +1101,127 @@ const postres = [
         });
     });
   </script>
-</section>
-<!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const empanadas = document.getElementById("botonempanadas");
-    const empanadasDiv = document.getElementById("divEmpanadas");
-    const entradas = document.getElementById("botonEntradas");
-    const entradasDiv = document.getElementById("divEntradas");
-    const ensaladas = document.getElementById("botonEnsaladas");
-    const ensaladasDiv = document.getElementById("divEnsaldas");
-    const pizzas = document.getElementById("botonPizzas");
-    const pizzasDiv = document.getElementById("divPizzas");
-    const cocina = document.getElementById("botonCocina");
-    const cocinaDiv = document.getElementById("divCocina");
-    const parrilla = document.getElementById("botonparrilla");
-    const parrillaDiv = document.getElementById("divParrilla");
-    const postres = document.getElementById("botonpostres");
-    const postresDiv = document.getElementById("divPostres");
-    const campo = document.getElementById("botonCampo");
-    const campoDiv = document.getElementById("divCampo");
 
-    const botones = [
-      empanadas,
-      entradas,
-      ensaladas,
-      pizzas,
-      cocina,
-      parrilla,
-      postres,
-      campo,
-    ];
-    const divs = [
-      empanadasDiv,
-      entradasDiv,
-      ensaladasDiv,
-      pizzasDiv,
-      cocinaDiv,
-      parrillaDiv,
-      postresDiv,
-      campoDiv,
-    ];
+  <!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const campoData = [
+        {
+          src: "/imagenes/carta/parrilla/campo/filetes.webp",
+          name: "Bife de lomo",
+          description: "Cortes suabes totalmente magros ",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/vacios.webp",
+          name: "Vacio",
+          description: "Corte jugoso, con marmoleo intermedio y textura firme",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/entrana.webp",
+          name: "Entraña",
+          description:
+            " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/asado.webp",
+          name: "Asado de tira",
+          description:
+            "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+          name: "Bife de chorizo",
+          description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+          name: "Easpeciales",
+          description: "Nuestros cortes especiales son bajo desiponibilidad",
+        },
+        // Más objetos aquí si es necesario
+      ];
+      const campoDatos = [...campoData];
 
-    function mostrarDiv(botones, divs) {
-      botones.forEach((boton, index) => {
-        boton.addEventListener("click", function () {
-          const div = divs[index];
-          if (
-            div.classList.contains("ocultar") ||
-            !div.classList.contains("mostrar")
-          ) {
-            div.classList.remove("ocultar");
-            div.classList.add("mostrar");
-          } else {
-            div.classList.remove("mostrar");
-            div.classList.add("ocultar");
+      const empanadas = document.getElementById("botonempanadas");
+      const empanadasDiv = document.getElementById("divEmpanadas");
+      const entradas = document.getElementById("botonEntradas");
+      const entradasDiv = document.getElementById("divEntradas");
+      const ensaladas = document.getElementById("botonEnsaladas");
+      const ensaladasDiv = document.getElementById("divEnsaldas");
+      const pizzas = document.getElementById("botonPizzas");
+      const pizzasDiv = document.getElementById("divPizzas");
+      const cocina = document.getElementById("botonCocina");
+      const cocinaDiv = document.getElementById("divCocina");
+      const parrilla = document.getElementById("botonparrilla");
+      const parrillaDiv = document.getElementById("divParrilla");
+      const postres = document.getElementById("botonpostres");
+      const postresDiv = document.getElementById("divPostres");
+      const campo = document.getElementById("botonCampo");
+      const campoDiv = document.getElementById("divCampo");
+      const botonesCampo = campoDatos.map((item) =>
+        document.getElementById(`${item.name}`)
+      );
+
+      const filetesDiv = document.getElementById("divFiletes");
+      const vaciosDiv = document.getElementById("divVacios");
+      const entrañasDiv = document.getElementById("divEntrañas");
+
+      const botones = [
+        empanadas,
+        entradas,
+        ensaladas,
+        pizzas,
+        cocina,
+        parrilla,
+        postres,
+        campo,
+        botonesCampo[0],
+        botonesCampo[1],
+        botonesCampo[2],
+        
+      ];
+      const divs = [
+        empanadasDiv,
+        entradasDiv,
+        ensaladasDiv,
+        pizzasDiv,
+        cocinaDiv,
+        parrillaDiv,
+        postresDiv,
+        campoDiv,
+        filetesDiv,
+        vaciosDiv,
+        entrañasDiv,
+       
+      ];
+
+      function mostrarDiv(botones, divs) {
+        botones.forEach((boton, index) => {
+          // Verificar si el botón existe antes de agregar el evento
+          if (boton) {
+            boton.addEventListener("click", function () {
+              const div = divs[index];
+              if (
+                div.classList.contains("ocultar") ||
+                !div.classList.contains("mostrar")
+              ) {
+                div.classList.remove("ocultar");
+                div.classList.add("mostrar");
+              } else {
+                div.classList.remove("mostrar");
+                div.classList.add("ocultar");
+              }
+            });
           }
         });
-      });
 
-      divs.forEach((div) => {
-        div.classList.add("ocultar");
-      });
-    }
-    mostrarDiv(botones, divs);
-  });
-</script>
+        divs.forEach((div) => {
+          div.classList.add("ocultar");
+        });
+      }
 
+      mostrarDiv(botones, divs);
+    });
+
+  </script>
+</section>
