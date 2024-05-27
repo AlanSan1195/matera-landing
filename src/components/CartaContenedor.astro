@@ -648,46 +648,6 @@ const imgCarne = campoData.map((item) => ({
       </ul>
     </div>
 
-    <!-- esturcutura de corte seleccionado -->
-    <!--     
-    {
-      [{ name: "Filetes /Tenderloins", img: imgCarne[0], items: filetes}, { name: "Vacíos", img: imgCarne[1], items: vacios}].map((grupo, index)=>(
-        
-        <div id={`div${grupo.name}`} class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"> 
-         <h1
-        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
-        >
-        {grupo.name}
-      </h1>
-
-      <div class="flex flex-col justify-center items-center">
-        <img
-          class="size-28 mx-auto"
-          src={grupo.img.src}
-          alt={grupo.img.name}
-          />
-        <p class="text-sm mb-4 top-0 w-[280px] text-center">
-          {grupo.img.description}
-        </p>
-      </div>
-
-      <div class="grid grid-cols-3 m-4 justify-center gap-8">
-        {
-          grupo.items.map((item) => (
-            <div class="justify-between flex flex-col text-sm leading-none">
-              <p class="font-bold">{item.name}</p>
-              <p class="text-sm opacity-50">{item.size}</p>
-              <p class="font-light">{item.price}</p>
-            </div>
-          ))
-        }
-      </div>
-
-        </div>
-      ))
-      
-      
-    } -->
     <div
       id="divCampo"
       class="grid grid-cols-3 justify-center text-center text-white m-2"
@@ -719,13 +679,20 @@ const imgCarne = campoData.map((item) => ({
     </div>
     <div
       id="divFiletes"
-      class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white "
+      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
     >
+      <div></div>
       <h1
-        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
       >
         Filetes / Tenderloins
       </h1>
+      <button
+        id="botonCerrar"
+        class="border-[1px] border-[#B56C09] text-center px-3 py-2 text-white rounded-3xl ml-[300px] m-5"
+      >
+        x</button
+      >
 
       <div class="flex flex-col justify-center items-center">
         <img
@@ -751,17 +718,21 @@ const imgCarne = campoData.map((item) => ({
       </div>
     </div>
 
-  
-
     <div
       id="divVacios"
-      class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-whit   "
+      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
     >
       <h1
-        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
       >
         Vacíos
       </h1>
+      <button
+        id="botonCerrar"
+        class="border-4 border-[#B56C09] text-center px-3 py-2 text-white rounded-xl ml-[300px] m-5"
+      >
+        x</button
+      >
 
       <div class="flex flex-col justify-center items-center">
         <img
@@ -786,22 +757,32 @@ const imgCarne = campoData.map((item) => ({
         }
       </div>
     </div>
-   <div id="divEntrañas"
-   class="border-[2px] border-red-600 border-opacity-40 bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white">
+    <div
+      id="divEntrañas"
+      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
+    >
       <h1
-        class="text-red-600 font-bold text-xl mt-4 flex justify-center opacity-80"
+        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
       >
         Entrañas
       </h1>
+      <button
+        id="botonCerrar"
+        class="border-4 border-[#B56C09] text-center px-3 py-2 text-white rounded-xl ml-[300px] m-5"
+      >
+        x</button
+      >
       <div class="flex flex-col justify-center items-center">
         <img
           class="size-28 mx-auto"
           src={imgCarne[2].src}
           alt={imgCarne[2].name}
         />
-        <p class="text-sm mb-4 top-0 w-[280px] text-center">{imgCarne[2].description}</p>
+        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+          {imgCarne[2].description}
+        </p>
       </div>
-      <div class=" flex m-4 justify-center gap-8">
+      <div class="flex m-4 justify-center gap-8">
         {
           entrañas.map((entrana) => (
             <div class="justify-between flex flex-col text-sm leading-none items-center">
@@ -812,44 +793,33 @@ const imgCarne = campoData.map((item) => ({
           ))
         }
       </div>
-
-   </div>
-
-      
-
-
-
-      
-   
-    </nav>
-    <a
-      id="botonpostres"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
-      >Postres</a
-    >
-    <div
-      id="divPostres"
-      class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
-      {
-        postres.map((postre) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white relative    ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={postre.src}
-              alt="empanada"
-            />
-            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
-              {postre.name}
-            </p>
-            <p class="font-light text-xs ml-2 text-white/75">
-              {postre.description}
-            </p>
-            <p class="ml-2">{postre.price}</p>
-          </div>
-        ))
-      }
     </div>
+  </nav>
+  <a
+    id="botonpostres"
+    class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+    >Postres</a
+  >
+  <div id="divPostres" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
+    {
+      postres.map((postre) => (
+        <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white relative    ">
+          <img
+            class="image-drop-shadow relative left-4 rounded-2xl "
+            src={postre.src}
+            alt="empanada"
+          />
+          <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
+            {postre.name}
+          </p>
+          <p class="font-light text-xs ml-2 text-white/75">
+            {postre.description}
+          </p>
+          <p class="ml-2">{postre.price}</p>
+        </div>
+      ))
+    }
+  </div>
 
   <!-- // navegacion media  -->
   <header
@@ -917,7 +887,10 @@ const imgCarne = campoData.map((item) => ({
       ))
     }
   </div>
-  <div id="Entradas" class="flex flex-wrap mr-10 ml-10 p-7">
+  <div
+    id="Entradas"
+    class="flex hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7"
+  >
     {
       entradas.map((entrada) => (
         <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
@@ -1046,21 +1019,6 @@ const imgCarne = campoData.map((item) => ({
           }
         });
       }
-      function ajustarResponsive() {
-        if (window.innerWidth < 640) {
-          // Asumiendo que 640px es el breakpoint para 'sm'
-          Object.keys(menu).forEach((key) => {
-            menu[key].style.opacity = "0";
-            menu[key].style.display = "none";
-          });
-        }
-      }
-
-      // Agrega el evento listener para cambios en el tamaño de la ventana
-      window.addEventListener("resize", ajustarResponsive);
-
-      // Llama a la función al cargar para establecer el estado inicial adecuado
-      ajustarResponsive();
 
       // Event listeners para los botones o enlaces
       document
@@ -1158,13 +1116,13 @@ const imgCarne = campoData.map((item) => ({
       const postresDiv = document.getElementById("divPostres");
       const campo = document.getElementById("botonCampo");
       const campoDiv = document.getElementById("divCampo");
-      const botonesCampo = campoDatos.map((item) =>
-        document.getElementById(`${item.name}`)
-      );
+      // const botonesCampo = campoDatos.map((item) =>
+      //   document.getElementById(`${item.name}`)
+      // );
 
-      const filetesDiv = document.getElementById("divFiletes");
-      const vaciosDiv = document.getElementById("divVacios");
-      const entrañasDiv = document.getElementById("divEntrañas");
+      // const filetesDiv = document.getElementById("divFiletes");
+      // const vaciosDiv = document.getElementById("divVacios");
+      // const entrañasDiv = document.getElementById("divEntrañas");
 
       const botones = [
         empanadas,
@@ -1175,10 +1133,6 @@ const imgCarne = campoData.map((item) => ({
         parrilla,
         postres,
         campo,
-        botonesCampo[0],
-        botonesCampo[1],
-        botonesCampo[2],
-        
       ];
       const divs = [
         empanadasDiv,
@@ -1189,10 +1143,6 @@ const imgCarne = campoData.map((item) => ({
         parrillaDiv,
         postresDiv,
         campoDiv,
-        filetesDiv,
-        vaciosDiv,
-        entrañasDiv,
-       
       ];
 
       function mostrarDiv(botones, divs) {
@@ -1222,6 +1172,110 @@ const imgCarne = campoData.map((item) => ({
 
       mostrarDiv(botones, divs);
     });
-
   </script>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const campoData = [
+      {
+        src: "/imagenes/carta/parrilla/campo/filetes.webp",
+        name: "Bife de lomo",
+        description: "Cortes suaves totalmente magros",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/vacios.webp",
+        name: "Vacio",
+        description: "Corte jugoso, con marmoleo intermedio y textura firme",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/entrana.webp",
+        name: "Entraña",
+        description:
+          "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/asado.webp",
+        name: "Asado de tira",
+        description:
+          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+        name: "Bife de chorizo",
+        description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+        name: "Especiales",
+        description: "Nuestros cortes especiales son bajo disponibilidad",
+      },
+    ];
+
+    const botonesCampo = campoData.map((item) =>
+      document.getElementById(item.name)
+    );
+
+    const divsCarnes = [
+      document.getElementById("divFiletes"),
+      document.getElementById("divVacios"),
+      document.getElementById("divEntrañas"),
+    ];
+
+    const campoDiv = document.getElementById("divCampo");
+
+    const botonesCerrar = document.querySelectorAll("#botonCerrar");
+    // const botonesCerrar = document.getElementById("botonCerrar")
+
+    if (botonesCerrar) {
+      botonesCerrar.forEach((boton) => {
+        boton.addEventListener("click", function () {
+          divsCarnes.forEach((div) => {
+            div.classList.remove("mostrar");
+            div.classList.add("ocultar");
+          });
+          campoDiv.classList.remove("ocultar");
+          campoDiv.classList.add("mostrar");
+        });
+      });
+    }
+
+    // Ocultar los divs inicialmente
+      divsCarnes.forEach((div) => {
+        div.classList.add("ocultar");
+      });
+
+    function mostrarDivCarnes(botonesCampo, divsCarnes) {
+      botonesCampo.forEach((boton, index) => {
+        if (boton) {
+          boton.addEventListener("click", function () {
+            const divCarne = divsCarnes[index];
+            if (divCarne.classList.contains("ocultar")) {
+              divCarne.classList.remove("ocultar");
+              divCarne.classList.add("mostrar");
+            } else {
+              divCarne.classList.remove("mostrar");
+              divCarne.classList.add("ocultar");
+            }
+            ocultarCampoDiv(divsCarnes, campoDiv);
+          });
+        }
+      });
+    }
+
+    function ocultarCampoDiv(divsCarnes, campoDiv) {
+      const algunDivVisible = divsCarnes.some((div) =>
+        div.classList.contains("mostrar")
+      );
+      if (algunDivVisible) {
+        campoDiv.classList.remove("mostrar");
+        campoDiv.classList.add("ocultar");
+      } else {
+        campoDiv.classList.remove("ocultar");
+        campoDiv.classList.add("mostrar");
+      }
+    }
+
+    mostrarDivCarnes(botonesCampo, divsCarnes);
+  });
+</script>
