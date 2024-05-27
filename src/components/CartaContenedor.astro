@@ -679,39 +679,55 @@ const imgCarne = campoData.map((item) => ({
     </div>
     <div
       id="divFiletes"
-      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
+      class="border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-cente m-1 "
     >
-      <div></div>
-      <h1
-        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
-      >
-        Filetes / Tenderloins
-      </h1>
-      <button
-        id="botonCerrar"
-        class="border-[1px] border-[#B56C09] text-center px-3 py-2 text-white rounded-3xl ml-[300px] m-5"
-      >
-        x</button
-      >
+      <div class="flex items-center mx-6 mt-3">
+        <h1 class="opacity-0 flex">........</h1>
 
-      <div class="flex flex-col justify-center items-center">
+        <h1
+          class="text-white font-bold text-xl flex w-full justify-center opacity-80"
+        >
+        Filetes
+        </h1>
+        <button
+          id="botonCerrar"
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-[#B56C09] dark:hover:text-white"
+          data-modal-hide="top-left-modal"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="" class="flex flex-col justify-center items-center">
         <img
           class="size-28 mx-auto"
           src={imgCarne[0].src}
           alt={imgCarne[0].name}
         />
-        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+        <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap">
           {imgCarne[0].description}
         </p>
       </div>
-
-      <div class="grid grid-cols-4 m-4 justify-center gap-8">
+      <div class="flex m-4 justify-center gap-8">
         {
           filetes.map((filete) => (
-            <div class="justify-between flex flex-col text-sm leading-none  text-center   ">
-              <p class=" font-bold">{filete.name}</p>
-              <p class=" text-sm opacity-50">{filete.size}</p>
-              <p class=" font-light ">{filete.price}</p>
+            <div class="justify-between flex flex-col text-sm leading-none items-center text-center">
+              <p class="font-bold text-wrap">{filete.name}</p>
+              <p class="text-sm opacity-50">{filete.size}</p>
+              <p class="font-light">{filete.price}</p>
             </div>
           ))
         }
@@ -720,38 +736,55 @@ const imgCarne = campoData.map((item) => ({
 
     <div
       id="divVacios"
-      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
+      class="border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-center m-1"
     >
-      <h1
-        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
-      >
-        Vacíos
-      </h1>
-      <button
-        id="botonCerrar"
-        class="border-4 border-[#B56C09] text-center px-3 py-2 text-white rounded-xl ml-[300px] m-5"
-      >
-        x</button
-      >
+      <div class="flex items-center mx-6 mt-3">
+        <h1 class="opacity-0 flex">........</h1>
 
-      <div class="flex flex-col justify-center items-center">
+        <h1
+          class="text-white font-bold text-xl flex w-full justify-center opacity-80"
+        >
+          Vacios
+        </h1>
+        <button
+          id="botonCerrar"
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-[#B56C09] dark:hover:text-white"
+          data-modal-hide="top-left-modal"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="" class="flex flex-col justify-center items-center">
         <img
           class="size-28 mx-auto"
           src={imgCarne[1].src}
           alt={imgCarne[1].name}
         />
-        <p class="text-sm mb-4 top-0 w-[280px] text-center">
+        <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap">
           {imgCarne[1].description}
         </p>
       </div>
-
-      <div class="grid grid-cols-3 m-4 justify-center gap-8 text-center">
+      <div class="flex m-4 justify-center gap-8">
         {
           vacios.map((vacio) => (
-            <div class="justify-between flex flex-col text-sm leading-none  ">
-              <p class=" font-bold">{vacio.name}</p>
-              <p class=" text-sm opacity-50">{vacio.size}</p>
-              <p class=" font-light ">{vacio.price}</p>
+            <div class="justify-between flex flex-col text-sm leading-none items-center">
+              <p class="font-bold">{vacio.name}</p>
+              <p class="text-sm opacity-50">{vacio.size}</p>
+              <p class="font-light">{vacio.price}</p>
             </div>
           ))
         }
@@ -759,20 +792,39 @@ const imgCarne = campoData.map((item) => ({
     </div>
     <div
       id="divEntrañas"
-      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white"
+      class="border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-center m-1"
     >
-      <h1
-        class="text-white font-bold text-xl mt-4 flex justify-center opacity-80"
-      >
-        Entrañas
-      </h1>
-      <button
-        id="botonCerrar"
-        class="border-4 border-[#B56C09] text-center px-3 py-2 text-white rounded-xl ml-[300px] m-5"
-      >
-        x</button
-      >
-      <div class="flex flex-col justify-center items-center">
+      <div class="flex items-center mx-6 mt-3">
+        <h1 class="opacity-0 flex">........</h1>
+
+        <h1
+          class="text-white font-bold text-xl flex w-full justify-center opacity-80"
+        >
+          Entrañas
+        </h1>
+        <button
+          id="botonCerrar"
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-[#B56C09] dark:hover:text-white"
+          data-modal-hide="top-left-modal"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"></path>
+          </svg>
+        </button>
+      </div>
+      <div id="" class="flex flex-col justify-center items-center">
         <img
           class="size-28 mx-auto"
           src={imgCarne[2].src}
@@ -812,7 +864,7 @@ const imgCarne = campoData.map((item) => ({
           <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
             {postre.name}
           </p>
-          <p class="font-light text-xs ml-2 text-white/75">
+          <p class="font-light text-xs ml-2 text-white/75 text-wrap">
             {postre.description}
           </p>
           <p class="ml-2">{postre.price}</p>
@@ -1241,9 +1293,9 @@ const imgCarne = campoData.map((item) => ({
     }
 
     // Ocultar los divs inicialmente
-      divsCarnes.forEach((div) => {
-        div.classList.add("ocultar");
-      });
+    // divsCarnes.forEach((div) => {
+    //   div.classList.add("ocultar");
+    // });
 
     function mostrarDivCarnes(botonesCampo, divsCarnes) {
       botonesCampo.forEach((boton, index) => {
