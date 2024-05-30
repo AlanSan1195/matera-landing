@@ -70,13 +70,14 @@ const bifes = [
 
 <div
   id={id}
-  class="border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-center m-1"
+  class="  border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-center 
+  "
 >
   <div class="flex items-center mx-6 mt-3">
-    <h1 class="opacity-0 flex">........</h1>
+    <h1 class="opacity-0 flex">...........</h1>
 
     <h1
-      class="text-white font-bold text-xl flex w-full justify-center opacity-80"
+      class=" text-white font-bold text-xl flex w-full justify-center opacity-80"
     >
       Bifes de chorizo
     </h1>
@@ -109,24 +110,24 @@ const bifes = [
       src={campoData[4].src}
       alt={campoData[4].name}
     />
-    <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap">
+    <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap opacity-80">
       {campoData[4].description}
     </p>
   </div>
   <div class="grid grid-cols-2 m-4 justify-center gap-8">
     {
       bifes.map((bife) => (
-        <div class="justify-between flex flex-col text-sm leading-none items-center text-center">
+        <div class="justify-between flex flex-col text-sm leading-none items-center text-center  gap-y-1">
           <p class="font-bold">{bife.name}</p>
 
           <div class=" flex gap-2">
             <p class="font-bold text-xs text-red-600/80  ">{bife.quality}</p>
-            <p class="font-light">{bife.pricePrime}</p>
+            <p class="font-light opacity-80">{bife.pricePrime}</p>
           </div>
 
           <div class=" flex gap-2">
             <p class="font-bold text-xs text-red-600/80  ">{bife.queality2}</p>
-            <p class="font-light">{bife.priceHighChoice}</p>
+            <p class="font-light opacity-80">{bife.priceHighChoice}</p>
           </div>
 
           <p class="text-sm opacity-50">{bife.size}</p>

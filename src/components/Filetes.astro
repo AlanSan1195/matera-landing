@@ -34,32 +34,41 @@ const campoData = [
         description: "Nuestros cortes especiales son bajo disponibilidad",
       },
     ];
-const asados =[
-    {
-        name: "Asado de tira",
-        size: "350gr / 12.3oz",
-        price: "$470",
-    },
-    {
-        name: "Asado completo",
-        size: "3,400gr / 120oz",
-        price: "$950",
-    },
-   
-    ];
+    const filetes = [
+  {
+    name: "Lomito",
+    size: "300gr / 11oz",
+    price: "$338",
+  },
+  {
+    name: "Bife de lomo",
+    size: "400gr / 14oz",
+    price: "$450",
+  },
+  {
+    name: "Bife de lomo en caña",
+    size: "800gr / 28oz",
+    price: "$900",
+  },
+  {
+    name: "Bife de lomo en caña",
+    size: "1,200gr / 42oz",
+    price: "$1350",
+  },
+];
 
 ---
 <div
       id={id}
-      class="border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white content-center "
+      class="border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white/80 content-center "
     >
-      <div class="flex items-center mx-6 mt-3 ">
+      <div class="flex items-center mx-6 mt-3">
         <h1 class="opacity-0 flex">........</h1>
 
         <h1
-          class="text-white font-bold text-xl flex w-full justify-center opacity-80"
+          class="  text-white font-bold text-xl flex w-full justify-center  opacity-80"
         >
-          Asados de tira 
+          Bifes de lomo
         </h1>
         <button
           id="botonCerrar"
@@ -86,20 +95,20 @@ const asados =[
       <div id="" class="flex flex-col justify-center items-center">
         <img
           class="size-28 mx-auto"
-          src={campoData[3].src}
-          alt={campoData[3].name}
+          src={campoData[0].src}
+          alt={campoData[0].name}
         />
-        <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap opacity-80">
-          {campoData[3].description}
+        <p class="text-base mb-4 top-0 w-[280px] text-center text-wrap opacity-80 ">
+          {campoData[0].description}
         </p>
       </div>
-      <div class="flex m-4 justify-center gap-8 ">
+      <div class="flex m-4 justify-center gap-8 text-center">
         {
-          asados.map((asado) => (
-            <div class="justify-between flex flex-col text-sm leading-none items-center text-center  gap-y-1 ">
-              <p class="font-bold text-center ">{asado.name}</p>
-              <p class="text-sm opacity-50 text-center">{asado.size}</p>
-              <p class="font-light opacity-80">{asado.price}</p>
+          filetes.map((filete) => (
+            <div class="justify-between flex flex-col text-sm leading-none ">
+              <p class="font-bold flex ">{filete.name}</p>
+              <p class="text-xs opacity-50">{filete.size}</p>
+              <p class="font-light opacity-80">{filete.price}</p>
             </div>
           ))
         }
