@@ -1,7 +1,6 @@
 ---
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const textColor = `text-${color}`;
-import FooterMenu from "./FooterMenu.astro";
 import Logo2 from "./Logo2.astro";
 ---
 
@@ -32,8 +31,7 @@ import Logo2 from "./Logo2.astro";
       class="py-6 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
     >
       <slot name="footer" />
-      <!-- Condicionamente cargar el pie de página: -->
-      {showFooterContent && <FooterMenu />}
+     
     </footer>
   </div>
 
