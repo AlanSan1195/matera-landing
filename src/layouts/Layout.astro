@@ -376,4 +376,18 @@ const { title, description } = Astro.props;
     overflow: hidden;
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
+  .mostrarMD {
+  opacity: 1;
+  max-height: 1000px; /* Ajusta este valor según tus necesidades */
+  transition: opacity 1s ease-in-out, max-height 1s ease-in-out;
+  position: static; /* Asegúrate de que los elementos mostrados están en el flujo normal del documento */
+}
+
+.ocultarMD {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  position: absolute; /* Saca los elementos ocultos del flujo normal del documento */
+}
 </style>
