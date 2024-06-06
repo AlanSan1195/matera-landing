@@ -148,7 +148,7 @@ const entradas = [
     price: "$290",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/entradas/chinchulines.webp",
     name: "Chicnhulines a la parrilla",
     description: "",
     price: "$210",
@@ -178,7 +178,7 @@ const entradas = [
     price: "$250",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/entradas/carpaccioJamon.webp",
     name: "Carpaccio de jamón serrano",
     description: "",
     price: "$260",
@@ -330,7 +330,6 @@ const campoData = [
     name: "Easpeciales",
     description: "Nuestros cortes especiales son bajo desiponibilidad",
   },
-
 ];
 
 const postres = [
@@ -347,7 +346,7 @@ const postres = [
     price: "$125",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/postres/alfajor.webp",
     name: "Alfajor de hojaldre",
     description: "",
     price: "$175",
@@ -384,19 +383,18 @@ const postres = [
   },
 
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/postres/tartaManzana.webp",
     name: "Tarta de manzana",
     description: "",
     price: "$150",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/postres/camoteRescoldo.webp",
     name: "Camote al rescoldo",
     description: "",
     price: "$145",
   },
 ];
-
 ---
 
 <section
@@ -538,7 +536,7 @@ const postres = [
     </div>
     <a
       id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl "
+      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Parrilla</a
     >
 
@@ -645,7 +643,7 @@ const postres = [
 
 <ul
   id="navegacion-carta"
-  class="hidden md:flex flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex sticky top-auto"
+  class="hidden md:flex flex py-5 mx-auto [&>li>a]:px-3 justify-center md:[&>li>a]:text-nowrap lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex  top-auto relative m-4"
 >
   <li class="sm:hidden md:block">
     <a
@@ -681,7 +679,7 @@ const postres = [
 </ul>
 <div
   id="Empanadas"
-  class="hidden justify-center justify-between mr-10 ml-10 p-7"
+  class=" md:flex justify-between mr-10 ml-10 p-7"
   style=" "
 >
   {
@@ -701,7 +699,7 @@ const postres = [
     ))
   }
 </div>
-<div id="Entradas" class="flex hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7">
+<div id="Entradas" class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7">
   {
     entradas.map((entrada) => (
       <div class="h-[270px]pt-7 w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
@@ -719,7 +717,7 @@ const postres = [
     ))
   }
 </div>
-<div id="Ensaladas" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+<div id="Ensaladas" class="md:flex flex-wrap mr-10 ml-10 p-7">
   {
     ensaladas.map((ensalada) => (
       <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
@@ -741,7 +739,7 @@ const postres = [
 </div>
 <div
   id="Pizzas"
-  class="hidden flex justify-center justify-between mr-10 ml-10 p-7"
+  class="md:flex justify-center  mr-10 ml-10 p-7"
   style=" "
 >
   {
@@ -765,7 +763,7 @@ const postres = [
 </div>
 <!-- //totalmente responsive no tocar clase de cc en el layout -->
 
-<div id="Cocina" class="hidden flex flex-wrap mr-10 ml-10 p-7">
+<div id="Cocina" class="md:flex flex-wrap mr-10 ml-10 p-7">
   {
     cocina.map((cocina) => (
       <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
@@ -781,7 +779,71 @@ const postres = [
     ))
   }
 </div>
-<div id="Postres" class="hidden flex flex-wrap justify-between mr-10 ml-10 p-7">
+
+<div
+  id="Parrilla"
+  class="md:flex flex-col w-full justify-center text-white"
+>
+  <ul class="flex justify-center">
+    <li class="">
+      <button id="botonGranja" class="hover:cursor-pointe">
+        <img
+          class="size-28 p-2 flex justify-center"
+          src="/imagenes/carta/parrilla/cerdo.webp"
+          alt=" imagen"
+        />
+        <h2 class="flex justify-center font-bold text-xl">Granja</h2>
+      </button>
+      <button id="botonCampo" class="hover:cursor-pointe">
+        <img
+          class="size-28 p-2 flex justify-center"
+          src="/imagenes/carta/parrilla/vaca.webp"
+          alt=" imagen"
+        />
+        <h2 class="flex justify-center font-bold text-xl">Campo</h2>
+      </button>
+      <button id="botonMar" class="hover:cursor-pointe">
+        <img
+          class="size-28 p-2 flex justify-center r"
+          src="/imagenes/carta/parrilla/camaron.webp"
+          alt=" imagen"
+        />
+        <h2 class="flex justify-center font-bold text-xl">Mar</h2>
+      </button>
+    </li>
+  </ul>
+  <div
+    id="divCampo"
+    class="grid grid-cols-3 justify-center text-center text-white m-2"
+  >
+    {
+      campoData.map((item, index) => (
+        <div id="divCortes" class="flex flex-col justify-center  m-2  ">
+          <img
+            id={item.name}
+            class=" size-40 mx-auto hover:cursor-pointer  "
+            src={item.src}
+            alt="cortes"
+          />
+
+          <h1 class=" text-lg font-bold">{item.name}</h1>
+          <p class=" text-base opacity-80">{item.description}</p>
+        </div>
+      ))
+    }
+    <div
+      class="flex w-[800px] col-span-3 mx-auto mt-8 mb-8 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+    >
+      <p class="text-base opacity-80 m-4">
+        Los cortes que aquí servimos son de la más alta calidad, por lo tanto,
+        no requieren ser sometidos a ningún proceso de marinado o suavizado que
+        altere su textura y/o sabor natural.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div id="Postres" class=" md:flex flex-wrap justify-between mr-10 ml-10 p-7">
   {
     postres.map((postre) => (
       <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
@@ -812,57 +874,37 @@ const postres = [
     };
 
     function mostrarDiv(name) {
-      Object.keys(menu).forEach((key) => {
-        if (menu[key] !== null && menu[key] !== undefined) {
-          if (key === name) {
-            menu[key].style.opacity = "1";
-            menu[key].style.display = "flex"; // Muestra el div seleccionado.
-          } else {
-            // Agrega una transición de 0.5 segundos a la propiedad de opacidad.
-            menu[key].style.opacity = "0";
-            menu[key].style.display = "none";
-          }
-        }
-      });
+  Object.keys(menu).forEach((key) => {
+    if (menu[key]) {
+      if (key === name) {
+        menu[key].classList.remove("ocultarMD");
+        menu[key].classList.add("mostrarMD");
+      } else {
+        menu[key].classList.remove("mostrarMD");
+        menu[key].classList.add("ocultarMD");
+      }
     }
+  });
+}
+Object.keys(menu).forEach((key) => {
+  if (menu[key]) {
+    if (key === "entradas") {
+      menu[key].classList.add("mostrarMD");
+    } else {
+      menu[key].classList.add("ocultarMD");
+    }
+  }
+});
 
     // Event listeners para los botones o enlaces
-    document
-      .getElementById("ver-empanadas")
-      .addEventListener("click", function () {
-        mostrarDiv("empanadas");
-      });
-    document
-      .getElementById("ver-pizzas")
-      .addEventListener("click", function () {
-        mostrarDiv("pizzas");
-      });
-    document
-      .getElementById("ver-entradas")
-      .addEventListener("click", function () {
-        mostrarDiv("entradas");
-      });
-    document
-      .getElementById("ver-ensaladas")
-      .addEventListener("click", function () {
-        mostrarDiv("ensaladas");
-      });
-    document
-      .getElementById("ver-cocina")
-      .addEventListener("click", function () {
-        mostrarDiv("cocina");
-      });
-    document
-      .getElementById("ver-parrilla")
-      .addEventListener("click", function () {
-        mostrarDiv("parrilla");
-      });
-
-    document
-      .getElementById("ver-postres")
-      .addEventListener("click", function () {
-        mostrarDiv("postres");
-      });
+    Object.keys(menu).forEach((key) => {
+      const button = document.getElementById(`ver-${key}`);
+      if (button ) {
+        button.addEventListener("click", function () {
+          mostrarDiv(key);
+        });
+      }
+    });
   });
 </script>
 
@@ -1048,9 +1090,9 @@ const postres = [
     }
 
     // Ocultar los divs inicialmenteo
-     divsCarnes.forEach((div) => {
-       div.classList.add("ocultar");
-     });
+    divsCarnes.forEach((div) => {
+      div.classList.add("ocultar");
+    });
 
     function mostrarDivCarnes(botonesCampo, divsCarnes) {
       botonesCampo.forEach((boton, index) => {
