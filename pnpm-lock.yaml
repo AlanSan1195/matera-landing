@@ -11,9 +11,6 @@ dependencies:
   '@fontsource-variable/lora':
     specifier: ^5.0.14
     version: 5.0.14
-  '@googlemaps/js-api-loader':
-    specifier: ^1.16.6
-    version: 1.16.6
   astro:
     specifier: ^2.4.5
     version: 2.10.15
@@ -785,12 +782,6 @@ packages:
 
   /@fontsource-variable/lora@5.0.14:
     resolution: {integrity: sha512-JYQVo6WhGr6LC6aNx4xE5RZTuJssHscQOGdyGprlgKJM6PEPOJXGCAvAp7LDKJlmQ7rn8wTOo8z57I3IX5ctmQ==}
-    dev: false
-
-  /@googlemaps/js-api-loader@1.16.6:
-    resolution: {integrity: sha512-V8p5W9DbPQx74jWUmyYJOerhiB4C+MHekaO0ZRmc6lrOYrvY7+syLhzOWpp55kqSPeNb+qbC2h8i69aLIX6krQ==}
-    dependencies:
-      fast-deep-equal: 3.1.3
     dev: false
 
   /@isaacs/cliui@8.0.2:
@@ -1585,10 +1576,6 @@ packages:
 
   /extend@3.0.2:
     resolution: {integrity: sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==}
-    dev: false
-
-  /fast-deep-equal@3.1.3:
-    resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
     dev: false
 
   /fast-glob@3.3.2:
