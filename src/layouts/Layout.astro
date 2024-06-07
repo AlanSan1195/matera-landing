@@ -29,11 +29,8 @@ const { title, description } = Astro.props;
   <body>
     <LightsBackground />
     <slot />
-    
-
   </body>
 </html>
-
 
 <style is:global>
   :root {
@@ -43,7 +40,6 @@ const { title, description } = Astro.props;
   html {
     font-family: "Lora Variable";
   }
- 
 
   /* estilos de las imagenes de la carta  */
   * {
@@ -377,17 +373,16 @@ const { title, description } = Astro.props;
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
   .mostrarMD {
-  opacity: 1;
-  max-height: 1000px; /* Ajusta este valor según tus necesidades */
-  transition: opacity 1s ease-in-out, max-height 1s ease-in-out;
-  position: static; /* Asegúrate de que los elementos mostrados están en el flujo normal del documento */
-}
+    opacity: 1;
+    max-height: 1000px; /* Ajusta este valor según tus necesidades */
+    transition: opacity 1s ease-in-out;
+    position: static; /* Asegúrate de que los elementos mostrados están en el flujo normal del documento */
+  }
 
-.ocultarMD {
-  opacity: 0;
-  max-height: 0;
-  overflow: hidden;
-  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
-  position: absolute; /* Saca los elementos ocultos del flujo normal del documento */
-}
+  .ocultarMD {
+    opacity: 0;
+    overflow: hidden;
+    transition: transform 1s ease-in-out;
+    position: absolute; /* Saca los elementos ocultos del flujo normal del documento */
+  }
 </style>
