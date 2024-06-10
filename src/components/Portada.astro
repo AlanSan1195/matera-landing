@@ -5,7 +5,7 @@ import Logo2 from "./Logo2.astro";
 ---
 
 <section
-  class="landing-section  min-h-screen w-screen text-center overflow-hidden"
+  class="landing-section  min-h-screen w-screen text-center overflow-hidden "
   data-header-color={color}
   id={id}
 >
@@ -59,10 +59,10 @@ import Logo2 from "./Logo2.astro";
       // logo.classList.toggle("invisible", windowPosition);
     });
     // risize de texto titulo 
-     if(window.innerWidth > 380){
+     if(window.innerWidth < 376){
           let title = document.querySelector(".landing-section h2") as HTMLHeadingElement;
           let subtitle = document.querySelector(".landing-section p") as HTMLParagraphElement;
-          title.style.fontSize = "76px";
+          title.style.fontSize = "60px";
           subtitle.style.fontSize = "14px";
           
         }
