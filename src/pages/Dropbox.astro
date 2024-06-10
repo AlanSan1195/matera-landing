@@ -3,26 +3,27 @@
 
 const platillos = [
   {
-    imagen: "",
-    titulo: "Chorizo argentino ( Argentinan sausage style )",
-    descripcion:
-      "Embutido clasico de las parrilladas argentinas. Elaborado con carne de cerdo y de res, conocido como chorizo criollo para los argentinos. Lo elaboramos en casa y contiene chile quebrado, oregano y ajo.",
-    gramaje: "130 grs.",
-  },
-  {
     imagen: "imagenes/chistorraDropbox.webp",
     titulo: "Chistorra  ( Spanish sausage style )",
     descripcion:
       "Embutido estilo espanol, la carne es 100% de cerdo, su color rojo caracteristico se lo aporta el pimienton como condimento bascio. contiene ajo y la  tripa en la que est embutida es de cordero",
     gramaje: "220 grs.",
   },
+  {
+    imagen: "",
+    titulo: "Chorizo argentino ( Argentinan sausage style )",
+    descripcion:
+      "Embutido clasico de las parrilladas argentinas. Elaborado con carne de cerdo y de res, conocido como chorizo criollo para los argentinos. Lo elaboramos en casa y contiene chile quebrado, oregano y ajo.",
+    gramaje: "130 grs.",
+  },
 ];
 ---
 
-<section class="flex w-screen h-screen flex-col bg-orange-100 text-black p-10">
+<section class="flex h-full w-full  flex-col bg-orange-100 text-black ">
+  <img class=" h-96 my-24" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
   {
     platillos.map(({ imagen, titulo, descripcion, gramaje }) => (
-      <article class=" m-4 flex flex gap-12  ">
+      <article class=" m-8 flex  gap-12  ">
         <div class=" ">
           <img
             src={imagen}
