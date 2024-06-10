@@ -603,11 +603,11 @@ const postres = [
       </div>
     </div>
 
-    <Filetes id="divFiletes" />
-    <Vacios id="divVacios" />
-    <Entraas id="divEntrañas" />
-    <AsadosDeTira id="divAsados" />
-    <RibEye id="divRibEye" />
+    <Filetes id="divFiletesSM" />
+    <Vacios id="divVaciosSM" />
+    <Entraas id="divEntrañasSM" />
+    <AsadosDeTira id="divAsadosSM" />
+    <RibEye id="divRibEyeSM" />
     <a
       id="botonpostres"
       class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-3"
@@ -783,43 +783,43 @@ const postres = [
 
 <div
   id="Parrilla"
-  class="md:flex flex-col w-full justify-center text-white"
+  class="md:flex flex-col w-full  justify-center text-white"
 >
   <ul class="flex justify-center">
     <li class="">
-      <button id="botonGranja" class="hover:cursor-pointe">
+      <button id="botonGranja" class="hover:cursor-pointer">
         <img
           class="size-28 p-2 flex justify-center"
           src="/imagenes/carta/parrilla/cerdo.webp"
           alt=" imagen"
         />
-        <h2 class="flex justify-center font-bold text-xl">Granja</h2>
+        <h2 class="flex justify-center font-bold text-xl hover:cursor-pointer">Granja</h2>
       </button>
-      <button id="botonCampo" class="hover:cursor-pointe">
+      <button id="botonCampo" class="hover:cursor-pointer">
         <img
           class="size-28 p-2 flex justify-center"
           src="/imagenes/carta/parrilla/vaca.webp"
           alt=" imagen"
         />
-        <h2 class="flex justify-center font-bold text-xl">Campo</h2>
+        <h2 class="flex justify-center font-bold text-xl hover:cursor-pointer">Campo</h2>
       </button>
-      <button id="botonMar" class="hover:cursor-pointe">
+      <button id="botonMar" class="hover:cursor-pointer">
         <img
           class="size-28 p-2 flex justify-center r"
           src="/imagenes/carta/parrilla/camaron.webp"
           alt=" imagen"
         />
-        <h2 class="flex justify-center font-bold text-xl">Mar</h2>
+        <h2 class="flex justify-center font-bold text-xl hover:cursor-pointer">Mar</h2>
       </button>
     </li>
   </ul>
   <div
     id="divCampo"
-    class="grid grid-cols-3 justify-center text-center text-white m-2"
+    class=" grid grid-cols-3 justify-center text-center text-white m-2"
   >
     {
       campoData.map((item, index) => (
-        <div id="divCortes" class="flex flex-col justify-center  m-2  ">
+        <div id="divCortes" class="flex flex-col justify-center  m-2   ">
           <img
             id={item.name}
             class=" size-40 mx-auto hover:cursor-pointer  "
@@ -842,7 +842,13 @@ const postres = [
       </p>
     </div>
   </div>
+  <!-- <Filetes id="divFiletesMD" />
+  <Vacios id="divVaciosMD" />
+  <Entraas id="divEntrañasMD" />
+  <AsadosDeTira id="divAsadosMD" />
+  <RibEye id="divRibEyeDM" /> -->
 </div>
+
 
 <div id="Postres" class=" hidden md:flex flex-wrap justify-between mr-10 ml-10 p-7">
   {
@@ -873,7 +879,58 @@ const postres = [
       parrilla: document.getElementById("Parrilla"),
       postres: document.getElementById("Postres"),
     };
+    const campoData = [
+      {
+        src: "/imagenes/carta/parrilla/campo/filetes.webp",
+        name: "Bife de lomo",
+        description: "Cortes suabes totalmente magros ",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/vacios.webp",
+        name: "Vacio",
+        description: "Corte jugoso, con marmoleo intermedio y textura firme",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/entrana.webp",
+        name: "Entraña",
+        description:
+          " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/asado.webp",
+        name: "Asado de tira",
+        description:
+          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+        name: "Bife de chorizo",
+        description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+      },
+      {
+        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+        name: "Easpeciales",
+        description: "Nuestros cortes especiales son bajo desiponibilidad",
+      },
+    ];
+    const divsCarnesMD = [
+      document.getElementById("divFiletesMD"),
+      document.getElementById("divVaciosMD"),
+      document.getElementById("divEntrañasMD"),
+      document.getElementById("divAsadosMD"),
+      document.getElementById("divRibEyeDM"),
+    ]
+    const botocerrar = document.getElementById("botonCerrar");
+    const botonesParrilla = [
+      document.getElementById("botonGranja"),
+      document.getElementById("botonCampo"),
+      document.getElementById("botonMar"),
+    ];
 
+    
+
+
+    // mostrar elementos de la carta segun el click en MD
     function mostrarDiv(name) {
   Object.keys(menu).forEach((key) => {
     if (menu[key]) {
@@ -886,7 +943,8 @@ const postres = [
       }
     }
   });
-}
+} 
+// mostrar simepre entradas en MD
 Object.keys(menu).forEach((key) => {
   if (menu[key]) {
     if (key === "entradas") {
@@ -897,7 +955,7 @@ Object.keys(menu).forEach((key) => {
   }
 });
 
-    // Event listeners para los botones o enlaces
+    // Event listeners para los botones o enlaces EL MENUS DE mdd
     Object.keys(menu).forEach((key) => {
       const button = document.getElementById(`ver-${key}`);
       if (button ) {
@@ -1065,11 +1123,11 @@ Object.keys(menu).forEach((key) => {
     );
 
     const divsCarnes = [
-      document.getElementById("divFiletes"),
-      document.getElementById("divVacios"),
-      document.getElementById("divEntrañas"),
-      document.getElementById("divAsados"),
-      document.getElementById("divRibEye"),
+      document.getElementById("divFiletesSM"),
+      document.getElementById("divVaciosSM"),
+      document.getElementById("divEntrañasSM"),
+      document.getElementById("divAsadosSM"),
+      document.getElementById("divRibEyeSM"),
     ];
 
     const campoDiv = document.getElementById("divCampo");
