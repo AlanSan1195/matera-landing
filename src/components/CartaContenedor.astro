@@ -581,11 +581,12 @@ const postres = [
             <div id="divCortes" class="flex flex-col justify-center  m-2  ">
               <img
                 id={item.name}
-                class=" size-32 mx-auto hover:cursor-pointer  "
+                class=" size-32 mx-auto hover:cursor-pointer  hover:scale-75   "
+                
                 src={item.src}
                 alt="cortes"
               />
-
+            
               <h1 class=" text-base font-bold">{item.name}</h1>
               <p class=" text-[10px]">{item.description}</p>
             </div>
@@ -819,7 +820,7 @@ const postres = [
   >
     {
       campoData.map((item, index) => (
-        <div id="divCortes" class="flex flex-col justify-center  m-2   ">
+        <div id="divCortes" class="flex flex-col justify-center  m-2  hover:scale-110 z-40  ">
           <img
             id={item.name}
             class=" size-40 mx-auto hover:cursor-pointer  "
@@ -1074,6 +1075,7 @@ Object.keys(menu).forEach((key) => {
 
       divs.forEach((div) => {
         div.classList.add("ocultar");
+     
       });
     }
 
@@ -1148,8 +1150,11 @@ Object.keys(menu).forEach((key) => {
       });
     }
 
+
+    // revisar tocuh en telefono doble click en desk top
     // Ocultar los divs inicialmenteo
     divsCarnes.forEach((div) => {
+      div.classList.add("hidden");
       div.classList.add("ocultar");
     });
 
@@ -1158,7 +1163,11 @@ Object.keys(menu).forEach((key) => {
         if (boton) {
           boton.addEventListener("click", function () {
             const divCarne = divsCarnes[index];
-            if (divCarne.classList.contains("ocultar")) {
+            if(divCarne.classList.contains("hidden")){
+              divCarne.classList.remove("hidden");
+              
+            }
+             if (divCarne.classList.contains("ocultar") ) {
               divCarne.classList.remove("ocultar");
               divCarne.classList.add("mostrar");
             } else {
