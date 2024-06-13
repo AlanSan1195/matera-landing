@@ -1,11 +1,12 @@
 ---
 import Logo from "./Logo.astro";
 import Book from "./Book.astro";
+import User from "./icons/User.astro";
 ---
 
 <header
   id="landing-header"
-  class="py-5 md:py-3 lg:py-3  px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl"
+  class="py-5 md:py-3 lg:py-3  px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl  m "
 >
   <div id="logo1" class="flex flex-grow basis-0 pointer-events-none">
     <img ><Logo /></img>
@@ -33,7 +34,8 @@ import Book from "./Book.astro";
     </ul>
   </nav>
 
-  <nav class="flex flex-grow justify-end basis-0">
+  <nav id=""
+  class="flex flex-grow justify-end basis-0  ">
     <ul
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
@@ -43,7 +45,7 @@ import Book from "./Book.astro";
       <li
         class="md:hidden border-[2px] border-red-600 bg-white/5 backdrop-blur-sm text-xl rounded font-medium text-white inline-block hover:bg-red-600 hover:text-white transition-colors -mr-4"
       >
-        <a id="menu-btn" href="#carta"> ☰</a>
+       <User id="menu-btn" class="m-2 hover:cursor-pointer"/>
       </li>
     </ul>
   </nav>
@@ -167,13 +169,17 @@ import Book from "./Book.astro";
 <script>
   document.addEventListener("scroll", function() {
     let header = document.getElementById("landing-header");
-    if (window.scrollY > 400 && window.innerWidth >= 768) {
+    if (window.scrollY > 400 && window.innerWidth >= 37) {
       header.style.transition = "background-color .5s";
-      header.style.backgroundColor = "rgba(0, 0, 0, .8)";
+      header.style.borderBottom = "1px solid #B56C09";
+      header.style.backgroundColor = "black";
    
     } else {
-      header.style.backgroundColor = "rgba(0, 0, 0, 0.25)";
+      header.style.backgroundColor = "rgba(0, 0, 0, 0.30)";
+      header.style.borderBottom = "none";
     }
+
+
    
 
   })
