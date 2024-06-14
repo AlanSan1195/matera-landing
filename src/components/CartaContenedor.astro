@@ -717,8 +717,9 @@ const postres = [
       id="ver-empanadas"
       class="font-base text-white text-sm hover:text-red-400">Empanadas</a
     >
-    <a id="ver-entradas" class="font-base  text-sm hover:text-red-400 text-red-600"
-      >Entradas</a
+    <a
+      id="ver-entradas"
+      class="font-base text-sm hover:text-red-400 text-red-600">Entradas</a
     >
     <a
       id="ver-ensaladas"
@@ -848,17 +849,20 @@ const postres = [
     class="hidden md:flex justify-center z-50 text-center scale-95"
   >
     <ul
-      class="flex text-sm [&>li]:hover:cursor-pointer [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2  "
+      class="flex text-sm [&>li]:hover:cursor-pointer [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2"
     >
-      <li id="itemGranja" class=" flex flex-col justify-center mx-auto items-center  " >
+      <li
+        id="itemGranja"
+        class="flex flex-col justify-center mx-auto items-center"
+      >
         <img
-          class="size-28 flex justify-center  "
+          class="size-28 flex justify-center"
           src="/imagenes/carta/parrilla/cerdo.webp"
           alt=" imagen cerdo"
         />
-        <a class=" " aria-label="Granja">Granja</a>
+        <a class="" aria-label="Granja">Granja</a>
       </li>
-      <li id="itemCampo" class=" text-red-600">
+      <li id="itemCampo" class="text-red-600">
         <img
           class="size-28"
           src="/imagenes/carta/parrilla/vaca.webp"
@@ -866,14 +870,14 @@ const postres = [
         />
         <a aria-label="Campo">Campo</a>
       </li>
-      <li id="itemMar" class=" ">
+      <li id="itemMar" class="">
         <img
           class="size-28"
           src="/imagenes/carta/parrilla/camaron.webp"
           alt=" imagen"
         />
         <a aria-label="Mar">Mar</a>
-         <div
+        <div
           id="indicador"
           class={` absolute
        bg-red-600 backdrop-blur-lg rounded  
@@ -882,520 +886,528 @@ const postres = [
         transition-all duration-400 left-0  bottom-0
         ease-in-out opacity-0 z-50
       `}
-        > 
+        >
+        </div>
       </li>
     </ul>
-  </nav>
-  <div
-    id="divCampoMD"
-    class="grid grid-cols-3 justify-center text-center text-white m-2"
-  >
-    {
-      campoData.map((item, index) => (
-        <div
-          id="divCortes"
-          class="flex flex-col justify-center m-2  hover:scale-110 z-40  "
-        >
-          <img
-            id={item.name}
-            class=" size-40 mx-auto hover:cursor-pointer  "
-            src={item.src}
-            alt="cortes"
-          />
-
-          <h1 class=" text-lg font-bold">{item.name}</h1>
-          <p class=" text-base opacity-80">{item.description}</p>
-        </div>
-      ))
-    }
+    </nav>
     <div
-      class="flex w-[800px] col-span-3 mx-auto mt-8 mb-8 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+      id="divCampoMD"
+      class="grid grid-cols-3 justify-center text-center text-white m-2"
     >
-      <p class="text-base opacity-80 m-4">
-        Los cortes que aquí servimos son de la más alta calidad, por lo tanto,
-        no requieren ser sometidos a ningún proceso de marinado o suavizado que
-        altere su textura y/o sabor natural.
-      </p>
+      {
+        campoData.map((item, index) => (
+          <div
+            id="divCortes"
+            class="flex flex-col justify-center m-2  hover:scale-110 z-40  "
+          >
+            <img
+              id={item.name}
+              class=" size-40 mx-auto hover:cursor-pointer  "
+              src={item.src}
+              alt="cortes"
+            />
+
+            <h1 class=" text-lg font-bold">{item.name}</h1>
+            <p class=" text-base opacity-80">{item.description}</p>
+          </div>
+        ))
+      }
+      <div
+        class="flex w-[800px] col-span-3 mx-auto mt-8 mb-8 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+      >
+        <p class="text-base opacity-80 m-4">
+          Los cortes que aquí servimos son de la más alta calidad, por lo tanto,
+          no requieren ser sometidos a ningún proceso de marinado o suavizado
+          que altere su textura y/o sabor natural.
+        </p>
+      </div>
     </div>
-  </div>
-  <div
-    id="divMar"
-    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
-  >
-    {
-      marData.map((item, index) => (
-        <div class=" flex justify-center flex-col mx-auto ">
-          <img
-            id={item.name}
-            class="h-32 w-32 object-cover mx-auto"
-            src={item.src}
-            alt="mar"
-          />
-          <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {item.name}
-          </p>
-          <p class="mt-1 font-light text-center text-pretty md:text-xs">
-            {item.gramaje}
-          </p>
-          <p class=" mt-1">{item.price}</p>
-        </div>
-      ))
-    }
-  </div>
-  <div
-    id="divGranja"
-    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
-  >
-    {
-      granjaData.map((item, index) => (
-        <div class=" flex justify-center flex-col mx-auto ">
-          <img
-            id={item.name}
-            class="h-32 w-32 object-cover mx-auto"
-            src={item.src}
-            alt="granja"
-          />
-          <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-            {item.name}
-          </p>
-          <p class="mt-1 font-light text-center text-pretty md:text-xs">
-            {item.gramaje}
-          </p>
-          <p class=" mt-1">{item.price}</p>
-        </div>
-      ))
-    }
-  </div>
-</div>
-<!-- <Filetes id="divFiletesMD" />
+    <div
+      id="divMar"
+      class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
+    >
+      {
+        marData.map((item, index) => (
+          <div class=" flex justify-center flex-col mx-auto ">
+            <img
+              id={item.name}
+              class="h-32 w-32 object-cover mx-auto"
+              src={item.src}
+              alt="mar"
+            />
+            <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {item.name}
+            </p>
+            <p class="mt-1 font-light text-center text-pretty md:text-xs">
+              {item.gramaje}
+            </p>
+            <p class=" mt-1">{item.price}</p>
+          </div>
+        ))
+      }
+    </div>
+    <div
+      id="divGranja"
+      class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
+    >
+      {
+        granjaData.map((item, index) => (
+          <div class=" flex justify-center flex-col mx-auto ">
+            <img
+              id={item.name}
+              class="h-32 w-32 object-cover mx-auto"
+              src={item.src}
+              alt="granja"
+            />
+            <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+              {item.name}
+            </p>
+            <p class="mt-1 font-light text-center text-pretty md:text-xs">
+              {item.gramaje}
+            </p>
+            <p class=" mt-1">{item.price}</p>
+          </div>
+        ))
+      }
+    </div>
+  </nav>
+  <!-- <Filetes id="divFiletesMD" />
   <Vacios id="divVaciosMD" />
   <Entraas id="divEntrañasMD" />
   <AsadosDeTira id="divAsadosMD" />
   <RibEye id="divRibEyeDM" /> -->
 
-<div
-  id="Postres"
-  class="hidden md:flex flex-wrap justify-between mr-10 ml-10 p-7"
->
-  {
-    postres.map((postre) => (
-      <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
-        <img class="h-32 w-32 object-cover  " src={postre.src} alt="postre" />
-        <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-          {postre.name}
-        </p>
-        <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-          {postre.description}
-        </p>
-        <p class="mt-1">{postre.price}</p>
-      </div>
-    ))
-  }
-</div>
+  <div
+    id="Postres"
+    class="hidden md:flex flex-wrap justify-between mr-10 ml-10 p-7"
+  >
+    {
+      postres.map((postre) => (
+        <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
+          <img class="h-32 w-32 object-cover  " src={postre.src} alt="postre" />
+          <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+            {postre.name}
+          </p>
+          <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+            {postre.description}
+          </p>
+          <p class="mt-1">{postre.price}</p>
+        </div>
+      ))
+    }
+  </div>
 
-<!-- //script para mostrar y ver menu en TAMAÑO MD -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const menu = {
-      empanadas: document.getElementById("Empanadas"),
-      pizzas: document.getElementById("Pizzas"),
-      entradas: document.getElementById("Entradas"),
-      ensaladas: document.getElementById("Ensaladas"),
-      cocina: document.getElementById("Cocina"),
-      parrilla: document.getElementById("Parrilla"),
-      postres: document.getElementById("Postres"),
-    };
-    // const campoData = [
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/filetes.webp",
-    //     name: "Bife de lomo",
-    //     description: "Cortes suabes totalmente magros ",
-    //   },
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/vacios.webp",
-    //     name: "Vacio",
-    //     description: "Corte jugoso, con marmoleo intermedio y textura firme",
-    //   },
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/entrana.webp",
-    //     name: "Entraña",
-    //     description:
-    //       " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
-    //   },
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/asado.webp",
-    //     name: "Asado de tira",
-    //     description:
-    //       "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-    //   },
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-    //     name: "Bife de chorizo",
-    //     description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
-    //   },
-    //   {
-    //     src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-    //     name: "Easpeciales",
-    //     description: "Nuestros cortes especiales son bajo desiponibilidad",
-    //   },
-    // ];
-    // const divsCarnesMD = [
-    //   document.getElementById("divFiletesMD"),
-    //   document.getElementById("divVaciosMD"),
-    //   document.getElementById("divEntrañasMD"),
-    //   document.getElementById("divAsadosMD"),
-    //   document.getElementById("divRibEyeDM"),
-    // ];
-    // const botocerrar = document.getElementById("botonCerrar");
-    // const botonesParrilla = [
-    //   document.getElementById("botonGranja"),
-    //   document.getElementById("botonCampo"),
-    //   document.getElementById("botonMar"),
-    // ];
-    const subMenu = {
-      Granja: document.getElementById("divGranja"),
-      Campo: document.getElementById("divCampoMD"),
-      Mar: document.getElementById("divMar"),
-    };
+  <!-- //script para mostrar y ver menu en TAMAÑO MD -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menu = {
+        empanadas: document.getElementById("Empanadas"),
+        pizzas: document.getElementById("Pizzas"),
+        entradas: document.getElementById("Entradas"),
+        ensaladas: document.getElementById("Ensaladas"),
+        cocina: document.getElementById("Cocina"),
+        parrilla: document.getElementById("Parrilla"),
+        postres: document.getElementById("Postres"),
+      };
+      // const campoData = [
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/filetes.webp",
+      //     name: "Bife de lomo",
+      //     description: "Cortes suabes totalmente magros ",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/vacios.webp",
+      //     name: "Vacio",
+      //     description: "Corte jugoso, con marmoleo intermedio y textura firme",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/entrana.webp",
+      //     name: "Entraña",
+      //     description:
+      //       " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/asado.webp",
+      //     name: "Asado de tira",
+      //     description:
+      //       "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+      //     name: "Bife de chorizo",
+      //     description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+      //     name: "Easpeciales",
+      //     description: "Nuestros cortes especiales son bajo desiponibilidad",
+      //   },
+      // ];
+      // const divsCarnesMD = [
+      //   document.getElementById("divFiletesMD"),
+      //   document.getElementById("divVaciosMD"),
+      //   document.getElementById("divEntrañasMD"),
+      //   document.getElementById("divAsadosMD"),
+      //   document.getElementById("divRibEyeDM"),
+      // ];
+      // const botocerrar = document.getElementById("botonCerrar");
+      // const botonesParrilla = [
+      //   document.getElementById("botonGranja"),
+      //   document.getElementById("botonCampo"),
+      //   document.getElementById("botonMar"),
+      // ];
+      const subMenu = {
+        Granja: document.getElementById("divGranja"),
+        Campo: document.getElementById("divCampoMD"),
+        Mar: document.getElementById("divMar"),
+      };
 
-    // mostrar elementos de la carta segun el click en MD
-    function mostrarDiv(name) {
+      // mostrar elementos de la carta segun el click en MD
+      function mostrarDiv(name) {
+        Object.keys(menu).forEach((key) => {
+          if (menu[key]) {
+            if (key === name) {
+              menu[key].classList.remove("ocultarMD");
+              menu[key].classList.add("mostrarMD");
+            } else {
+              menu[key].classList.remove("mostrarMD");
+              menu[key].classList.add("ocultarMD");
+            }
+          }
+        });
+      }
+
+      function subDivs(name) {
+        Object.keys(subMenu).forEach((key) => {
+          if (subMenu[key]) {
+            if (key === name) {
+              subMenu[key].classList.contains("hidden");
+              subMenu[key].classList.remove("hidden");
+            } else {
+              subMenu[key].classList.add("hidden");
+            }
+          }
+        });
+      }
+      // mostrar simepre entradas en MD
       Object.keys(menu).forEach((key) => {
         if (menu[key]) {
-          if (key === name) {
-            menu[key].classList.remove("ocultarMD");
+          if (key === "entradas") {
             menu[key].classList.add("mostrarMD");
           } else {
-            menu[key].classList.remove("mostrarMD");
             menu[key].classList.add("ocultarMD");
           }
         }
       });
-    }
 
-    function subDivs(name) {
-      Object.keys(subMenu).forEach((key) => {
-        if (subMenu[key]) {
-          if (key === name) {
-            subMenu[key].classList.contains("hidden");
-            subMenu[key].classList.remove("hidden");
-          } else {
-            subMenu[key].classList.add("hidden");
-          }
+      // Event listeners para los botones o enlaces EL MENUS DE md
+      Object.keys(menu).forEach((key) => {
+        const button = document.getElementById(`ver-${key}`);
+
+        if (button) {
+          button.addEventListener("click", function () {
+            mostrarDiv(key);
+          });
         }
       });
-    }
-    // mostrar simepre entradas en MD
-    Object.keys(menu).forEach((key) => {
-      if (menu[key]) {
-        if (key === "entradas") {
-          menu[key].classList.add("mostrarMD");
-        } else {
-          menu[key].classList.add("ocultarMD");
+
+      // Event listeners para los botones o enlaces EL MENU DE PARRILLA MD
+      Object.keys(subMenu).forEach((key) => {
+        const button = document.getElementById(`item${key}`);
+        if (button) {
+          button.addEventListener("click", function () {
+            subDivs(key);
+          });
         }
-      }
+      });
     });
+  </script>
 
-    // Event listeners para los botones o enlaces EL MENUS DE md
-    Object.keys(menu).forEach((key) => {
-      const button = document.getElementById(`ver-${key}`);
+  <!-- idicadores scrip  -->
+  <script>
+    // indicador campoi mar granja
+    const indicadtor = document.querySelector("#indicador") as HTMLElement;
+    const itemsMenu = document
+      .getElementById("navSelector")
+      .querySelectorAll("li");
 
-      if (button) {
-        button.addEventListener("click", function () {
-          mostrarDiv(key);
-        });
-      }
-    });
-
-    // Event listeners para los botones o enlaces EL MENU DE PARRILLA MD
-    Object.keys(subMenu).forEach((key) => {
-      const button = document.getElementById(`item${key}`);
-      if (button) {
-        button.addEventListener("click", function () {
-          subDivs(key);
-        });
-      }
-    });
-  });
-</script>
-
-<!-- idicadores scrip  -->
-<script>
-  // indicador campoi mar granja 
-  const indicadtor = document.querySelector("#indicador") as HTMLElement; 
-  const itemsMenu = document
-    .getElementById("navSelector")
-    .querySelectorAll("li");
-
- 
-
-
-    // indicador carta md 
-  const itemsCartaMD = document
-    .getElementById("navegacion-cartaMD")
-    .querySelectorAll("a");
+    // indicador carta md
+    const itemsCartaMD = document
+      .getElementById("navegacion-cartaMD")
+      .querySelectorAll("a");
 
     itemsCartaMD.forEach((item) => {
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
 
-    itemsCartaMD.forEach(innerItem => {
-      innerItem.classList.remove("text-red-600");
-      // Asegurarse de que todos los elementos tengan 'text-white', excepto el clickeado
-      innerItem.classList.add("text-white");
-    });
+        itemsCartaMD.forEach((innerItem) => {
+          innerItem.classList.remove("text-red-600");
+          // Asegurarse de que todos los elementos tengan 'text-white', excepto el clickeado
+          innerItem.classList.add("text-white");
+        });
 
-   
-    item.classList.remove("text-white");
-    item.classList.add("text-red-600");
-  });
-});
-
-
-  itemsMenu.forEach((item) => {
-    item.addEventListener("mouseenter", () => {
-      const { left, top, width, height } = item.getBoundingClientRect();
-
-      indicadtor.style.setProperty("--left", `${left}px`);
-      // indicadtor.style.setProperty("--top", `${top}px`);
-      indicadtor.style.setProperty("--width", `${width}px`);
-      indicadtor.style.setProperty("--height", `${height}px`);
-
-      indicadtor.style.opacity = "1";
-      indicadtor.style.visibility = "visible";
-    });
-    item.addEventListener("mouseleave", () => {
-      indicadtor.style.opacity = "0";
-      indicadtor.style.visibility = "hidden";
-    });
-  });
-
-
-  itemsMenu.forEach((item) => {
-    item.addEventListener("click", () => {
-      itemsMenu.forEach((item) => {
-        item.classList.remove("text-red-600");
+        item.classList.remove("text-white");
+        item.classList.add("text-red-600");
       });
-      item.classList.add("text-red-600");
     });
-  });
-</script>
 
-<!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const campoData = [
-      {
-        src: "/imagenes/carta/parrilla/campo/filetes.webp",
-        name: "Bife de lomo",
-        description: "Cortes suabes totalmente magros ",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/vacios.webp",
-        name: "Vacio",
-        description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
-        description:
-          " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
-        description:
-          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
-        description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Easpeciales",
-        description: "Nuestros cortes especiales son bajo desiponibilidad",
-      },
-      // Más objetos aquí si es necesario
-    ];
-    const campoDatos = [...campoData];
+    itemsMenu.forEach((item) => {
+      item.addEventListener("mouseenter", () => {
+        const { left, top, width, height } = item.getBoundingClientRect();
 
-    const empanadas = document.getElementById("botonempanadas");
-    const empanadasDiv = document.getElementById("divEmpanadas");
-    const entradas = document.getElementById("botonEntradas");
-    const entradasDiv = document.getElementById("divEntradas");
-    const ensaladas = document.getElementById("botonEnsaladas");
-    const ensaladasDiv = document.getElementById("divEnsaldas");
-    const pizzas = document.getElementById("botonPizzas");
-    const pizzasDiv = document.getElementById("divPizzas");
-    const cocina = document.getElementById("botonCocina");
-    const cocinaDiv = document.getElementById("divCocina");
-    const parrilla = document.getElementById("botonparrilla");
-    const parrillaDiv = document.getElementById("divParrilla");
-    const postres = document.getElementById("botonpostres");
-    const postresDiv = document.getElementById("divPostres");
-    const campo = document.getElementById("botonCampo");
-    const campoDiv = document.getElementById("divCampo");
+        indicadtor.style.setProperty("--left", `${left}px`);
+        // indicadtor.style.setProperty("--top", `${top}px`);
+        indicadtor.style.setProperty("--width", `${width}px`);
+        indicadtor.style.setProperty("--height", `${height}px`);
 
-    const botones = [
-      empanadas,
-      entradas,
-      ensaladas,
-      pizzas,
-      cocina,
-      parrilla,
-      postres,
-      campo,
-    ];
-    const divs = [
-      empanadasDiv,
-      entradasDiv,
-      ensaladasDiv,
-      pizzasDiv,
-      cocinaDiv,
-      parrillaDiv,
-      postresDiv,
-      campoDiv,
-    ];
-    
+        indicadtor.style.opacity = "1";
+        indicadtor.style.visibility = "visible";
+      });
+      item.addEventListener("mouseleave", () => {
+        indicadtor.style.opacity = "0";
+        indicadtor.style.visibility = "hidden";
+      });
+    });
+
+    itemsMenu.forEach((item) => {
+      item.addEventListener("click", () => {
+        itemsMenu.forEach((item) => {
+          item.classList.remove("text-red-600");
+        });
+        item.classList.add("text-red-600");
+      });
+    });
+  </script>
+
+  <!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
+  <script>
+    import { TextureLoader } from "three";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const campoData = [
+        {
+          src: "/imagenes/carta/parrilla/campo/filetes.webp",
+          name: "Bife de lomo",
+          description: "Cortes suabes totalmente magros ",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/vacios.webp",
+          name: "Vacio",
+          description: "Corte jugoso, con marmoleo intermedio y textura firme",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/entrana.webp",
+          name: "Entraña",
+          description:
+            " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/asado.webp",
+          name: "Asado de tira",
+          description:
+            "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+          name: "Bife de chorizo",
+          description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+          name: "Easpeciales",
+          description: "Nuestros cortes especiales son bajo desiponibilidad",
+        },
+        // Más objetos aquí si es necesario
+      ];
+      const campoDatos = [...campoData];
+
+      const empanadas = document.getElementById("botonempanadas");
+      const empanadasDiv = document.getElementById("divEmpanadas");
+      const entradas = document.getElementById("botonEntradas");
+      const entradasDiv = document.getElementById("divEntradas");
+      const ensaladas = document.getElementById("botonEnsaladas");
+      const ensaladasDiv = document.getElementById("divEnsaldas");
+      const pizzas = document.getElementById("botonPizzas");
+      const pizzasDiv = document.getElementById("divPizzas");
+      const cocina = document.getElementById("botonCocina");
+      const cocinaDiv = document.getElementById("divCocina");
+      const parrilla = document.getElementById("botonparrilla");
+      const parrillaDiv = document.getElementById("divParrilla");
+      const postres = document.getElementById("botonpostres");
+      const postresDiv = document.getElementById("divPostres");
+      const campo = document.getElementById("botonCampo");
+      const campoDiv = document.getElementById("divCampo");
+
+      const botones = [
+        empanadas,
+        entradas,
+        ensaladas,
+        pizzas,
+        cocina,
+        parrilla,
+        postres,
+        campo,
+      ];
+      const divs = [
+        empanadasDiv,
+        entradasDiv,
+        ensaladasDiv,
+        pizzasDiv,
+        cocinaDiv,
+        parrillaDiv,
+        postresDiv,
+        campoDiv,
+      ];
 
 
-    function mostrarDiv(botones, divs) {
-      botones.forEach((boton, index) => {
-        // Verificar si el botón existe antes de agregar el evento
-        if (boton) {
+
+      // INDICADOR EN TAMAÑO SM
+      function cambioClass(element, classRemove, classAdd) {
+        element.classList.remove(classRemove);
+        element.classList.add(classAdd);
+      }
+
+      function mostrarDiv(botones, divs) {
+        botones.forEach((boton, index) => {
+          if (boton) {
+            boton.addEventListener("click", function () {
+              const div = divs[index];
+              const divOculto =
+                div.classList.contains("ocultar") ||
+                !div.classList.contains("mostrar");
+
+              botones.forEach((boton) => {
+                if (boton) {
+                  cambioClass(boton, "text-red-600", "text-white");
+                }
+              });
+              if (divOculto) {
+                cambioClass(boton, "text-white", "text-red-600");
+                cambioClass(div, "ocultar", "mostrar");
+              } else {
+                cambioClass(boton, "text-red-600", "text-white");
+                cambioClass(div, "mostrar", "ocultar");
+              }
+            });
+          }
+        });
+
+        divs.forEach((div) => {
+          div.classList.add("ocultar");
+        });
+      }
+      mostrarDiv(botones, divs);
+    });
+  </script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const campoData = [
+        {
+          src: "/imagenes/carta/parrilla/campo/filetes.webp",
+          name: "Bife de lomo",
+          description: "Cortes suaves totalmente magros",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/vacios.webp",
+          name: "Vacio",
+          description: "Corte jugoso, con marmoleo intermedio y textura firme",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/entrana.webp",
+          name: "Entraña",
+          description:
+            "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/asado.webp",
+          name: "Asado de tira",
+          description:
+            "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+          name: "Bife de chorizo",
+          description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
+        },
+        {
+          src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+          name: "Especiales",
+          description: "Nuestros cortes especiales son bajo disponibilidad",
+        },
+      ];
+
+      const botonesCampo = campoData.map((item) =>
+        document.getElementById(item.name)
+      );
+
+      const divsCarnes = [
+        document.getElementById("divFiletesSM"),
+        document.getElementById("divVaciosSM"),
+        document.getElementById("divEntrañasSM"),
+        document.getElementById("divAsadosSM"),
+        document.getElementById("divRibEyeSM"),
+      ];
+
+      const campoDiv = document.getElementById("divCampo");
+
+      const botonesCerrar = document.querySelectorAll("#botonCerrar");
+      //comit
+
+      if (botonesCerrar) {
+        botonesCerrar.forEach((boton) => {
           boton.addEventListener("click", function () {
-            const div = divs[index];
-            if (
-              div.classList.contains("ocultar") ||
-              !div.classList.contains("mostrar")
-            ) {
-              div.classList.remove("ocultar");
-              div.classList.add("mostrar");
-            } else {
+            divsCarnes.forEach((div) => {
               div.classList.remove("mostrar");
               div.classList.add("ocultar");
-            }
+            });
+            campoDiv.classList.remove("ocultar");
+            campoDiv.classList.add("mostrar");
           });
-        }
-      });
+        });
+      }
 
-      divs.forEach((div) => {
+      divsCarnes.forEach((div) => {
+        div.classList.add("hidden");
         div.classList.add("ocultar");
       });
-    }
 
-    mostrarDiv(botones, divs);
-  });
-</script>
+      function mostrarDivCarnes(botonesCampo, divsCarnes) {
+        botonesCampo.forEach((boton, index) => {
+          if (boton) {
+            boton.addEventListener("click", function () {
+              const divCarne = divsCarnes[index];
+              if (divCarne.classList.contains("hidden")) {
+                divCarne.classList.remove("hidden");
+              }
+              if (divCarne.classList.contains("ocultar")) {
+                divCarne.classList.remove("ocultar");
+                divCarne.classList.add("mostrar");
+              } else {
+                divCarne.classList.remove("mostrar");
+                divCarne.classList.add("ocultar");
+              }
+              ocultarCampoDiv(divsCarnes, campoDiv);
+            });
+          }
+        });
+      }
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const campoData = [
-      {
-        src: "/imagenes/carta/parrilla/campo/filetes.webp",
-        name: "Bife de lomo",
-        description: "Cortes suaves totalmente magros",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/vacios.webp",
-        name: "Vacio",
-        description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
-        description:
-          "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
-        description:
-          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
-        description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Especiales",
-        description: "Nuestros cortes especiales son bajo disponibilidad",
-      },
-    ];
-
-    const botonesCampo = campoData.map((item) =>
-      document.getElementById(item.name)
-    );
-
-    const divsCarnes = [
-      document.getElementById("divFiletesSM"),
-      document.getElementById("divVaciosSM"),
-      document.getElementById("divEntrañasSM"),
-      document.getElementById("divAsadosSM"),
-      document.getElementById("divRibEyeSM"),
-    ];
-
-    const campoDiv = document.getElementById("divCampo");
-
-    const botonesCerrar = document.querySelectorAll("#botonCerrar");
-    //comit
-
-    if (botonesCerrar) {
-      botonesCerrar.forEach((boton) => {
-        boton.addEventListener("click", function () {
-          divsCarnes.forEach((div) => {
-            div.classList.remove("mostrar");
-            div.classList.add("ocultar");
-          });
+      function ocultarCampoDiv(divsCarnes, campoDiv) {
+        const algunDivVisible = divsCarnes.some((div) =>
+          div.classList.contains("mostrar")
+        );
+        if (algunDivVisible) {
+          campoDiv.classList.remove("mostrar");
+          campoDiv.classList.add("ocultar");
+        } else {
           campoDiv.classList.remove("ocultar");
           campoDiv.classList.add("mostrar");
-        });
-      });
-    }
-
-    divsCarnes.forEach((div) => {
-      div.classList.add("hidden");
-      div.classList.add("ocultar");
-    });
-
-    function mostrarDivCarnes(botonesCampo, divsCarnes) {
-      botonesCampo.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            const divCarne = divsCarnes[index];
-            if (divCarne.classList.contains("hidden")) {
-              divCarne.classList.remove("hidden");
-            }
-            if (divCarne.classList.contains("ocultar")) {
-              divCarne.classList.remove("ocultar");
-              divCarne.classList.add("mostrar");
-            } else {
-              divCarne.classList.remove("mostrar");
-              divCarne.classList.add("ocultar");
-            }
-            ocultarCampoDiv(divsCarnes, campoDiv);
-          });
         }
-      });
-    }
-
-    function ocultarCampoDiv(divsCarnes, campoDiv) {
-      const algunDivVisible = divsCarnes.some((div) =>
-        div.classList.contains("mostrar")
-      );
-      if (algunDivVisible) {
-        campoDiv.classList.remove("mostrar");
-        campoDiv.classList.add("ocultar");
-      } else {
-        campoDiv.classList.remove("ocultar");
-        campoDiv.classList.add("mostrar");
       }
-    }
 
-    mostrarDivCarnes(botonesCampo, divsCarnes);
-  });
-</script>
+      mostrarDivCarnes(botonesCampo, divsCarnes);
+    });
+  </script>
+</div>
