@@ -467,7 +467,7 @@ const postres = [
   id={id}
 >
   <!-- //navegacion sm -->
-  <nav class="md:hidden max-h-full ">
+  <nav id="navegacion-cartaSM" class="md:hidden max-h-full">
     <h1
       class="text-red-600 text-2xl font-semibold flex justify-center items-center mt-8"
     >
@@ -553,7 +553,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
       >Pizzas</a
     >
-    <div id="divPizzas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl ">
+    <div id="divPizzas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
       {
         pizzas.map((pizza) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-3 min-w-32 text-white   ">
@@ -709,33 +709,33 @@ const postres = [
 </header>
 
 <ul
-  id="navegacion-carta"
+  id="navegacion-cartaMD"
   class="hidden md:flex mx-auto [&>li>a]:px-3 [&>li>a]:hover:cursor-pointer justify-center md:[&>li>a]:text-nowrap md:[&>li>a]:text-xl lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex top-auto relative m-4"
 >
   <li class="sm:hidden md:flex">
     <a
       id="ver-empanadas"
-      class="font-base text-white text-sm hover:text-red-500">Empanadas</a
+      class="font-base text-white text-sm hover:text-red-400">Empanadas</a
     >
-    <a id="ver-entradas" class="font-base text-white text-sm hover:text-red-500"
+    <a id="ver-entradas" class="font-base  text-sm hover:text-red-400 text-red-600"
       >Entradas</a
     >
     <a
       id="ver-ensaladas"
-      class="font-base text-white text-sm hover:text-red-500">Ensaladas</a
+      class="font-base text-white text-sm hover:text-red-400">Ensaladas</a
     >
-    <a id="ver-pizzas" class="font-base text-white text-sm hover:text-red-500"
+    <a id="ver-pizzas" class="font-base text-white text-sm hover:text-red-400"
       >Pizzas</a
     >
-    <a id="ver-cocina" class="font-base text-white text-sm hover:text-red-500"
+    <a id="ver-cocina" class="font-base text-white text-sm hover:text-red-400"
       >Nuestra cocina</a
     >
-    <a id="ver-parrilla" class="font-base text-white text-sm hover:text-red-500"
+    <a id="ver-parrilla" class="font-base text-white text-sm hover:text-red-400"
       >Parrilla</a
     >
     <a
       id="ver-postres"
-      class="font-base font text-white text-sm hover:text-red-500">Postres</a
+      class="font-base font text-white text-sm hover:text-red-400">Postres</a
     >
   </li>
 </ul>
@@ -848,17 +848,17 @@ const postres = [
     class="hidden md:flex justify-center z-50 text-center scale-95"
   >
     <ul
-      class="flex text-sm [&>li]:hover:cursor-pointer [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2"
+      class="flex text-sm [&>li]:hover:cursor-pointer [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2  "
     >
-      <li id="itemGranja" class="hover:text-red-400">
+      <li id="itemGranja" class=" flex flex-col justify-center mx-auto items-center  " >
         <img
-          class="size-28"
+          class="size-28 flex justify-center  "
           src="/imagenes/carta/parrilla/cerdo.webp"
           alt=" imagen cerdo"
         />
-        <a aria-label="Granja">Granja</a>
+        <a class=" " aria-label="Granja">Granja</a>
       </li>
-      <li id="itemCampo" class="hover:text-red-400 text-red-600">
+      <li id="itemCampo" class=" text-red-600">
         <img
           class="size-28"
           src="/imagenes/carta/parrilla/vaca.webp"
@@ -866,23 +866,23 @@ const postres = [
         />
         <a aria-label="Campo">Campo</a>
       </li>
-      <li id="itemMar" class="hover:text-red-600">
+      <li id="itemMar" class=" ">
         <img
           class="size-28"
           src="/imagenes/carta/parrilla/camaron.webp"
           alt=" imagen"
         />
         <a aria-label="Mar">Mar</a>
-        <!-- <div
+         <div
           id="indicador"
           class={` absolute
-       bg-red-600 backdrop-blur-lg rounded  justify-center
-        translate-x-[var(--left)]
-        w-[var(--width)] h-1
+       bg-red-600 backdrop-blur-lg rounded  
+        translate-x-[var(--left)] 
+       w-[var(--width)] h-1
         transition-all duration-400 left-0  bottom-0
         ease-in-out opacity-0 z-50
       `}
-        > -->
+        > 
       </li>
     </ul>
   </nav>
@@ -920,7 +920,7 @@ const postres = [
   </div>
   <div
     id="divMar"
-    class="hidden grid grid-cols-5 justify-center text-center text-white  rounded-xl pt-14 pb-60 "
+    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
   >
     {
       marData.map((item, index) => (
@@ -944,7 +944,7 @@ const postres = [
   </div>
   <div
     id="divGranja"
-    class="hidden grid grid-cols-5 justify-center text-center text-white  rounded-xl  pt-14 pb-60 "
+    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
   >
     {
       granjaData.map((item, index) => (
@@ -1119,26 +1119,57 @@ const postres = [
   });
 </script>
 
-<!-- idicador scrip  -->
+<!-- idicadores scrip  -->
 <script>
-  const indicadtor = document.querySelector("#indicador") as HTMLElement;
+  // indicador campoi mar granja 
+  const indicadtor = document.querySelector("#indicador") as HTMLElement; 
   const itemsMenu = document
     .getElementById("navSelector")
     .querySelectorAll("li");
 
-  // itemsMenu.forEach((item) => {
-  //   item.addEventListener("click", () => {
-  //     const { left, top, width, height } = item.getBoundingClientRect();
+ 
 
-  //     indicadtor.style.setProperty("--left", `${left}px`);
-  //     indicadtor.style.setProperty("--top", `${top}px`);
-  //     indicadtor.style.setProperty("--width", `${width}px`);
-  //     indicadtor.style.setProperty("--height", `${height}px`);
 
-  //     indicadtor.style.opacity = "1";
-  //     indicadtor.style.visibility = "visible";
-  //   });
-  // });
+    // indicador carta md 
+  const itemsCartaMD = document
+    .getElementById("navegacion-cartaMD")
+    .querySelectorAll("a");
+
+    itemsCartaMD.forEach((item) => {
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    itemsCartaMD.forEach(innerItem => {
+      innerItem.classList.remove("text-red-600");
+      // Asegurarse de que todos los elementos tengan 'text-white', excepto el clickeado
+      innerItem.classList.add("text-white");
+    });
+
+   
+    item.classList.remove("text-white");
+    item.classList.add("text-red-600");
+  });
+});
+
+
+  itemsMenu.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const { left, top, width, height } = item.getBoundingClientRect();
+
+      indicadtor.style.setProperty("--left", `${left}px`);
+      // indicadtor.style.setProperty("--top", `${top}px`);
+      indicadtor.style.setProperty("--width", `${width}px`);
+      indicadtor.style.setProperty("--height", `${height}px`);
+
+      indicadtor.style.opacity = "1";
+      indicadtor.style.visibility = "visible";
+    });
+    item.addEventListener("mouseleave", () => {
+      indicadtor.style.opacity = "0";
+      indicadtor.style.visibility = "hidden";
+    });
+  });
+
 
   itemsMenu.forEach((item) => {
     item.addEventListener("click", () => {
@@ -1227,6 +1258,8 @@ const postres = [
       postresDiv,
       campoDiv,
     ];
+    ƒ
+
 
     function mostrarDiv(botones, divs) {
       botones.forEach((boton, index) => {
