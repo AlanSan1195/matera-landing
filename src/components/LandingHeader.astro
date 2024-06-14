@@ -8,8 +8,8 @@ import User from "./icons/User.astro";
   id="landing-header"
   class="py-5 md:py-3 lg:py-3  px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl  m "
 >
-  <div id="logo1" class="flex flex-grow basis-0 pointer-events-none">
-    <img ><Logo /></img>
+  <div id="logo1"  class="flex flex-grow basis-0 md:pointer-events-none">
+    <img ><Logo  /></img>
   </div>
 
   <nav class="hidden md:block">
@@ -179,7 +179,7 @@ import User from "./icons/User.astro";
 
     if (window.scrollY > 400 && window.innerWidth >= 37) {
       header.style.transition = "background-color .5s";
-      header.style.borderBottom = "1px solid #B56C09";
+      header.style.borderBottom = "2px solid #B56C09";
       header.style.backgroundColor = "black";
 
     
