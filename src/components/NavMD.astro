@@ -1,0 +1,931 @@
+---
+const empanadas = [
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Carne",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Carne picante",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Espinaca",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Queso y cebolla",
+    description: "",
+    price: "$60",
+  },
+
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Humita",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/empanadaCarne.webp",
+    name: "Roquefort",
+    decription: "Fabricado encasa",
+    price: "$70",
+  },
+
+  {
+    src: "/imagenes/carta/empanadas/siciliana.webp",
+    name: "Siciliana",
+    description: "",
+    price: "$90",
+  },
+];
+const pizzas = [
+  {
+    src: "/imagenes/carta/pizzas/pizzaMargarita.webp",
+    name: "Margarita",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/pizzas/pizzaHongos.webp",
+    name: "Hongos",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/pizzas/4quesos.webp",
+    name: "4 Quesos",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/pizzas/pizzaAnchoas.webp",
+    name: "Tomate con anchoas",
+    description: "",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/pizzas/pizzaBurrata.webp",
+    name: "Jamón con burrata",
+    description: " Jamón fabricado en casa",
+    price: "$60",
+  },
+  {
+    src: "/imagenes/carta/pizzas/pizzaPancceta.webp",
+    name: "Pancceta y provolone",
+    description: "",
+    price: "$60",
+  },
+];
+const entradas = [
+  {
+    src: "/imagenes/carta/entradas/bocaditos.webp",
+    name: "Bocaditos de espinaca",
+    description: "",
+    price: "$135",
+  },
+  {
+    src: "/imagenes/carta/entradas/esparragos.webp",
+    name: "Espárragos al vapor",
+    description: "",
+    price: "$155",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Pimiento asado",
+    description: "",
+    price: "$90",
+  },
+
+  {
+    src: "/imagenes/carta/entradas/hongos.webp",
+    name: "Hongos al ajoillo",
+    description: "",
+    price: "$170",
+  },
+  {
+    src: "/imagenes/carta/entradas/berenjenas.webp",
+    name: "Berenjenas a la parmesana",
+    description: "",
+    price: "$185",
+  },
+  {
+    src: "/imagenes/carta/entradas/chorizoArgentino.webp",
+    name: "Chorizo argentino",
+    decription: "Fabricado encasa",
+    price: "$110",
+  },
+
+  {
+    src: "/imagenes/carta/entradas/chistorra.webp",
+    name: "Chistorra",
+    description: "Fabricada en casa",
+    price: "$135",
+  },
+  {
+    src: "/imagenes/carta/entradas/mollejaParrilla.webp",
+    name: "Mollejas a la parrilla",
+    description: "",
+    price: "$310",
+  },
+  {
+    src: "/imagenes/carta/entradas/mollejasVerdeo.webp",
+    name: "Mollejas al verdeo",
+    description: "",
+    price: "$290",
+  },
+  {
+    src: "/imagenes/carta/entradas/chinchulines.webp",
+    name: "Chicnhulines a la parrilla",
+    description: "",
+    price: "$210",
+  },
+  {
+    src: "/imagenes/carta/entradas/malfatis.webp",
+    name: "Malfatti de espinaca",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/carta/entradas/provoletaTomate.webp",
+    name: "Provoleta tomate y pimiento",
+    description: "",
+    price: "$220",
+  },
+  {
+    src: "/imagenes/carta/entradas/provoletaSerrano.webp",
+    name: "provoleta arugula y jamón serrano ",
+    description: "",
+    price: "$260",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Tartara de Rib-Eye",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/carta/entradas/carpaccioJamon.webp",
+    name: "Carpaccio de jamón serrano",
+    description: "",
+    price: "$260",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Mejillones con chistorra",
+    description: "",
+    price: "$335",
+  },
+];
+const ensaladas = [
+  {
+    src: "/imagenes/carta/ensaladas/ensaladaVerde.webp",
+    name: "Verde",
+    description: "",
+    price: "$170",
+  },
+  {
+    src: "/imagenes/carta/ensaladas/tomateBurrata.webp",
+    name: "Ensalada de tomate con burrata",
+    description: "",
+    price: "$280",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Mykonos",
+    description: "Tomate, Kalamatas, pepino, pimiento, queso feta",
+    price: "$180",
+  },
+  {
+    src: "/imagenes/carta//ensaladas/corazones.webp",
+    name: "Corazones de lechuga asados",
+    description: "",
+    price: "$210",
+  },
+  {
+    src: "/imagenes/carta/ensaladas/arugula.webp",
+    name: "Arúgula",
+    description: "ajo, limón",
+    price: "$150",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Arugula",
+    description: "lajas de grana padano, tomates cherry",
+    price: "$170",
+  },
+  {
+    src: "/imagenes/carta/ensaladas/palmitos.webp",
+    name: "Palmito con alcahofa",
+    description: "",
+    price: "$150",
+  },
+];
+const cocina = [
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Fettuccine Bolognesa",
+    description: "",
+    price: "$230",
+  },
+  {
+    src: "/imagenes/carta/cocina/fetucciniHongos.webp",
+    name: " Fettuccine con crema de hongos",
+    description: "",
+    price: "$195",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Fetucciine negro con calamares en su tinta",
+    description: "",
+    price: "$275",
+  },
+  {
+    src: "/imagenes/carta/cocina/ravioles.webp",
+    name: "Ravioles de espianaca al pomodoro",
+    description: "",
+    price: "$230",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Farroto: vegetales y grana padano",
+    description: "",
+    price: "$210",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Sorrentinos de ricota con salsa rosa",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/carta/cocina/lasagna.webp",
+    name: "Lasagna bolognesa",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/carta/cocina/hamburguesaMatera.webp",
+    name: "Hamburguesa al estilo de la matera",
+    description: "",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Milanesa de pollo",
+    description: "",
+    price: "$220",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Milanesa de res",
+    description: "",
+    price: "$320",
+  },
+];
+
+const campoData = [
+  {
+    src: "/imagenes/carta/parrilla/campo/filetes.webp",
+    name: "Bife de lomo",
+    description: "Cortes suabes totalmente magros ",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/vacios.webp",
+    name: "Vacio",
+    description: "Corte jugoso, con marmoleo intermedio y textura firme",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/entrana.webp",
+    name: "Entraña",
+    description:
+      " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/asado.webp",
+    name: "Asado de tira",
+    description:
+      "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+    name: "Bife de chorizo",
+    description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+    name: "Easpeciales",
+    description: "Nuestros cortes especiales son bajo desiponibilidad",
+  },
+];
+const marData = [
+  {
+    src: "/imagenes/carta/parrilla/mar/pulpo.webp",
+    name: "Pulpo con papas españolas",
+    gramaje: "350gr / 12oz",
+    price: "$490",
+  },
+
+  {
+    src: "/imagenes/carta/parrilla/mar/salmon.webp",
+    name: "Salmón",
+    gramaje: "260gr / 9oz",
+    price: "$360",
+  },
+  {
+    src: "/imagenes/carta/parrilla/mar/camaron.webp",
+    name: "Camarones con adobo de chiles",
+    gramaje: "300gr / 12oz",
+    price: "$320",
+  },
+  {
+    src: "/imagenes/carta/parrilla/mar/camaron.webp",
+    name: "Lonja de robalo",
+    gramaje: "350gr / 12oz",
+    price: "$550",
+  },
+  {
+    src: "/imagenes/carta/parrilla/mar/camaron.webp",
+    name: "Calamar patagónico provenzal",
+    gramaje: "350gr / 12oz",
+    price: "$450",
+  },
+];
+const granjaData = [
+  {
+    src: "/imagenes/carta/parrilla/granja/patoLaqueado.webp",
+    name: "1/2 Pato laqueado con puré de manzana",
+    gramaje: "350gr / 12oz",
+    price: "$550",
+  },
+  {
+    src: "/imagenes/carta/parrilla/granja/polloOreganato.webp",
+    name: "1/2 Pollo al oreganato",
+    gramaje: "260gr / 9oz",
+    price: "$250",
+  },
+  {
+    src: "/imagenes/carta/parrilla/granja/camaron.webp",
+    name: "1/2 pollo Malazzo",
+    gramaje: "300gr / 12oz",
+    price: "$285",
+  },
+  {
+    src: "/imagenes/carta/parrilla/granja/camaron.webp",
+    name: "Rack de cordero",
+    gramaje: "500gr / 17oz",
+    price: "$950",
+  },
+  {
+    src: "/imagenes/carta/parrilla/granja/matambrito.webp",
+    name: "Matambrito de cerdo",
+    gramaje: "350gr / 12oz",
+    price: "$450",
+  },
+];
+const postres = [
+  {
+    src: "/imagenes/carta/postres/helados.webp",
+    name: "Helados:",
+    description: "Vainilla, Chocolate, Mascarphone, Alfajor, Ferrero.",
+    price: "$40",
+  },
+  {
+    src: "/imagenes/carta/postres/flanCasero.webp",
+    name: "Flan casero",
+    description: "",
+    price: "$125",
+  },
+  {
+    src: "/imagenes/carta/postres/alfajor.webp",
+    name: "Alfajor de hojaldre",
+    description: "",
+    price: "$175",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Martín fierro",
+    description: "Helado de vainilla con fresas flameadas",
+    price: "$150",
+  },
+  {
+    src: "/imagenes/carta/postres/musse.webp",
+    name: " Musse de chocolate",
+    description: "",
+    price: "$125",
+  },
+  {
+    src: "/imagenes/carta/postres/crepa.webp",
+    name: "Crepa Matera",
+    description: "con mascarpone y salsa de dulce de leche",
+    price: "$165",
+  },
+  {
+    src: "/imagenes/carta/postres/pastelChocolate.webp",
+    name: "Patel de chocolate",
+    description: "",
+    price: "$115",
+  },
+  {
+    src: "/imagenes/empanadas.webp",
+    name: "Ate con queso",
+    description: "",
+    price: "$125",
+  },
+
+  {
+    src: "/imagenes/carta/postres/tartaManzana.webp",
+    name: "Tarta de manzana",
+    description: "",
+    price: "$150",
+  },
+  {
+    src: "/imagenes/carta/postres/camoteRescoldo.webp",
+    name: "Camote al rescoldo",
+    description: "",
+    price: "$145",
+  },
+];
+---
+
+<header class="hidden md:block text-center mt-20 md:mb-12">
+  <h1 class="md:text-5xl xl:text-7xl font-base">Menú</h1>
+  <h3 class="md:text-4xl xl:text-5xl font-base">Apetito por lo que hacemos</h3>
+</header>
+
+<ul
+  id="navegacion-cartaMD"
+  class="hidden md:flex mx-auto [&>li>a]:px-3 [&>li>a]:hover:cursor-pointer justify-center md:[&>li>a]:text-nowrap md:[&>li>a]:text-xl lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex top-auto relative m-4"
+>
+  <li class="sm:hidden md:flex">
+    <a
+      id="ver-empanadas"
+      class="font-base text-white text-sm hover:text-red-400">Empanadas</a
+    >
+    <a
+      id="ver-entradas"
+      class="font-base text-sm hover:text-red-400 text-red-600">Entradas</a
+    >
+    <a
+      id="ver-ensaladas"
+      class="font-base text-white text-sm hover:text-red-400">Ensaladas</a
+    >
+    <a id="ver-pizzas" class="font-base text-white text-sm hover:text-red-400"
+      >Pizzas</a
+    >
+    <a id="ver-cocina" class="font-base text-white text-sm hover:text-red-400"
+      >Nuestra cocina</a
+    >
+    <a id="ver-parrilla" class="font-base text-white text-sm hover:text-red-400"
+      >Parrilla</a
+    >
+    <a
+      id="ver-postres"
+      class="font-base font text-white text-sm hover:text-red-400">Postres</a
+    >
+  </li>
+</ul>
+<div
+  id="Empanadas"
+  class="w-full h-[600px] md:flex pt-[170px] mx-auto justify-between p-7"
+  style=" "
+>
+  {
+    empanadas.map((empanada) => (
+      <div class="flex  flex-col items-center sm:hidden md:flex scale-125">
+        <img
+          class="image-drop-shadow-empanadas h-32 w-32 object-cover "
+          src={empanada.src}
+          alt="empanada"
+        />
+        <p class=" font-semibold text-base text-center text-pretty">
+          {empanada.name}
+        </p>
+        <p class=" font-light">{empanada.description}</p>
+        <p>{empanada.price}</p>
+      </div>
+    ))
+  }
+</div>
+<div id="Entradas" class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7">
+  {
+    entradas.map((entrada) => (
+      <div class="h-[270px] w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
+        <img
+          class=" h-32 w-32 object-cover rounded-lg "
+          src={entrada.src}
+          alt="entrada"
+        />
+        <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+          {entrada.name}
+        </p>
+        <p class=" font-light text-center text-pretty">{entrada.description}</p>
+        <p class="mb-1">{entrada.price}</p>
+      </div>
+    ))
+  }
+</div>
+<div id="Ensaladas" class="md:flex flex-wrap mr-10 ml-10 p-7">
+  {
+    ensaladas.map((ensalada) => (
+      <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
+        <img
+          class="h-32 w-32 object-cover  "
+          src={ensalada.src}
+          alt="ensalada"
+        />
+        <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+          {ensalada.name}
+        </p>
+        <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+          {ensalada.description}
+        </p>
+        <p class=" mt-1">{ensalada.price}</p>
+      </div>
+    ))
+  }
+</div>
+<div
+  id="Pizzas"
+  class="w-full h-[600px] md:flex pt-[140px] mx-auto justify-between p-7"
+  style=" "
+>
+  {
+    pizzas.map((pizza) => (
+      <div class=" h-[270px] w-1/5 flex flex-col items-center sm:hidden md:flex  scale-125  ">
+        <img
+          class=" h-24 w-24 lg:h-32 lg:w-32 object-cover "
+          src={pizza.src}
+          alt="pizza"
+        />
+        <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+          {pizza.name}
+        </p>
+        <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+          {pizza.description}
+        </p>
+        <p class="mt-1">{pizza.price}</p>
+      </div>
+    ))
+  }
+</div>
+<!-- //totalmente responsive no tocar clase de cc en el layout -->
+
+<div id="Cocina" class="hidden md:flex flex-wrap mr-10 ml-10 p-7">
+  {
+    cocina.map((cocina) => (
+      <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
+        <img class="h-32 w-32 object-cover " src={cocina.src} alt="cocina" />
+        <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+          {cocina.name}
+        </p>
+        <p class="  mt-1 font-light text-center text-pretty md:text-xs">
+          {cocina.description}
+        </p>
+        <p class="mt-1">{cocina.price}</p>
+      </div>
+    ))
+  }
+</div>
+
+<div id="Parrilla" class="md:flex flex-col w-full justify-center text-white">
+  <nav
+    id="navSelector"
+    class="hidden md:flex justify-center text-center scale-95"
+  >
+    <ul
+      class="flex text-sm [&>li]:hover:cursor-pointer [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-8 [&>li>a]:py-2"
+    >
+      <li
+        id="itemGranja"
+        class="flex flex-col justify-center mx-auto items-center"
+      >
+        <img
+          class="size-28 flex justify-center"
+          src="/imagenes/carta/parrilla/cerdo.webp"
+          alt=" imagen cerdo"
+        />
+        <a class="" aria-label="Granja">Granja</a>
+      </li>
+      <li id="itemCampo" class="text-red-600">
+        <img
+          class="size-28"
+          src="/imagenes/carta/parrilla/vaca.webp"
+          alt=" imagen"
+        />
+        <a aria-label="Campo">Campo</a>
+      </li>
+      <li id="itemMar" class="">
+        <img
+          class="size-28"
+          src="/imagenes/carta/parrilla/camaron.webp"
+          alt=" imagen"
+        />
+        <a aria-label="Mar">Mar</a>
+        <div
+          id="indicador"
+          class={` absolute
+         bg-red-600 backdrop-blur-lg rounded  
+          translate-x-[var(--left)] 
+         w-[var(--width)] h-1
+          transition-all duration-400 left-0  bottom-0
+          ease-in-out opacity-0 z-50
+        `}
+        >
+        </div>
+      </li>
+    </ul>
+  </nav>
+  <div
+    id="divCampoMD"
+    class="grid grid-cols-3 justify-center text-center text-white m-2"
+  >
+    {
+      campoData.map((item, index) => (
+        <div
+          id="divCortes"
+          class="flex flex-col justify-center m-2  hover:scale-110   "
+        >
+          <img
+            id={item.name}
+            class=" size-40 mx-auto hover:cursor-pointer  "
+            src={item.src}
+            alt="cortes"
+          />
+
+          <h1 class=" text-lg font-bold">{item.name}</h1>
+          <p class=" text-base opacity-80">{item.description}</p>
+        </div>
+      ))
+    }
+    <div
+      class="flex w-[800px] col-span-3 mx-auto mt-8 mb-8 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+    >
+      <p class="text-base opacity-80 m-4">
+        Los cortes que aquí servimos son de la más alta calidad, por lo tanto,
+        no requieren ser sometidos a ningún proceso de marinado o suavizado que
+        altere su textura y/o sabor natural.
+      </p>
+    </div>
+  </div>
+  <div
+    id="divMar"
+    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
+  >
+    {
+      marData.map((item, index) => (
+        <div class=" flex justify-center flex-col mx-auto ">
+          <img
+            id={item.name}
+            class="h-32 w-32 object-cover mx-auto"
+            src={item.src}
+            alt="mar"
+          />
+          <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+            {item.name}
+          </p>
+          <p class="mt-1 font-light text-center text-pretty md:text-xs">
+            {item.gramaje}
+          </p>
+          <p class=" mt-1">{item.price}</p>
+        </div>
+      ))
+    }
+  </div>
+  <div
+    id="divGranja"
+    class="hidden grid grid-cols-5 justify-center text-center text-white rounded-xl pt-14 pb-60"
+  >
+    {
+      granjaData.map((item, index) => (
+        <div class=" flex justify-center flex-col mx-auto ">
+          <img
+            id={item.name}
+            class="h-32 w-32 object-cover mx-auto"
+            src={item.src}
+            alt="granja"
+          />
+          <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+            {item.name}
+          </p>
+          <p class="mt-1 font-light text-center text-pretty md:text-xs">
+            {item.gramaje}
+          </p>
+          <p class=" mt-1">{item.price}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+<!-- <Filetes id="divFiletesMD" />
+    <Vacios id="divVaciosMD" />
+    <Entraas id="divEntrañasMD" />
+    <AsadosDeTira id="divAsadosMD" />
+    <RibEye id="divRibEyeDM" /> -->
+
+<div
+  id="Postres"
+  class="hidden md:flex flex-wrap justify-between mr-10 ml-10 p-7"
+>
+  {
+    postres.map((postre) => (
+      <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
+        <img class="h-32 w-32 object-cover  " src={postre.src} alt="postre" />
+        <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+          {postre.name}
+        </p>
+        <p class=" mt-1 font-light text-center text-pretty md:text-xs">
+          {postre.description}
+        </p>
+        <p class="mt-1">{postre.price}</p>
+      </div>
+    ))
+  }
+</div>
+
+
+
+
+<script>
+      const indicadtor = document.querySelector("#indicador") as HTMLElement;
+  const itemsMenu = document
+    .getElementById("navSelector")
+    .querySelectorAll("li");
+
+  // indicador carta md
+  const itemsCartaMD = document
+    .getElementById("navegacion-cartaMD")
+    .querySelectorAll("a");
+
+  itemsCartaMD.forEach((item) => {
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      itemsCartaMD.forEach((innerItem) => {
+        innerItem.classList.remove("text-red-600");
+        // Asegurarse de que todos los elementos tengan 'text-white', excepto el clickeado
+        innerItem.classList.add("text-white");
+      });
+
+      item.classList.remove("text-white");
+      item.classList.add("text-red-600");
+    });
+  });
+
+  itemsMenu.forEach((item) => {
+    item.addEventListener("mouseenter", () => {
+      const { left, top, width, height } = item.getBoundingClientRect();
+
+      indicadtor.style.setProperty("--left", `${left}px`);
+      // indicadtor.style.setProperty("--top", `${top}px`);
+      indicadtor.style.setProperty("--width", `${width}px`);
+      indicadtor.style.setProperty("--height", `${height}px`);
+
+      indicadtor.style.opacity = "1";
+      indicadtor.style.visibility = "visible";
+    });
+    item.addEventListener("mouseleave", () => {
+      indicadtor.style.opacity = "0";
+      indicadtor.style.visibility = "hidden";
+    });
+  });
+
+  itemsMenu.forEach((item) => {
+    item.addEventListener("click", () => {
+      itemsMenu.forEach((item) => {
+        item.classList.remove("text-red-600");
+      });
+      item.classList.add("text-red-600");
+    });
+  });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const menu = {
+        empanadas: document.getElementById("Empanadas"),
+        pizzas: document.getElementById("Pizzas"),
+        entradas: document.getElementById("Entradas"),
+        ensaladas: document.getElementById("Ensaladas"),
+        cocina: document.getElementById("Cocina"),
+        parrilla: document.getElementById("Parrilla"),
+        postres: document.getElementById("Postres"),
+      };
+      // const campoData = [
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/filetes.webp",
+      //     name: "Bife de lomo",
+      //     description: "Cortes suabes totalmente magros ",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/vacios.webp",
+      //     name: "Vacio",
+      //     description: "Corte jugoso, con marmoleo intermedio y textura firme",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/entrana.webp",
+      //     name: "Entraña",
+      //     description:
+      //       " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/asado.webp",
+      //     name: "Asado de tira",
+      //     description:
+      //       "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+      //     name: "Bife de chorizo",
+      //     description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+      //   },
+      //   {
+      //     src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+      //     name: "Easpeciales",
+      //     description: "Nuestros cortes especiales son bajo desiponibilidad",
+      //   },
+      // ];
+      // const divsCarnesMD = [
+      //   document.getElementById("divFiletesMD"),
+      //   document.getElementById("divVaciosMD"),
+      //   document.getElementById("divEntrañasMD"),
+      //   document.getElementById("divAsadosMD"),
+      //   document.getElementById("divRibEyeDM"),
+      // ];
+      // const botocerrar = document.getElementById("botonCerrar");
+      // const botonesParrilla = [
+      //   document.getElementById("botonGranja"),
+      //   document.getElementById("botonCampo"),
+      //   document.getElementById("botonMar"),
+      // ];
+      const subMenu = {
+        Granja: document.getElementById("divGranja"),
+        Campo: document.getElementById("divCampoMD"),
+        Mar: document.getElementById("divMar"),
+      };
+  
+      // mostrar elementos de la carta segun el click en MD
+      function mostrarDiv(name) {
+        Object.keys(menu).forEach((key) => {
+          if (menu[key]) {
+            if (key === name) {
+              menu[key].classList.remove("ocultarMD");
+              menu[key].classList.add("mostrarMD");
+            } else {
+              menu[key].classList.remove("mostrarMD");
+              menu[key].classList.add("ocultarMD");
+            }
+          }
+        });
+      }
+  
+      function subDivs(name) {
+        Object.keys(subMenu).forEach((key) => {
+          if (subMenu[key]) {
+            if (key === name) {
+              subMenu[key].classList.contains("hidden");
+              subMenu[key].classList.remove("hidden");
+            } else {
+              subMenu[key].classList.add("hidden");
+            }
+          }
+        });
+      }
+      // mostrar simepre entradas en MD
+      Object.keys(menu).forEach((key) => {
+        if (menu[key]) {
+          if (key === "entradas") {
+            menu[key].classList.add("mostrarMD");
+          } else {
+            menu[key].classList.add("ocultarMD");
+          }
+        }
+      });
+  
+      // Event listeners para los botones o enlaces EL MENUS DE md
+      Object.keys(menu).forEach((key) => {
+        const button = document.getElementById(`ver-${key}`);
+  
+        if (button) {
+          button.addEventListener("click", function () {
+            mostrarDiv(key);
+          });
+        }
+      });
+  
+      // Event listeners para los botones o enlaces EL MENU DE PARRILLA MD
+      Object.keys(subMenu).forEach((key) => {
+        const button = document.getElementById(`item${key}`);
+        if (button) {
+          button.addEventListener("click", function () {
+            subDivs(key);
+          });
+        }
+      });
+    });
+  </script>

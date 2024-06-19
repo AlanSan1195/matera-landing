@@ -370,8 +370,10 @@ const { title, description } = Astro.props;
   /* Estilos para la barra de desplazamiento */
 
   .mostrar {
+    visibility: visible;
     opacity: 1;
-    max-height: 1000px; /* Ajusta este valor según tus necesidades */
+    
+   /* Ajusta este valor según tus necesidades */
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
 
@@ -381,6 +383,20 @@ const { title, description } = Astro.props;
     overflow: hidden;
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
+
+  .verDiv {
+    display: grid;
+    opacity: 1;
+    max-height: 1000px; /* Ajusta este valor según tus necesidades */
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.esconderDiv {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease, max-height 0.5s ease;
+}
   .mostrarMD {
     opacity: 1;
     max-height: 2600px; /* Ajusta este valor según tus necesidades */
@@ -394,4 +410,5 @@ const { title, description } = Astro.props;
     transition: transform 1s ease-in-out;
     position: absolute; /* Saca los elementos ocultos del flujo normal del documento */
   }
+  
 </style>
