@@ -372,9 +372,9 @@ const { title, description } = Astro.props;
   .mostrar {
     visibility: visible;
     opacity: 1;
-    
+    max-height: 800px;
    /* Ajusta este valor según tus necesidades */
-    transition: opacity 0.5s ease, max-height 0.5s ease;
+    transition: opacity 0.5s ease, max-height 1.0s ease;
   }
 
   .ocultar {
@@ -385,7 +385,7 @@ const { title, description } = Astro.props;
   }
 
   .verDiv {
-    display: grid;
+
     opacity: 1;
     max-height: 1000px; /* Ajusta este valor según tus necesidades */
     transition: opacity 0.5s ease, max-height 0.5s ease;
