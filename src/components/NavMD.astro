@@ -454,14 +454,14 @@ const postres = [
 ];
 ---
 
-<header class="hidden md:block text-center mt-20 md:mb-12">
+<header class="hidden md:block text-center mt-20 md:mb-12 text-white">
   <h1 class="md:text-5xl xl:text-7xl font-base">Menú</h1>
   <h3 class="md:text-4xl xl:text-5xl font-base">Apetito por lo que hacemos</h3>
 </header>
 
 <ul
   id="navegacion-cartaMD"
-  class="hidden md:flex mx-auto [&>li>a]:px-3 [&>li>a]:hover:cursor-pointer justify-center md:[&>li>a]:text-nowrap md:[&>li>a]:text-xl lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex top-auto relative m-4"
+  class="hidden text-white md:flex mx-auto [&>li>a]:px-3 [&>li>a]:hover:cursor-pointer justify-center md:[&>li>a]:text-nowrap md:[&>li>a]:text-xl lg:[&>li>a]:px-3 lg:[&>li>a]:text-2xl xl:[&>li>a]:text-3xl lg:flex top-auto relative m-4"
 >
   <li class="sm:hidden md:flex">
     <a
@@ -493,7 +493,7 @@ const postres = [
 </ul>
 <div
   id="Empanadas"
-  class="w-full h-[600px] md:flex pt-[170px] mx-auto justify-between p-7"
+  class="w-full h-[600px] md:flex pt-[170px] mx-auto justify-between p-7 text-white"
   style=" "
 >
   {
@@ -513,7 +513,7 @@ const postres = [
     ))
   }
 </div>
-<div id="Entradas" class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7">
+<div id="Entradas" class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7 text-white">
   {
     entradas.map((entrada) => (
       <div class="h-[270px] w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
@@ -531,7 +531,7 @@ const postres = [
     ))
   }
 </div>
-<div id="Ensaladas" class="md:flex flex-wrap mr-10 ml-10 p-7">
+<div id="Ensaladas" class="md:flex flex-wrap mr-10 ml-10 p-7 text-white">
   {
     ensaladas.map((ensalada) => (
       <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
@@ -553,7 +553,7 @@ const postres = [
 </div>
 <div
   id="Pizzas"
-  class="w-full h-[600px] md:flex pt-[140px] mx-auto justify-between p-7"
+  class="w-full h-[600px] md:flex pt-[140px] mx-auto justify-between p-7 text-white"
   style=" "
 >
   {
@@ -577,7 +577,7 @@ const postres = [
 </div>
 <!-- //totalmente responsive no tocar clase de cc en el layout -->
 
-<div id="Cocina" class="hidden md:flex flex-wrap mr-10 ml-10 p-7">
+<div id="Cocina" class="hidden md:flex flex-wrap mr-10 ml-10 p-7 text-white">
   {
     cocina.map((cocina) => (
       <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
