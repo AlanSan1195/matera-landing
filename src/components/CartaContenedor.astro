@@ -638,7 +638,7 @@ const postres = [
       </ul>
       <div
         id="divCampo"
-        class="grid grid-cols-3 justify-center text-center text-white m-2 esconderDiv"
+        class="grid grid-cols-3 justify-center text-center text-white m-2"
       >
         {
           campoData.map((item, index) => (
@@ -665,91 +665,90 @@ const postres = [
           </p>
         </div>
       </div>
+      <Filetes id="divFiletesSM" />
+      <Vacios id="divVaciosSM" />
+      <Entraas id="divEntrañasSM" />
+      <AsadosDeTira id="divAsadosSM" />
+      <RibEye id="divRibEyeSM" />
+      <div
+        id="divMarsm"
+        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2 border-2 border-red-900"
+      >
+        {
+          marData.map((item, index) => (
+            <div class=" flex justify-center flex-col mx-auto ">
+              <img
+                id={item.name}
+                class="h-32 w-32 object-cover mx-auto"
+                src={item.src}
+                alt="mar"
+              />
+              <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+                {item.name}
+              </p>
+              <p class="mt-1 font-light text-center text-pretty md:text-xs">
+                {item.gramaje}
+              </p>
+              <p class=" mt-1">{item.price}</p>
+            </div>
+          ))
+        }
+      </div>
+      <div
+        id="divGranjasm"
+        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2 border-2 border-red-900"
+      >
+        {
+          granjaData.map((item, index) => (
+            <div class=" flex justify-center flex-col mx-auto ">
+              <img
+                id={item.name}
+                class="h-32 w-32 object-cover mx-auto"
+                src={item.src}
+                alt="granja"
+              />
+              <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
+                {item.name}
+              </p>
+              <p class="mt-1 font-light text-center text-pretty md:text-xs">
+                {item.gramaje}
+              </p>
+              <p class=" mt-1">{item.price}</p>
+            </div>
+          ))
+        }
+      </div>
     </div>
 
-    <Filetes id="divFiletesSM" />
-    <Vacios id="divVaciosSM" />
-    <Entraas id="divEntrañasSM" />
-    <AsadosDeTira id="divAsadosSM" />
-    <RibEye id="divRibEyeSM" />
+    <a
+      id="botonpostres"
+      class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-"
+      >Postres</a
+    >
     <div
-      id="divMarsm"
-      class="grid grid-cols-3 justify-center text-center text-white rounded-xl pt-14 pb-60 esconderDiv"
+      id="divPostres"
+      class="flex overflow-x-auto ml-16 rounded-s-3xl mt-3 mb-24"
     >
       {
-        marData.map((item, index) => (
-          <div class=" flex justify-center flex-col mx-auto ">
+        postres.map((postre) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
             <img
-              id={item.name}
-              class="h-32 w-32 object-cover mx-auto"
-              src={item.src}
-              alt="mar"
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={postre.src}
+              alt="empanada"
             />
-            <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {item.name}
+            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
+              {postre.name}
             </p>
-            <p class="mt-1 font-light text-center text-pretty md:text-xs">
-              {item.gramaje}
+            <p class="font-light text-xs ml-2 text-white/75 text-wrap">
+              {postre.description}
             </p>
-            <p class=" mt-1">{item.price}</p>
-          </div>
-        ))
-      }
-    </div>
-    <div
-      id="divGranjasm"
-      class="grid grid-cols-3 justify-center text-center text-white rounded-xl pt-14 pb-60 esconderDiv"
-    >
-      {
-        granjaData.map((item, index) => (
-          <div class=" flex justify-center flex-col mx-auto ">
-            <img
-              id={item.name}
-              class="h-32 w-32 object-cover mx-auto"
-              src={item.src}
-              alt="granja"
-            />
-            <p class="mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {item.name}
-            </p>
-            <p class="mt-1 font-light text-center text-pretty md:text-xs">
-              {item.gramaje}
-            </p>
-            <p class=" mt-1">{item.price}</p>
+            <p class="ml-2">{postre.price}</p>
           </div>
         ))
       }
     </div>
   </nav>
-
-  <a
-    id="botonpostres"
-    class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-"
-    >Postres</a
-  >
-  <div
-    id="divPostres"
-    class="flex overflow-x-auto ml-16 rounded-s-3xl mt-3 mb-24"
-  >
-    {
-      postres.map((postre) => (
-        <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
-          <img
-            class="image-drop-shadow relative left-4 rounded-2xl "
-            src={postre.src}
-            alt="empanada"
-          />
-          <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
-            {postre.name}
-          </p>
-          <p class="font-light text-xs ml-2 text-white/75 text-wrap">
-            {postre.description}
-          </p>
-          <p class="ml-2">{postre.price}</p>
-        </div>
-      ))
-    }
-  </div>
 </section>
 <NavMD />
 
@@ -896,162 +895,161 @@ const postres = [
     const botonesCerrar = document.querySelectorAll("#botonCerrar");
 
     // ocultamos todos los divs en parrilla usamos setTiemeout para que se vea la animacion
-    function ocultarTodos() {
-      divCampo.style.opacity = "0";
-      divCampo.style.maxHeight = "0";
-      divCampo.style.overflow = "hidden";
-      setTimeout(() => {
-        divCampo.style.display = "none";
-      }, 500);
+    // function ocultarTodos() {
+    //   divCampo.style.opacity = "0";
+    //   divCampo.style.maxHeight = "0";
+    //   divCampo.style.overflow = "hidden";
+    //   setTimeout(() => {
+    //     divCampo.style.display = "none";
+    //   }, 500);
 
-      divMar.style.opacity = "0";
-      divMar.style.maxHeight = "0";
-      divMar.style.overflow = "hidden";
-      setTimeout(() => {
-        divMar.style.display = "none";
-      }, 500);
+    //   divMar.style.opacity = "0";
+    //   divMar.style.maxHeight = "0";
+    //   divMar.style.overflow = "hidden";
+    //   setTimeout(() => {
+    //     divMar.style.display = "none";
+    //   }, 500);
 
-      divGranja.style.opacity = "0";
-      divGranja.style.maxHeight = "0";
-      divGranja.style.overflow = "hidden";
-      setTimeout(() => {
-        divGranja.style.display = "none";
-      }, 500);
-    }
+    //   divGranja.style.opacity = "0";
+    //   divGranja.style.maxHeight = "0";
+    //   divGranja.style.overflow = "hidden";
+    //   setTimeout(() => {
+    //     divGranja.style.display = "none";
+    //   }, 500);
+    // }
 
-    function mostrarDiv(div) {
-      div.style.display = "grid";
-      div.style.opacity = "1";
-      div.style.maxHeight = "100%";
+    // function mostrarDiv(div) {
+    //   div.style.display = "grid";
+    //   div.style.opacity = "1";
+    //   div.style.maxHeight = "100%";
 
+    // }
 
-    }
+    // // ocultamos todos los divs den parrilla
+    // ocultarTodos();
 
-    // ocultamos todos los divs den parrilla
-    ocultarTodos();
+    // // // haciendo click en la seccion parrilla y ocultamos todo si damos clin en.... para mostar .....
+    // botonCampo.addEventListener("click", () => {
+    //   ocultarTodos();
+    //   setTimeout(() => {
+    //     mostrarDiv(divCampo);
+    //   }, 500);
+    // });
 
-    // // haciendo click en la seccion parrilla y ocultamos todo si damos clin en.... para mostar .....
-    botonCampo.addEventListener("click", () => {
-      ocultarTodos();
-      setTimeout(() => {
-        mostrarDiv(divCampo);
-      }, 500);
-    });
+    // botonGranja.addEventListener("click", () => {
+    //   ocultarTodos();
+    //   setTimeout(() => {
+    //     mostrarDiv(divGranja);
+    //   }, 500);
+    // });
 
-    botonGranja.addEventListener("click", () => {
-      ocultarTodos();
-      setTimeout(() => {
-        mostrarDiv(divGranja);
-      }, 500);
-    });
+    // botonMar.addEventListener("click", () => {
+    //   ocultarTodos();
+    //   setTimeout(() => {
+    //     mostrarDiv(divMar);
+    //   }, 500);
+    // });
 
-    botonMar.addEventListener("click", () => {
-      ocultarTodos();
-      setTimeout(() => {
-        mostrarDiv(divMar);
-      }, 500);
-    });
-
-    divsCarnes.forEach((div) => {
-      div.classList.add("hidden");
-      div.classList.add("ocultar");
-    });
+    // divsCarnes.forEach((div) => {
+    //   div.classList.add("hidden");
+    //   div.classList.add("ocultar");
+    // });
 
     // ocultando div campo por cada click en alguno de los cortes de carne
-    function ocultarCampoDiv(divsCarnes, divCampo) {
-      const algunDivVisible = divsCarnes.some((div) =>
-        div.classList.contains("mostrar")
-      );
-      if (algunDivVisible) {
-        divCampo.style.display = "none";
-        divCampo.style.opacity = "0";
-        divCampo.style.maxHeight = "0";
-      } else {
+    // function ocultarCampoDiv(divsCarnes, divCampo) {
+    //   const algunDivVisible = divsCarnes.some((div) =>
+    //     div.classList.contains("mostrar")
+    //   );
+    //   if (algunDivVisible) {
+    //     divCampo.style.display = "none";
+    //     divCampo.style.opacity = "0";
+    //     divCampo.style.maxHeight = "0";
+    //   } else {
 
-        divCampo.style.opacity = "1";
-        divCampo.style.maxHeight = "100%";
-      }
-    }
+    //     divCampo.style.opacity = "1";
+    //     divCampo.style.maxHeight = "100%";
+    //   }
+    // }
 
-    function mostrarDivCarnes(botonesCampo, divsCarnes) {
-      botonesCampo.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            const divCarne = divsCarnes[index];
-            if (divCarne.classList.contains("hidden")) {
-              divCarne.classList.remove("hidden");
-            }
-            if (divCarne.classList.contains("ocultar")) {
-              divCarne.classList.remove("ocultar");
+    // function mostrarDivCarnes(botonesCampo, divsCarnes) {
+    //   botonesCampo.forEach((boton, index) => {
+    //     if (boton) {
+    //       boton.addEventListener("click", function () {
+    //         const divCarne = divsCarnes[index];
+    //         if (divCarne.classList.contains("hidden")) {
+    //           divCarne.classList.remove("hidden");
+    //         }
+    //         if (divCarne.classList.contains("ocultar")) {
+    //           divCarne.classList.remove("ocultar");
 
-              divCarne.classList.add("mostrar");
-            } else {
-              divCarne.classList.remove("mostrar");
-              divCarne.classList.add("ocultar");
-            }
-            ocultarCampoDiv(divsCarnes, divCampo);
-          });
-        }
-      });
-    }
+    //           divCarne.classList.add("mostrar");
+    //         } else {
+    //           divCarne.classList.remove("mostrar");
+    //           divCarne.classList.add("ocultar");
+    //         }
+    //         ocultarCampoDiv(divsCarnes, divCampo);
+    //       });
+    //     }
+    //   });
+    // }
 
-    mostrarDivCarnes(botonesCampo, divsCarnes);
+    // mostrarDivCarnes(botonesCampo, divsCarnes);
 
-    if (botonesCerrar) {
-      botonesCerrar.forEach((boton) => {
-        boton.addEventListener("click", function () {
-          divsCarnes.forEach((div) => {
-            div.classList.remove("mostrar");
-            div.classList.add("ocultar");
+    // if (botonesCerrar) {
+    //   botonesCerrar.forEach((boton) => {
+    //     boton.addEventListener("click", function () {
+    //       divsCarnes.forEach((div) => {
+    //         div.classList.remove("mostrar");
+    //         div.classList.add("ocultar");
 
-          });
-          divCampo.style.display = "grid";
-          divCampo.style.opacity = "1";
-          divCampo.style.maxHeight = "100%";
-        });
-      });
-    }
+    //       });
+    //       divCampo.style.display = "grid";
+    //       divCampo.style.opacity = "1";
+    //       divCampo.style.maxHeight = "100%";
+    //     });
+    //   });
+    // }
 
-    // indicadores para elementos parrilla
-    const botones = [botonCampo, botonMar, botonGranja];
-    const divs = [divGranja, divCampo, divMar];
+    // // indicadores para elementos parrilla
+    // const botones = [botonCampo, botonMar, botonGranja];
+    // const divs = [divGranja, divCampo, divMar];
 
-    function cambioClase(elemento, classremove, classadd) {
-      elemento.classList.remove(classremove);
-      elemento.classList.add(classadd);
-    }
+    // function cambioClase(elemento, classremove, classadd) {
+    //   elemento.classList.remove(classremove);
+    //   elemento.classList.add(classadd);
+    // }
 
-    // Inicializar todos los divs con opacity-0 solo una vez, al principio.
-    divs.forEach((div) => {
-      div.classList.add("opacity-0");
-    });
+    // // Inicializar todos los divs con opacity-0 solo una vez, al principio.
+    // divs.forEach((div) => {
+    //   div.classList.add("opacity-0");
+    // });
 
-    function indicador(botones, divs) {
-      botones.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", () => {
-            // Restablecer todos los botones a text-white y todos los divs a opacity-0
-            botones.forEach((boton) =>
-              cambioClase(boton, "text-red-800", "text-white")
-            );
-            divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
+    // function indicador(botones, divs) {
+    //   botones.forEach((boton, index) => {
+    //     if (boton) {
+    //       boton.addEventListener("click", () => {
+    //         // Restablecer todos los botones a text-white y todos los divs a opacity-0
+    //         botones.forEach((boton) =>
+    //           cambioClase(boton, "text-red-800", "text-white")
+    //         );
+    //         divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
 
-            const div = divs[index];
-            const divOculto = div.classList.contains("opacity-0");
+    //         const div = divs[index];
+    //         const divOculto = div.classList.contains("opacity-0");
 
-            // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
-            if (divOculto) {
-              cambioClase(boton, "text-white", "text-red-800");
-              cambioClase(div, "opacity-0", "opacity-100");
-            } else {
-              cambioClase(boton, "text-red-800", "text-white");
-              cambioClase(div, "opacity-100", "opacity-0");
-            }
-          });
-        }
-      });
-    }
+    //         // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
+    //         if (divOculto) {
+    //           cambioClase(boton, "text-white", "text-red-800");
+    //           cambioClase(div, "opacity-0", "opacity-100");
+    //         } else {
+    //           cambioClase(boton, "text-red-800", "text-white");
+    //           cambioClase(div, "opacity-100", "opacity-0");
+    //         }
+    //       });
+    //     }
+    //   });
+    // }
 
-    indicador(botones, divs);
+    // indicador(botones, divs);
   });
 </script>

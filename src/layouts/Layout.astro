@@ -370,19 +370,36 @@ const { title, description } = Astro.props;
   /* Estilos para la barra de desplazamiento */
 
   .mostrar {
-    visibility: visible;
     opacity: 1;
-    max-height: 800px;
+    height: auto;
    /* Ajusta este valor según tus necesidades */
-    transition: opacity 0.5s ease, max-height 1.0s ease;
+    transition: opacity 0.5s ease, height 0.5s ease-in;
   }
 
   .ocultar {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  }
+
+  .mostrarParrilla {
+    opacity: 1;
+    max-height: 1000px;
+   /* Ajusta este valor según tus necesidades */
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
+
+  .ocultarParrilla {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+  }
+
+
+
+
 
   .verDiv {
 
