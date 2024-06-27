@@ -372,48 +372,80 @@ const { title, description } = Astro.props;
   .mostrar {
     opacity: 1;
     height: auto;
-   /* Ajusta este valor según tus necesidades */
-    transition: opacity 0.5s ease, height 0.5s ease-in;
+    /* Ajusta este valor según tus necesidades */
+    transition: opacity 0.5s ease-in, height 0.5s ease-in;
   }
 
   .ocultar {
     opacity: 0;
     max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
+    overflow: hidden;   
+   animation: reverseFadeIn .5s ease-in-out;
+
+
+
   }
 
-  .mostrarParrilla {
-    opacity: 1;
-    max-height: 1000px;
-   /* Ajusta este valor según tus necesidades */
-    transition: opacity 0.5s ease, max-height 0.5s ease;
-  }
 
   .ocultarParrilla {
+    display: none;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
-  }
+    animation: reverseFadeIn .5s ease-in-out;
+}
 
+.mostrarParrilla {
+    display: grid;
+    opacity: 1;
+    max-height: 1000px;
+    animation: fadeIn .5s ease-in-out;
+
+}
+
+@keyframes fadeIn {
+    from {
+      display: none;
+        opacity: 0;
+        max-height: 0;
+    }
+    to {
+      display: grid;
+        opacity: 1;
+        max-height: 1000px; 
+    }
+}
+
+@keyframes reverseFadeIn {
+    from {
+      display: auto;
+        opacity: 1;
+        max-height: 1000px; /* Ajusta este valor según tus necesidades */
+    }
+    50% {
+        opacity: 0;
+
+    }
+    100%{
+      max-height: 0;
+    }
+}
 
 
 
 
   .verDiv {
-
     opacity: 1;
     max-height: 1000px; /* Ajusta este valor según tus necesidades */
     transition: opacity 0.5s ease, max-height 0.5s ease;
-}
+  }
 
-.esconderDiv {
+  .esconderDiv {
     opacity: 0;
     max-height: 0;
     overflow: hidden;
     transition: opacity 0.5s ease, max-height 0.5s ease;
-}
+  }
   .mostrarMD {
     opacity: 1;
     max-height: 2600px; /* Ajusta este valor según tus necesidades */
@@ -427,5 +459,4 @@ const { title, description } = Astro.props;
     transition: transform 1s ease-in-out;
     position: absolute; /* Saca los elementos ocultos del flujo normal del documento */
   }
-  
 </style>

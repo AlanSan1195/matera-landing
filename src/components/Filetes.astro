@@ -60,7 +60,7 @@ const campoData = [
 ---
 <div
       id={id}
-      class="  border-[2px] border-[#B56C09] bg-black/30 backdrop-blur-sm text-sm rounded-xl text-white/80 content-center m-2 "
+      class="  border-[2px] border-[#B56C09]/60 bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white/80 content-center m-2 "
     >
       <div class="flex items-center mx-6 mt-3">
         <h1 class="opacity-0 flex">........</h1>
@@ -102,13 +102,13 @@ const campoData = [
           {campoData[0].description}
         </p>
       </div>
-      <div class="flex m-4 justify-center gap-8 text-center">
+      <div class="grid grid-cols-2 m-4 justify-center gap-8 text-center">
         {
           filetes.map((filete) => (
-            <div class="justify-between flex flex-col text-sm leading-none ">
-              <p class="font-bold flex ">{filete.name}</p>
+            <div class="justify-between flex flex-col text-sm leading-none  items-center ">
+              <p class="font-bold flex  ">{filete.name}</p>
               <p class="text-xs opacity-50">{filete.size}</p>
-              <p class="font-light opacity-80">{filete.price}</p>
+              <p class="font-light ">{filete.price}</p>
             </div>
           ))
         }

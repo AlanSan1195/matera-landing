@@ -20,27 +20,31 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
     <br />
 
     <div
-      class="flex flex-row text-start gap-3 md:gap-16 justify-center items-center"
+      class="flex flex-row text-start content-start gap-3 md:gap-16 justify-center items-center"
     >
       <div class="felx flex-col">
         <p class="font-bold">Horarios:</p>
         <p>Lunes a Sábado de 1:00 pm a 12:00 am</p>
         <p>Domingo de 1:00 pm a 10:30 pm</p>
       </div>
-      <div class="flex flex-row items-center p-2">
-        <div class="flex flex-col items-center">
-          <p class="opacity-60 ml-4">Facturacion</p>
+      <div class="flex flex-row items-center">
+        <div class="flex  items-center">
           <div class="flex items-center">
             <img
               class="h-5 mx-2"
               src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-whatsapplogo.svg"
               alt="icono watsaap"
             />
-            <a
-              class="text-[10px] font-bold hover:underline hover:cursor-pointer" href="https://api.whatsapp.com/send/?phone=523313557728&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
-              >(33) 1355-7728</a
-            >
+           
           </div>
+          <button class=" border-2 border-red-900 hover:scale-75 rounded-lg p-2">
+            <a
+            class="text-xs  hover:cursor-pointer" href="https://api.whatsapp.com/send/?phone=523313557728&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
+            >Facturar</a
+          >
+
+          </button>
+       
         </div>
       </div>
     </div>
@@ -108,16 +112,22 @@ import FacebookIcon from "./icons/FacebookIcon.astro";
   </div>
   <nav class="md:flex items-center justify-between mx-14 mb-4 hidden">
     <div class="flex flex-col items-center">
-      <p class="opacity-60 ml-4 text-base">Facturacion</p>
+     
       <div class="flex items-center">
+        
         <img
-          class="h-8 mx-2"
+          class="h-6 mx-2"
           src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-whatsapplogo.svg"
           alt="icono watsaap"
         />
-        <a class="text-base font-bold hover:underline hover:cursor-pointer" href="https://api.whatsapp.com/send/?phone=523313557728&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
-          >(33) 1355-7728</a
+        <button class=" border-2 border-red-900 hover:scale-75 rounded-lg p-2">
+          <a
+          class="text-xs hover:underline hover:cursor-pointer" href="https://api.whatsapp.com/send/?phone=523313557728&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
+          >Facturar</a
         >
+
+        </button>
+     
       </div>
     </div>
     <p class="mr-8 opacity-50">© 2024 La Matera Todos los derechos reservados</p>
