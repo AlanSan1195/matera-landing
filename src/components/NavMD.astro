@@ -452,6 +452,11 @@ const postres = [
     price: "$145",
   },
 ];
+import Filetes from "./Filetes.astro";
+import Vacios from "./Vacios.astro";
+import Entraas from "./Entrañas.astro";
+import AsadosDeTira from "./AsadosDeTira.astro";
+import RibEye from "./RibEye.astro";
 ---
 
 <header class="hidden md:block text-center mt-20 md:mb-12 text-white">
@@ -476,14 +481,18 @@ const postres = [
       id="ver-ensaladas"
       class="font-base text-white text-sm xl:hover:text-red-400">Ensaladas</a
     >
-    <a id="ver-pizzas" class="font-base text-white text-sm xl:hover:text-red-400"
-      >Pizzas</a
+    <a
+      id="ver-pizzas"
+      class="font-base text-white text-sm xl:hover:text-red-400">Pizzas</a
     >
-    <a id="ver-cocina" class="font-base text-white text-sm xl:hover:text-red-400"
+    <a
+      id="ver-cocina"
+      class="font-base text-white text-sm xl:hover:text-red-400"
       >Nuestra cocina</a
     >
-    <a id="ver-parrilla" class="font-base text-white text-sm xl:hover:text-red-400"
-      >Parrilla</a
+    <a
+      id="ver-parrilla"
+      class="font-base text-white text-sm xl:hover:text-red-400">Parrilla</a
     >
     <a
       id="ver-postres"
@@ -513,7 +522,10 @@ const postres = [
     ))
   }
 </div>
-<div id="Entradas" class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7 text-white">
+<div
+  id="Entradas"
+  class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7 text-white"
+>
   {
     entradas.map((entrada) => (
       <div class="h-[270px] w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
@@ -723,11 +735,11 @@ const postres = [
     }
   </div>
 </div>
-<!-- <Filetes id="divFiletesMD" />
-    <Vacios id="divVaciosMD" />
-    <Entraas id="divEntrañasMD" />
-    <AsadosDeTira id="divAsadosMD" />
-    <RibEye id="divRibEyeDM" /> -->
+<Filetes id="divFiletesMD" />
+<Vacios id="divVaciosMD" />
+<Entraas id="divEntrañasMD" />
+<AsadosDeTira id="divAsadosMD" />
+<RibEye id="divRibEyeMD" />
 
 <div
   id="Postres"
@@ -750,10 +762,145 @@ const postres = [
 </div>
 
 
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const campoData = [
+  {
+    src: "/imagenes/carta/parrilla/campo/filetes.webp",
+    name: "Bife de lomo",
+    description: "Cortes suabes totalmente magros ",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/vacios.webp",
+    name: "Vacio",
+    description: "Corte jugoso, con marmoleo intermedio y textura firme",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/entrana.webp",
+    name: "Entraña",
+    description:
+      " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/asado.webp",
+    name: "Asado de tira",
+    description:
+      "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+    name: "Bife de chorizo",
+    description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
+  },
+  {
+    src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+    name: "Easpeciales",
+    description: "Nuestros cortes especiales son bajo desiponibilidad",
+  },
+];
+    
+    const menu = {
+      empanadas: document.getElementById("Empanadas"),
+      pizzas: document.getElementById("Pizzas"),
+      entradas: document.getElementById("Entradas"),
+      ensaladas: document.getElementById("Ensaladas"),
+      cocina: document.getElementById("Cocina"),
+      parrilla: document.getElementById("Parrilla"),
+      postres: document.getElementById("Postres"),
+    };
 
+    const subMenu = {
+      Granja: document.getElementById("divGranja"),
+      Campo: document.getElementById("divCampoMD"),
+      Mar: document.getElementById("divMar"),
+    };
+
+
+    const divsCARNES = [
+      document.getElementById("divFiletesMD"),
+      document.getElementById("divVaciosMD"),
+      document.getElementById("divEntrañasMD"),
+      document.getElementById("divAsadosMD"),
+      document.getElementById("divRibEyeMD"),
+    ];
+//OCULTAMOS TODOS LOS DIVS DE CARNES
+    divsCARNES.forEach((div) => {
+      if (div) {
+        div.classList.add("ocultarLG");
+      }
+    });
+
+
+
+    // mostrar elementos de la carta segun el click en MD
+    function mostrarDiv(name) {
+      Object.keys(menu).forEach((key) => {
+        if (menu[key]) {
+          if (key === name) {
+            menu[key].classList.remove("ocultarLG");
+            menu[key].classList.add("mostrarLG");
+          } else {
+            menu[key].classList.remove("mostrarLG");
+            menu[key].classList.add("ocultarLG");
+          }
+        }
+      });
+    }
+
+    // mostrar elementos de la parrilla segun el click en MD
+    function subDivs(name) {
+      Object.keys(subMenu).forEach((key) => {
+        if (subMenu[key]) {
+          if (key === name) {
+            subMenu[key].classList.contains("hidden");
+            subMenu[key].classList.remove("hidden");
+          } else {
+            subMenu[key].classList.add("hidden");
+          }
+        }
+      });
+    }
+    // mostrar simepre entradas en MD
+    Object.keys(menu).forEach((key) => {
+      if (menu[key]) {
+        if (key === "entradas") {
+          menu[key].classList.add("mostrarLG");
+        } else {
+          menu[key].classList.add("ocultarLG");
+        }
+      }
+    });
+
+    // Event listeners para los botones o enlaces EL MENUS DE md
+    Object.keys(menu).forEach((key) => {
+      const button = document.getElementById(`ver-${key}`);
+
+      if (button) {
+        button.addEventListener("click", function () {
+          mostrarDiv(key);
+        });
+      }
+    });
+
+    // Event listeners para los botones  EL MENU DE PARRILLA MD
+    Object.keys(subMenu).forEach((key) => {
+      const button = document.getElementById(`item${key}`);
+      if (button) {
+        button.addEventListener("click", function () {
+          subDivs(key);
+        });
+      }
+    });
+  });
+</script>
+
+
+
+
+<!-- inidcador   -->
 
 <script>
-      const indicadtor = document.querySelector("#indicador") as HTMLElement;
+  const indicadtor = document.querySelector("#indicador") as HTMLElement;
   const itemsMenu = document
     .getElementById("navSelector")
     .querySelectorAll("li");
@@ -805,127 +952,3 @@ const postres = [
     });
   });
 </script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-      const menu = {
-        empanadas: document.getElementById("Empanadas"),
-        pizzas: document.getElementById("Pizzas"),
-        entradas: document.getElementById("Entradas"),
-        ensaladas: document.getElementById("Ensaladas"),
-        cocina: document.getElementById("Cocina"),
-        parrilla: document.getElementById("Parrilla"),
-        postres: document.getElementById("Postres"),
-      };
-      // const campoData = [
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/filetes.webp",
-      //     name: "Bife de lomo",
-      //     description: "Cortes suabes totalmente magros ",
-      //   },
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/vacios.webp",
-      //     name: "Vacio",
-      //     description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      //   },
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/entrana.webp",
-      //     name: "Entraña",
-      //     description:
-      //       " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
-      //   },
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/asado.webp",
-      //     name: "Asado de tira",
-      //     description:
-      //       "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      //   },
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-      //     name: "Bife de chorizo",
-      //     description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
-      //   },
-      //   {
-      //     src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-      //     name: "Easpeciales",
-      //     description: "Nuestros cortes especiales son bajo desiponibilidad",
-      //   },
-      // ];
-      // const divsCarnesMD = [
-      //   document.getElementById("divFiletesMD"),
-      //   document.getElementById("divVaciosMD"),
-      //   document.getElementById("divEntrañasMD"),
-      //   document.getElementById("divAsadosMD"),
-      //   document.getElementById("divRibEyeDM"),
-      // ];
-      // const botocerrar = document.getElementById("botonCerrar");
-      // const botonesParrilla = [
-      //   document.getElementById("botonGranja"),
-      //   document.getElementById("botonCampo"),
-      //   document.getElementById("botonMar"),
-      // ];
-      const subMenu = {
-        Granja: document.getElementById("divGranja"),
-        Campo: document.getElementById("divCampoMD"),
-        Mar: document.getElementById("divMar"),
-      };
-  
-      // mostrar elementos de la carta segun el click en MD
-      function mostrarDiv(name) {
-        Object.keys(menu).forEach((key) => {
-          if (menu[key]) {
-            if (key === name) {
-              menu[key].classList.remove("ocultarMD");
-              menu[key].classList.add("mostrarMD");
-            } else {
-              menu[key].classList.remove("mostrarMD");
-              menu[key].classList.add("ocultarMD");
-            }
-          }
-        });
-      }
-  
-      function subDivs(name) {
-        Object.keys(subMenu).forEach((key) => {
-          if (subMenu[key]) {
-            if (key === name) {
-              subMenu[key].classList.contains("hidden");
-              subMenu[key].classList.remove("hidden");
-            } else {
-              subMenu[key].classList.add("hidden");
-            }
-          }
-        });
-      }
-      // mostrar simepre entradas en MD
-      Object.keys(menu).forEach((key) => {
-        if (menu[key]) {
-          if (key === "entradas") {
-            menu[key].classList.add("mostrarMD");
-          } else {
-            menu[key].classList.add("ocultarMD");
-          }
-        }
-      });
-  
-      // Event listeners para los botones o enlaces EL MENUS DE md
-      Object.keys(menu).forEach((key) => {
-        const button = document.getElementById(`ver-${key}`);
-  
-        if (button) {
-          button.addEventListener("click", function () {
-            mostrarDiv(key);
-          });
-        }
-      });
-  
-      // Event listeners para los botones o enlaces EL MENU DE PARRILLA MD
-      Object.keys(subMenu).forEach((key) => {
-        const button = document.getElementById(`item${key}`);
-        if (button) {
-          button.addEventListener("click", function () {
-            subDivs(key);
-          });
-        }
-      });
-    });
-  </script>
