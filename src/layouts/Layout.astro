@@ -372,7 +372,6 @@ const { title, description } = Astro.props;
   .mostrar {
     opacity: 1;
     height: auto;
-    /* Ajusta este valor según tus necesidades */
     transition: opacity 0.5s ease-in, height 0.5s ease-in;
   }
 
@@ -380,7 +379,8 @@ const { title, description } = Astro.props;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-    animation: reverseFadeIn 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in, height 0.5s ease-in;
+   
   }
 
   .ocultarParrilla {
@@ -429,7 +429,7 @@ const { title, description } = Astro.props;
 
   .ocultarLG {
     display: none;
-    opacity: 1;
+    opacity: 0;
     max-height: 1000px;
     overflow: hidden;
     animation: reverseFadeInLG 2s ease-in-out ;
