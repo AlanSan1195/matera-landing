@@ -476,7 +476,7 @@ const postres = [
     </h1>
     <a
       id="botonempanadas"
-      class="hover:cursor-pointer mt-8 font-bold text-4xl text-white flex justify-center"
+      class="hover:cursor-pointer mt-6 font-bold text-4xl text-white flex justify-center"
       >Empanadas</a
     >
     <div
@@ -600,8 +600,36 @@ const postres = [
       }
     </div>
     <a
+    id="botonpostres"
+    class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-6"
+    >Postres</a
+  >
+  <div
+    id="divPostres"
+    class="flex overflow-x-auto ml-16 rounded-s-3xl mt-3"
+  >
+    {
+      postres.map((postre) => (
+        <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
+          <img
+            class="image-drop-shadow relative left-4 rounded-2xl "
+            src={postre.src}
+            alt="empanada"
+          />
+          <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
+            {postre.name}
+          </p>
+          <p class="font-light text-xs ml-2 text-white/75 text-wrap">
+            {postre.description}
+          </p>
+          <p class="ml-2">{postre.price}</p>
+        </div>
+      ))
+    }
+  </div>
+    <a
       id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl"
       >Parrilla</a
     >
 
@@ -720,34 +748,7 @@ const postres = [
       </div>
     </div>
 
-    <a
-      id="botonpostres"
-      class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-"
-      >Postres</a
-    >
-    <div
-      id="divPostres"
-      class="flex overflow-x-auto ml-16 rounded-s-3xl mt-3 mb-24"
-    >
-      {
-        postres.map((postre) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={postre.src}
-              alt="empanada"
-            />
-            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
-              {postre.name}
-            </p>
-            <p class="font-light text-xs ml-2 text-white/75 text-wrap">
-              {postre.description}
-            </p>
-            <p class="ml-2">{postre.price}</p>
-          </div>
-        ))
-      }
-    </div>
+  
   </nav>
 </section>
 
@@ -1084,21 +1085,7 @@ const postres = [
     const parrillaDiv = document.getElementById("divParrilla");
     const postres = document.getElementById("botonpostres");
     const postresDiv = document.getElementById("divPostres");
-    // botones MD
-    const empanadasMD = document.getElementById("botonempanadasMD");
-    const empanadasDivMD = document.getElementById("divEmpanadasMD");
-    const entradasMD = document.getElementById("botonEntradasMD");
-    const entradasDivMD = document.getElementById("divEntradasMD");
-    const ensaladasMD = document.getElementById("botonEnsaladasMD");
-    const ensaladasDivMD = document.getElementById("divEnsaladasMD");
-    const pizzasMD = document.getElementById("botonPizzasMD");
-    const pizzasDivMD = document.getElementById("divPizzasMD");
-    const cocinaMD = document.getElementById("botonCocinaMD");
-    const cocinaDivMD = document.getElementById("divCocinaMD");
-    const parrillaMD = document.getElementById("botonparrillaMD");
-    const parrillaDivMD = document.getElementById("divParrillaMD");
-    const postresMD = document.getElementById("botonpostresMD");
-    const postresDivMD = document.getElementById("PostresMD");
+  
 
     const botones = [
       empanadas,
@@ -1230,6 +1217,8 @@ const postres = [
       cambioClase(divCampo, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divMar, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divGranja, "mostrarParrilla", "ocultarParrilla");
+    
+
 
       divsCarnes.forEach((div) => {
         cambioClase(div, "mostrarParrilla", "ocultarParrilla");
