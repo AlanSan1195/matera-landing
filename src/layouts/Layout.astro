@@ -369,18 +369,18 @@ const { title, description } = Astro.props;
   }
   /* Estilos para la barra de desplazamiento */
 
+  /* 
+  para hacer un tarnsicion simepres es necesario hacer una medida determinadada maxima usar "max-height" */
   .mostrar {
     opacity: 1;
-    height: auto;
-    transition: opacity 0.5s ease-in, height 0.5s ease-in;
+    max-height: 1150px;
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
   }
 
   .ocultar {
     opacity: 0;
     max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.5s ease-in, height 0.5s ease-in;
-   
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
   }
 
   .ocultarParrilla {
@@ -388,14 +388,16 @@ const { title, description } = Astro.props;
     opacity: 0;
     max-height: 0;
     overflow: hidden;
-    animation: reverseFadeIn 0.8s ease-in-out;
+    /* animation: reverseFadeIn 0.5s ease-in-out; */
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
   }
 
   .mostrarParrilla {
     display: grid;
     opacity: 1;
     max-height: 1150px;
-    animation: fadeIn 0.5s ease-in-out;
+    /* animation: fadeIn 0.5s ease-in-out; */
+    transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
   }
 
   /* clases para mostrar y ocultar en MD version de prueba */
@@ -404,18 +406,24 @@ const { title, description } = Astro.props;
     from {
       display: none;
       opacity: 0;
-      max-height: 0;
+      max-height: 0px;
     }
     to {
       display: grid;
       opacity: 1;
       max-height: 1150px;
     }
-    50% {
-      opacity: 0;
-    }
-    100% {
+  }
+  @keyframes reverseFadeIn {
+    from {
+      display: grid;
+      opacity: 1;
       max-height: 1150px;
+    }
+    to {
+      display: none;
+      opacity: 0;
+      max-height: 0px;
     }
   }
 
@@ -424,14 +432,14 @@ const { title, description } = Astro.props;
     opacity: 0;
     max-height: 1150px;
     overflow: hidden;
-    animation: reverseFadeInLG .5s ease-in-out ;
+    animation: reverseFadeInLG 0.5s ease-in-out;
   }
 
   .mostrarLG {
     display: auto;
     opacity: 1;
     max-height: 1150px;
-    animation: fadeInLG .5s ease-in ;
+    animation: fadeInLG 0.5s ease-in;
   }
 
   @keyframes fadeInLG {
@@ -443,8 +451,8 @@ const { title, description } = Astro.props;
     }
   }
 
-  @keyframes reverseFadeInLG {
-    0%{
+  @keyframes reverseFadeIn {
+    0% {
       opacity: 1;
     }
 
@@ -465,5 +473,4 @@ const { title, description } = Astro.props;
     overflow: hidden;
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
-  
 </style>
