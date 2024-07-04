@@ -99,16 +99,16 @@ const entradas = [
     price: "$135",
   },
   {
+    src: "/imagenes/carta/entradas/pimientoAsado.webp",
+    name: "Pimiento asado",
+    description: "",
+    price: "$90",
+  },
+  {
     src: "/imagenes/carta/entradas/esparragos.webp",
     name: "Espárragos al vapor",
     description: "",
     price: "$155",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Pimiento asado",
-    description: "",
-    price: "$90",
   },
 
   {
@@ -417,7 +417,7 @@ const postres = [
     price: "$175",
   },
   {
-    src: "/imagenes/empanadas.webp",
+    src: "/imagenes/carta/postres/martinFierro.webp",
     name: "Martín fierro",
     description: "Helado de vainilla con fresas flameadas",
     price: "$150",
@@ -606,7 +606,7 @@ const postres = [
   >
   <div
     id="divPostres"
-    class="flex overflow-x-auto ml-16 rounded-s-3xl mt-3"
+    class="flex overflow-x-auto ml-16 rounded-s-3xl"
   >
     {
       postres.map((postre) => (
@@ -629,13 +629,13 @@ const postres = [
   </div>
     <a
       id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl "
       >Parrilla</a
     >
 
     <!-- modifique la iteracion con map a manual  por manipular los botones con id unicos -->
 
-    <div id="divParrilla" class="w-full justify-center text-white mt-6">
+    <div id="divParrilla" class="w-full justify-center text-white mb-24">
       <ul class="flex justify-center">
         <li class="mb-6">
           <button id="botonGranja" class="hover:cursor-pointe">
