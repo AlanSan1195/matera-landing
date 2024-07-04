@@ -99,8 +99,10 @@ const textColor = `text-${color}`;
         // Buttons prev y nexts
         const html = `
     <div class="buttons">
-      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center hover:scale-125 transition  "><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
-      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center hover:scale-125 transition "> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
+      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center hover:scale-125 transition  " arial-label="anterior"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
+
+
+      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center hover:scale-125 transition " arial-label="siguiente"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
     </div>
     `;
         const fragment = document.createRange().createContextualFragment(html);
