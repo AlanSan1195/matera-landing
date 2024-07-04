@@ -87,7 +87,7 @@ import User from "./icons/User.astro";
         >
       </li>
     </ul>
-     <a class=" mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 rounded font-medium  w-20 rounded-full mx-auto" target="_blank" rel=" noopener noreferrer" href="/Dropbox" >
+     <a class=" mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110  font-medium  w-20 rounded-full mx-auto" target="_blank" rel=" noopener noreferrer" href="/Dropbox" >
       <img class=" font-bold text-lg "  > <Book class=" size-8 text-black"/>
       </img>
     </a>
@@ -192,9 +192,10 @@ import User from "./icons/User.astro";
 
     if (window.scrollY > 400 && window.innerWidth > 768) {
       header.style.transition = "background-color .5s";
-      header.style.borderBottom = "2px ridge #7F1C1D ";
+      header.style.borderBottom = "1px ridge #7F1C1D ";
       
-      header.style.backdropFilter = "  blur(10px)";
+      // header.style.backdropFilter = "  blur(10px)";
+       header.style.backgroundColor = "black";
      
     } else {
       header.style.backdropFilter = "none";
