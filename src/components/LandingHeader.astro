@@ -6,101 +6,97 @@ import User from "./icons/User.astro";
 
 <header
   id="landing-header"
-  class="py-5 md:py-3 lg:py-3 px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl m"
+  class="py-5 md:py-3 lg:py-3  px-10 flex items-center fixed top-0 w-full justify-between z-40 text-white bg-black/25 rounded-b-3xl  m "
 >
-  <div id="logo1" class="flex flex-grow basis-0 md:pointer-events-none">
-    <img /><Logo />
+  <div id="logo1"  class="flex flex-grow basis-0 md:pointer-events-none">
+    <img ><Logo  /></img>
   </div>
-</header>
 
-<nav class="hidden md:block">
-  <ul
-    class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-  >
-    <li>
-      <a class="hover:text-red-500" href="#home" aria-label="Reserva">Reserva</a
-      >
-    </li>
-    <li>
-      <a class="hover:text-red-500" href="#carta" aria-label="carta">Carta</a>
-    </li>
-    <li>
-      <a class="hover:text-red-500" href="#nosotros" aria-label="nosotros"
-        >Nosotros</a
-      >
-    </li>
-    <li><a class="hover:text-red-500" href="#eventos">Eventos</a></li>
-  </ul>
-</nav>
-
-<nav id="" class="flex flex-grow justify-end basis-0">
-  <ul
-    class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
-  >
-    <li class="hidden md:block font-bold text-xl hover:text-red-600">
-      <a href="#">Tienda</a>
-    </li>
-    <li
-      id="user-border"
-      class="md:hidden border-[3px] border-red-900 bg-white/5 backdrop-blur-sm text-xl rounded font-medium text-white inline-block hover:bg-red-900 hover:text-white transition-colors -mr-4"
+  <nav class="hidden md:block">
+    <ul
+      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-bold [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
-      <User id="menu-btn" class="m-2 hover:cursor-pointer" />
-    </li>
-  </ul>
-</nav>
+      <li>
+        <a class="hover:text-red-500" href="#home" aria-label="Reserva"
+          >Reserva</a
+        >
+      </li>
+      <li>
+        <a class="hover:text-red-500" href="#carta" aria-label="carta">Carta</a>
+      </li>
+      <li>
+        <a class="hover:text-red-500" href="#nosotros" aria-label="nosotros"
+          >Nosotros</a
+        >
+      </li>
+      <li><a class="hover:text-red-500" href="#eventos">Eventos</a></li>
+      
+    </ul>
+  </nav>
 
-<nav
-  id="modal-menu"
-  class="hidden lg:hidden flex flex-col bg-orange-50 fixed top-0 left-0 right-0 bottom-0"
->
-  <button id="close-btn" class="w-screen flex justify-end p-5">
-    <img class="text-black h-6" src="/close-icon.svg" alt="close image" />
-  </button>
-  <ul
-    class="flex flex-col mt-4 [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+  <nav id=""
+  class="flex flex-grow justify-end basis-0  ">
+    <ul
+      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+    >
+      <li class="hidden md:block font-bold text-xl hover:text-red-600">
+        <a href="#">Tienda</a>
+      </li>
+      <li id="user-border"
+        class="md:hidden border-[3px] border-red-900 bg-white/5 backdrop-blur-sm text-xl rounded font-medium text-white inline-block hover:bg-red-900 hover:text-white transition-colors -mr-4"
+      >
+       <User id="menu-btn" class="m-2 hover:cursor-pointer"/>
+      </li>
+    </ul>
+  </nav>
+
+  <nav
+    id="modal-menu"
+    class="hidden lg:hidden flex flex-col bg-orange-50 fixed top-0 left-0 right-0 bottom-0"
   >
-    <li>
-      <a class="hover:bg-slate-300 hover:text-red-500" href="#home">
-        Resrevar <img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-      >
-    </li>
-    <li>
-      <a class="hover:bg-slate-300 hover:text-red-500" href="#carta"
-        >Carta<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-      >
-    </li>
+    <button id="close-btn" class="w-screen flex justify-end p-5">
+      <img class="text-black h-6" src="/close-icon.svg" alt="close image" />
+    </button>
+    <ul
+      class="flex flex-col mt-4  [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+    >
+      <li>
+        <a class=" hover:bg-slate-300 hover:text-red-500" href="#home">
+          Resrevar <img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#carta"
+          >Carta<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+    
+      <li>
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#nosotros"
+          >Nosotros<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-300 hover:text-red-500" href="#eventos"
+          >Eventos<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+      <li>
+        <a class="hover:bg-slate-300 hover:text-red-500" href=""
+          >Tienda<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
+        >
+      </li>
+    </ul>
+     <a class=" mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 rounded font-medium  w-20 rounded-full mx-auto" target="_blank" rel=" noopener noreferrer" href="/Dropbox" >
+      <img class=" font-bold text-lg "  > <Book class=" size-8 text-black"/>
+      </img>
+    </a>
+    <p class=" flex justify-center mx-auto text-black mt-1  text-lg "> Usuario</p>
+  </nav>
 
-    <li>
-      <a class="hover:bg-slate-300 hover:text-red-500" href="#nosotros"
-        >Nosotros<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-      >
-    </li>
-    <li>
-      <a class="hover:bg-slate-300 hover:text-red-500" href="#eventos"
-        >Eventos<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-      >
-    </li>
-    <li>
-      <a class="hover:bg-slate-300 hover:text-red-500" href=""
-        >Tienda<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-      >
-    </li>
-  </ul>
-  <a
-    class="mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 rounded font-medium w-20 rounded-full mx-auto"
-    target="_blank"
-    rel=" noopener noreferrer"
-    href="/Dropbox"
-  >
-    <img class="font-bold text-lg" />
-    <Book class="size-8 text-black" />
-  </a>
-</nav>
-<p class="flex justify-center mx-auto text-black mt-1 text-lg">Usuario</p>
-
-<div
-  id="menu-backdrop"
-  class={` 
+  <div
+    id="menu-backdrop"
+    class={` 
       absolute bg-white/10 backdrop-blur-lg rounded
       translate-x-[var(--left)] translate-y-[var(--top)]
       left-0 top-0
@@ -108,8 +104,9 @@ import User from "./icons/User.astro";
       transition-all duration-400
       ease-in-out opacity-1 -z-10
     `}
->
-</div>
+  >
+  </div>
+</header>
 
 <script>
   const menuBtn = document.getElementById("menu-btn");
@@ -129,7 +126,9 @@ import User from "./icons/User.astro";
     item.addEventListener("click", toggleDropdownMenu);
   });
 
-  menuBtn.addEventListener("scroll", () => {});
+  menuBtn.addEventListener("scroll",()=>{
+
+  })
 </script>
 
 <script>
@@ -148,7 +147,7 @@ import User from "./icons/User.astro";
 
       menuBackDrop.style.opacity = "1";
       menuBackDrop.style.visibility = "visible";
-      if (window.innerWidth < 768) menuBackDrop.style.opacity = "0";
+      if( window.innerWidth < 768) menuBackDrop.style.opacity = "0";
     });
 
     item.addEventListener("mouseleave", () => {
@@ -172,8 +171,9 @@ import User from "./icons/User.astro";
   });
 </script>
 <script>
+
   // estilamos el el header con scrollY
-  document.addEventListener("scroll", function () {
+  document.addEventListener("scroll", function() {
     let header = document.getElementById("landing-header");
     let user = document.getElementById("user-border");
 
@@ -181,6 +181,10 @@ import User from "./icons/User.astro";
       header.style.transition = "background-color .5s";
       header.style.borderBottom = "2px ridge #7F1C1D ";
       header.style.backgroundColor = "black";
+    
+
+    
+   
     } else {
       header.style.backgroundColor = "rgba(0, 0, 0, 0.30)";
       header.style.borderBottom = "none";
@@ -189,10 +193,11 @@ import User from "./icons/User.astro";
     if (window.scrollY > 400 && window.innerWidth > 768) {
       header.style.transition = "background-color .5s";
       header.style.borderBottom = "2px ridge #7F1C1D ";
-
+      
       header.style.backdropFilter = "  blur(10px)";
+     
     } else {
       header.style.backdropFilter = "none";
     }
-  });
+  })
 </script>
