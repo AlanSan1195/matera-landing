@@ -6,6 +6,7 @@ import Vacios from "./Vacios.astro";
 import Entraas from "./Entrañas.astro";
 import NavMD from "./NavMD.astro";
 
+
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
   {
@@ -300,29 +301,29 @@ const cocina = [
 
 const campoData = [
   {
-    src: "/imagenes/carta/parrilla/campo/filetes.webp",
+    src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
     name: "Bife de lomo",
     description: "Cortes suabes totalmente magros ",
   },
   {
-    src: "/imagenes/carta/parrilla/campo/vacios.webp",
+    src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
     name: "Vacio",
     description: "Corte jugoso, con marmoleo intermedio y textura firme",
   },
   {
-    src: "/imagenes/carta/parrilla/campo/entrana.webp",
+    src: "/imagenes/carta/parrilla/campo/mapas/mapaEntrana.webp",
     name: "Entraña",
     description:
       " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
   },
   {
-    src: "/imagenes/carta/parrilla/campo/asado.webp",
+    src: "/imagenes/carta/parrilla/campo/mapas/mapaAsado.webp",
     name: "Asado de tira",
     description:
       "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
   },
   {
-    src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+    src: "/imagenes/carta/parrilla/campo/mapas/mapaBife.webp",
     name: "Bife de chorizo",
     description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
   },
@@ -666,14 +667,14 @@ const postres = [
       </ul>
       <div
         id="divCampo"
-        class="grid grid-cols-3 justify-center text-center text-white m-2"
+        class="grid grid-cols-4 justify-center text-center text-white gap-1 m-2 "
       >
         {
           campoData.map((item, index) => (
-            <div id="divCortes" class="flex flex-col justify-center  m-2  ">
+            <div id="divCortes" class="flex flex-col justify-center items-center col-span-2 mx-auto    ">
               <img
                 id={item.name}
-                class=" size-32 mx-auto hover:cursor-pointer  hover:scale-75   "
+                class=" size-40 hover:cursor-pointer  hover:scale-75   "
                 src={item.src}
                 alt="cortes"
               />
@@ -684,7 +685,7 @@ const postres = [
           ))
         }
         <div
-          class="justify-center col-span-3 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
+          class="justify-center col-span-4 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
         >
           <p class="text-xs m-2">
             Los cortes que aquí servimos son de la más alta calidad, por lo
@@ -960,14 +961,15 @@ const postres = [
       </ul>
       <div
         id="divCampoMD"
-        class="  grid grid-cols-3 justify-center text-center text-white mb-10"
+        class="  grid grid-cols-4 justify-center text-center text-white mb-10"
       >
-        {
-          campoData.map((item, index) => (
-            <div id="divCortes" class="flex flex-col justify-center  m-2  ">
+      {
+        campoData.map((item, index) => (
+          <div id="divCortes" class="flex flex-col justify-center  m-2 col-span-2  ">
+
               <img
                 id={item.src}
-                class=" size-32 mx-auto hover:cursor-pointer  hover:scale-75   "
+                class=" size-96 mx-auto hover:cursor-pointer  hover:scale-75   "
                 src={item.src}
                 alt="cortes"
               />
@@ -1457,12 +1459,12 @@ const postres = [
 <script>
     const campoData = [
       {
-        src: "/imagenes/carta/parrilla/campo/filetes.webp",
+        src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
         name: "Bife de lomo",
         description: "Cortes suaves totalmente magros",
       },
       {
-        src: "/imagenes/carta/parrilla/campo/vacios.webp",
+        src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
         name: "Vacio",
         description: "Corte jugoso, con marmoleo intermedio y textura firme",
       },
