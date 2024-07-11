@@ -4,6 +4,7 @@
 import LightsBackground from "@/components/LightsBackground.astro";
 
 import "@fontsource-variable/lora";
+import '@fontsource/permanent-marker';
 // Supports weights 400-700
 export interface Props {
   title: string;
@@ -374,7 +375,7 @@ const { title, description } = Astro.props;
   para hacer un tarnsicion simepres es necesario hacer una medida determinadada maxima usar "max-height" */
   .mostrar {
     opacity: 1;
-    max-height: 1480px;
+    max-height: 1150px;
     transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
   }
 
@@ -396,7 +397,7 @@ const { title, description } = Astro.props;
   .mostrarParrilla {
     display: grid;
     opacity: 1;
-    max-height: 1550px; 
+    max-height:auto; 
     /* modifique este para poner la parrilla en columna con el nuevo */
     /* animation: fadeIn 0.5s ease-in-out; */
     transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;

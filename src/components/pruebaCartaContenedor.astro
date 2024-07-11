@@ -6,7 +6,6 @@ import Vacios from "./Vacios.astro";
 import Entraas from "./Entrañas.astro";
 import NavMD from "./NavMD.astro";
 
-
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
   {
@@ -396,6 +395,7 @@ const granjaData = [
     name: "Matambrito de cerdo",
     gramaje: "350gr / 12oz",
     price: "$450",
+    boton: ".",
   },
 ];
 const postres = [
@@ -471,7 +471,7 @@ const postres = [
   <!-- //navegacion sm -->
   <nav id="navegacion-cartaSM" class="md:hidden max-h-full">
     <h1
-      class="text-red-700  text-4xl font-semibold flex justify-center items-center mt-8"
+      class="text-red-700 text-4xl font-semibold flex justify-center items-center mt-8"
     >
       Menú
     </h1>
@@ -601,36 +601,33 @@ const postres = [
       }
     </div>
     <a
-    id="botonpostres"
-    class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-6"
-    >Postres</a
-  >
-  <div
-    id="divPostres"
-    class="flex overflow-x-auto ml-16 rounded-s-3xl"
-  >
-    {
-      postres.map((postre) => (
-        <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
-          <img
-            class="image-drop-shadow relative left-4 rounded-2xl "
-            src={postre.src}
-            alt="empanada"
-          />
-          <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
-            {postre.name}
-          </p>
-          <p class="font-light text-xs ml-2 text-white/75 text-wrap">
-            {postre.description}
-          </p>
-          <p class="ml-2">{postre.price}</p>
-        </div>
-      ))
-    }
-  </div>
+      id="botonpostres"
+      class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-6"
+      >Postres</a
+    >
+    <div id="divPostres" class="flex overflow-x-auto ml-16 rounded-s-3xl">
+      {
+        postres.map((postre) => (
+          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
+            <img
+              class="image-drop-shadow relative left-4 rounded-2xl "
+              src={postre.src}
+              alt="empanada"
+            />
+            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
+              {postre.name}
+            </p>
+            <p class="font-light text-xs ml-2 text-white/75 text-wrap">
+              {postre.description}
+            </p>
+            <p class="ml-2">{postre.price}</p>
+          </div>
+        ))
+      }
+    </div>
     <a
       id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl "
+      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl"
       >Parrilla</a
     >
 
@@ -667,11 +664,14 @@ const postres = [
       </ul>
       <div
         id="divCampo"
-        class="grid grid-cols-4 justify-center text-center text-white gap-1 m-2 "
+        class="grid grid-cols-4 justify-center text-center text-white gap-1 m-2"
       >
         {
           campoData.map((item, index) => (
-            <div id="divCortes" class="flex flex-col justify-center items-center col-span-2 mx-auto    ">
+            <div
+              id="divCortes"
+              class="flex flex-col justify-center items-center col-span-2 mx-auto    "
+            >
               <img
                 id={item.name}
                 class=" size-40 hover:cursor-pointer  hover:scale-75   "
@@ -680,7 +680,7 @@ const postres = [
               />
 
               <h1 class=" text-base font-bold">{item.name}</h1>
-              <p class=" text-[10px]">{item.description}</p>
+              <p class=" text-[11px]">{item.description}</p>
             </div>
           ))
         }
@@ -729,13 +729,14 @@ const postres = [
       >
         {
           granjaData.map((item, index) => (
-            <div class=" flex justify-center flex-col py-3 px-2 ">
+            <div class=" flex justify-center flex-col py-3 px-2 relative  m-1">
               <img
                 id={item.name}
                 class=" h-32 w-32 object-cover mx-auto"
                 src={item.src}
                 alt="granja"
               />
+
               <p class="mt-2 font-semibold text-sm text-center text-pretty md:text-sm">
                 {item.name}
               </p>
@@ -743,13 +744,20 @@ const postres = [
                 {item.gramaje}
               </p>
               <p class=" mt-1">{item.price}</p>
+              {item.boton ? (
+                <div
+                  id="visaul"
+                  class=" absolute inset-28   bg-white h-4 w-4 rounded-full"
+                >
+                  {" "}
+                  <a href="/pageMatambrito">""</a>
+                </div>
+              ) : null}
             </div>
           ))
         }
       </div>
     </div>
-
-  
   </nav>
 </section>
 
@@ -961,12 +969,14 @@ const postres = [
       </ul>
       <div
         id="divCampoMD"
-        class="  grid grid-cols-9 justify-center text-center text-white mb-10 "
+        class="grid grid-cols-9 justify-center text-center text-white mb-10"
       >
-      {
-        campoData.map((item, index) => (
-          <div id="divCortes" class="flex flex-col justify-center  m-2 col-span-3  ">
-
+        {
+          campoData.map((item, index) => (
+            <div
+              id="divCortes"
+              class="flex flex-col justify-center  m-2 col-span-3  "
+            >
               <img
                 id={item.src}
                 class=" size-96 mx-auto hover:cursor-pointer  hover:scale-75   "
@@ -980,10 +990,9 @@ const postres = [
           ))
         }
         <div
-          class="   justify-center col-span-9 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-4 text-white "
+          class="justify-center col-span-9 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-4 text-white"
         >
-          <p class="text-base
-           m-2 p-4">
+          <p class="text-base m-2 p-4">
             Los cortes que aquí servimos son de la más alta calidad, por lo
             tanto, no requieren ser sometidos a ningún proceso de marinado o
             suavizado que altere su textura y/o sabor natural.
@@ -997,7 +1006,7 @@ const postres = [
       <RibEye id="divRibEyeMD" />
       <div
         id="divMarMD"
-        class="  grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
+        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
       >
         {
           marData.map((item, index) => (
@@ -1021,7 +1030,7 @@ const postres = [
       </div>
       <div
         id="divGranjaMD"
-        class="  grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
+        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
       >
         {
           granjaData.map((item, index) => (
@@ -1088,7 +1097,6 @@ const postres = [
     const parrillaDiv = document.getElementById("divParrilla");
     const postres = document.getElementById("botonpostres");
     const postresDiv = document.getElementById("divPostres");
-  
 
     const botones = [
       empanadas,
@@ -1220,8 +1228,6 @@ const postres = [
       cambioClase(divCampo, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divMar, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divGranja, "mostrarParrilla", "ocultarParrilla");
-    
-
 
       divsCarnes.forEach((div) => {
         cambioClase(div, "mostrarParrilla", "ocultarParrilla");
@@ -1383,20 +1389,14 @@ const postres = [
       divParrillaMD,
       divPostresMD,
     ];
-   
-
 
     function ocultarTodosLosDivs() {
-
       // disv de menu MD
       divsMD.forEach((div) => {
-        if (div ) {
+        if (div) {
           div.classList.remove("mostrarLG");
           div.classList.add("ocultarLG");
         }
-        
-
-   
       });
     }
 
@@ -1411,7 +1411,6 @@ const postres = [
           cambioClassMD(boton, "text-red-800", "text-white");
         }
       });
-    
     }
 
     function mostrarDivMD(botonesMD, divsMD) {
@@ -1438,220 +1437,207 @@ const postres = [
 
     mostrarDivMD(botonesMD, divsMD);
 
-
-
-
     // Inicialmente mostrar divEntradasMD y ocultar los demás...
     ocultarTodosLosDivs();
     divEntradasMD.classList.remove("ocultarLG");
     divEntradasMD.classList.add("mostrarLG");
     botonEntradasMD.classList.remove("text-white");
     botonEntradasMD.classList.add("text-red-800");
-    
   });
 </script>
 
-
-
 <!-- me quede en eset escript que eta copiadio igual al del sistema de sm pero sigue sin funcionar mis divs de parrilla estan ocultos y no responennen a los botones de parrilla -->
 
-
-
 <script>
-    const campoData = [
-      {
-        src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
-        name: "Bife de lomo",
-        description: "Cortes suaves totalmente magros",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
-        name: "Vacio",
-        description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
-        description:
-          "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
-        description:
-          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
-        description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Especiales",
-        description: "Nuestros cortes especiales son bajo disponibilidad",
-      },
-    ];
+  const campoData = [
+    {
+      src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
+      name: "Bife de lomo",
+      description: "Cortes suaves totalmente magros",
+    },
+    {
+      src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
+      name: "Vacio",
+      description: "Corte jugoso, con marmoleo intermedio y textura firme",
+    },
+    {
+      src: "/imagenes/carta/parrilla/campo/entrana.webp",
+      name: "Entraña",
+      description:
+        "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
+    },
+    {
+      src: "/imagenes/carta/parrilla/campo/asado.webp",
+      name: "Asado de tira",
+      description:
+        "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
+    },
+    {
+      src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+      name: "Bife de chorizo",
+      description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
+    },
+    {
+      src: "/imagenes/carta/parrilla/campo/tomahak.webp",
+      name: "Especiales",
+      description: "Nuestros cortes especiales son bajo disponibilidad",
+    },
+  ];
 
   const divsCarnesMD = [
-      document.getElementById("divFiletesMD"),
-      document.getElementById("divVaciosMD"),
-      document.getElementById("divEntrañasMD"),
-      document.getElementById("divAsadosMD"),
-      document.getElementById("divRibEyeMD"),
-    ];
-   
+    document.getElementById("divFiletesMD"),
+    document.getElementById("divVaciosMD"),
+    document.getElementById("divEntrañasMD"),
+    document.getElementById("divAsadosMD"),
+    document.getElementById("divRibEyeMD"),
+  ];
 
-    const botonCampoMD = document.getElementById("botonCampoMD");
-    const botonMarMD = document.getElementById("botonMarMD");
-    const botonGranjaMD = document.getElementById("botonGranjaMD");
+  const botonCampoMD = document.getElementById("botonCampoMD");
+  const botonMarMD = document.getElementById("botonMarMD");
+  const botonGranjaMD = document.getElementById("botonGranjaMD");
 
+  const divCampoMD = document.getElementById("divCampoMD");
+  const divMarMD = document.getElementById("divMarMD");
+  const divGranjaMD = document.getElementById("divGranjaMD");
 
-    const divCampoMD = document.getElementById("divCampoMD");
-    const divMarMD = document.getElementById("divMarMD");
-    const divGranjaMD = document.getElementById("divGranjaMD");
+  // usamos otro id en este caso en ves de "name" que ya lo usa el div en SM para que funcionaran los botones de parrilla teniamos que destinar otro ID diferente
+  const botonesCampo = campoData.map((item) =>
+    document.getElementById(item.src)
+  );
+  const botonesCerrar = document.querySelectorAll("#botonCerrar");
 
-// usamos otro id en este caso en ves de "name" que ya lo usa el div en SM para que funcionaran los botones de parrilla teniamos que destinar otro ID diferente 
-    const botonesCampo = campoData.map((item) =>
-      document.getElementById(item.src)
-    );
-    const botonesCerrar = document.querySelectorAll("#botonCerrar");
-
-    function ocultarTodos() {
-      function cambioClase(element, classRemove, classAdd) {
-        element.classList.remove(classRemove);
-        element.classList.add(classAdd);
-      }
-      cambioClase(divCampoMD, "mostrarParrilla", "ocultarParrilla");
-      cambioClase(divMarMD, "mostrarParrilla", "ocultarParrilla");
-      cambioClase(divGranjaMD, "mostrarParrilla", "ocultarParrilla");
-
-      divsCarnesMD.forEach((div) => {
-        cambioClase(div, "mostrarParrilla", "ocultarParrilla");
-      });
+  function ocultarTodos() {
+    function cambioClase(element, classRemove, classAdd) {
+      element.classList.remove(classRemove);
+      element.classList.add(classAdd);
     }
+    cambioClase(divCampoMD, "mostrarParrilla", "ocultarParrilla");
+    cambioClase(divMarMD, "mostrarParrilla", "ocultarParrilla");
+    cambioClase(divGranjaMD, "mostrarParrilla", "ocultarParrilla");
 
-    function mostrarDiv(div) {
-      div.classList.remove("ocultarParrilla");
-      div.classList.add("mostrarParrilla");
-    }
+    divsCarnesMD.forEach((div) => {
+      cambioClase(div, "mostrarParrilla", "ocultarParrilla");
+    });
+  }
+
+  function mostrarDiv(div) {
+    div.classList.remove("ocultarParrilla");
+    div.classList.add("mostrarParrilla");
+  }
+  ocultarTodos();
+
+  botonCampoMD.addEventListener("click", () => {
     ocultarTodos();
+    mostrarDiv(divCampoMD);
+  });
+  botonGranjaMD.addEventListener("click", () => {
+    ocultarTodos();
+    mostrarDiv(divGranjaMD);
+  });
+  botonMarMD.addEventListener("click", () => {
+    ocultarTodos();
+    mostrarDiv(divMarMD);
+  });
 
-    botonCampoMD.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divCampoMD);
-    });
-    botonGranjaMD.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divGranjaMD);
-    });
-    botonMarMD.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divMarMD);
-    });
+  function mostrarDivParrillaMD(
+    divsCarnesMD,
+    divCampoMD,
+    divGranjaMD,
+    divMarMD
+  ) {
+    const algunDivVisible = divsCarnesMD.some((div) =>
+      div.classList.contains("mostrarParrilla")
+    );
 
-     function mostrarDivParrillaMD(divsCarnesMD, divCampoMD, divGranjaMD, divMarMD) {
-       const algunDivVisible = divsCarnesMD.some((div) =>
-         div.classList.contains("mostrarParrilla")
-     );
-
-       if (algunDivVisible) {
-         divCampoMD.classList.remove("mostrarParrilla");
-         divCampoMD.classList.add("ocultarParrilla");
-         divGranjaMD.classList.remove("mostrarParrilla");
-         divGranjaMD.classList.add("ocultarParrilla");
-         divMarMD.classList.remove("mostrarParrilla");
-         divMarMD.classList.add("ocultarParrilla");
-       } else {
-          // divCampoMD.classList.remove("ocultarParrilla");
-        //  divCampoMD.classList.add("mostrarParrilla");
-       }
-     }
-
-
-    
-    function mostrarDivsCarnesMD(botonesCampo, divsCarnesMD) {
-      botonesCampo.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            const divCarne = divsCarnesMD[index];
-            // if (divCarne.classList.contains("ocultar")) {
-            //   divCarne.classList.remove("ocultar");
-            // }
-            if (divCarne.classList.contains("ocultarParrilla")) {
-              divCarne.classList.remove("ocultarParrilla");
-              divCarne.classList.add("mostrarParrilla");
-              divCarne.style.display = "grid";
-            } else {
-              divCarne.classList.remove("mostrarParrilla");
-              divCarne.classList.add("ocultarParrilla");
-              divCarne.style.display = "none";
-            }
-             mostrarDivParrillaMD(divsCarnesMD, divCampoMD, divGranjaMD, divMarMD);
-          });
-        }
-      });
+    if (algunDivVisible) {
+      divCampoMD.classList.remove("mostrarParrilla");
+      divCampoMD.classList.add("ocultarParrilla");
+      divGranjaMD.classList.remove("mostrarParrilla");
+      divGranjaMD.classList.add("ocultarParrilla");
+      divMarMD.classList.remove("mostrarParrilla");
+      divMarMD.classList.add("ocultarParrilla");
+    } else {
+      // divCampoMD.classList.remove("ocultarParrilla");
+      //  divCampoMD.classList.add("mostrarParrilla");
     }
-    mostrarDivsCarnesMD(botonesCampo, divsCarnesMD);
+  }
 
-    if (botonesCerrar) {
-      botonesCerrar.forEach((boton) => {
+  function mostrarDivsCarnesMD(botonesCampo, divsCarnesMD) {
+    botonesCampo.forEach((boton, index) => {
+      if (boton) {
         boton.addEventListener("click", function () {
-          divsCarnesMD.forEach((div) => {
-            div.classList.remove("mostrar");
-            div.style.display = "none";
-            div.classList.add("ocultarParrilla");
-          });
-          divCampoMD.classList.remove("ocultarParrilla");
-          divCampoMD.classList.add("mostrarParrilla");
+          const divCarne = divsCarnesMD[index];
+          // if (divCarne.classList.contains("ocultar")) {
+          //   divCarne.classList.remove("ocultar");
+          // }
+          if (divCarne.classList.contains("ocultarParrilla")) {
+            divCarne.classList.remove("ocultarParrilla");
+            divCarne.classList.add("mostrarParrilla");
+            divCarne.style.display = "grid";
+          } else {
+            divCarne.classList.remove("mostrarParrilla");
+            divCarne.classList.add("ocultarParrilla");
+            divCarne.style.display = "none";
+          }
+          mostrarDivParrillaMD(divsCarnesMD, divCampoMD, divGranjaMD, divMarMD);
         });
-      });
-    }
-
-
-    const botones = [botonCampoMD, botonMarMD, botonGranjaMD];
-    const divs = [divGranjaMD, divCampoMD, divMarMD];
-
-    function cambioClase(element, classremove, classadd) {
-      element.classList.remove(classremove);
-      element.classList.add(classadd);
-    }
-
-    // Inicializar todos los divs con opacity-0 solo una vez, al principio.
-    divs.forEach((div) => {
-      div.classList.add("opacity-0");
+      }
     });
+  }
+  mostrarDivsCarnesMD(botonesCampo, divsCarnesMD);
 
-    function indicador(botones, divs) {
-      botones.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", () => {
-            // Restablecer todos los botones a text-white y todos los divs a opacity-0
-            botones.forEach((boton) =>
-              cambioClase(boton, "text-red-800", "text-white")
-            );
-            divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
-
-            const div = divs[index];
-            const divOculto = div.classList.contains("opacity-0");
-
-            // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
-            if (divOculto) {
-              cambioClase(boton, "text-white", "text-red-800");
-              cambioClase(div, "opacity-0", "opacity-100");
-            } else {
-              cambioClase(boton, "text-red-800", "text-white");
-              cambioClase(div, "opacity-100", "opacity-0");
-            }
-          });
-        }
+  if (botonesCerrar) {
+    botonesCerrar.forEach((boton) => {
+      boton.addEventListener("click", function () {
+        divsCarnesMD.forEach((div) => {
+          div.classList.remove("mostrar");
+          div.style.display = "none";
+          div.classList.add("ocultarParrilla");
+        });
+        divCampoMD.classList.remove("ocultarParrilla");
+        divCampoMD.classList.add("mostrarParrilla");
       });
-    }
+    });
+  }
 
-    indicador(botones, divs);
+  const botones = [botonCampoMD, botonMarMD, botonGranjaMD];
+  const divs = [divGranjaMD, divCampoMD, divMarMD];
 
+  function cambioClase(element, classremove, classadd) {
+    element.classList.remove(classremove);
+    element.classList.add(classadd);
+  }
 
+  // Inicializar todos los divs con opacity-0 solo una vez, al principio.
+  divs.forEach((div) => {
+    div.classList.add("opacity-0");
+  });
 
+  function indicador(botones, divs) {
+    botones.forEach((boton, index) => {
+      if (boton) {
+        boton.addEventListener("click", () => {
+          // Restablecer todos los botones a text-white y todos los divs a opacity-0
+          botones.forEach((boton) =>
+            cambioClase(boton, "text-red-800", "text-white")
+          );
+          divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
 
+          const div = divs[index];
+          const divOculto = div.classList.contains("opacity-0");
 
+          // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
+          if (divOculto) {
+            cambioClase(boton, "text-white", "text-red-800");
+            cambioClase(div, "opacity-0", "opacity-100");
+          } else {
+            cambioClase(boton, "text-red-800", "text-white");
+            cambioClase(div, "opacity-100", "opacity-0");
+          }
+        });
+      }
+    });
+  }
+
+  indicador(botones, divs);
 </script>
