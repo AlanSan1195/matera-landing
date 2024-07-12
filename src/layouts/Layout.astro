@@ -4,7 +4,7 @@
 import LightsBackground from "@/components/LightsBackground.astro";
 
 import "@fontsource-variable/lora";
-import '@fontsource/permanent-marker';
+import "@fontsource/permanent-marker";
 // Supports weights 400-700
 export interface Props {
   title: string;
@@ -19,7 +19,10 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content=" experiencia gastronomica argentina en la ciudad, podras ver las categorias de cortes argentinos y mas platillos de tradicion, un lugar dende te trataremos como en casa" />
+    <meta
+      name="description"
+      content=" experiencia gastronomica argentina en la ciudad, podras ver las categorias de cortes argentinos y mas platillos de tradicion, un lugar dende te trataremos como en casa"
+    />
     <link
       rel="icon"
       type="image/svg+xml"
@@ -397,7 +400,7 @@ const { title, description } = Astro.props;
   .mostrarParrilla {
     display: grid;
     opacity: 1;
-    max-height:auto; 
+    max-height: auto;
     /* modifique este para poner la parrilla en columna con el nuevo */
     /* animation: fadeIn 0.5s ease-in-out; */
     transition: opacity 0.5s ease-in-out, max-height 0.5s ease-in-out;
@@ -477,30 +480,52 @@ const { title, description } = Astro.props;
     transition: opacity 0.5s ease, max-height 0.5s ease;
   }
   .simple-radial {
-  background: radial-gradient(rgb(80, 82, 78), rgb(0, 0, 0));
-}
-#pulser::after{
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(rgb(80, 82, 78), rgb(205, 205, 205));
-  opacity: 0.5;
-  animation: pulser 2s ease-in-out infinite;
-  z-index: 20;
-}
-@keyframes pulser {
-  0% {
-    opacity: 0;;
+    background: radial-gradient(rgb(80, 82, 78), rgb(0, 0, 0));
+  }
+  #pulser {
+    animation: pulser2 2s ease-in  infinite;
+  }
+
+  #pulser::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(rgb(80, 82, 78), rgb(205, 205, 205));
+    border: 0.3px solid white;
+
+    animation: pulser 2s ease-in infinite;
+    z-index: -1;
   }
   
-  50% {
-    opacity: .3;
-    scale: 2.5;
+
+  @keyframes pulser {
+    0% {
+      opacity: 0;
+  
+    }
+
+    50% {
+      transform-style: var(--primary);
+      opacity: 0.2;
+      scale: 11;
+     
+    }
+    100% {
+      opacity: 0;
+      
+    }
   }
- 
-}
+  @keyframes pulser2 {
+    0% {
+      scale: 1;
+
+    }
+    50%{
+      scale: .5;
+    }
+  }
 </style>
