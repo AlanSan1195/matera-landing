@@ -727,12 +727,14 @@ const postres = [
         id="divGranjasm"
         class="grid grid-cols-2 justify-center text-center text-white rounded-xl p-4 m-2"
       >
+       <!-- -z10 index para que el boton pulser en alguno de estos platillos opueda ser clickeado  -->
         {
           granjaData.map((item, index) => (
             <div class=" flex justify-center flex-col py-3 px-2 relative  m-1">
               <img
                 id={item.name}
-                class=" h-32 w-32 object-cover mx-auto"
+              
+                class=" h-32 w-32 object-cover mx-auto -z-10"
                 src={item.src}
                 alt="granja"
               />
@@ -746,11 +748,11 @@ const postres = [
               <p class=" mt-1">{item.price}</p>
               {item.boton ? (
                 <div
-                  id="visaul"
-                  class=" absolute inset-28   bg-white h-4 w-4 rounded-full"
+                  id=""
+                  class=" absolute inset-28     bg-white/70 h-4 w-4 rounded-full"
                 >
                   {" "}
-                  <a href="/pageMatambrito">""</a>
+                  <a id="pulser" href="/pageMatambrito" class=""></a>
                 </div>
               ) : null}
             </div>
