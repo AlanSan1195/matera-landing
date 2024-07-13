@@ -5,6 +5,7 @@ import Filetes from "./Filetes.astro";
 import Vacios from "./Vacios.astro";
 import Entraas from "./Entrañas.astro";
 import NavMD from "./NavMD.astro";
+import Pulser from "./Pulser.astro";
 
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
@@ -363,6 +364,7 @@ const marData = [
     name: "Calamar patagónico provenzal",
     gramaje: "350gr / 12oz",
     price: "$450",
+    boton: ".",
   },
 ];
 const granjaData = [
@@ -705,10 +707,10 @@ const postres = [
       >
         {
           marData.map((item, index) => (
-            <div class=" flex justify-center flex-col mx-auto ">
+            <div class=" flex justify-center flex-col relative  mx-auto ">
               <img
                 id={item.name}
-                class="h-32 w-32 object-cover mx-auto"
+                class="h-32 w-32 object-cover  mx-auto"
                 src={item.src}
                 alt="mar"
               />
@@ -719,6 +721,17 @@ const postres = [
                 {item.gramaje}
               </p>
               <p class=" mt-1">{item.price}</p>
+              {item.boton ? (
+              // este pulser tiene una segunda clase agregada usamos typescrit
+                <div id="" class=" absolute top-[75px] left-[100px]">
+                  {" "}
+                  <a
+                    id="pulser"
+                    href="/pageCalamar"
+                    class="bg-white h-3 w-3 rounded-full absolute inset-0"
+                  />
+                </div>
+              ) : null}
             </div>
           ))
         }
@@ -727,14 +740,13 @@ const postres = [
         id="divGranjasm"
         class="grid grid-cols-2 justify-center text-center text-white rounded-xl p-4 m-2"
       >
-       <!-- -z10 index para que el boton pulser en alguno de estos platillos opueda ser clickeado  -->
+        <!-- -z10 index para que el boton pulser en alguno de estos platillos opueda ser clickeado  -->
         {
           granjaData.map((item, index) => (
-            <div class=" flex justify-center flex-col py-3 px-2 relative  m-1">
+            <div class=" flex justify-center flex-col py-3 px-2 relative   m-1">
               <img
                 id={item.name}
-              
-                class=" h-32 w-32 object-cover mx-auto -z-10"
+                class=" h-32 w-32 object-cover mx-auto -z-10 "
                 src={item.src}
                 alt="granja"
               />
@@ -747,12 +759,14 @@ const postres = [
               </p>
               <p class=" mt-1">{item.price}</p>
               {item.boton ? (
-                <div
-                  id=""
-                  class=" absolute inset-24      "
-                >
+              // este pulser tiene una segunda clase agregada usamos typescrit
+                <div id="" class=" absolute left-24 top-28">
                   {" "}
-                  <a id="pulser" href="/pageMatambrito" class="bg-white h-3 w-3 rounded-full absolute inset-0"></a>
+                  <a
+                    id="pulser"
+                    href="/pageMatambrito"
+                    class="bg-white h-3 w-3 rounded-full absolute inset-0"
+                  />
                 </div>
               ) : null}
             </div>
@@ -1050,6 +1064,7 @@ const postres = [
                 {item.gramaje}
               </p>
               <p class=" mt-1">{item.price}</p>
+              {item.boton ? <Pulser class=" absolute  " /> : null}
             </div>
           ))
         }
