@@ -1,0 +1,24 @@
+---
+// le decimos que obtendremos una segunda class con un string, es como un permiso.
+
+export interface PulserCalss {
+    class?: string;
+}
+const {class: class2} = Astro.props as PulserCalss 
+
+---
+
+
+
+<div 
+
+
+id=""
+class={` absolute  ${class2 || ''}`}
+
+>
+{" "}
+<a id="pulser" href="/pageMatambrito" class="bg-white h-3 w-3 rounded-full absolute inset-0"></a>
+</div>
+
+<!-- inset-24 -->

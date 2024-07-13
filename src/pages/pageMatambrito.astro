@@ -1,12 +1,24 @@
 ---
 import "@fontsource/permanent-marker";
 import Layout from "@/layouts/Layout.astro";
+const matambre = {
+  
+    src: "/imagenes/carta/parrilla/granja/matambrito.webp",
+    name: "Matambrito de cerdo",
+    gramaje: "350gr / 12oz",
+    price: "$450",
+    boton: ".",
+    visualDescription: "  El matambrito es un corte de cerdo que proviene de la parte del pecho del animal. ",
+    title:"Visual del platillo matambrito de cerdo",
+    description: " Visual del platillo matambrito de cerdo"
+
+};
 ---
 
-<Layout title= "Visual del platillo matambrito de cerdo" description=" conoce a profundidad nuestro platillo">
-  <div class="contenedor-padre flex justify-center h-screen w-full text-white">
+<Layout title={matambre.title} description={matambre.description}>
+  <div class="relative flex justify-center h-screen w-full text-white">
   <img
-  src="/imagenes/matambreVisual.webp"
+  src="/imagenes/visuales/matambreVisual.webp"
   alt="imagen en alta calidad del Matambrito de cerdo"
   class="object-cover 
     h-full w-full"
@@ -14,7 +26,7 @@ import Layout from "@/layouts/Layout.astro";
   <!-- edita las posiciones segun lo necesites -->
   <div class="absolute top-[125px] max-w-[220px] left-[100px]">
     <p class="caja-texto font-pages opacity-80 text-sm">
-      El matambrito es un corte de cerdo que proviene de la parte del pecho del animal. 
+    {matambre.visualDescription}
     </p>
   </div>
   <div class=" svg absolute top-[150px] left-[20px] rotate-[-80deg]">
@@ -60,10 +72,6 @@ import Layout from "@/layouts/Layout.astro";
 
 
 <style>
-  .contenedor-padre {
-    position: relative;
-
-  }
 
   .caja-texto {
     animation: aparecer 500ms ease-in 900ms both;
