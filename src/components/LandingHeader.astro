@@ -12,7 +12,7 @@ import Logo2 from "./Logo2.astro";
   <div id="logo1" class="flex flex-grow basis-0 md:pointer-events-none">
     <img /><Logo />
   </div>
-  <div id="logo2" class="hidden md:flex absolute ">
+  <div id="logo2" class="opacity-0 md:flex absolute ">
     <img /><Logo2 />
   </div>
 
@@ -168,11 +168,15 @@ import Logo2 from "./Logo2.astro";
     let logo1 = document.getElementById("logo1");
     let logo2 = document.getElementById("logo2");
     if (window.innerWidth >= 768) {
+    
+   
       if (window.scrollY > 400) {
-        logo1.style.transition = "opacity 0.5s";
+        logo2.classList.remove("hidden");
+        logo1.style.transition = "opacity 0.3s";
         logo1.style.opacity = "0";
+
         logo2.style.opacity = "1";
-        logo2.style.transition = "opacity 0.5s";
+        logo2.style.transition = "opacity 0.3s";
       } else {
         logo1.style.opacity = "1";
         logo2.style.opacity = "0";
