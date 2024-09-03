@@ -42,8 +42,13 @@ const { title, description } = Astro.props;
     color-scheme: light dark;
     --primary: #0e191a;
   }
+  @font-face {
+    font-family: "boldes";
+    src: url("/public/fuentes/Magical\ Night.ttf");
+    
+  }
   html {
-    font-family: "Lora Variable";
+    font-family: "Lora Variable", "Open Sans", "Helvetica Neue", sans-serif;
   }
 
   /* estilos de las imagenes de la carta  */
@@ -54,7 +59,8 @@ const { title, description } = Astro.props;
   }
   body {
     background-color: var(--primary);
-    height: 100vh;
+    height: 100dvh;
+   
   }
   video {
     mask-image: linear-gradient(grey 90%, transparent 100%);
@@ -184,7 +190,7 @@ const { title, description } = Astro.props;
     text-transform: uppercase;
     font-weight: bold;
     opacity: 0;
-    width: 800px;
+    width: 900px;
     animation: animate 1s ease-in-out 1 forwards;
   }
   @media (max-width: 768px) {
@@ -206,10 +212,11 @@ const { title, description } = Astro.props;
 
   .content .description {
     margin-top: 10px;
-    margin-bottom: 20px;
-    opacity: 0;
-    font-size: 18px;
+    margin-bottom: 20px;;
+    font-size: 20px;
+  
     animation: animate 1s ease-in-out 0.3s 1 forwards;
+    color: #c6c6c6;
   }
   @media (min-width: 1900px) {
     .content .description {

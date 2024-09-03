@@ -7,7 +7,8 @@ module.exports = {
 	theme: {
 		fontFamily: {
 			sans: ['Gotham SSm A'],
-			pages: ['Permanent Marker']
+			pages: ['Permanent Marker'],
+			boldes: ['boldes']
 		},
 		extend: {
 			colors: {

@@ -1,5 +1,5 @@
 ---
-const { color, title, subtitle, id,  } = Astro.props;
+const { color, title, subtitle, id } = Astro.props;
 const textColor = `text-${color}`;
 ---
 
@@ -17,24 +17,28 @@ const textColor = `text-${color}`;
         {
           img: "/imagenes/vino.webp",
           title: "Nisi sint qui",
+          subtitle: "",
           description: "Irure elit ex deserunt cupidatat enim.",
         },
         {
           img: "/imagenes/champagne.webp",
-          title: "Mollit non",
+          title: "Casa",
+          subtitle: "Matera",
           description:
-            "Irure incididunt voluptate veniam aliquip aliqua voluptate duis est ullamco labore.",
+            "Tus eventos en las mejores manos, conoce nuestros servicios",
           contacto: "rahgme.casaMatera@gmail.com",
         },
         {
           img: "/imagenes/especialesVisual.webp",
           title: "Id incididunt",
+          subtitle: "",
           description:
             "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
         },
         {
           img: "/imagenes/panNuestro.webp",
           title: "De nuestra mesa a tu mesa ",
+          subtitle: "",
           description: "conoce toda la variedad de productos",
           href: "https://www.instagram.com/pannuestrogdl/?hl=es",
           id: "panNuestro",
@@ -43,6 +47,7 @@ const textColor = `text-${color}`;
           img: "/imagenes/lamatera7.webp",
 
           title: "Ea id minim",
+          subtitle: "",
           description:
             "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
         },
@@ -50,6 +55,7 @@ const textColor = `text-${color}`;
         {
           img: "/imagenes/camarones.webp",
           title: "Commodo ad ",
+          subtitle: "",
           description:
             "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
         },
@@ -62,15 +68,16 @@ const textColor = `text-${color}`;
 
         // Slides
         images.forEach((slideImg, index) => {
-          const { img, title, description, contacto, href, id  } = slideImg;
+          const { img, title, description, contacto, href, id, subtitle } =
+            slideImg;
           const slideItem = `
       <div
         class="item "
         style="background-image: url('${img}')"
         data-attribute="${index}"
       >
-        <div class="content ">
-          <div class="name">${title}</div>
+        <div class="content  ">
+          <div class="name font-boldes flex felx-row gap-x-2 "> <h1 class="opacity-65">${title}</h1> <span class ="text-red-900 ">${subtitle}</span> </div> 
           <div class="description ">${description}</div>
         ${
           contacto
