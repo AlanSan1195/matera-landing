@@ -12,45 +12,45 @@ const empanadas = [
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Carne",
-    description: "",
+    description: "Empenada de carne cortada a cuchillo, contiene aceitunas, paprica, pasas de uva y un toque de huevo",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Carne picante",
-    description: "",
+    description: " Igual que nuestra empanada tradicional pero con un toque de picante",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Espinaca",
-    description: "",
+    description: "Con queso ricotta, parmesano, pimienta blanca y nuez moscada",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Queso y cebolla",
-    description: "",
+    description: " Cebolla morada, queso gouda y condimentos ",
     price: "$60",
   },
 
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Humita",
-    description: "",
+    description: "Empanada con elote dulce, cebolla cambray, pimiento morrón, y queso gouda. Sabor suave y delicioso en cada bocado.",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Roquefort",
-    decription: "Fabricado encasa",
+    description: "Rellena de queso roquefort y mozzarella, con un toque fresco de apio. Sabor intenso y equilibrado.",
     price: "$70",
   },
 
   {
     src: "/imagenes/carta/empanadas/siciliana.webp",
     name: "Siciliana",
-    description: "",
+    description: "Hecha con masa de pizza, rellena de jamón,quesos, pimiento rojo asado y aceituna verde, bañada en una rica salsa pomodoro.",
     price: "$90",
   },
 ];
@@ -471,7 +471,7 @@ const postres = [
   id={id}
 >
   <!-- //navegacion sm -->
-  <nav id="navegacion-cartaSM" class="md:hidden max-h-full">
+  <nav id="navegacion-cartaSM" class="md:hidden max-h-full  ">
     <h1
       class="text-red-700 text-4xl font-semibold flex justify-center items-center mt-8"
     >
@@ -479,7 +479,7 @@ const postres = [
     </h1>
     <a
       id="botonempanadas"
-      class="hover:cursor-pointer mt-6 font-bold text-4xl text-white flex justify-center"
+      class="hover:cursor-pointer mt-6 font-boldes text-4xl text-white flex justify-center"
       >Empanadas</a
     >
     <div
@@ -494,8 +494,8 @@ const postres = [
               src={empanada.src}
               alt="empanada"
             />
-            <p class="font-bold text-md ml-2 text-pretty">{empanada.name}</p>
-            <p class="font-light text-xs ml-2  ">{empanada.description}</p>
+            <p class="font-bold text-md ml-2 text-pretty opacity-85">{empanada.name}</p>
+            {/* <p class="font-light text-xs ml-2  ">{empanada.description}</p> */}
             <p class="ml-2 mb-1 ">{empanada.price}</p>
           </div>
         ))
@@ -504,7 +504,7 @@ const postres = [
     </div>
     <a
       id="botonEntradas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
       >Entradas</a
     >
     <div id="divEntradas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
@@ -529,7 +529,7 @@ const postres = [
     </div>
     <a
       id="botonEnsaladas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
       >Ensaladas</a
     >
     <div id="divEnsaldas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
@@ -554,7 +554,7 @@ const postres = [
     </div>
     <a
       id="botonPizzas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
       >Pizzas</a
     >
     <div id="divPizzas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
@@ -579,7 +579,7 @@ const postres = [
     </div>
     <a
       id="botonCocina"
-      class="hover:cursor-pointer flex justify-center mt-6 text-white font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center mt-6 text-white font-boldes text-4xl"
       >Cocina</a
     >
     <div id="divCocina" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
@@ -604,7 +604,7 @@ const postres = [
     </div>
     <a
       id="botonpostres"
-      class="hover:cursor-pointer flex justify-center text-white font-bold text-4xl mt-6"
+      class="hover:cursor-pointer flex justify-center text-white font-boldes text-4xl mt-6"
       >Postres</a
     >
     <div id="divPostres" class="flex overflow-x-auto ml-16 rounded-s-3xl">
@@ -629,7 +629,7 @@ const postres = [
     </div>
     <a
       id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-8 font-bold text-4xl"
+      class="hover:cursor-pointer flex justify-center text-white mt-8 font-boldes text-4xl"
       >Parrilla</a
     >
 
@@ -644,7 +644,7 @@ const postres = [
               src="/imagenes/carta/parrilla/cerdo.webp"
               alt=" imagen"
             />
-            <h2 class="flex justify-center font-bold text-xl">Granja</h2>
+            <h2 class="flex justify-center font-boldes text-xl">Granja</h2>
           </button>
           <button id="botonCampo" class="hover:cursor-pointe">
             <img
@@ -652,7 +652,7 @@ const postres = [
               src="/imagenes/carta/parrilla/vaca.webp"
               alt=" imagen"
             />
-            <h2 class="flex justify-center font-bold text-xl">Campo</h2>
+            <h2 class="flex justify-center font-boldes text-xl">Campo</h2>
           </button>
           <button id="botonMar" class="hover:cursor-pointe">
             <img
@@ -660,7 +660,7 @@ const postres = [
               src="/imagenes/carta/parrilla/camaron.webp"
               alt=" imagen"
             />
-            <h2 class="flex justify-center font-bold text-xl">Mar</h2>
+            <h2 class="flex justify-center font-boldes text-xl">Mar</h2>
           </button>
         </li>
       </ul>
@@ -787,13 +787,13 @@ const postres = [
   <!-- //navegacion md -->
   <nav id="navegacion-cartaMD" class="hidden md:flex flex-col items-center">
     <header class="hidden md:block text-center mt-20 md:mb-12 text-white">
-      <h1 class="md:text-5xl xl:text-7xl font-base">Menú</h1>
-      <h3 class="md:text-4xl xl:text-5xl font-base">
+      <h1 class="md:text-5xl xl:text-7xl font-boldes">Menú</h1>
+      <h3 class="md:text-4xl xl:text-5xl font-boldes opacity-55">
         Apetito por lo que hacemos
       </h3>
     </header>
 
-    <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 p-4 items-center">
+    <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 p-4 items-center opacity-90">
       <a
         id="botonEmpanadasMD"
         class="hover:cursor-pointer mt-6 font-bold text-3xl text-white flex"
@@ -834,25 +834,33 @@ const postres = [
 
     <div
       id="divEmpanadasMD"
-      class="w-full h-[600px] md:flex pt-[170px] mx-auto justify-between p-7 text-white"
+      class="w-full gap-y-16 md:grid md:grid-cols-4 pt-[90px] pb-[170px] text-white content-center justify-center"
       style=" "
     >
-      {
-        empanadas.map((empanada) => (
-          <div class="flex  flex-col items-center sm:hidden md:flex scale-125">
-            <img
-              class="image-drop-shadow-empanadas h-32 w-32 object-cover "
-              src={empanada.src}
-              alt="empanada"
-            />
-            <p class=" font-semibold text-base text-center text-pretty">
+    {
+      empanadas.map((empanada) => (
+        <div class="items-center sm:hidden md:flex  relative xl:scale-110 xl:m-8 m-2">
+          <div class="relative flex flex-col items-center justify-center py-8 transition-all duration-500 border-b h-full w-full border-red-800/60 rounded-2xl group px-7 before:w-full before:h-full before:rounded-2xl before:backdrop-blur-sm before:z-10 before:absolute  ">
+            <div class="relative h-auto opacity-10 w-max z-50 blur-sm transition-all duration-500 group-hover:blur-none group-hover:-translate-y-1/4 group-hover:opacity-100">
+              <img
+                class="image-drop-shadow-empanadas"
+                src={empanada.src}
+                alt="empanada"
+              />
+            </div>
+            <p class="text-center font-boldes text-white transition-all duration-500 z-[60] group-hover:translate-y-1/2">
               {empanada.name}
             </p>
-            <p class=" font-light">{empanada.description}</p>
-            <p>{empanada.price}</p>
+            <p class="text-center text-xs opacity-35 text-white transition-all duration-500 z-[60] group-hover:translate-y-1/2">
+              {empanada.description}
+            </p>
+            <p class="text-center text-white transition-all duration-500 z-[60] group-hover:translate-y-8">
+              {empanada.price}
+            </p>
           </div>
-        ))
-      }
+        </div>
+      ))
+    }
     </div>
 
     <div
