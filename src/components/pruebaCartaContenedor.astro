@@ -6,19 +6,22 @@ import Vacios from "./Vacios.astro";
 import Entraas from "./Entrañas.astro";
 import NavMD from "./NavMD.astro";
 import Pulser from "./Pulser.astro";
+import CardsComponent from "./CardsComponent.astro";
 
 const { color, title, subtitle, id, showFooterContent } = Astro.props;
 const empanadas = [
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Carne",
-    description: "Empenada de carne cortada a cuchillo, contiene aceitunas, paprica, pasas de uva y un toque de huevo",
+    description:
+      "Empenada de carne cortada a cuchillo, contiene aceitunas, paprica, pasas de uva y un toque de huevo",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Carne picante",
-    description: " Igual que nuestra empanada tradicional pero con un toque de picante",
+    description:
+      " Igual que nuestra empanada tradicional pero con un toque de picante",
     price: "$60",
   },
   {
@@ -37,20 +40,23 @@ const empanadas = [
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Humita",
-    description: "Empanada con elote dulce, cebolla cambray, pimiento morrón, y queso gouda. Sabor suave y delicioso en cada bocado.",
+    description:
+      "Empanada con elote dulce, cebolla cambray, pimiento morrón, y queso gouda. Sabor suave y delicioso en cada bocado.",
     price: "$60",
   },
   {
     src: "/imagenes/carta/empanadaCarne.webp",
     name: "Roquefort",
-    description: "Rellena de queso roquefort y mozzarella, con un toque fresco de apio. Sabor intenso y equilibrado.",
+    description:
+      "Rellena de queso roquefort y mozzarella, con un toque fresco de apio. Sabor intenso y equilibrado.",
     price: "$70",
   },
 
   {
     src: "/imagenes/carta/empanadas/siciliana.webp",
     name: "Siciliana",
-    description: "Hecha con masa de pizza, rellena de jamón,quesos, pimiento rojo asado y aceituna verde, bañada en una rica salsa pomodoro.",
+    description:
+      "Hecha con masa de pizza, rellena de jamón,quesos, pimiento rojo asado y aceituna verde, bañada en una rica salsa pomodoro.",
     price: "$90",
   },
 ];
@@ -96,99 +102,99 @@ const entradas = [
   {
     src: "/imagenes/carta/entradas/bocaditos.webp",
     name: "Bocaditos de espinaca",
-    description: "",
+    description: "Bocaditos crujientes de espinaca con queso parmesano, huevo batido y un toque de ajo.",
     price: "$135",
   },
   {
     src: "/imagenes/carta/entradas/pimientoAsado.webp",
     name: "Pimiento asado",
-    description: "",
+    description: "Pimiento rojo asado, pelado y servido frío con aceite de oliva y lajas de ajo. Perfecto para acompañar cortes de carne",
     price: "$90",
   },
   {
     src: "/imagenes/carta/entradas/esparragos.webp",
     name: "Espárragos al vapor",
-    description: "",
+    description: "Espárragos al vapor o a la parrilla, servidos con aceite de oliva y queso parmesano.",
     price: "$155",
   },
 
   {
     src: "/imagenes/carta/entradas/hongos.webp",
     name: "Hongos al ajoillo",
-    description: "",
+    description: "Hongos al ajillo salteados con ajo, aceite de oliva, perejil y chile guajillo. Acompañados de crutones.",
     price: "$170",
   },
   {
     src: "/imagenes/carta/entradas/berenjenas.webp",
     name: "Berenjenas a la parmesana",
-    description: "",
+    description: "Berenjenas fritas con mozzarella, bañadas en salsa pomodoro y gratinadas con parmesano.",
     price: "$185",
   },
   {
     src: "/imagenes/carta/entradas/chorizoArgentino.webp",
     name: "Chorizo argentino",
-    decription: "Fabricado encasa",
+    description: "Elaborado en casa, el embutido clásico de las parrilladas argentinas hecho con carne de res y cerdo.",
     price: "$110",
   },
 
   {
     src: "/imagenes/carta/entradas/chistorra.webp",
     name: "Chistorra",
-    description: "Fabricada en casa",
+    description: "Elaborada en casa, embutido estilool español, la carne es 100% de cerdo.",
     price: "$135",
   },
   {
     src: "/imagenes/carta/entradas/mollejaParrilla.webp",
     name: "Mollejas a la parrilla",
-    description: "",
+    description: "Mollejas de res a la parrilla, cocinadas con cuidado durante 20 minutos. Utilizamos la parte del corazón para un sabor excepcional.",
     price: "$310",
   },
   {
     src: "/imagenes/carta/entradas/mollejasVerdeo.webp",
     name: "Mollejas al verdeo",
-    description: "",
+    description: "Mollejas salteadas con cebolla cambray y chile serrano, ligeramente picantes. Se sirven con tortillas.",
     price: "$290",
   },
   {
     src: "/imagenes/carta/entradas/chinchulines.webp",
     name: "Chicnhulines a la parrilla",
-    description: "",
+    description: "Parrillados para conservar su textura suave y gran sabor.",
     price: "$210",
   },
   {
     src: "/imagenes/carta/entradas/malfatis.webp",
     name: "Malfatti de espinaca",
-    description: "",
+    description: "La pasta es hecha en casa, rellena de espinaca y queso ricotta, bañada en salsa de poro.",
     price: "$250",
   },
   {
     src: "/imagenes/carta/entradas/provoletaTomate.webp",
-    name: "Provoleta tomate y pimiento",
-    description: "",
+    name: "Provoleta Tomate",
+    description: "Queso semi maduro de origen argentino, con tomate y mediol pimiento asado",
     price: "$220",
   },
   {
     src: "/imagenes/carta/entradas/provoletaSerrano.webp",
-    name: "provoleta arugula y jamón serrano ",
-    description: "",
+    name: "Provoleta Arugula",
+    description: "Queso semi maduro de origen argentino, servida con jamos serrano y arugula",
     price: "$260",
   },
   {
     src: "/imagenes/carta/entradas/tartara.webp",
     name: "Tartara de Rib-Eye",
-    description: "",
+    description: "Carne de rib eye cortada a cuchillo, mezclada con anchoas y alcaparras.",
     price: "$250",
   },
   {
     src: "/imagenes/carta/entradas/carpaccioJamon.webp",
     name: "Carpaccio de jamón serrano",
-    description: "",
+    description: "Con un toque de aceite de oliva y vinagre balsámico, acompañado de albahaca y grana padano.",
     price: "$260",
   },
   {
     src: "/imagenes/carta/entradas/mejillones.webp",
     name: "Mejillones con chistorra",
-    description: "",
+    description: "Cocinados al vapor con chistorra y papas a la francesa, uno de los favoritos de la casa.",
     price: "$335",
   },
 ];
@@ -251,7 +257,7 @@ const cocina = [
   },
   {
     src: "/imagenes/carta/cocina/fetuNegro.webp",
-    name: "Fetucciine negro con calamares en su tinta",
+    name: "Fetucciine negro ",
     description: "",
     price: "$275",
   },
@@ -471,7 +477,7 @@ const postres = [
   id={id}
 >
   <!-- //navegacion sm -->
-  <nav id="navegacion-cartaSM" class="md:hidden max-h-full  ">
+  <nav id="navegacion-cartaSM" class="md:hidden max-h-full">
     <h1
       class="text-red-700 text-4xl font-semibold flex justify-center items-center mt-8"
     >
@@ -494,7 +500,9 @@ const postres = [
               src={empanada.src}
               alt="empanada"
             />
-            <p class="font-bold text-md ml-2 text-pretty opacity-85">{empanada.name}</p>
+            <p class="font-bold text-md ml-2 text-pretty opacity-85">
+              {empanada.name}
+            </p>
             {/* <p class="font-light text-xs ml-2  ">{empanada.description}</p> */}
             <p class="ml-2 mb-1 ">{empanada.price}</p>
           </div>
@@ -507,7 +515,7 @@ const postres = [
       class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
       >Entradas</a
     >
-    <div id="divEntradas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
+    <div id="divEntradas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl ">
       {
         entradas.map((entrada) => (
           <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white  ">
@@ -793,7 +801,9 @@ const postres = [
       </h3>
     </header>
 
-    <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 p-4 items-center opacity-90">
+    <div
+      class="flex justify-center flex-wrap gap-x-6 gap-y-2 p-4 items-center opacity-90"
+    >
       <a
         id="botonEmpanadasMD"
         class="hover:cursor-pointer mt-6 font-bold text-3xl text-white flex"
@@ -837,125 +847,78 @@ const postres = [
       class="w-full gap-y-16 md:grid md:grid-cols-4 pt-[90px] pb-[170px] text-white content-center justify-center"
       style=" "
     >
-    {
-      empanadas.map((empanada) => (
-        <div class="items-center sm:hidden md:flex  relative xl:scale-110 xl:m-8 m-2">
-          <div class="relative flex flex-col items-center justify-center py-8 transition-all duration-500 border-b h-full w-full border-red-800/60 rounded-2xl group px-7 before:w-full before:h-full before:rounded-2xl before:backdrop-blur-sm before:z-10 before:absolute  ">
-            <div class="relative h-auto opacity-10 w-max z-50 blur-sm transition-all duration-500 group-hover:blur-none group-hover:-translate-y-1/4 group-hover:opacity-100">
-              <img
-                class="image-drop-shadow-empanadas"
-                src={empanada.src}
-                alt="empanada"
-              />
-            </div>
-            <p class="text-center font-boldes text-white transition-all duration-500 z-[60] group-hover:translate-y-1/2">
-              {empanada.name}
-            </p>
-            <p class="text-center text-xs opacity-35 text-white transition-all duration-500 z-[60] group-hover:translate-y-1/2">
-              {empanada.description}
-            </p>
-            <p class="text-center text-white transition-all duration-500 z-[60] group-hover:translate-y-8">
-              {empanada.price}
-            </p>
-          </div>
-        </div>
-      ))
-    }
+      {
+        empanadas.map((empanada) => (
+          <CardsComponent
+            src={empanada.src}
+            name={empanada.name}
+            description={empanada.description}
+            price={empanada.price}
+          />
+        ))
+      }
     </div>
 
     <div
       id="divEntradasMD"
-      class="hidden md:flex flex-wrap md:mr-10 md:ml-10 p-7 text-white"
+      class="w-full gap-y-16 md:grid md:grid-cols-4  p-7 mb-24  text-white/85"
     >
       {
         entradas.map((entrada) => (
-          <div class="h-[270px] w-1/4  flex flex-col  items-center lg:w-1/6 sm:hidden md:flex  ">
-            <img
-              class=" h-32 w-32 object-cover rounded-lg "
-              src={entrada.src}
-              alt="entrada"
-            />
-            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {entrada.name}
-            </p>
-            <p class=" font-light text-center text-pretty">
-              {entrada.description}
-            </p>
-            <p class="mb-1">{entrada.price}</p>
-          </div>
+         <CardsComponent
+            src={entrada.src}
+            name={entrada.name}
+            description={entrada.description}
+            price={entrada.price}
+          />
         ))
       }
     </div>
 
     <div
       id="divEnsaladasMD"
-      class="md:flex flex-wrap mr-10 ml-10 p-7 text-white"
+      class="w-full gap-y-12 md:grid md:grid-cols-4  p-7 mb-24 text-white/85"
     >
       {
         ensaladas.map((ensalada) => (
-          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
-            <img
-              class="h-32 w-32 object-cover  "
-              src={ensalada.src}
-              alt="ensalada"
-            />
-            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {ensalada.name}
-            </p>
-            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-              {ensalada.description}
-            </p>
-            <p class=" mt-1">{ensalada.price}</p>
-          </div>
+        <CardsComponent
+            src={ensalada.src}
+            name={ensalada.name}
+            description={ensalada.description}
+            price={ensalada.price}
+          />
         ))
       }
     </div>
 
     <div
       id="divPizzasMD"
-      class="w-full h-[600px] md:flex pt-[140px] mx-auto justify-between p-7 text-white"
+      class="w-full gap-y-16 md:grid md:grid-cols-3   p-7 mb-24 text-white/85"
       style=" "
     >
       {
         pizzas.map((pizza) => (
-          <div class=" h-[270px] w-1/5 flex flex-col items-center sm:hidden md:flex  scale-125  ">
-            <img
-              class=" h-24 w-24 lg:h-32 lg:w-32 object-cover "
-              src={pizza.src}
-              alt="pizza"
-            />
-            <p class="  mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {pizza.name}
-            </p>
-            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-              {pizza.description}
-            </p>
-            <p class="mt-1">{pizza.price}</p>
-          </div>
+          <CardsComponent
+            src={pizza.src}
+            name={pizza.name}
+            description={pizza.description}
+            price={pizza.price}   />
         ))
       }
     </div>
 
     <div
       id="divCocinaMD"
-      class="hidden md:flex flex-wrap mr-10 ml-10 p-7 text-white"
+      class="w-full gap-y-16 md:grid md:grid-cols-4   p-7 mb-24 text-white/85"
     >
       {
         cocina.map((cocina) => (
-          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex">
-            <img
-              class="h-32 w-32 object-cover "
-              src={cocina.src}
-              alt="cocina"
-            />
-            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {cocina.name}
-            </p>
-            <p class="  mt-1 font-light text-center text-pretty md:text-xs">
-              {cocina.description}
-            </p>
-            <p class="mt-1">{cocina.price}</p>
-          </div>
+         <CardsComponent
+            src={cocina.src}
+            name={cocina.name}
+            description={cocina.description}
+            price={cocina.price}
+          />
         ))
       }
     </div>
@@ -1081,24 +1044,16 @@ const postres = [
 
     <div
       id="divPostresMD"
-      class="hidden md:flex flex-wrap justify-between mr-10 ml-10 p-7 text-white"
+      class="w-full gap-y-16 md:grid md:grid-cols-4   p-7 mb-24 text-white/85"
     >
       {
         postres.map((postre) => (
-          <div class="h-[270px] w-1/5 flex flex-col  items-center sm:hidden md:flex ">
-            <img
-              class="h-32 w-32 object-cover  "
-              src={postre.src}
-              alt="postre"
-            />
-            <p class=" mt-2 font-semibold text-base text-center text-pretty md:text-sm">
-              {postre.name}
-            </p>
-            <p class=" mt-1 font-light text-center text-pretty md:text-xs">
-              {postre.description}
-            </p>
-            <p class="mt-1">{postre.price}</p>
-          </div>
+          <CardsComponent
+            src={postre.src}
+            name={postre.name}
+            description={postre.description}
+            price={postre.price}
+          />
         ))
       }
     </div>

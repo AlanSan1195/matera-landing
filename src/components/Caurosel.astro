@@ -14,50 +14,44 @@ const textColor = `text-${color}`;
   <script>
     (() => {
       const slideImages = [
-        {
-          img: "/imagenes/vino.webp",
-          title: "Nisi sint qui",
-          subtitle: "",
-          description: "Irure elit ex deserunt cupidatat enim.",
-        },
+  
         {
           img: "/imagenes/champagne.webp",
           title: "Casa",
           subtitle: "Matera",
           description:
-            "Tus eventos en las mejores manos, descubre mas sobre nuestros servicios y etiquetas",
+            "Tus eventos en las mejores manos, descubre mas sobre nuestros servicios y etiquetas.",
           contacto: "rahgme.casaMatera@gmail.com",
+        },
+        {
+          img: "/imagenes/productosCalidad2.webp",
+          title: "Nuestro estandar de ",
+          subtitle: "calidad",
+          description:
+            " En la matera nos preocupamos por ofrecerte los mejores productos, y sonbre todo la variedad de ellos, pregunta por nuestros cortes especiales del dia y su origen.",
         },
         {
           img: "/imagenes/ambiente.webp",
           title: "Ambiente",
           subtitle: "",
           description:
-            "Veniam laborum fugiat reprehenderit magna ut cupidatat aute do.",
+            "Uno de los lugares de la ciduad preferidos por los amantes del buen vino.",
         },
         {
           img: "/imagenes/panNuestro.webp",
-          title: "De nuestra mesa a tu mesa ",
+          title: "De nuestra cocina a tu mesa ",
           subtitle: "",
-          description: "conoce toda la variedad de productos",
+          description: "Conoce toda la variedad de productos que puedes encontrar en nuetsra tienda de Pan Nuestro ubicada sobre Nelson.",
           href: "https://www.instagram.com/pannuestrogdl/?hl=es",
           id: "panNuestro",
         },
+       
         {
-          img: "/imagenes/lamatera7.webp",
-
-          title: "Ea id minim",
+          img: "/imagenes/seleccion.webp",
+          title: "Seleccionamos los mejores productos",
           subtitle: "",
           description:
-            "Consectetur enim culpa exercitation excepteur elit dolore aliquip dolor deserunt duis ea.",
-        },
-
-        {
-          img: "/imagenes/camarones.webp",
-          title: "Commodo ad ",
-          subtitle: "",
-          description:
-            "Velit tempor amet adipisicing quis voluptate mollit voluptate fugiat irure incididunt ipsum.",
+            "Todos los dias escojemos nuestros ingredientes con el mayor cuidado, para ofrecerte la mejor calidad en cada platillo.",
         },
       ];
 
@@ -76,9 +70,9 @@ const textColor = `text-${color}`;
         style="background-image: url('${img}')"
         data-attribute="${index}"
       >
-        <div class="content  ">
-          <div class="name font-boldes flex felx-row gap-x-2 "> <h1 class="opacity-65">${title}</h1> <span class ="text-red-900 ">${subtitle}</span> </div> 
-          <div class="description ">${description}</div>
+        <div class="content   ">
+          <div class="name font-boldes flex felx-row gap-x-2 "> <h1 class="opacity-85">${title}</h1> <span class ="text-red-900  ">${subtitle}</span> </div> 
+          <div class="description w-[200px] md:w-[350px] lg:w-[500px] lg:text-lg opacity-100 ">${description}</div>
         ${
           contacto
             ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>`
