@@ -515,7 +515,7 @@ const postres = [
               src={empanada.src}
               alt="empanada"
             />
-            <p class="font-bold text-md ml-2 text-pretty opacity-85">
+            <p class="font-boldes text-md ml-2 text-pretty opacity-85">
               {empanada.name}
             </p>
             {/* <p class="font-light text-xs ml-2  ">{empanada.description}</p> */}
@@ -539,12 +539,12 @@ const postres = [
               src={entrada.src}
               alt="empanada"
             />
-            <p class="font-semibold text-sm text-start mt-3 ml-2">
+            <p class="font-boldes text-sm text-start mt-3 ml-2">
               {entrada.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
               {entrada.description}
-            </p>
+            </p> */}
             <p class="ml-2">{entrada.price}</p>
           </div>
         ))
@@ -564,12 +564,12 @@ const postres = [
               src={ensalada.src}
               alt="empanada"
             />
-            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
               {ensalada.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75 ">
+            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75 ">
               {ensalada.description}
-            </p>
+            </p> */}
             <p class="ml-2">{ensalada.price}</p>
           </div>
         ))
@@ -589,12 +589,12 @@ const postres = [
               src={pizza.src}
               alt="empanada"
             />
-            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
               {pizza.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
               {pizza.description}
-            </p>
+            </p> */}
             <p class="ml-2">{pizza.price}</p>
           </div>
         ))
@@ -614,12 +614,12 @@ const postres = [
               src={platillo.src}
               alt="empanada"
             />
-            <p class=" flex font-semibold text-sm text-start mt-3 ml-2  ">
+            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
               {platillo.name}
             </p>
-            <p class="font-light text-xs ml-1 mr-1 text-white/75">
+            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
               {platillo.description}
-            </p>
+            </p> */}
             <p class="ml-2">{platillo.price}</p>
           </div>
         ))
@@ -639,7 +639,7 @@ const postres = [
               src={postre.src}
               alt="empanada"
             />
-            <p class=" flex font-semibold text-sm text-start mt-2 ml-2  ">
+            <p class=" flex font-boldes text-sm text-start mt-2 ml-2  ">
               {postre.name}
             </p>
             <p class="font-light text-xs ml-2 text-white/75 text-wrap">
@@ -675,7 +675,9 @@ const postres = [
               src="/imagenes/carta/parrilla/vaca.webp"
               alt=" imagen"
             />
-            <h2 class="flex justify-center font-boldes text-xl textred">Campo</h2>
+            <h2 class="flex justify-center font-boldes text-xl textred">
+              Campo
+            </h2>
           </button>
           <button id="botonMar" class="hover:cursor-pointe">
             <img
@@ -704,7 +706,7 @@ const postres = [
                 alt="cortes"
               />
 
-              <h1 class=" text-base font-bold">{item.name}</h1>
+              <h1 class=" text-base font-boldes">{item.name}</h1>
               <p class=" text-[11px]">{item.description}</p>
             </div>
           ))
@@ -737,7 +739,7 @@ const postres = [
                 src={item.src}
                 alt="mar"
               />
-              <p class="mt-2 font-semibold  text-center text-pretty text-sm">
+              <p class="mt-2 font-boldes  text-center text-pretty text-sm">
                 {item.name}
               </p>
               <p class="mt-1 font-light text-center text-pretty md:text-xs">
@@ -774,7 +776,7 @@ const postres = [
                 alt="granja"
               />
 
-              <p class="mt-2 font-semibold text-sm text-center text-pretty md:text-sm">
+              <p class="mt-2 font-boldes text-sm text-center text-pretty md:text-sm">
                 {item.name}
               </p>
               <p class="mt-1 font-light text-center text-pretty text-xs">
@@ -1317,15 +1319,12 @@ const postres = [
     // Inicializar todos los divs con opacity-0 solo una vez, al principio.
     divs.forEach((div) => {
       div.classList.add("opacity-0");
-    
-      
     });
 
     function indicador(botones, divs) {
       botones.forEach((boton, index) => {
         if (boton) {
           boton.addEventListener("click", () => {
-            
             // Restablecer todos los botones a text-white y todos los divs a opacity-0
             botones.forEach((boton) =>
               cambioClase(boton, "text-red-800", "text-white")
@@ -1343,7 +1342,6 @@ const postres = [
               cambioClase(boton, "text-red-800", "text-white");
               cambioClase(div, "opacity-100", "opacity-0");
             }
-            
           });
         }
       });
@@ -1409,9 +1407,7 @@ const postres = [
       botonesMD.forEach((boton) => {
         if (boton) {
           cambioClassMD(boton, "text-red-800", "text-white");
-        }
-        else if(boton === botonParrillaMD){
-         
+        } else if (boton === botonParrillaMD) {
         }
       });
     }
@@ -1446,7 +1442,6 @@ const postres = [
     divEntradasMD.classList.add("mostrarLG");
     botonEntradasMD.classList.remove("text-white");
     botonEntradasMD.classList.add("text-red-800");
-   
   });
 </script>
 
@@ -1465,19 +1460,19 @@ const postres = [
       description: "Corte jugoso, con marmoleo intermedio y textura firme",
     },
     {
-      src: "/imagenes/carta/parrilla/campo/entrana.webp",
+      src: "/imagenes/carta/parrilla/campo/mapas/mapaEntrana.webp",
       name: "Entraña",
       description:
         "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
     },
     {
-      src: "/imagenes/carta/parrilla/campo/asado.webp",
+      src: "/imagenes/carta/parrilla/campo/mapas/mapaAsado.webp",
       name: "Asado de tira",
       description:
         "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
     },
     {
-      src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
+      src: "/imagenes/carta/parrilla/campo/mapas/mapaBife.webp",
       name: "Bife de chorizo",
       description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
     },
@@ -1510,7 +1505,6 @@ const postres = [
   );
   const botonesCerrar = document.querySelectorAll("#botonCerrar");
 
-
   function ocultarTodos() {
     function cambioClase(element, classRemove, classAdd) {
       element.classList.remove(classRemove);
@@ -1519,11 +1513,10 @@ const postres = [
     cambioClase(divCampoMD, "mostrarParrilla", "ocultarParrilla");
     cambioClase(divMarMD, "mostrarParrilla", "ocultarParrilla");
     cambioClase(divGranjaMD, "mostrarParrilla", "ocultarParrilla");
-    
+
     divsCarnesMD.forEach((div) => {
       cambioClase(div, "mostrarParrilla", "ocultarParrilla");
     });
-    
   }
 
   function mostrarDiv(div) {
@@ -1562,7 +1555,7 @@ const postres = [
       divGranjaMD.classList.add("ocultarParrilla");
       divMarMD.classList.remove("mostrarParrilla");
       divMarMD.classList.add("ocultarParrilla");
-    } 
+    }
   }
 
   function mostrarDivsCarnesMD(botonesCampo, divsCarnesMD) {
@@ -1614,7 +1607,7 @@ const postres = [
   // Inicializar todos los divs con opacity-0 solo una vez, al principio.
   divs.forEach((div) => {
     div.classList.add("opacity-0");
-    if(div === divCampoMD){
+    if (div === divCampoMD) {
       div.classList.remove("ocultarParrilla");
       div.classList.add("mostrarParrilla");
     }
