@@ -70,14 +70,14 @@ const bifes = [
 
 <div
   id={id}
-  class="  border-[2px] border-[#B56C09] bg-black/70 backdrop-blur-sm text-sm rounded-xl m-2 text-white content-center 
+  class="  flex justify-center   mx-auto border-[2px] border-[#B56C09]/60 bg-black/70  backdrop-blur-sm text-sm rounded-xl  text-white content-center m-2 md:rounded-xl  md:border-none md:w-screen md:bg-black/30
   "
 >
-  <div class="flex items-center mx-6 mt-3">
+  <div class="flex items-center mx-6 mt-3  md:justify-between  md:w-screen md:px-8">
     <h1 class="opacity-0 flex">...........</h1>
 
     <h1
-      class=" text-white font-bold text-xl flex w-full justify-center opacity-80"
+      class=" text-white font-boldes text-xl flex w-full justify-center  opacity-80 md:text-red-800"
     >
       Bifes de chorizo
     </h1>
@@ -114,11 +114,11 @@ const bifes = [
       {campoData[4].description}
     </p>
   </div>
-  <div class="grid grid-cols-2 m-4 justify-center gap-8">
+  <div class="grid grid-cols-2 md:grid-cols-2 m-4 justify-center gap-8 md:gap-2 text-center">
     {
       bifes.map((bife) => (
         <div class="justify-between flex flex-col text-sm leading-none items-center text-center  gap-y-1">
-          <p class="font-bold mb-2">{bife.name}</p>
+          <p class="font-boldes mb-2">{bife.name}</p>
 
           <div class=" flex gap-2">
             <p class="font-bold text-xs text-red-600/80  ">{bife.quality}</p>

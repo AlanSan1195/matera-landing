@@ -14,14 +14,21 @@ const textColor = `text-${color}`;
   <script>
     (() => {
       const slideImages = [
-  
+        {
+          img: "/imagenes/seleccion.webp",
+          title: "Seleccionamos los mejores productos",
+          subtitle: "",
+          description:
+            "Todos los dias escojemos nuestros ingredientes con el mayor cuidado, para ofrecerte la mejor calidad en cada platillo.",
+        },
+
         {
           img: "/imagenes/champagne.webp",
           title: "Casa",
           subtitle: "Matera",
           description:
             "Tus eventos en las mejores manos, descubre mas sobre nuestros servicios y etiquetas.",
-          contacto: "rahgme.casaMatera@gmail.com",
+          contacto: "Casamatera@grupolamatera.mx",
         },
         {
           img: "/imagenes/productosCalidad2.webp",
@@ -32,26 +39,20 @@ const textColor = `text-${color}`;
         },
         {
           img: "/imagenes/ambiente.webp",
-          title: "Ambiente",
-          subtitle: "",
+          title: "para los amantes del vino",
+          subtitle: "Vino",
           description:
             "Uno de los lugares de la ciduad preferidos por los amantes del buen vino.",
         },
+
         {
           img: "/imagenes/panNuestro.webp",
           title: "De nuestra cocina a tu mesa ",
           subtitle: "",
-          description: "Conoce toda la variedad de productos que puedes encontrar en nuetsra tienda de Pan Nuestro ubicada sobre Nelson.",
+          description:
+            "Conoce toda la variedad de productos que puedes encontrar en nuetsra tienda de Pan Nuestro ubicada sobre Nelson.",
           href: "https://www.instagram.com/pannuestrogdl/?hl=es",
           id: "panNuestro",
-        },
-       
-        {
-          img: "/imagenes/seleccion.webp",
-          title: "Seleccionamos los mejores productos",
-          subtitle: "",
-          description:
-            "Todos los dias escojemos nuestros ingredientes con el mayor cuidado, para ofrecerte la mejor calidad en cada platillo.",
         },
       ];
 
@@ -75,7 +76,7 @@ const textColor = `text-${color}`;
           <div class="description w-[200px] md:w-[350px] lg:w-[500px] lg:text-lg opacity-100 ">${description}</div>
         ${
           contacto
-            ? `<a href="mailto:rahgme.casaMatera@gmail.com" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>`
+            ? `<a href="mailto:Casamatera@grupolamatera.mx" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>`
             : ""
         }
         ${

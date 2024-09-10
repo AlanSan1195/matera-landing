@@ -5,21 +5,25 @@ import Logo2 from "./Logo2.astro";
 ---
 
 <section
-  class="landing-section  min-h-screen w-screen text-center overflow-hidden flex  items-center"
+  class="landing-section min-h-screen w-screen text-center overflow-hidden flex items-center"
   data-header-color={color}
   id={id}
 >
-
   <div
-    class="opacity-85 z-30 relative h-auto text-end mt-4 md:w-[700px] lg:w-[900px] xl:w-[1200px] flex flex-col flex-wrap ml-auto  text-pretty  "
+    class="opacity-85 z-30 relative h-auto text-end mt-4 md:w-[700px] lg:w-[900px] xl:w-[1200px] flex flex-col flex-wrap ml-auto text-pretty"
   >
-    <header class=" lg:p-2  ">
+    <header class="lg:p-2">
       <h2
         class={`${textColor} font-boldes mr-2 mt-4  lg:mr-4  lg:pt-28 xl:pt-48 text-[65px] leading-none text-opacity-95  lg:text-7xl xl:text-8xl  text-pretty`}
       >
-       <span class=" text-red-700 text-7xl lg:text-8xl font-bold ">"</span>Buenos Amigos, Buenos Vinos, Buenos Aires.<span class=" text-red-700 text-7xl lg:text-8xl font-bold">"</span>
+        <span class="text-red-700 text-7xl lg:text-8xl font-bold">"</span>Buenos
+        Amigos, Buenos Vinos, Buenos Aires.<span
+          class="text-red-700 text-7xl lg:text-8xl font-bold">"</span
+        >
       </h2>
-      <p class={`${textColor} opacity-85  mr-2 ml-5 lg:mr-4 text-xs md:text-xl xl:text-xl mt-3`}>
+      <p
+        class={`${textColor} opacity-85  mr-2 ml-5 lg:mr-4 text-[13px] font-semibold md:font-medium  md:text-xl xl:text-xl mt-3`}
+      >
         {subtitle}
       </p>
     </header>
@@ -28,11 +32,10 @@ import Logo2 from "./Logo2.astro";
       class="py-6 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
     >
       <slot name="footer" />
-     
     </footer>
   </div>
 
-  <div class=" absolute top-0 bottom-0 h-full w-full z-10 sm:hidden md:block">
+  <div class="absolute top-0 bottom-0 h-full w-full z-10 sm:hidden md:block">
     <slot name="background" />
   </div>
 </section>
@@ -41,28 +44,20 @@ import Logo2 from "./Logo2.astro";
   document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", function () {
       let logo = document.getElementById("Logo2");
-      if (window.innerWidth >= 1024){
-        if(window.scrollY >50){
-          logo.style.transition="opacity 0.5s";
-          logo.style.opacity="0";
-        }else{
-          logo.style.transition="opacity 0.5s";
-          logo.style.opacity="1";
-        
+      if (logo && window.innerWidth >= 1024) {
+        if (window.scrollY > 50) {
+          logo.style.transition = "opacity 0.5s";
+          logo.style.opacity = "0";
+        } else {
+          logo.style.transition = "opacity 0.5s";
+          logo.style.opacity = "1";
         }
       }
       // let windowPosition = window.scrollY > 220;
 
       // logo.classList.toggle("invisible", windowPosition);
     });
-    // risize de texto titulo 
-     if(window.innerWidth >375 && window.innerWidth < 600){
-          let title = document.querySelector(".landing-section h2") as HTMLHeadingElement;
-          let subtitle = document.querySelector(".landing-section p") as HTMLParagraphElement;
-          title.style.fontSize = "75px";
-          title.style.lineHeight = "1.1";
-          subtitle.style.fontSize = "14px";
-               
-        }
-      });
+    // risize de texto titulo
+  
+  });
 </script>

@@ -60,13 +60,13 @@ const campoData = [
 ---
 <div
       id={id}
-      class="  border-[2px] border-[#B56C09]/60 bg-black/70 backdrop-blur-sm text-sm rounded-xl text-white/80 content-center m-2 "
+      class="  flex justify-center   mx-auto border-[2px] border-[#B56C09]/60 bg-black/70  backdrop-blur-sm text-sm rounded-xl  text-white content-center m-2 md:rounded-xl  md:border-none md:w-screen md:bg-black/30 "
     >
-      <div class="flex items-center mx-6 mt-3">
+      <div class="flex items-center mx-6 mt-3  md:justify-between  md:w-screen md:px-8">
         <h1 class="opacity-0 flex">........</h1>
 
         <h1
-          class="  text-white font-bold text-xl flex w-full justify-center  opacity-80"
+          class="  text-white font-boldes text-xl flex w-full justify-center  opacity-80 md:text-red-800 "
         >
           Bifes de lomo
         </h1>
@@ -102,11 +102,11 @@ const campoData = [
           {campoData[0].description}
         </p>
       </div>
-      <div class="grid grid-cols-2 m-4 justify-center gap-8 text-center">
+      <div class="grid grid-cols-2 md:grid-cols-4 m-4 justify-center gap-8 md:gap-2 text-center">
         {
           filetes.map((filete) => (
             <div class="justify-between flex flex-col text-sm leading-none  items-center ">
-              <p class="font-bold flex  ">{filete.name}</p>
+              <p class="font-boldes flex  ">{filete.name}</p>
               <p class="text-xs opacity-50">{filete.size}</p>
               <p class="font-light ">{filete.price}</p>
             </div>
