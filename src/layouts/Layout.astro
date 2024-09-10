@@ -45,7 +45,6 @@ const { title, description } = Astro.props;
   @font-face {
     font-family: "boldes";
     src: url("/fuentes/Magical\ Night.woff2");
-    
   }
   html {
     font-family: "Lora Variable";
@@ -60,14 +59,23 @@ const { title, description } = Astro.props;
   body {
     background-color: var(--primary);
     height: 100dvh;
-   
   }
   video {
     mask-image: linear-gradient(grey 90%, transparent 100%);
+
   }
   #carrusel {
-    mask-image: linear-gradient(black 92%, transparent 100%);
+      mask-image: linear-gradient(to bottom, transparent 1%, black 10%);
+    }
+  @media (min-width: 768px) {
+    #carrusel {
+      mask-image: linear-gradient(to bottom, transparent 1%, black 10%);
+    }
+    #nosotros {
+      mask-image: linear-gradient(black 98%, transparent 100%);
+    }
   }
+
   /* #Logo2 {
     transition: opacity 0.5s ease;
   } */
@@ -179,7 +187,6 @@ const { title, description } = Astro.props;
     transform: translate(0, -50%);
     font-family: "Lora Variable", "Open Sans", "Helvetica Neue", sans-serif;
     display: none;
-   
   }
 
   .slider .item:nth-child(2) .content {
@@ -215,19 +222,19 @@ const { title, description } = Astro.props;
 
   .content .description {
     margin-top: 10px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
     font-size: 20px;
     opacity: 100;
-  
+
     animation: animate 1s ease-in-out 0.3s 1 forwards;
     color: #c6c6c6;
   }
   .content .subtitle {
     margin-top: 10px;
-    margin-bottom: 20px;;
+    margin-bottom: 20px;
     font-size: 20px;
     flex-direction: column;
-  
+
     animation: animate 1s ease-in-out 0.3s 1 forwards;
     color: #c6c6c6;
   }
@@ -503,7 +510,7 @@ const { title, description } = Astro.props;
     background: radial-gradient(rgb(80, 82, 78), rgb(0, 0, 0));
   }
   #pulser {
-    animation: pulser2 2s ease-in  infinite;
+    animation: pulser2 2s ease-in infinite;
   }
 
   #pulser::after {
@@ -520,32 +527,26 @@ const { title, description } = Astro.props;
     animation: pulser 2s ease-in infinite;
     z-index: -1;
   }
-  
 
   @keyframes pulser {
     0% {
       opacity: 0;
-  
     }
 
     50% {
-      
       opacity: 0.2;
       scale: 11;
-     
     }
     100% {
       opacity: 0;
-      
     }
   }
   @keyframes pulser2 {
     0% {
       scale: 1;
-
     }
-    50%{
-      scale: .5;
+    50% {
+      scale: 0.5;
     }
   }
 </style>
