@@ -2,25 +2,19 @@
 import HomeReserva from "../components/HomeReserva.astro";
 import LandingHeader from "../components/LandingHeader.astro";
 import Carta from "../components/Carta.astro";
-
 import Eventos from "../components/Eventos.astro";
-
 import Layout from "../layouts/Layout.astro";
-
 import SmokeEffect from "@/components/SmokeEffect.astro";
 import Nosotros from "@/components/Nosotros.astro";
 ---
 
 <Layout title=" La Matera - El sabor de Argentina en casa " description="landing page de la matera, un reboot de la pagina original con la idea de transmitir  nuestros productos y servicios con una facil accesibilidad " >
   <LandingHeader />
-  
-  <SmokeEffect />
   <main>
-    
+    <SmokeEffect />
     <HomeReserva />
     <Carta />
     <Eventos />
     <Nosotros />
-    
   </main>
 </Layout>

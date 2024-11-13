@@ -1,4 +1,4 @@
-<div id="smoke-bkg" class="fixed top-0  h-full w-full -z-10 opacity-45 "></div>
+<div id="smoke-bkg" class="fixed  top-0  h-full w-full -z-10 opacity-25 "></div>
 
 <script>
   //importamos la biobleoteca de Three.js
@@ -56,7 +56,7 @@
 
     // 3. Malla
     //creeamos las particulas y las posicionamos aleatoriamente
-    const NUM_OF_PARTICLES = 300;
+    const NUM_OF_PARTICLES = 100;
 
     for (let p = 0; p < NUM_OF_PARTICLES; p++) {
       const particle = new THREE.Mesh(smokeGeo, smikeMaterial);
@@ -68,7 +68,7 @@
         Math.random() * 1100 - 90
       );
 
-      particle.rotation.z = Math.random() * 360;
+      particle.rotation.z = Math.random() * 60;
       scene.add(particle);
       smokeParticles.push(particle);
       function animateSmoke(){
@@ -76,7 +76,6 @@
           particle.rotation.z += 0.008;
            particle.position.y += 0.001;
            particle.position.x += 0.001;
-
       } 
       animateSmoke();
     }
@@ -85,18 +84,18 @@
   });
 
   // RENDERIZAR LA CAMARA CUANDO SE CAMBIEN LOS PARAMAETRO DE LA LA PANTALLA 
-//   function reize() {
-//   const newWidth = window.innerWidth;
-//   const newHeight = window.innerHeight;
+   function reize() {
+   const newWidth = window.innerWidth;
+   const newHeight = window.innerHeight;
 
-//   if (newWidth !== w || newHeight !== h) {
-//     w = newWidth;
-//     h = newHeight;
-//     camara.aspect = w / h;
-//     camara.updateProjectionMatrix();
-//     renderer.setSize(w, h);
-//   }
-// }
+   if (newWidth !== w || newHeight !== h) {
+     w = newWidth;
+     h = newHeight;
+     camara.aspect = w / h;
+     camara.updateProjectionMatrix();
+     renderer.setSize(w, h);
+   }
+ }
 
   // animamos la ecena
   function animate() {
@@ -110,4 +109,13 @@
 
   animate();
     // se va a disparar frecuentemente cuando se cambie el tamaño de la ventana
+    const humo =document.getElementById("smoke-bkg")
+    if (window.innerWidth < 768) {
+      humo.classList.remove("fixed");
+      humo.classList.add("hidden");
+
+    } else  {
+      humo.classList.remove("hidden");
+      humo.classList.add("fixed");
+    }
 </script>
