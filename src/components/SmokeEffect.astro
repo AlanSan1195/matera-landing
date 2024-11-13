@@ -1,4 +1,4 @@
-<div id="smoke-bkg" class="fixed top-0  h-full w-full -z-10 opacity-25 "></div>
+<div id="smoke-bkg" class="fixed top-0  h-full w-full -z-10 opacity-45 "></div>
 
 <script>
   //importamos la biobleoteca de Three.js
@@ -56,7 +56,7 @@
 
     // 3. Malla
     //creeamos las particulas y las posicionamos aleatoriamente
-    const NUM_OF_PARTICLES = 100;
+    const NUM_OF_PARTICLES = 300;
 
     for (let p = 0; p < NUM_OF_PARTICLES; p++) {
       const particle = new THREE.Mesh(smokeGeo, smikeMaterial);
@@ -68,7 +68,7 @@
         Math.random() * 1100 - 90
       );
 
-      particle.rotation.z = Math.random() * 260;
+      particle.rotation.z = Math.random() * 360;
       scene.add(particle);
       smokeParticles.push(particle);
       function animateSmoke(){
@@ -85,18 +85,18 @@
   });
 
   // RENDERIZAR LA CAMARA CUANDO SE CAMBIEN LOS PARAMAETRO DE LA LA PANTALLA 
-  function reize() {
-  const newWidth = window.innerWidth;
-  const newHeight = window.innerHeight;
+//   function reize() {
+//   const newWidth = window.innerWidth;
+//   const newHeight = window.innerHeight;
 
-  if (newWidth !== w || newHeight !== h) {
-    w = newWidth;
-    h = newHeight;
-    camara.aspect = w / h;
-    camara.updateProjectionMatrix();
-    renderer.setSize(w, h);
-  }
-}
+//   if (newWidth !== w || newHeight !== h) {
+//     w = newWidth;
+//     h = newHeight;
+//     camara.aspect = w / h;
+//     camara.updateProjectionMatrix();
+//     renderer.setSize(w, h);
+//   }
+// }
 
   // animamos la ecena
   function animate() {
@@ -109,5 +109,5 @@
   //llamamos a la funcion animate para que se ejecute en cada frame
 
   animate();
-  window.addEventListener("resize", reize);  // se va a disparar frecuentemente cuando se cambie el tamaño de la ventana
+    // se va a disparar frecuentemente cuando se cambie el tamaño de la ventana
 </script>
