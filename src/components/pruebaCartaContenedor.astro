@@ -700,7 +700,7 @@ const postres = [
       </ul>
       <div
         id="divCampo"
-        class="grid grid-cols-4 justify-center text-center text-white gap-1 m-2"
+        class="grid grid-cols-4 justify-center text-center text-white gap-x-1 m-2"
       >
         {
           campoData.map((item, index) => (
@@ -710,7 +710,7 @@ const postres = [
             >
               <img
                 id={item.name}
-                class=" size-40 hover:cursor-pointer  hover:scale-75   "
+                class=" size-40 hover:cursor-pointer  "
                 src={item.src}
                 alt="cortes"
               />
@@ -983,7 +983,7 @@ const postres = [
       </ul>
       <div
         id="divCampoMD"
-        class="grid grid-cols-9 justify-center text-center text-white mb-10"
+        class="grid grid-cols-9 gap-x-4 justify-center text-center text-white mb-10"
       >
         {
           campoData.map((item, index) => (
@@ -993,7 +993,7 @@ const postres = [
             >
               <img
                 id={item.src}
-                class=" size-96 mx-auto hover:cursor-pointer  hover:scale-75   "
+                class=" size-96 mx-auto hover:cursor-pointer  "
                 src={item.src}
                 alt="cortes"
               />
