@@ -28,7 +28,7 @@ const { title, description } = Astro.props;
     />
     <meta
       name="description"
-      content="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara. Ven y disfruta de la experiencia gastronómica de Argentina y conoce una de las cavas más reconocidas."
+      content={description}
     />
     <meta name="google-site-verification" content="zuRgqcQ25AX8z3a-qvX5CG-Gfy_eYJSoUt_T7LDRQG4" />
     <meta name="keywords" content="comida,vino,restaurante,argenita,cava,servicio,chef,eventos,argentino,cortes,bife,lomo,vacio,entraña,asado,chorizo,lomito, rib eye, parrilla.">
@@ -43,9 +43,6 @@ const { title, description } = Astro.props;
     <meta name="twitter:title" content="La Matera">
     <meta name="twitter:description" content="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara. Ven y disfruta de la experiencia gastronómica de Argentina y conoce una de las cavas más reconocidas.">
     <meta name="twitter:image"content="https://wwww.lamatera.online/imagenes/preview.webp">
-   
-    
-    <meta name="generator" content={Astro.generator} />
   </head>
   <body>
     <LightsBackground />
