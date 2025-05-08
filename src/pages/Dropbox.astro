@@ -1,5 +1,6 @@
 ---
-
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
+import Layout from "@/layouts/Layout.astro";
 
 const platillos = [
   {
@@ -10,7 +11,7 @@ const platillos = [
     gramaje: "220 grs.",
   },
   {
-    imagen: "",
+    imagen: "dropbox/entradas/chistorraDropbox.webp",
     titulo: "Chorizo argentino ( Argentinan sausage style )",
     descripcion:
       "Embutido clasico de las parrilladas argentinas. Elaborado con carne de cerdo y de res, conocido como chorizo criollo para los argentinos. Lo elaboramos en casa y contiene chile quebrado, oregano y ajo.",
@@ -18,26 +19,45 @@ const platillos = [
   },
 ];
 ---
+<Layout title="Dropbox" description="Todas las recetas completas y Speach recomendados para los platillos de la matera">
 
-<section class="flex h-screen w-full  flex-col bg-orange-100 text-black ">
-  <img class=" h-96 my-24" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
-  {
-    platillos.map(({ imagen, titulo, descripcion, gramaje }) => (
-      <article class=" m-8 flex  gap-12  ">
-        <div class=" ">
-          <img
-            src={imagen}
-            alt=" "
-            class="  rounded-full m-8 size-52 object-cover shadow-2xl"
-          />
-        </div>
 
-        <div class="  bg-slate-300/60 shadow-xl flex w-[800px] flex-col justify-center p-4 ">
-          <h2 class=" font-bold text-3xl mb-4">{titulo}</h2>
-          <p class="  text-2xl mb-4">{descripcion}</p>
-          <p class=" font-semibold text-xl flex justify-end">{gramaje}</p>
-        </div>
-      </article>
-    ))
-  }
-</section>
+  <header class="flex fixed justify-between items-center bg-orange-100 shadow-md w-full h-auto  ">
+    <div class=" my-2 ">
+      <img class=" size-16" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
+    </div>
+  
+      <SignedIn>
+        
+          <UserButton />
+  
+      </SignedIn>
+  </header>
+  <section class=" flex  pt-24 pb-24  gap-y-12  w-full h-full  flex-col bg-orange-100 text-black ">
+    {
+      platillos.map(({ imagen, titulo, descripcion, gramaje }) => (
+        <article class=" mx-12 flex justify-center items-center bg-slate-200 p-1 gap-x-4 m  ">
+          <div class=" h-auto w-auto">
+            <img
+              src={imagen}
+              alt=" "
+              class=" w-64 h-24 rounded-full object-cover "
+            />
+          </div>
+  
+          <div class="  bg-slate-300/60 shadow-xl flex w-[800px] flex-col justify-center p-4 ">
+            <h2 class=" font-bold text-3xl mb-4">{titulo}</h2>
+            <p class="  text-2xl mb-4">{descripcion}</p>
+            <p class=" font-semibold text-xl flex justify-end">{gramaje}</p>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+  
+  
+  
+</Layout>
+<footer class="flex justify-center items-center h-20 w-full  bg-orange-100 text-black ">Hecho con ❤️ para el equipo</footer>
+
+
