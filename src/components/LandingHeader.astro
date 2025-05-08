@@ -3,7 +3,9 @@ import Logo from "./Logo.astro";
 import Book from "./Book.astro";
 import User from "./icons/User.astro";
 import Logo2 from "./Logo2.astro";
----
+import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/components";
+
+--- 
 
 <header
   id="landing-header"
@@ -42,7 +44,7 @@ import Logo2 from "./Logo2.astro";
       class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
     >
       <li class="hidden md:block font-boldes text-xl hover:text-red-800">
-        <a href="#">Tienda</a>
+        <a href="#">Usuario</a>
       </li>
       <li
         id="user-border"
@@ -84,22 +86,23 @@ import Logo2 from "./Logo2.astro";
           >Eventos<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
-      <li>
-        <a class="hover:bg-slate-300 hover:text-red-500" href=""
-          >Tienda<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
-      </li>
+     
     </ul>
-    <!-- <a
-      class="mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 font-medium w-20 rounded-full mx-auto"
-      target="_blank"
-      rel=" noopener noreferrer"
-      href="/Dropbox"
-    >
-      <img class="font-bold text-lg" />
-      <Book class="size-8 text-black" />
-    </a>
-    <p class="flex justify-center mx-auto text-black mt-1 text-lg">Usuario</p> -->
+
+    <!-- boton de usuario  -->
+
+
+      <a
+       class="mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 font-medium w-20 rounded-full mx-auto"
+       target="_blank"
+       rel=" noopener noreferrer"
+       href="/Dropbox"
+     >
+       <img class="font-bold text-lg" />
+       <Book class="size-8 text-black" />
+     </a>
+     <p class="flex justify-center mx-auto text-black mt-1 text-lg">Usuario</p> 
+
   </nav>
 
   <div
