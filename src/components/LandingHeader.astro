@@ -75,7 +75,6 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/comp
           >Carta<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
-
       <li>
         <a class="hover:bg-slate-300 hover:text-red-500" href="#nosotros"
           >Nosotros<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
@@ -86,23 +85,27 @@ import { SignedIn, SignedOut, UserButton, SignInButton } from "@clerk/astro/comp
           >Eventos<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
         >
       </li>
-     
     </ul>
 
     <!-- boton de usuario  -->
 
+    <SignedOut>
+      <SignInButton
+       class="mt-12 p-2  bg-slate-200 backdrop-blur-sm flex justify-center items-center border-2  border-slate-300 shadow-md hover:cursor-pointer transition hover:scale-110 font-medium  rounded-xl mx-auto"
+       mode="modal"
 
-      <a
-       class="mt-12 p-2 bg-white/5 bg-slate-300 backdrop-blur-sm flex justify-center border-2 border-slate-300 shadow-2xl hover:cursor-pointer transition hover:scale-110 font-medium w-20 rounded-full mx-auto"
-       target="_blank"
-       rel=" noopener noreferrer"
-       href="/Dropbox"
      >
        <img class="font-bold text-lg" />
-       <Book class="size-8 text-black" />
-     </a>
-     <p class="flex justify-center mx-auto text-black mt-1 text-lg">Usuario</p> 
-
+       <p class="flex justify-center mx-auto text-black  text-xs">Iniciar sesión</p> 
+     </SignInButton>
+    </SignedOut>
+    <SignedIn>
+      <div class="flex  items-center">
+        <a href="/Dropbox"  rel="noopener noreferrer" class="flex flex-col justify-center items-center mx-auto k mt-1 text-lg text-[#09f] font-semibold hover:scale-110">DropBox 
+        <Book class="size-8 text-black stroke-[#09f]" />
+      </a>
+      </div>
+    </SignedIn>
   </nav>
 
   <div
