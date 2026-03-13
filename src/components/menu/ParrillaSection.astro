@@ -1,0 +1,212 @@
+---
+import CutCard from "@/components/CutCard.astro";
+import {
+  campoData,
+  campoMapaData,
+  marData,
+  granjaData,
+  filetes,
+  vacios,
+  entranas,
+  asados,
+  bifes,
+} from "@/data/menuData";
+import { useTranslations, getLangFromUrl, type Lang } from "@/i18n/utils";
+
+export interface Props {
+  lang?: Lang;
+}
+
+const { lang: langProp } = Astro.props;
+const lang: Lang = langProp ?? (getLangFromUrl(Astro.url) as Lang);
+const t = useTranslations(lang);
+const tc = t.carta;
+
+// Helper: nombre traducido de un plato de parrilla
+function pNombre(nombre: string): string | undefined {
+  const plato = tc.platos[nombre as keyof typeof tc.platos];
+  if (!plato) return undefined;
+  const n = (plato as { nombre: string }).nombre;
+  return n && lang !== "es" ? n : undefined;
+}
+---
+
+<div id="divParrilla" class="w-full justify-center text-white mt-4 mb-8">
+  <!-- Sub-nav: Granja / Campo / Mar -->
+  <ul class="flex justify-center gap-6 mb-4">
+    <li>
+      <button id="botonGranja" class="hover:cursor-pointer text-white">
+        <img
+          class="size-20 p-2 mx-auto"
+          src="/imagenes/carta/parrilla/cerdo.webp"
+          alt="Granja"
+        />
+        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.granja}</h2>
+      </button>
+    </li>
+    <li>
+      <button id="botonCampo" class="hover:cursor-pointer text-white">
+        <img
+          class="size-20 p-2 mx-auto"
+          src="/imagenes/carta/parrilla/vaca.webp"
+          alt="Campo"
+        />
+        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.campo}</h2>
+      </button>
+    </li>
+    <li>
+      <button id="botonMar" class="hover:cursor-pointer text-white">
+        <img
+          class="size-20 p-2 mx-auto"
+          src="/imagenes/carta/parrilla/camaron.webp"
+          alt="Mar"
+        />
+        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.mar}</h2>
+      </button>
+    </li>
+  </ul>
+
+  <!-- Campo: mapa de cortes -->
+  <div
+    id="divCampo"
+    class="hidden grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 m-4 text-center"
+  >
+    {
+      campoMapaData.map((item, index) => (
+        <div
+          id={`divCortes-${index}`}
+          class="flex flex-col justify-center items-center"
+        >
+          <img
+            id={item.src}
+            class="size-32 md:size-48 hover:cursor-pointer"
+            src={item.src}
+            alt={item.name}
+          />
+          <p class="text-sm font-boldes">{item.name}</p>
+          {pNombre(item.name) && (
+            <p class="text-[10px] text-white/45 italic">{pNombre(item.name)}</p>
+          )}
+          <p class="text-[10px]">{item.description}</p>
+        </div>
+      ))
+    }
+    <div
+      class="col-span-2 sm:col-span-3 md:col-span-6 bg-white/15 border-2 border-red-600 rounded-xl m-2"
+    >
+      <p class="text-sm m-3 p-2">
+        {tc.campoInfo}
+      </p>
+    </div>
+  </div>
+
+  <!-- CutCards de campo -->
+  <CutCard
+    id="divFiletes"
+    titulo="Bifes de lomo"
+    info={campoData[0]}
+    items={filetes}
+    cols={2}
+  />
+  <CutCard
+    id="divVacios"
+    titulo="Vacios"
+    info={campoData[1]}
+    items={vacios}
+    cols={3}
+  />
+  <CutCard
+    id="divEntrañas"
+    titulo="Entrañas"
+    info={campoData[2]}
+    items={entranas}
+    cols={2}
+  />
+  <CutCard
+    id="divAsados"
+    titulo="Asados de tira"
+    info={campoData[3]}
+    items={asados}
+    cols={2}
+  />
+  <CutCard
+    id="divRibEye"
+    titulo="Bifes de chorizo"
+    info={campoData[4]}
+    items={bifes}
+    cols={2}
+    esBife={true}
+  />
+
+  <!-- Mar -->
+  <div
+    id="divMar"
+    class="hidden grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 justify-center text-center text-white rounded-xl p-4 m-2"
+  >
+    {
+      marData.map((item) => (
+        <div class="flex justify-center flex-col relative mx-auto">
+          <img
+            class="h-32 w-32 object-cover mx-auto"
+            src={item.src}
+            alt={item.name}
+          />
+          <p class="mt-2 font-boldes text-center text-pretty text-sm">
+            {item.name}
+          </p>
+          {pNombre(item.name) && (
+            <p class="mt-0.5 text-[10px] text-white/40 italic text-center">{pNombre(item.name)}</p>
+          )}
+          <p class="mt-1 font-light text-center text-pretty text-xs">
+            {item.gramaje}
+          </p>
+          {item.boton && (
+            <div class="absolute top-[75px] left-[100px]">
+              <a
+                id="pulser-calamar"
+                href="/pageCalamar"
+                class="bg-white h-3 w-3 rounded-full absolute inset-0"
+              />
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
+
+  <!-- Granja -->
+  <div
+    id="divGranja"
+    class="hidden grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 justify-center text-center text-white rounded-xl p-4 m-2"
+  >
+    {
+      granjaData.map((item) => (
+        <div class="flex justify-center flex-col py-3 px-2 relative m-1">
+          <img
+            class="h-32 w-32 object-cover mx-auto"
+            src={item.src}
+            alt={item.name}
+          />
+          <p class="mt-2 font-boldes text-sm text-center text-pretty">
+            {item.name}
+          </p>
+          {pNombre(item.name) && (
+            <p class="mt-0.5 text-[10px] text-white/40 italic text-center">{pNombre(item.name)}</p>
+          )}
+          <p class="mt-1 font-light text-center text-pretty text-xs">
+            {item.gramaje}
+          </p>
+          {item.boton && (
+            <div class="absolute left-24 top-28">
+              <a
+                id="pulser-matambrito"
+                href="/pageMatambrito"
+                class="bg-white h-3 w-3 rounded-full absolute inset-0"
+              />
+            </div>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</div>

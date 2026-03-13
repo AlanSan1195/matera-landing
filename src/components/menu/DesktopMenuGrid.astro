@@ -1,0 +1,28 @@
+---
+import CardsComponent from "@/components/CardsComponent.astro";
+import type { MenuItem } from "@/data/menuData";
+
+export interface Props {
+  id: string;
+  items: MenuItem[];
+  cols?: 3 | 4;
+  extraClass?: string;
+}
+
+const { id, items, cols = 4, extraClass = "" } = Astro.props;
+
+const baseClass = `w-full gap-y-16 md:grid md:grid-cols-${cols} p-7 mb-24 text-white/85`;
+const className = extraClass ? `${baseClass} ${extraClass}` : baseClass;
+---
+
+<div id={id} class={className}>
+  {
+    items.map((item) => (
+      <CardsComponent
+        src={item.src}
+        name={item.name}
+        description={item.description}
+      />
+    ))
+  }
+</div>

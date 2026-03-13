@@ -70,6 +70,40 @@ export const es = {
     derechos: "© 2024 La Matera Todos los derechos reservados",
   },
 
+  // Menú / Carta
+  carta: {
+    heading: "Menú",
+    subheading: "Apetito por lo que hacemos",
+    tabs: {
+      empanadas: "Empanadas",
+      entradas: "Entradas",
+      ensaladas: "Ensaladas",
+      pizzas: "Pizzas",
+      cocina: "Cocina",
+      postres: "Postres",
+      vinos: "Vinos",
+      parrilla: "Parrilla",
+    },
+    parrillaTabs: {
+      granja: "Granja",
+      campo: "Campo",
+      mar: "Mar",
+    },
+    campoInfo:
+      "Los cortes que aquí servimos son de la más alta calidad, por lo tanto, no requieren ser sometidos a ningún proceso de marinado o suavizado que altere su textura y/o sabor natural.",
+    // Traducciones de platos — en español no se muestran (son el original)
+    platos: {
+      // Empanadas
+      "Carne": { nombre: "", descripcion: "" },
+      "Carne picante": { nombre: "", descripcion: "" },
+      "Espinaca": { nombre: "", descripcion: "" },
+      "Queso y cebolla": { nombre: "", descripcion: "" },
+      "Humita": { nombre: "", descripcion: "" },
+      "Roquefort": { nombre: "", descripcion: "" },
+      "Siciliana": { nombre: "", descripcion: "" },
+    },
+  },
+
   // Selector de idioma
   lang: {
     label: "Idioma",

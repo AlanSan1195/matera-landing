@@ -1,5 +1,8 @@
 ---
 import PruebaCartaContenedor from "./pruebaCartaContenedor.astro";
+import { getLangFromUrl, type Lang } from "@/i18n/utils";
+
+const lang = getLangFromUrl(Astro.url) as Lang;
 ---
 
-<PruebaCartaContenedor id="carta" />
+<PruebaCartaContenedor id="carta" lang={lang} />

@@ -22,12 +22,19 @@ export const langNames: Record<Lang, string> = {
   ja: "日本語",
 };
 
-const translations = { es, en, ko, zh, ja };
+const translations = { es, en, ko, zh, ja } as const;
 
-export type Translations = typeof es;
+// Tipo estructural basado en la forma de `es` pero con strings en lugar de literales
+export type Translations = {
+  [K in keyof typeof es]: (typeof es)[K] extends string
+    ? string
+    : (typeof es)[K] extends Record<string, unknown>
+    ? { [P in keyof (typeof es)[K]]: unknown }
+    : unknown;
+};
 
-export function useTranslations(lang: Lang): Translations {
-  return translations[lang] ?? translations.es;
+export function useTranslations(lang: Lang) {
+  return (translations[lang] ?? translations.es) as typeof es;
 }
 
 export function getLangFromUrl(url: URL): Lang {

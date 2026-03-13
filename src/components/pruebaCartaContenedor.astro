@@ -1,6 +1,6 @@
----
-import CutCard from "./CutCard.astro";
-import CardsComponent from "./CardsComponent.astro";
+  ---
+import ParrillaSection from "@/components/menu/ParrillaSection.astro";
+import CardsComponent from "@/components/CardsComponent.astro";
 import {
   empanadas,
   pizzas,
@@ -10,1095 +10,258 @@ import {
   postres,
   campoData,
   campoMapaData,
-  marData,
-  granjaData,
-  filetes,
-  vacios,
-  entranas,
-  asados,
-  bifes,
 } from "@/data/menuData";
+import { useTranslations, getLangFromUrl, type Lang } from "@/i18n/utils";
 
-const { id } = Astro.props;
+export interface Props {
+  id: string;
+  lang?: Lang;
+}
+
+const { id, lang: langProp } = Astro.props;
+const lang: Lang = langProp ?? (getLangFromUrl(Astro.url) as Lang);
+const t = useTranslations(lang);
+const tc = t.carta;
+
+// Helper: devuelve la traducción del nombre de un plato (vacío en español)
+function platNombre(nombre: string): string | undefined {
+  const plato = tc.platos[nombre as keyof typeof tc.platos];
+  if (!plato) return undefined;
+  const n = (plato as { nombre: string }).nombre;
+  return n && lang !== "es" ? n : undefined;
+}
+
+// Helper: devuelve la traducción de la descripción (vacío en español)
+function platDescripcion(nombre: string): string | undefined {
+  const plato = tc.platos[nombre as keyof typeof tc.platos];
+  if (!plato) return undefined;
+  const d = (plato as { descripcion: string }).descripcion;
+  return d && lang !== "es" ? d : undefined;
+}
+
+const categories = [
+  { id: "Empanadas", name: tc.tabs.empanadas, items: empanadas },
+  { id: "Entradas",  name: tc.tabs.entradas,  items: entradas  },
+  { id: "Ensaladas", name: tc.tabs.ensaladas, items: ensaladas },
+  { id: "Pizzas",    name: tc.tabs.pizzas,    items: pizzas    },
+  { id: "Cocina",    name: tc.tabs.cocina,    items: cocina    },
+  { id: "Postres",   name: tc.tabs.postres,   items: postres   },
+];
 ---
 
-<section
-  class="landing-section h-full w-screen overflow-hidden"
-  id={id}
->
-  <!-- //navegacion sm -->
-  <nav id="navegacion-cartaSM" class="md:hidden max-h-full">
-    <p
-      class="text-red-700 text-4xl font-semibold flex justify-center items-center mt-8"
-    >
-      Menú
-    </p>
-    <a
-      id="botonempanadas"
-      class="hover:cursor-pointer mt-6 font-boldes text-4xl text-white flex justify-center"
-      >Empanadas</a
-    >
-    <div
-      id="divEmpanadas"
-      class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl"
-    >
-      {
-        empanadas.map((empanada) => (
-          <div class=" flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32  text-white">
-            <img
-              class="image-drop-shadow-empanadas relative bottom-5 "
-              src={empanada.src}
-              alt="empanada"
-            />
-            <p class="font-boldes text-md ml-2 text-pretty opacity-85">
-              {empanada.name}
-            </p>
-            {/* <p class="font-light text-xs ml-2  ">{empanada.description}</p> */}
-            {/* <p class="ml-2 mb-1 ">{empanada.price}</p> */}
-          </div>
-        ))
-      }
-      {}
-    </div>
-    <a
-      id="botonEntradas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
-      >Entradas</a
-    >
-    <div id="divEntradas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
-      {
-        entradas.map((entrada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white  ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl"
-              src={entrada.src}
-              alt="empanada"
-            />
-            <p class="font-boldes text-sm text-start mt-3 ml-2">
-              {entrada.name}
-            </p>
-            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
-              {entrada.description}
-            </p> */}
-            {/* <p class="ml-2">{entrada.price}</p> */}
-          </div>
-        ))
-      }
-    </div>
-    <a
-      id="botonEnsaladas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
-      >Ensaladas</a
-    >
-    <div id="divEnsaldas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
-      {
-        ensaladas.map((ensalada) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white   ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={ensalada.src}
-              alt="empanada"
-            />
-            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
-              {ensalada.name}
-            </p>
-            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75 ">
-              {ensalada.description}
-            </p> */}
-            {/* <p class="ml-2">{ensalada.price}</p> */}
-          </div>
-        ))
-      }
-    </div>
-    <a
-      id="botonPizzas"
-      class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
-      >Pizzas</a
-    >
-    <div id="divPizzas" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
-      {
-        pizzas.map((pizza) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white   ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={pizza.src}
-              alt="empanada"
-            />
-            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
-              {pizza.name}
-            </p>
-            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
-              {pizza.description}
-            </p> */}
-            {/* <p class="ml-2">{pizza.price}</p> */}
-          </div>
-        ))
-      }
-    </div>
-    <a
-      id="botonCocina"
-      class="hover:cursor-pointer flex justify-center mt-6 text-white font-boldes text-4xl"
-      >Cocina</a
-    >
-    <div id="divCocina" class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
-      {
-        cocina.map((platillo) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white   ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={platillo.src}
-              alt="empanada"
-            />
-            <p class=" flex font-boldes text-sm text-start mt-3 ml-2  ">
-              {platillo.name}
-            </p>
-            {/* <p class="font-light text-xs ml-1 mr-1 text-white/75">
-              {platillo.description}
-            </p> */}
-            {/* <p class="ml-2">{platillo.price}</p> */}
-          </div>
-        ))
-      }
-    </div>
-    <a
-      id="botonpostres"
-      class="hover:cursor-pointer flex justify-center text-white font-boldes text-4xl mt-6"
-      >Postres</a
-    >
-    <div id="divPostres" class="flex overflow-x-auto ml-16 rounded-s-3xl">
-      {
-        postres.map((postre) => (
-          <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white relative    ">
-            <img
-              class="image-drop-shadow relative left-4 rounded-2xl "
-              src={postre.src}
-              alt="empanada"
-            />
-            <p class=" flex font-boldes text-sm text-start mt-2 ml-2  ">
-              {postre.name}
-            </p>
-            <p class="font-light text-xs ml-2 text-white/75 text-wrap">
-              {postre.description}
-            </p>
-            {/* <p class="ml-2">{postre.price}</p> */}
-          </div>
-        ))
-      }
-    </div>
-    <a
-    href="https://cavamatera.online"
-    aria-label="cavamatera"
-    target="_blank"
-    rel="noopener noreferrer"
-    class="hover:cursor-pointer flex justify-center text-white mt-7 font-boldes text-4xl"
-  >
-   Vinos
-  </a>
-    <a
-      id="botonparrilla"
-      class="hover:cursor-pointer flex justify-center text-white mt-8 font-boldes text-4xl"
-      >Parrilla</a
-    >
+<section class="landing-section h-full w-screen overflow-hidden" id={id}>
+  <nav id="navegacion-carta" class="flex flex-col items-center">
 
-    <!-- modifique la iteracion con map a manual  por manipular los botones con id unicos -->
-
-    <div id="divParrilla" class="w-full justify-center text-white mb-24">
-      <ul class="flex justify-center">
-        <li class="mb-6">
-          <button id="botonGranja" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center"
-              src="/imagenes/carta/parrilla/cerdo.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-boldes text-xl">Granja</h2>
-          </button>
-          <button id="botonCampo" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center"
-              src="/imagenes/carta/parrilla/vaca.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-boldes text-xl textred">
-              Campo
-            </h2>
-          </button>
-          <button id="botonMar" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center r"
-              src="/imagenes/carta/parrilla/camaron.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-boldes text-xl">Mar</h2>
-          </button>
-        </li>
-      </ul>
-      <div
-        id="divCampo"
-        class="grid grid-cols-4 justify-center text-center text-white gap-x-1 m-2"
-      >
-        {
-          campoMapaData.map((item, index) => (
-            <div
-              id={`divCortes-sm-${index}`}
-              class="flex flex-col justify-center items-center col-span-2 mx-auto    "
-            >
-              <img
-                id={item.name}
-                class=" size-40 hover:cursor-pointer  "
-                src={item.src}
-                alt="cortes"
-              />
-
-              <p class=" text-base font-boldes">{item.name}</p>
-              <p class=" text-[11px]">{item.description}</p>
-            </div>
-          ))
-        }
-        <div
-          class="justify-center col-span-4 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-2 text-white"
-        >
-          <p class="text-xs m-2">
-            Los cortes que aquí servimos son de la más alta calidad, por lo
-            tanto, no requieren ser sometidos a ningún proceso de marinado o
-            suavizado que altere su textura y/o sabor natural.
-          </p>
-        </div>
-      </div>
-      <CutCard id="divFiletesSM" titulo="Bifes de lomo" info={campoData[0]} items={filetes} cols={2} />
-      <CutCard id="divVaciosSM" titulo="Vacios" info={campoData[1]} items={vacios} cols={3} />
-      <CutCard id="divEntrañasSM" titulo="Entrañas" info={campoData[2]} items={entranas} cols={2} />
-      <CutCard id="divAsadosSM" titulo="Asados de tira" info={campoData[3]} items={asados} cols={2} />
-      <CutCard id="divRibEyeSM" titulo="Bifes de chorizo" info={campoData[4]} items={bifes} cols={2} esBife={true} />
-      <div
-        id="divMarsm"
-        class="grid grid-cols-2 justify-center text-center text-white rounded-xl p-4 m-2"
-      >
-        {
-          marData.map((item, index) => (
-            <div class=" flex justify-center flex-col relative  mx-auto ">
-              <img
-                id={item.name}
-                class="h-32 w-32 object-cover  mx-auto"
-                src={item.src}
-                alt="mar"
-              />
-              <p class="mt-2 font-boldes  text-center text-pretty text-sm">
-                {item.name}
-              </p>
-              <p class="mt-1 font-light text-center text-pretty md:text-xs">
-                {item.gramaje}
-              </p>
-              {/* <p class=" mt-1">{item.price}</p> */}
-              {item.boton ? (
-              // este pulser tiene una segunda clase agregada usamos typescrit
-                <div id="" class=" absolute top-[75px] left-[100px]">
-                  {" "}
-                   <a
-                     id="pulser-calamar"
-                     href="/pageCalamar"
-                     class="bg-white h-3 w-3 rounded-full absolute inset-0"
-                   />
-                </div>
-              ) : null}
-            </div>
-          ))
-        }
-      </div>
-      <div
-        id="divGranjasm"
-        class="grid grid-cols-2 justify-center text-center text-white rounded-xl p-4 m-2"
-      >
-        <!-- -z10 index para que el boton pulser en alguno de estos platillos opueda ser clickeado  -->
-        {
-          granjaData.map((item, index) => (
-            <div class=" flex justify-center flex-col py-3 px-2 relative   m-1">
-              <img
-                id={item.name}
-                class=" h-32 w-32 object-cover mx-auto -z-10 "
-                src={item.src}
-                alt="granja"
-              />
-
-              <p class="mt-2 font-boldes text-sm text-center text-pretty md:text-sm">
-                {item.name}
-              </p>
-              <p class="mt-1 font-light text-center text-pretty text-xs">
-                {item.gramaje}
-              </p>
-              {/* <p class=" mt-1">{item.price}</p> */}
-              {item.boton ? (
-              // este pulser tiene una segunda clase agregada usamos typescrit
-                <div id="" class=" absolute left-24 top-28">
-                  {" "}
-                   <a
-                     id="pulser-matambrito"
-                     href="/pageMatambrito"
-                     class="bg-white h-3 w-3 rounded-full absolute inset-0"
-                   />
-                </div>
-              ) : null}
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </nav>
-</section>
-
-<!-- <NavMD /> -->
-
-<section
-  class="landing-section h-full w-screen overflow-hidden"
-  id={id}
->
-  <!-- //navegacion md -->
-  <nav id="navegacion-cartaMD" class="hidden md:flex flex-col items-center">
-    <header class="hidden md:block text-center mt-20 md:mb-12 text-white">
-      <p class="md:text-5xl xl:text-7xl font-boldes">Menú</p>
-      <h3 class="md:text-4xl xl:text-5xl font-boldes opacity-55">
-        Apetito por lo que hacemos
+    <!-- Header -->
+    <header class="text-center mt-12 mb-6 text-white">
+      <p class="text-5xl md:text-7xl font-boldes">{tc.heading}</p>
+      <h3 class="text-3xl md:text-5xl font-boldes opacity-55">
+        {tc.subheading}
       </h3>
     </header>
 
-    <div
-      class="flex justify-center flex-wrap gap-x-6 gap-y-2 p-4 items-center opacity-90"
-    >
-      <a
-        id="botonEmpanadasMD"
-        class="hover:cursor-pointer mt-6 font-bold text-3xl text-white flex"
-        >Empanadas</a
-      >
-      <a
-        id="botonEntradasMD"
-        class="hover:cursor-pointer flex text-white mt-6 font-bold text-3xl"
-        >Entradas</a
-      >
-      <a
-        id="botonEnsaladasMD"
-        class="hover:cursor-pointer flex text-white mt-6 font-bold text-3xl"
-        >Ensaladas</a
-      >
-      <a
-        id="botonPizzasMD"
-        class="hover:cursor-pointer flex text-white mt-6 font-bold text-3xl"
-        >Pizzas</a
-      >
-
-      <a
-        id="botonCocinaMD"
-        class="hover:cursor-pointer flex mt-6 text-white font-bold text-3xl"
-        >Cocina</a
-      >
-      <a
-        id="botonParrillaMD"
-        class="hover:cursor-pointer flex text-white mt-6 font-bold text-3xl"
-        >Parrilla</a
-      >
-      <a
-        id="botonPostresMD"
-        class="hover:cursor-pointer flex text-white mt-6 font-bold text-3xl mt-"
-        >Postres</a
-      >
-    </div>
-
-    <div
-      id="divEmpanadasMD"
-      class="w-full gap-y-16 md:grid md:grid-cols-4 pt-[90px] pb-[170px] text-white content-center justify-center"
-      style=" "
-    >
+    <!-- Tabs de categorías -->
+    <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 px-4 opacity-90">
       {
-        empanadas.map((empanada) => (
-          <CardsComponent
-            src={empanada.src}
-            name={empanada.name}
-            description={empanada.description}
-
-          />
-        ))
-      }
-    </div>
-
-    <div
-      id="divEntradasMD"
-      class="w-full gap-y-16 md:grid md:grid-cols-4 p-7 mb-24 text-white/85"
-    >
-      {
-        entradas.map((entrada) => (
-          <CardsComponent
-            src={entrada.src}
-            name={entrada.name}
-            description={entrada.description}
-            />
-          ))
-        }
-    </div>
-    <!-- price={entrada.price} -->
-
-    <div
-      id="divEnsaladasMD"
-      class="w-full gap-y-12 md:grid md:grid-cols-4 p-7 mb-24 text-white/85"
-    >
-      {
-        ensaladas.map((ensalada) => (
-          <CardsComponent
-            src={ensalada.src}
-            name={ensalada.name}
-            description={ensalada.description}
-
-          />
-        ))
-      }
-    </div>
-
-    <div
-      id="divPizzasMD"
-      class="w-full gap-y-16 md:grid md:grid-cols-3 p-7 mb-24 text-white/85"
-      style=" "
-    >
-      {
-        pizzas.map((pizza) => (
-          <CardsComponent
-            src={pizza.src}
-            name={pizza.name}
-            description={pizza.description}
-
-          />
-        ))
-      }
-    </div>
-
-    <div
-      id="divCocinaMD"
-      class="w-full gap-y-16 md:grid md:grid-cols-4 p-7 mb-24 text-white/85"
-    >
-      {
-        cocina.map((cocina) => (
-          <CardsComponent
-            src={cocina.src}
-            name={cocina.name}
-            description={cocina.description}
-
-          />
-        ))
-      }
-    </div>
-
-    <!-- modifique la iteracion con map a manual  por manipular los botones con id unicos -->
-
-    <div id="divParrillaMD" class="w-full justify-center text-white mt-6">
-      <ul class="flex justify-center">
-        <li class="mb-6">
-          <button id="botonGranjaMD" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center"
-              src="/imagenes/carta/parrilla/cerdo.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-bold text-xl">Granja</h2>
+        categories.map((cat) => (
+          <button
+            id={`btn${cat.id}`}
+            class="menu-tab hover:cursor-pointer font-bold text-2xl md:text-3xl text-white transition-colors duration-200"
+          >
+            {cat.name}
           </button>
-          <button id="botonCampoMD" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center"
-              src="/imagenes/carta/parrilla/vaca.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-bold text-xl">Campo</h2>
-          </button>
-          <button id="botonMarMD" class="hover:cursor-pointe">
-            <img
-              class="size-28 p-2 flex justify-center r"
-              src="/imagenes/carta/parrilla/camaron.webp"
-              alt=" imagen"
-            />
-            <h2 class="flex justify-center font-bold text-xl">Mar</h2>
-          </button>
-        </li>
-      </ul>
-      <div
-        id="divCampoMD"
-        class="grid grid-cols-9 gap-x-4 justify-center text-center text-white mb-10"
+        ))
+      }
+      <a
+        href="https://cavamatera.online"
+        aria-label="cavamatera"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:cursor-pointer font-boldes text-2xl md:text-3xl text-white"
       >
-        {
-          campoMapaData.map((item, index) => (
-            <div
-              id={`divCortes-md-${index}`}
-              class="flex flex-col justify-center  m-2 col-span-3  "
-            >
-              <img
-                id={item.src}
-                class=" size-96 mx-auto hover:cursor-pointer  "
-                src={item.src}
-                alt="cortes"
-              />
+        {tc.tabs.vinos}
+      </a>
+      <button
+        id="btnParrilla"
+        class="menu-tab hover:cursor-pointer font-boldes text-2xl md:text-3xl text-white transition-colors duration-200"
+      >
+        {tc.tabs.parrilla}
+      </button>
+    </div>
 
-              <p class=" text-base font-bold">{item.name}</p>
-              <p class=" text-[10px]">{item.description}</p>
-            </div>
-          ))
-        }
+    <!-- Paneles de categorías -->
+    {
+      categories.map((cat) => (
         <div
-          class="justify-center col-span-9 bg-white bg-opacity-15 border-2 border-red-600 rounded-xl m-4 text-white"
+          id={`div${cat.id}`}
+          class="menu-panel hidden w-full grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-6 mb-16"
         >
-          <p class="text-base m-2 p-4">
-            Los cortes que aquí servimos son de la más alta calidad, por lo
-            tanto, no requieren ser sometidos a ningún proceso de marinado o
-            suavizado que altere su textura y/o sabor natural.
-          </p>
+          {cat.items.map((item) => (
+            <CardsComponent
+              src={item.src}
+              name={item.name}
+              description={item.description}
+              price={item.price}
+              nameTranslation={platNombre(item.name)}
+              descripTranslation={platDescripcion(item.name)}
+            />
+          ))}
         </div>
-      </div>
-      <CutCard id="divFiletesMD" titulo="Bifes de lomo" info={campoData[0]} items={filetes} cols={2} />
-      <CutCard id="divVaciosMD" titulo="Vacios" info={campoData[1]} items={vacios} cols={3} />
-      <CutCard id="divEntrañasMD" titulo="Entrañas" info={campoData[2]} items={entranas} cols={2} />
-      <CutCard id="divAsadosMD" titulo="Asados de tira" info={campoData[3]} items={asados} cols={2} />
-      <CutCard id="divRibEyeMD" titulo="Bifes de chorizo" info={campoData[4]} items={bifes} cols={2} esBife={true} />
-      <div
-        id="divMarMD"
-        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
-      >
-        {
-          marData.map((item, index) => (
-            <div class=" flex justify-center flex-col mx-auto ">
-              <img
-                id={item.name}
-                class="h-32 w-32 object-cover mx-auto"
-                src={item.src}
-                alt="mar"
-              />
-              <p class="mt-2 font-semibold  text-center text-pretty text-sm">
-                {item.name}
-              </p>
-              <p class="mt-1 font-light text-center text-pretty md:text-xs">
-                {item.gramaje}
-              </p>
-              {/* <p class=" mt-1">{item.price}</p> */}
-            </div>
-          ))
-        }
-      </div>
-      <div
-        id="divGranjaMD"
-        class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
-      >
-        {
-          granjaData.map((item, index) => (
-            <div class=" flex justify-center flex-col py-3 px-2 ">
-              <img
-                id={item.name}
-                class=" h-32 w-32 object-cover mx-auto"
-                src={item.src}
-                alt="granja"
-              />
-              <p class="mt-2 font-semibold text-sm text-center text-pretty md:text-sm">
-                {item.name}
-              </p>
-              <p class="mt-1 font-light text-center text-pretty text-xs">
-                {item.gramaje}
-              </p>
-              {/* <p class=" mt-1">{item.price}</p> */}
-              {/* {item.boton ? <Pulser class=" absolute  " /> : null} */}
-            </div>
-          ))
-        }
-      </div>
+      ))
+    }
+
+    <!-- Panel Parrilla -->
+    <div id="divParrillaPanel" class="menu-panel hidden w-full">
+      <ParrillaSection lang={lang} />
     </div>
 
-    <div
-      id="divPostresMD"
-      class="w-full gap-y-16 md:grid md:grid-cols-4 p-7 mb-24 text-white/85"
-    >
-      {
-        postres.map((postre) => (
-          <CardsComponent
-            src={postre.src}
-            name={postre.name}
-            description={postre.description}
-
-          />
-        ))
-      }
-    </div>
   </nav>
 </section>
 
-<!-- //script para mostrar y ocultar divs EN TAMAÑO SM y MD -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Utility shared by both SM and MD nav
-    function swapClass(element, classRemove, classAdd) {
-      element.classList.remove(classRemove);
-      element.classList.add(classAdd);
+<script define:vars={{ campoData, campoMapaData }}>
+  document.addEventListener("DOMContentLoaded", () => {
+    // ── Tabs del menú principal ──
+    const tabIds = [
+      "Empanadas", "Entradas", "Ensaladas", "Pizzas", "Cocina", "Postres", "Parrilla",
+    ];
+
+    const pairs = tabIds
+      .map((name) => ({
+        btn: document.getElementById(`btn${name}`),
+        panel: document.getElementById(name === "Parrilla" ? "divParrillaPanel" : `div${name}`),
+        isGrid: name !== "Parrilla",
+      }))
+      .filter((p) => p.btn && p.panel);
+
+    function hideAll() {
+      pairs.forEach(({ btn, panel }) => {
+        btn.classList.remove("text-red-600");
+        btn.classList.add("text-white");
+        panel.classList.add("hidden");
+        panel.classList.remove("grid", "block");
+      });
     }
 
-    // --- SM nav ---
-    const empanadas = document.getElementById("botonempanadas");
-    const empanadasDiv = document.getElementById("divEmpanadas");
-    const entradas = document.getElementById("botonEntradas");
-    const entradasDiv = document.getElementById("divEntradas");
-    const ensaladas = document.getElementById("botonEnsaladas");
-    const ensaladasDiv = document.getElementById("divEnsaldas");
-    const pizzas = document.getElementById("botonPizzas");
-    const pizzasDiv = document.getElementById("divPizzas");
-    const cocina = document.getElementById("botonCocina");
-    const cocinaDiv = document.getElementById("divCocina");
-    const parrilla = document.getElementById("botonparrilla");
-    const parrillaDiv = document.getElementById("divParrilla");
-    const postres = document.getElementById("botonpostres");
-    const postresDiv = document.getElementById("divPostres");
-
-    const botones = [
-      empanadas,
-      entradas,
-      ensaladas,
-      pizzas,
-      cocina,
-      parrilla,
-      postres,
-    ];
-    const divs = [
-      empanadasDiv,
-      entradasDiv,
-      ensaladasDiv,
-      pizzasDiv,
-      cocinaDiv,
-      parrillaDiv,
-      postresDiv,
-    ];
-
-    function mostrarDiv(botones, divs) {
-      botones.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            const div = divs[index];
-            const divOculto =
-              div.classList.contains("ocultar") ||
-              !div.classList.contains("mostrar");
-
-            botones.forEach((boton) => {
-              if (boton) {
-                swapClass(boton, "text-red-800", "text-white");
-              }
-            });
-            if (divOculto) {
-              swapClass(boton, "text-white", "text-red-800");
-              swapClass(div, "ocultar", "mostrar");
-            } else {
-              swapClass(boton, "text-red-800", "text-white");
-              swapClass(div, "mostrar", "ocultar");
-            }
-          });
+    pairs.forEach(({ btn, panel, isGrid }) => {
+      btn.addEventListener("click", () => {
+        const alreadyOpen = !panel.classList.contains("hidden");
+        hideAll();
+        if (!alreadyOpen) {
+          btn.classList.remove("text-white");
+          btn.classList.add("text-red-600");
+          panel.classList.remove("hidden");
+          panel.classList.add(isGrid ? "grid" : "block");
         }
       });
-
-      divs.forEach((div) => {
-        div.classList.add("ocultar");
-      });
-    }
-
-    mostrarDiv(botones, divs);
-
-    // --- MD nav ---
-    const botonEmpanadaMD = document.getElementById("botonEmpanadasMD");
-    const divEmpanadaMD = document.getElementById("divEmpanadasMD");
-    const botonEntradasMD = document.getElementById("botonEntradasMD");
-    const divEntradasMD = document.getElementById("divEntradasMD");
-    const botonEnsaladasMD = document.getElementById("botonEnsaladasMD");
-    const divEnsaladasMD = document.getElementById("divEnsaladasMD");
-    const botonPizzasMD = document.getElementById("botonPizzasMD");
-    const divPizzasMD = document.getElementById("divPizzasMD");
-    const botonCocinaMD = document.getElementById("botonCocinaMD");
-    const divCocinaMD = document.getElementById("divCocinaMD");
-    const botonParrillaMD = document.getElementById("botonParrillaMD");
-    const divParrillaMD = document.getElementById("divParrillaMD");
-    const botonPostresMD = document.getElementById("botonPostresMD");
-    const divPostresMD = document.getElementById("divPostresMD");
-
-    const botonesMD = [
-      botonEmpanadaMD,
-      botonEntradasMD,
-      botonEnsaladasMD,
-      botonPizzasMD,
-      botonCocinaMD,
-      botonParrillaMD,
-      botonPostresMD,
-    ];
-
-    const divsMD = [
-      divEmpanadaMD,
-      divEntradasMD,
-      divEnsaladasMD,
-      divPizzasMD,
-      divCocinaMD,
-      divParrillaMD,
-      divPostresMD,
-    ];
-
-    function ocultarTodosLosDivs() {
-      divsMD.forEach((div) => {
-        if (div) {
-          div.classList.remove("mostrarLG");
-          div.classList.add("ocultarLG");
-        }
-      });
-    }
-
-    function resetearBotones() {
-      botonesMD.forEach((boton) => {
-        if (boton) {
-          swapClass(boton, "text-red-800", "text-white");
-        }
-      });
-    }
-
-    function mostrarDivMD(botonesMD, divsMD) {
-      botonesMD.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            ocultarTodosLosDivs();
-            resetearBotones();
-
-            const divMD = divsMD[index];
-            const divOcultoMD = divMD.classList.contains("ocultarLG");
-
-            if (divOcultoMD) {
-              swapClass(boton, "text-white", "text-red-800");
-              swapClass(divMD, "ocultarLG", "mostrarLG");
-            } else {
-              swapClass(boton, "text-red-800", "text-white");
-              swapClass(divMD, "mostrarLG", "ocultarLG");
-            }
-          });
-        }
-      });
-    }
-
-    mostrarDivMD(botonesMD, divsMD);
-
-    // Inicialmente mostrar divEntradasMD y ocultar los demás
-    ocultarTodosLosDivs();
-    divEntradasMD?.classList.remove("ocultarLG");
-    divEntradasMD?.classList.add("mostrarLG");
-    botonEntradasMD?.classList.remove("text-white");
-    botonEntradasMD?.classList.add("text-red-800");
-  });
-</script>
-
-<!-- ocultar divscarnes, divCampo, si se muestra algun divMarsm o divGranjasm -->
-<script define:vars={{ campoData }}>
-  document.addEventListener("DOMContentLoaded", function () {
-    // campoData injected via define:vars from menuData
-
-    const botonCampo = document.getElementById("botonCampo");
-    const botonMar = document.getElementById("botonMar");
-    const botonGranja = document.getElementById("botonGranja");
-
-    const divCampo = document.getElementById("divCampo");
-    const divMar = document.getElementById("divMarsm");
-    const divGranja = document.getElementById("divGranjasm");
-
-    const divsCarnes = [
-      document.getElementById("divFiletesSM"),
-      document.getElementById("divVaciosSM"),
-      document.getElementById("divEntrañasSM"),
-      document.getElementById("divAsadosSM"),
-      document.getElementById("divRibEyeSM"),
-    ];
-    divsCarnes.forEach((div) => {
-      div.style.display = "none";
     });
 
-    const botonesCampo = campoData.map((item) =>
-      document.getElementById(item.name)
-    );
-    const botonesCerrar = document.querySelectorAll("#botonCerrar");
-
-    function cambioClase(element, classRemove, classAdd) {
-      element.classList.remove(classRemove);
-      element.classList.add(classAdd);
+    // Open Entradas by default
+    const entradasPair = pairs.find((p) => p.btn?.id === "btnEntradas");
+    if (entradasPair) {
+      entradasPair.btn.classList.remove("text-white");
+      entradasPair.btn.classList.add("text-red-600");
+      entradasPair.panel.classList.remove("hidden");
+      entradasPair.panel.classList.add("grid");
     }
 
-    // ocultamos todos los divs en parrilla
-    function ocultarTodos() {
-      cambioClase(divCampo, "mostrarParrilla", "ocultarParrilla");
-      cambioClase(divMar, "mostrarParrilla", "ocultarParrilla");
-      cambioClase(divGranja, "mostrarParrilla", "ocultarParrilla");
+    // ── Parrilla sub-nav ──
+    const botonCampo  = document.getElementById("botonCampo");
+    const botonMar    = document.getElementById("botonMar");
+    const botonGranja = document.getElementById("botonGranja");
+    const divCampo    = document.getElementById("divCampo");
+    const divMar      = document.getElementById("divMar");
+    const divGranja   = document.getElementById("divGranja");
 
-      divsCarnes.forEach((div) => {
-        cambioClase(div, "mostrarParrilla", "ocultarParrilla");
+    if (!botonCampo || !botonMar || !botonGranja || !divCampo || !divMar || !divGranja) return;
+
+    const corteDivIds = ["divFiletes", "divVacios", "divEntrañas", "divAsados", "divRibEye"];
+    const divsCortes = corteDivIds.map((id) => document.getElementById(id)).filter(Boolean);
+
+    // Hide all cut-detail cards initially
+    divsCortes.forEach((div) => div.classList.add("hidden"));
+
+    const parrillaSubDivs = [divCampo, divMar, divGranja];
+    const parrillaSubBtns = [botonCampo, botonMar, botonGranja];
+
+    function hideAllParrilla() {
+      parrillaSubDivs.forEach((div) => {
+        div.classList.add("hidden");
+        div.classList.remove("grid");
+      });
+      divsCortes.forEach((div) => {
+        div.classList.add("hidden");
+        div.classList.remove("grid");
       });
     }
-    function mostrarDiv(div) {
-      div.classList.remove("ocultarParrilla");
-      div.classList.add("mostrarParrilla");
+
+    function showParrillaDiv(div) {
+      div.classList.remove("hidden");
+      div.classList.add("grid");
     }
-    ocultarTodos();
+
+    function setActiveParrillaBtn(activeBtn) {
+      parrillaSubBtns.forEach((b) => {
+        b.classList.remove("text-red-600");
+        b.classList.add("text-white");
+      });
+      activeBtn.classList.remove("text-white");
+      activeBtn.classList.add("text-red-600");
+    }
 
     botonCampo.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divCampo);
-    });
-    botonGranja.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divGranja);
+      hideAllParrilla();
+      showParrillaDiv(divCampo);
+      setActiveParrillaBtn(botonCampo);
     });
     botonMar.addEventListener("click", () => {
-      ocultarTodos();
-      mostrarDiv(divMar);
+      hideAllParrilla();
+      showParrillaDiv(divMar);
+      setActiveParrillaBtn(botonMar);
+    });
+    botonGranja.addEventListener("click", () => {
+      hideAllParrilla();
+      showParrillaDiv(divGranja);
+      setActiveParrillaBtn(botonGranja);
     });
 
-    // ocultando div campo por cada click en alguno de los cortes de carne
-    function mostrarDivParrilla(divsCarnes, divCampo, divGranja, divMar) {
-      const algunDivVisible = divsCarnes.some((div) =>
-        div.classList.contains("mostrarParrilla")
-      );
+    // Click on a campo cut image → show its CutCard
+    campoMapaData.forEach((item, index) => {
+      const img = document.getElementById(item.src);
+      if (!img) return;
+      img.addEventListener("click", () => {
+        const divCarne = divsCortes[index];
+        if (!divCarne) return;
 
-      if (algunDivVisible) {
-        divCampo.classList.remove("mostrarParrilla");
-        divCampo.classList.add("ocultarParrilla");
-        divGranja.classList.remove("mostrarParrilla");
-        divGranja.classList.add("ocultarParrilla");
-        divMar.classList.remove("mostrarParrilla");
-        divMar.classList.add("ocultarParrilla");
-      } else {
-        // divCampo.classList.remove("ocultarParrilla");
-        // divCampo.classList.add("mostrarParrilla");
-      }
-    }
-
-    function mostrarDivCarnes(botonesCampo, divsCarnes) {
-      botonesCampo.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            const divCarne = divsCarnes[index];
-            // if (divCarne.classList.contains("ocultar")) {
-            //   divCarne.classList.remove("ocultar");
-            // }
-            if (divCarne.classList.contains("ocultarParrilla")) {
-              divCarne.classList.remove("ocultarParrilla");
-              divCarne.classList.add("mostrarParrilla");
-              divCarne.style.display = "grid";
-            } else {
-              divCarne.classList.remove("mostrarParrilla");
-              divCarne.classList.add("ocultarParrilla");
-              divCarne.style.display = "none";
-            }
-            mostrarDivParrilla(divsCarnes, divCampo, divGranja, divMar);
-          });
+        const isHidden = divCarne.classList.contains("hidden");
+        // Toggle: if open, close and show map; if closed, open and hide map
+        if (isHidden) {
+          divCarne.classList.remove("hidden");
+          divCarne.classList.add("grid");
+          divCampo.classList.add("hidden");
+          divCampo.classList.remove("grid");
+        } else {
+          divCarne.classList.add("hidden");
+          divCarne.classList.remove("grid");
+          // If no other corte is open, bring back the map
+          const anyOpen = divsCortes.some((d) => !d.classList.contains("hidden"));
+          if (!anyOpen) {
+            divCampo.classList.remove("hidden");
+            divCampo.classList.add("grid");
+          }
         }
       });
-    }
-    mostrarDivCarnes(botonesCampo, divsCarnes);
-
-    if (botonesCerrar) {
-      botonesCerrar.forEach((boton) => {
-        boton.addEventListener("click", function () {
-          divsCarnes.forEach((div) => {
-            div.classList.remove("mostrar");
-            div.style.display = "none";
-            div.classList.add("ocultarParrilla");
-          });
-          divCampo.classList.remove("ocultarParrilla");
-          divCampo.classList.add("mostrarParrilla");
-        });
-      });
-    }
-
-    // indicadores para elementos parrilla
-    const botones = [botonCampo, botonMar, botonGranja];
-    const divs = [divGranja, divCampo, divMar];
-
-    // Inicializar todos los divs con opacity-0 solo una vez, al principio.
-    divs.forEach((div) => {
-      div.classList.add("opacity-0");
     });
 
-    function indicador(botones, divs) {
-      botones.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", () => {
-            // Restablecer todos los botones a text-white y todos los divs a opacity-0
-            botones.forEach((boton) =>
-              cambioClase(boton, "text-red-800", "text-white")
-            );
-            divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
-
-            const div = divs[index];
-            const divOculto = div.classList.contains("opacity-0 ");
-
-            // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
-            if (divOculto) {
-              cambioClase(boton, "text-white", "text-red-800");
-              cambioClase(div, "opacity-0", "opacity-100");
-            } else {
-              cambioClase(boton, "text-red-800", "text-white");
-              cambioClase(div, "opacity-100", "opacity-0");
-            }
-          });
-        }
-      });
-    }
-
-    indicador(botones, divs);
-  });
-</script>
-
-
-<!-- me quede en eset escript que eta copiadio igual al del sistema de sm pero sigue sin funcionar mis divs de parrilla estan ocultos y no responennen a los botones de parrilla -->
-
-<script define:vars={{ campoMapaData }}>
-  // campoData is injected via define:vars from menuData (campoMapaData)
-
-  const divsCarnesMD = [
-    document.getElementById("divFiletesMD"),
-    document.getElementById("divVaciosMD"),
-    document.getElementById("divEntrañasMD"),
-    document.getElementById("divAsadosMD"),
-    document.getElementById("divRibEyeMD"),
-  ];
-
-  const botonCampoMD = document.getElementById("botonCampoMD");
-  const botonMarMD = document.getElementById("botonMarMD");
-  const botonGranjaMD = document.getElementById("botonGranjaMD");
-
-  const divCampoMD = document.getElementById("divCampoMD");
-  const divMarMD = document.getElementById("divMarMD");
-  const divGranjaMD = document.getElementById("divGranjaMD");
-
-  // usamos otro id en este caso en ves de "name" que ya lo usa el div en SM para que funcionaran los botones de parrilla teniamos que destinar otro ID diferente
-  const botonesCampo = campoMapaData.map((item) =>
-    document.getElementById(item.src)
-  );
-  const botonesCerrar = document.querySelectorAll("#botonCerrar");
-
-  function cambioClase(element, classRemove, classAdd) {
-    element.classList.remove(classRemove);
-    element.classList.add(classAdd);
-  }
-
-  function ocultarTodos() {
-    cambioClase(divCampoMD, "mostrarParrilla", "ocultarParrilla");
-    cambioClase(divMarMD, "mostrarParrilla", "ocultarParrilla");
-    cambioClase(divGranjaMD, "mostrarParrilla", "ocultarParrilla");
-
-    divsCarnesMD.forEach((div) => {
-      cambioClase(div, "mostrarParrilla", "ocultarParrilla");
-    });
-  }
-
-  function mostrarDiv(div) {
-    div.classList.remove("ocultarParrilla");
-    div.classList.add("mostrarParrilla");
-  }
-  ocultarTodos();
-
-  botonCampoMD.addEventListener("click", () => {
-    ocultarTodos();
-    mostrarDiv(divCampoMD);
-  });
-  botonGranjaMD.addEventListener("click", () => {
-    ocultarTodos();
-    mostrarDiv(divGranjaMD);
-  });
-  botonMarMD.addEventListener("click", () => {
-    ocultarTodos();
-    mostrarDiv(divMarMD);
-  });
-
-  function mostrarDivParrillaMD(
-    divsCarnesMD,
-    divCampoMD,
-    divGranjaMD,
-    divMarMD
-  ) {
-    const algunDivVisible = divsCarnesMD.some((div) =>
-      div.classList.contains("mostrarParrilla")
-    );
-
-    if (algunDivVisible) {
-      divCampoMD.classList.remove("mostrarParrilla");
-      divCampoMD.classList.add("ocultarParrilla");
-      divGranjaMD.classList.remove("mostrarParrilla");
-      divGranjaMD.classList.add("ocultarParrilla");
-      divMarMD.classList.remove("mostrarParrilla");
-      divMarMD.classList.add("ocultarParrilla");
-    }
-  }
-
-  function mostrarDivsCarnesMD(botonesCampo, divsCarnesMD) {
-    botonesCampo.forEach((boton, index) => {
-      if (boton) {
-        boton.addEventListener("click", function () {
-          const divCarne = divsCarnesMD[index];
-          // if (divCarne.classList.contains("ocultar")) {
-          //   divCarne.classList.remove("ocultar");
-          // }
-          if (divCarne.classList.contains("ocultarParrilla")) {
-            divCarne.classList.remove("ocultarParrilla");
-            divCarne.classList.add("mostrarParrilla");
-            divCarne.style.display = "grid";
-          } else {
-            divCarne.classList.remove("mostrarParrilla");
-            divCarne.classList.add("ocultarParrilla");
-            divCarne.style.display = "none";
-          }
-          mostrarDivParrillaMD(divsCarnesMD, divCampoMD, divGranjaMD, divMarMD);
+    // Close buttons inside CutCards → return to campo map
+    document.querySelectorAll("#divParrilla #botonCerrar").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        divsCortes.forEach((div) => {
+          div.classList.add("hidden");
+          div.classList.remove("grid");
         });
-      }
-    });
-  }
-  mostrarDivsCarnesMD(botonesCampo, divsCarnesMD);
-
-  if (botonesCerrar) {
-    botonesCerrar.forEach((boton) => {
-      boton.addEventListener("click", function () {
-        divsCarnesMD.forEach((div) => {
-          div.classList.remove("mostrar");
-          div.style.display = "none";
-          div.classList.add("ocultarParrilla");
-        });
-        divCampoMD.classList.remove("ocultarParrilla");
-        divCampoMD.classList.add("mostrarParrilla");
+        divCampo.classList.remove("hidden");
+        divCampo.classList.add("grid");
       });
     });
-  }
-
-  const botones = [botonCampoMD, botonMarMD, botonGranjaMD];
-  const divs = [divGranjaMD, divCampoMD, divMarMD];
-
-  // Inicializar todos los divs con opacity-0 solo una vez, al principio.
-  divs.forEach((div) => {
-    div.classList.add("opacity-0");
-    if (div === divCampoMD) {
-      div.classList.remove("ocultarParrilla");
-      div.classList.add("mostrarParrilla");
-    }
   });
-
-  function indicador(botones, divs) {
-    botones.forEach((boton, index) => {
-      if (boton) {
-        boton.addEventListener("click", () => {
-          // Restablecer todos los botones a text-white y todos los divs a opacity-0
-          botones.forEach((boton) =>
-            cambioClase(boton, "text-red-800", "text-white")
-          );
-          divs.forEach((div) => cambioClase(div, "opacity-100", "opacity-0"));
-
-          const div = divs[index];
-          const divOculto = div.classList.contains("opacity-0");
-
-          // Cambiar la clase del botón clickeado y su div correspondiente basado en divOculto
-          if (divOculto) {
-            cambioClase(boton, "text-white", "text-red-800");
-            cambioClase(div, "opacity-0", "opacity-100");
-          } else {
-            cambioClase(boton, "text-red-800", "text-white");
-            cambioClase(div, "opacity-100", "opacity-0");
-          }
-        });
-      }
-    });
-  }
-
-  indicador(botones, divs);
 </script>

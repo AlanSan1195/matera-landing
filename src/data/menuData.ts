@@ -32,7 +32,7 @@ export interface CorteTalla {
 export interface BifeItem {
   name: string;
   quality: string;
-  queality2?: string;
+  quality2?: string;
   pricePrime: string;
   priceHighChoice?: string;
   size: string;
@@ -625,7 +625,7 @@ export const bifes: BifeItem[] = [
   {
     name: "Bife de chorizo Baby",
     quality: "Prime:",
-    queality2: "High Choice:",
+    quality2: "High Choice:",
     pricePrime: "$990",
     priceHighChoice: "$660",
     size: "450gr / 16oz",
@@ -633,7 +633,7 @@ export const bifes: BifeItem[] = [
   {
     name: "Bife de chorizo",
     quality: "Prime:",
-    queality2: "High Choice:",
+    quality2: "High Choice:",
     pricePrime: "$1350",
     priceHighChoice: "$870",
     size: "600gr / 21oz",
@@ -641,7 +641,7 @@ export const bifes: BifeItem[] = [
   {
     name: "Bife de chorizo Mariposa",
     quality: "Prime:",
-    queality2: "High Choice:",
+    quality2: "High Choice:",
     pricePrime: "$2100",
     priceHighChoice: "$1450",
     size: "1000gr / 35oz",

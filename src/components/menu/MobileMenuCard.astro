@@ -1,0 +1,49 @@
+---
+import type { MenuItem } from "@/data/menuData";
+
+export interface Props {
+  categoryId: string;
+  categoryName: string;
+  items: MenuItem[];
+  showDescription?: boolean;
+  isEmpanada?: boolean;
+}
+
+const {
+  categoryId,
+  categoryName,
+  items,
+  showDescription = false,
+  isEmpanada = false,
+} = Astro.props;
+
+const buttonId = `boton${categoryId}`;
+const divId = `div${categoryId}`;
+const imgClass = isEmpanada
+  ? "image-drop-shadow-empanadas relative bottom-5"
+  : "image-drop-shadow relative left-4 rounded-2xl";
+---
+
+<a
+  id={buttonId}
+  class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
+>
+  {categoryName}
+</a>
+<div id={divId} class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
+  {
+    items.map((item) => (
+      <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white">
+        <img class={imgClass} src={item.src} alt={item.name} />
+        <p class="font-boldes text-sm text-start mt-2 ml-2 text-pretty opacity-85">
+          {item.name}
+        </p>
+        {showDescription && (
+          <p class="font-light text-xs ml-2 text-white/75 text-wrap">
+            {item.description}
+          </p>
+        )}
+      </div>
+    ))
+  }
+</div>
