@@ -1,15 +1,18 @@
 ---
-const { color, title, subtitle, id, showFooterContent } = Astro.props;
-const textColor = `text-${color}`;
-import Caurosel from "@/components/Caurosel.astro"
+import Caurosel from "@/components/Caurosel.astro";
+import { type Lang } from "@/i18n/utils";
+
+interface Props {
+  id?: string;
+  lang: Lang;
+}
+
+const { id, lang } = Astro.props;
 ---
 
 <section
-  class="landing-section w-screen h-screen text-center overflow-hidden  "
-  data-header-color={color}
+  class="landing-section w-screen h-screen text-center overflow-hidden"
   id={id}
 >
-
-<Caurosel id="eventos" title="eventos"></Caurosel>
+  <Caurosel id="eventos" lang={lang}></Caurosel>
 </section>
-

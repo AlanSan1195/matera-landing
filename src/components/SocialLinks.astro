@@ -1,0 +1,38 @@
+---
+import InstagramIcon from "./icons/InstagramIcon.astro";
+import TripadivisorIcon from "./icons/TripadivisorIcon.astro";
+import FacebookIcon from "./icons/FacebookIcon.astro";
+---
+
+<ul class="flex justify-center items-center [&>li>a]:inline-block [&>li>a]:px-2 [&>li>a]:py-2 opacity-80">
+  <li>
+    <a
+      href="https://www.tripadvisor.com.mx/Restaurant_Review-g150798-d786318-Reviews-La_Matera-Guadalajara_Guadalajara_Metropolitan_Area.html"
+      aria-label="tripadvisor"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <TripadivisorIcon class="size-8" />
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://www.instagram.com/lamateragdl/?hl=es"
+      aria-label="instagram"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <InstagramIcon class="size-6" />
+    </a>
+  </li>
+  <li>
+    <a
+      href="https://www.facebook.com/LaMateraGDL?locale=es_LA"
+      aria-label="facebook"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <FacebookIcon class="size-7" />
+    </a>
+  </li>
+</ul>

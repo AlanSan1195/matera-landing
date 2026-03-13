@@ -1,494 +1,29 @@
 ---
-import AsadosDeTira from "./AsadosDeTira.astro";
-import RibEye from "./RibEye.astro";
-import Filetes from "./Filetes.astro";
-import Vacios from "./Vacios.astro";
-import Entraas from "./Entrañas.astro";
-import NavMD from "./NavMD.astro";
-import Pulser from "./Pulser.astro";
+import CutCard from "./CutCard.astro";
 import CardsComponent from "./CardsComponent.astro";
+import {
+  empanadas,
+  pizzas,
+  entradas,
+  ensaladas,
+  cocina,
+  postres,
+  campoData,
+  campoMapaData,
+  marData,
+  granjaData,
+  filetes,
+  vacios,
+  entranas,
+  asados,
+  bifes,
+} from "@/data/menuData";
 
-const { color, title, subtitle, id, showFooterContent } = Astro.props;
-const empanadas = [
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Carne",
-    description:
-      "Empanada de carne cortada a cuchillo, contiene aceitunas, paprica, pasas de uva y un toque de huevo",
-    price: "$60",
-  },
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Carne picante",
-    description:
-      " Igual que nuestra empanada tradicional pero con un toque de picante",
-    price: "$60",
-  },
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Espinaca",
-    description: "Con queso ricotta, parmesano, pimienta blanca y nuez moscada",
-    price: "$60",
-  },
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Queso y cebolla",
-    description: " Cebolla morada, queso gouda y condimentos ",
-    price: "$60",
-  },
-
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Humita",
-    description:
-      "Empanada con elote dulce, cebolla cambray, pimiento morrón, y queso gouda. Sabor suave y delicioso en cada bocado.",
-    price: "$60",
-  },
-  {
-    src: "/imagenes/carta/empanadaCarne.webp",
-    name: "Roquefort",
-    description:
-      "Rellena de queso roquefort y mozzarella, con un toque fresco de apio. Sabor intenso y equilibrado.",
-    price: "$70",
-  },
-
-  {
-    src: "/imagenes/carta/empanadas/siciliana.webp",
-    name: "Siciliana",
-    description:
-      "Hecha con masa de pizza, rellena de jamón,quesos, pimiento rojo asado y aceituna verde, bañada en una rica salsa pomodoro.",
-    price: "$140",
-  },
-];
-const pizzas = [
-  {
-    src: "/imagenes/carta/pizzas/pizzaMargarita.webp",
-    name: "Margarita",
-    description: "Clásica combinación de mozzarella derretida, salsa de tomate y albahaca fresca",
-    price: "$170",
-  },
-  {
-    src: "/imagenes/carta/pizzas/pizzaHongos.webp",
-    name: "Hongos",
-    description: "Mozzarella, salsa de tomate y champiñones salteados enteros, llenos de sabor.",
-    price: "$180",
-  },
-  {
-    src: "/imagenes/carta/pizzas/4quesos.webp",
-    name: "4 Quesos",
-    description: "Mezcla de mozzarella, provolone, parmesano y roquefort, un clasico equilibrio.",
-    price: "$170",
-  },
-  {
-    src: "/imagenes/carta/pizzas/pizzaAnchoas.webp",
-    name: "Tomate con anchoas",
-    description: " Una opción sabrosa y sin queso. Rebanadas frescas de tomate, anchoas, aceitunas y ajo, rociadas con aceite de oliva. ",
-    price: "$260",
-  },
-  {
-    src: "/imagenes/carta/pizzas/pizzaBurrata.webp",
-    name: "Jamón con burrata",
-    description: "Base de salsa blanca, jamón hecho en casa, burrata fresca de San Miguel de Allende,y un toque de oliva y psitache hace de esta pizza una delicia.",
-    price: "$280",
-  },
-  {
-    src: "/imagenes/carta/pizzas/pizzaPancceta.webp",
-    name: "Pancceta y provolone",
-    description: "Salsa de tomate, mozzarella y provolone, coronada con panceta casera crujiente. Un deleite irresistible para los amantes de los sabores intensos.",
-    price: "$60",
-  },
-];
-const entradas = [
-  {
-    src: "/imagenes/carta/entradas/bocaditos.webp",
-    name: "Bocaditos de espinaca",
-    description:
-      "Bocaditos crujientes de espinaca con queso parmesano, huevo batido y un toque de ajo.",
-    price: "$185",
-  },
-  {
-    src: "/imagenes/carta/entradas/pimientoAsado.webp",
-    name: "Pimiento asado",
-    description:
-      "Pimiento rojo asado, pelado y servido frío con aceite de oliva y lajas de ajo. Perfecto para acompañar cortes de carne",
-    price: "$130",
-  },
-  {
-    src: "/imagenes/carta/entradas/esparragos.webp",
-    name: "Espárragos al vapor",
-    description:
-      "Espárragos al vapor o a la parrilla, servidos con aceite de oliva y queso parmesano.",
-    price: "$155",
-  },
-
-  {
-    src: "/imagenes/carta/entradas/hongos.webp",
-    name: "Hongos al ajillo",
-    description:
-      "Hongos al ajillo salteados con ajo, aceite de oliva, perejil y chile guajillo. Acompañados de crutones.",
-    price: "$170",
-  },
-  {
-    src: "/imagenes/carta/entradas/berenjenas.webp",
-    name: "Berenjenas a la parmesana",
-    description:
-      "Berenjenas fritas con mozzarella, bañadas en salsa pomodoro y gratinadas con parmesano.",
-    price: "$185",
-  },
-  {
-    src: "/imagenes/carta/entradas/chorizoArgentino.webp",
-    name: "Chorizo argentino",
-    description:
-      "Elaborado en casa, el embutido clásico de las parrilladas argentinas hecho con carne de res y cerdo.",
-    price: "$110",
-  },
-
-  {
-    src: "/imagenes/carta/entradas/chistorra.webp",
-    name: "Chistorra",
-    description:
-      "Elaborada en casa, embutido estilool español, la carne es 100% de cerdo.",
-    price: "$135",
-  },
-  {
-    src: "/imagenes/carta/entradas/mollejaParrilla.webp",
-    name: "Mollejas a la parrilla",
-    description:
-      "Mollejas de res a la parrilla, cocinadas con cuidado durante 20 minutos. Utilizamos la parte del corazón para un sabor excepcional.",
-    price: "$310",
-  },
-  {
-    src: "/imagenes/carta/entradas/mollejasVerdeo.webp",
-    name: "Mollejas al verdeo",
-    description:
-      "Mollejas salteadas con cebolla cambray y chile serrano, ligeramente picantes. Se sirven con tortillas.",
-    price: "$290",
-  },
-  {
-    src: "/imagenes/carta/entradas/chinchulines.webp",
-    name: "Chicnhulines a la parrilla",
-    description: "Parrillados para conservar su textura suave y gran sabor.",
-    price: "$210",
-  },
-  {
-    src: "/imagenes/carta/entradas/malfatis.webp",
-    name: "Malfatti de espinaca",
-    description:
-      "La pasta es hecha en casa, rellena de espinaca y queso ricotta, bañada en salsa de poro.",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/entradas/provoletaTomate.webp",
-    name: "Provoleta Tomate",
-    description:
-      "Queso semi maduro de origen argentino, con tomate y mediol pimiento asado",
-    price: "$220",
-  },
-  {
-    src: "/imagenes/carta/entradas/provoletaSerrano.webp",
-    name: "Provoleta Arúgula",
-    description:
-      "Queso semi maduro de origen argentino, servida con jamos serrano y arugula",
-    price: "$260",
-  },
-  {
-    src: "/imagenes/carta/entradas/tartara.webp",
-    name: "Tartara de Rib-Eye",
-    description:
-      "Carne de rib eye cortada a cuchillo, mezclada con anchoas y alcaparras.",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/entradas/carpaccioJamon.webp",
-    name: "Carpaccio de jamón serrano",
-    description:
-      "Con un toque de aceite de oliva y vinagre balsámico, acompañado de albahaca y grana padano.",
-    price: "$260",
-  },
-  {
-    src: "/imagenes/carta/entradas/mejillones.webp",
-    name: "Mejillones con chistorra",
-    description:
-      "Cocinados al vapor con chistorra y papas a la francesa, uno de los favoritos de la casa.",
-    price: "$335",
-  },
-];
-const ensaladas = [
-  {
-    src: "/imagenes/carta/ensaladas/ensaladaVerde.webp",
-    name: "Ensalada Verde",
-    description: "Ensalada fresca con una cuidada selección de vegetales y vinagreta especial de la casa.",
-    price: "$170",
-  },
-  {
-    src: "/imagenes/carta/ensaladas/tomateBurrata.webp",
-    name: "Ensalada de tomate con burrata",
-    description: "Mix de tomates, cebolla morada, crutones y burrata de San Miguel de Allende.",
-    price: "$280",
-  },
-  {
-    src: "/imagenes/carta/ensaladas/mikonos.webp",
-    name: "Mykonos",
-    description: "Fresca ensalada de tomate y queso feta, acompañada de una vinagreta casera y hierbas Frescas",
-    price: "$180",
-  },
-  {
-    src: "/imagenes/carta//ensaladas/corazones.webp",
-    name: "Corazones de lechuga asados",
-    description: "Bañados de un aderezo César casero, con un toque de queso Grana Padano. Una opción deliciosa.",
-    price: "$210",
-  },
-  {
-    src: "/imagenes/carta/ensaladas/arugula.webp",
-    name: "Arúgula",
-    description: "Fresca mezcla de arúgula aderezada con ajo y limón",
-    price: "$155",
-  },
-  {
-    src: "/imagenes/carta/ensaladas/arugulaCherry.webp",
-    name: "Arúgula Cherry",
-    description: " Fresca mezcla de arúgula con jitomates cherry, un toque de balsámico, aceite de oliva y láminas de queso Grana Padano.",
-    price: "$170",
-  },
-  {
-    src: "/imagenes/carta/ensaladas/palmitos.webp",
-    name: "Palmito con alcahofa",
-    description: "Suaves palmitos y corazones de alcachofas, acompañados de jitomate deshidratado, aceite de oliva, limón y un toque de chile quebrado.",
-    price: "$250",
-  },
-];
-const cocina = [
-  {
-    src: "/imagenes/carta/cocina/fetuBolognesa.webp",
-    name: "Fettuccine Bolognesa",
-    description: "Pasta Larga hecha en casa servida con salsa bolognesa que consiste de un ragú de carne",
-    price: "$230",
-  },
-  {
-    src: "/imagenes/carta/cocina/fetucciniHongos.webp",
-    name: " Fettuccine con crema de hongos",
-    description: "crema de hongos, sertas y portobelo con un toque de  ajo y vino blanco",
-    price: "$195",
-  },
-  {
-    src: "/imagenes/carta/cocina/fetuNegro.webp",
-    name: "Fetucciine negro ",
-    description: "Pasta elaborada con tinta de calamar se sirve con calamares salteado en su tinta vino blanco y crema",
-    price: "$275",
-  },
-  {
-    src: "/imagenes/carta/cocina/ravioles.webp",
-    name: "Ravioles de espianaca al pomodoro",
-    description: "Cuadritos de pasta, rellenas de espinacas y queso ricota.",
-    price: "$230",
-  },
-  {
-    src: "/imagenes/empanadas.webp",
-    name: "Farroto: vegetales y grana padano",
-    description: "",
-    price: "$210",
-  },
-  {
-    src: "/imagenes/carta/cocina/sorrentinos.webp",
-    name: "Sorrentinos de ricota con salsa rosa",
-    description: "rellenos de queso ricota, parmesano, y  nuez troceada se sirve en salsa rosa es (Pomodoro y crema)",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/cocina/lasagna.webp",
-    name: "Lasagna bolognesa",
-    description: " Pasta en salsa boloñesa con espinacas y champiñón,  gratinada con queso, tambien contiene nuez",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/cocina/hamburguesaMatera.webp",
-    name: "Hamburguesa al estilo de la matera",
-    description: "preparar en Casa 130g de carne, molleja asada en la parrilla con queso provolone, jitomate, lechuga morada y aderezo de la casa.",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/cocina/milaPollo.webp",
-    name: "Milanesa de pollo",
-    description: "Pechuga de pollo empanizada y frita (200g) una guarnición a elegir ",
-    price: "$220",
-  },
-  {
-    src: "/imagenes/carta/cocina/milaRes.webp",
-    name: "Milanesa de res",
-    description: "Hecha con filete dle res empanizada y frita (250g) una guarnición a elegir ",
-    price: "$320",
-  },
-];
-
-const campoData = [
-  {
-    src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
-    name: "Bife de lomo",
-    description: "Cortes suabes totalmente magros ",
-  },
-  {
-    src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
-    name: "Vacio",
-    description: "Corte jugoso, con marmoleo intermedio y textura firme",
-  },
-  {
-    src: "/imagenes/carta/parrilla/campo/mapas/mapaEntrana.webp",
-    name: "Entraña",
-    description:
-      " Corte con sabor intenso, se recomeinda con piel que le aporta una textura crocante",
-  },
-  {
-    src: "/imagenes/carta/parrilla/campo/mapas/mapaAsado.webp",
-    name: "Asado de tira",
-    description:
-      "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-  },
-  {
-    src: "/imagenes/carta/parrilla/campo/mapas/mapaBife.webp",
-    name: "Bife de chorizo",
-    description: " Muy marmoleados y jugoso, nuestros cortes mas suabes.",
-  },
-  {
-    src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-    name: "Easpeciales",
-    description: "Nuestros cortes especiales son bajo desiponibilidad",
-  },
-];
-const marData = [
-  {
-    src: "/imagenes/carta/parrilla/mar/pulpo.webp",
-    name: "Pulpo con papas españolas",
-    gramaje: "350gr / 12oz",
-    price: "$490",
-  },
-
-  {
-    src: "/imagenes/carta/parrilla/mar/salmon.webp",
-    name: "Salmón",
-    gramaje: "260gr / 9oz",
-    price: "$360",
-  },
-  {
-    src: "/imagenes/carta/parrilla/mar/camarones.webp",
-    name: "Camarones con adobo de chiles",
-    gramaje: "300gr / 12oz",
-    price: "$320",
-  },
-  {
-    src: "/imagenes/carta/parrilla/mar/robalo.webp",
-    name: "Lonja de robalo",
-    gramaje: "350gr / 12oz",
-    price: "$550",
-  },
-  {
-    src: "/imagenes/carta/parrilla/mar/calamar.webp",
-    name: "Calamar patagónico provenzal",
-    gramaje: "350gr / 12oz",
-    price: "$450",
-    boton: ".",
-  },
-];
-const granjaData = [
-  {
-    src: "/imagenes/carta/parrilla/granja/patoLaqueado.webp",
-    name: "1/2 Pato laqueado con puré de manzana",
-    gramaje: "350gr / 12oz",
-    price: "$550",
-  },
-  {
-    src: "/imagenes/carta/parrilla/granja/polloOreganato.webp",
-    name: "1/2 Pollo al oreganato",
-    gramaje: "260gr / 9oz",
-    price: "$250",
-  },
-  {
-    src: "/imagenes/carta/parrilla/granja/polloMalazo.webp",
-    name: "1/2 pollo Malazzo",
-    gramaje: "300gr / 12oz",
-    price: "$285",
-  },
-  {
-    src: "/imagenes/carta/parrilla/granja/rack.webp",
-    name: "Rack de cordero",
-    gramaje: "500gr / 17oz",
-    price: "$950",
-  },
-  {
-    src: "/imagenes/carta/parrilla/granja/matambrito.webp",
-    name: "Matambrito de cerdo",
-    gramaje: "350gr / 12oz",
-    price: "$450",
-    boton: ".",
-  },
-];
-const postres = [
-  {
-    src: "/imagenes/carta/postres/helados.webp",
-    name: "Helados:",
-    description: "Vainilla, Chocolate, Mascarphone, Alfajor, Ferrero.",
-    price: "$40",
-  },
-  {
-    src: "/imagenes/carta/postres/flanCasero.webp",
-    name: "Flan casero",
-    description: "Acompañado con botones de dulce de leche y crema batida.",
-    price: "$125",
-  },
-  {
-    src: "/imagenes/carta/postres/alfajor.webp",
-    name: "Alfajor de hojaldre",
-    description: "Postre tipico Argentino con capas de hojaldre unidas con dulce de leche y nuez troceada.",
-    price: "$175",
-  },
-  {
-    src: "/imagenes/carta/postres/martinFierro.webp",
-    name: "Martín fierro",
-    description: "Helado de vainilla con fresas flameadas",
-    price: "$155",
-  },
-  {
-    src: "/imagenes/carta/postres/musse.webp",
-    name: " Musse de chocolate",
-    description: "Espuma de chocolate semiamargo acompañado con frutos rojos",
-    price: "$125",
-  },
-  {
-    src: "/imagenes/carta/postres/crepa.webp",
-    name: "Crepa Matera",
-    description: "Con mascarpone y salsa de dulce de leche.",
-    price: "$165",
-  },
-  {
-    src: "/imagenes/carta/postres/pastelChocolate.webp",
-    name: "Patel de chocolate",
-    description: "Base de biscocho con nueces y musse de chocolate semiamargo.",
-    price: "$115",
-  },
-  {
-    src: "/imagenes/carta/postres/ate.webp",
-    name: "Ate con queso",
-    description: "Tambien conocido como vigilante, el ate es de camote acompañado con queso gouda y botones de dulce de leche. ",
-    price: "$125",
-  },
-
-  {
-    src: "/imagenes/carta/postres/tartaManzana.webp",
-    name: "Tarta de manzana",
-    description: "Base de masa sablé, manzana en cubos pequeños, strusel de canela ya compañado con una bola de helado de vainilla.",
-    price: "$175",
-  },
-  {
-    src: "/imagenes/carta/postres/camoteRescoldo.webp",
-    name: "Camote al rescoldo",
-    description: "Cocinado con las cenizas de la parrilla, un poco de strusel, caramelo y un helado de mascarpone.",
-    price: "$145",
-  },
-];
+const { id } = Astro.props;
 ---
 
 <section
   class="landing-section h-full w-screen overflow-hidden"
-  data-header-color={color}
   id={id}
 >
   <!-- //navegacion sm -->
@@ -652,7 +187,7 @@ const postres = [
     </div>
     <a
     href="https://cavamatera.online"
-    arial-label="cavamatera"
+    aria-label="cavamatera"
     target="_blank"
     rel="noopener noreferrer"
     class="hover:cursor-pointer flex justify-center text-white mt-7 font-boldes text-4xl"
@@ -703,9 +238,9 @@ const postres = [
         class="grid grid-cols-4 justify-center text-center text-white gap-x-1 m-2"
       >
         {
-          campoData.map((item, index) => (
+          campoMapaData.map((item, index) => (
             <div
-              id="divCortes"
+              id={`divCortes-sm-${index}`}
               class="flex flex-col justify-center items-center col-span-2 mx-auto    "
             >
               <img
@@ -730,11 +265,11 @@ const postres = [
           </p>
         </div>
       </div>
-      <Filetes id="divFiletesSM" />
-      <Vacios id="divVaciosSM" />
-      <Entraas id="divEntrañasSM" />
-      <AsadosDeTira id="divAsadosSM" />
-      <RibEye id="divRibEyeSM" />
+      <CutCard id="divFiletesSM" titulo="Bifes de lomo" info={campoData[0]} items={filetes} cols={2} />
+      <CutCard id="divVaciosSM" titulo="Vacios" info={campoData[1]} items={vacios} cols={3} />
+      <CutCard id="divEntrañasSM" titulo="Entrañas" info={campoData[2]} items={entranas} cols={2} />
+      <CutCard id="divAsadosSM" titulo="Asados de tira" info={campoData[3]} items={asados} cols={2} />
+      <CutCard id="divRibEyeSM" titulo="Bifes de chorizo" info={campoData[4]} items={bifes} cols={2} esBife={true} />
       <div
         id="divMarsm"
         class="grid grid-cols-2 justify-center text-center text-white rounded-xl p-4 m-2"
@@ -759,11 +294,11 @@ const postres = [
               // este pulser tiene una segunda clase agregada usamos typescrit
                 <div id="" class=" absolute top-[75px] left-[100px]">
                   {" "}
-                  <a
-                    id="pulser"
-                    href="/pageCalamar"
-                    class="bg-white h-3 w-3 rounded-full absolute inset-0"
-                  />
+                   <a
+                     id="pulser-calamar"
+                     href="/pageCalamar"
+                     class="bg-white h-3 w-3 rounded-full absolute inset-0"
+                   />
                 </div>
               ) : null}
             </div>
@@ -796,11 +331,11 @@ const postres = [
               // este pulser tiene una segunda clase agregada usamos typescrit
                 <div id="" class=" absolute left-24 top-28">
                   {" "}
-                  <a
-                    id="pulser"
-                    href="/pageMatambrito"
-                    class="bg-white h-3 w-3 rounded-full absolute inset-0"
-                  />
+                   <a
+                     id="pulser-matambrito"
+                     href="/pageMatambrito"
+                     class="bg-white h-3 w-3 rounded-full absolute inset-0"
+                   />
                 </div>
               ) : null}
             </div>
@@ -815,7 +350,6 @@ const postres = [
 
 <section
   class="landing-section h-full w-screen overflow-hidden"
-  data-header-color={color}
   id={id}
 >
   <!-- //navegacion md -->
@@ -986,9 +520,9 @@ const postres = [
         class="grid grid-cols-9 gap-x-4 justify-center text-center text-white mb-10"
       >
         {
-          campoData.map((item, index) => (
+          campoMapaData.map((item, index) => (
             <div
-              id="divCortes"
+              id={`divCortes-md-${index}`}
               class="flex flex-col justify-center  m-2 col-span-3  "
             >
               <img
@@ -1013,11 +547,11 @@ const postres = [
           </p>
         </div>
       </div>
-      <Filetes id="divFiletesMD" />
-      <Vacios id="divVaciosMD" />
-      <Entraas id="divEntrañasMD" />
-      <AsadosDeTira id="divAsadosMD" />
-      <RibEye id="divRibEyeMD" />
+      <CutCard id="divFiletesMD" titulo="Bifes de lomo" info={campoData[0]} items={filetes} cols={2} />
+      <CutCard id="divVaciosMD" titulo="Vacios" info={campoData[1]} items={vacios} cols={3} />
+      <CutCard id="divEntrañasMD" titulo="Entrañas" info={campoData[2]} items={entranas} cols={2} />
+      <CutCard id="divAsadosMD" titulo="Asados de tira" info={campoData[3]} items={asados} cols={2} />
+      <CutCard id="divRibEyeMD" titulo="Bifes de chorizo" info={campoData[4]} items={bifes} cols={2} esBife={true} />
       <div
         id="divMarMD"
         class="grid grid-cols-3 justify-center text-center text-white rounded-xl p-4 m-2"
@@ -1087,9 +621,16 @@ const postres = [
   </nav>
 </section>
 
-<!-- //script para mostrar y ocultar divs EN TAMAÑO SM -->
+<!-- //script para mostrar y ocultar divs EN TAMAÑO SM y MD -->
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    // Utility shared by both SM and MD nav
+    function swapClass(element, classRemove, classAdd) {
+      element.classList.remove(classRemove);
+      element.classList.add(classAdd);
+    }
+
+    // --- SM nav ---
     const empanadas = document.getElementById("botonempanadas");
     const empanadasDiv = document.getElementById("divEmpanadas");
     const entradas = document.getElementById("botonEntradas");
@@ -1124,12 +665,6 @@ const postres = [
       postresDiv,
     ];
 
-    // INDICADOR EN TAMAÑO SM
-    function cambioClass(element, classRemove, classAdd) {
-      element.classList.remove(classRemove);
-      element.classList.add(classAdd);
-    }
-
     function mostrarDiv(botones, divs) {
       botones.forEach((boton, index) => {
         if (boton) {
@@ -1141,15 +676,15 @@ const postres = [
 
             botones.forEach((boton) => {
               if (boton) {
-                cambioClass(boton, "text-red-800", "text-white");
+                swapClass(boton, "text-red-800", "text-white");
               }
             });
             if (divOculto) {
-              cambioClass(boton, "text-white", "text-red-800");
-              cambioClass(div, "ocultar", "mostrar");
+              swapClass(boton, "text-white", "text-red-800");
+              swapClass(div, "ocultar", "mostrar");
             } else {
-              cambioClass(boton, "text-red-800", "text-white");
-              cambioClass(div, "mostrar", "ocultar");
+              swapClass(boton, "text-red-800", "text-white");
+              swapClass(div, "mostrar", "ocultar");
             }
           });
         }
@@ -1161,46 +696,97 @@ const postres = [
     }
 
     mostrarDiv(botones, divs);
+
+    // --- MD nav ---
+    const botonEmpanadaMD = document.getElementById("botonEmpanadasMD");
+    const divEmpanadaMD = document.getElementById("divEmpanadasMD");
+    const botonEntradasMD = document.getElementById("botonEntradasMD");
+    const divEntradasMD = document.getElementById("divEntradasMD");
+    const botonEnsaladasMD = document.getElementById("botonEnsaladasMD");
+    const divEnsaladasMD = document.getElementById("divEnsaladasMD");
+    const botonPizzasMD = document.getElementById("botonPizzasMD");
+    const divPizzasMD = document.getElementById("divPizzasMD");
+    const botonCocinaMD = document.getElementById("botonCocinaMD");
+    const divCocinaMD = document.getElementById("divCocinaMD");
+    const botonParrillaMD = document.getElementById("botonParrillaMD");
+    const divParrillaMD = document.getElementById("divParrillaMD");
+    const botonPostresMD = document.getElementById("botonPostresMD");
+    const divPostresMD = document.getElementById("divPostresMD");
+
+    const botonesMD = [
+      botonEmpanadaMD,
+      botonEntradasMD,
+      botonEnsaladasMD,
+      botonPizzasMD,
+      botonCocinaMD,
+      botonParrillaMD,
+      botonPostresMD,
+    ];
+
+    const divsMD = [
+      divEmpanadaMD,
+      divEntradasMD,
+      divEnsaladasMD,
+      divPizzasMD,
+      divCocinaMD,
+      divParrillaMD,
+      divPostresMD,
+    ];
+
+    function ocultarTodosLosDivs() {
+      divsMD.forEach((div) => {
+        if (div) {
+          div.classList.remove("mostrarLG");
+          div.classList.add("ocultarLG");
+        }
+      });
+    }
+
+    function resetearBotones() {
+      botonesMD.forEach((boton) => {
+        if (boton) {
+          swapClass(boton, "text-red-800", "text-white");
+        }
+      });
+    }
+
+    function mostrarDivMD(botonesMD, divsMD) {
+      botonesMD.forEach((boton, index) => {
+        if (boton) {
+          boton.addEventListener("click", function () {
+            ocultarTodosLosDivs();
+            resetearBotones();
+
+            const divMD = divsMD[index];
+            const divOcultoMD = divMD.classList.contains("ocultarLG");
+
+            if (divOcultoMD) {
+              swapClass(boton, "text-white", "text-red-800");
+              swapClass(divMD, "ocultarLG", "mostrarLG");
+            } else {
+              swapClass(boton, "text-red-800", "text-white");
+              swapClass(divMD, "mostrarLG", "ocultarLG");
+            }
+          });
+        }
+      });
+    }
+
+    mostrarDivMD(botonesMD, divsMD);
+
+    // Inicialmente mostrar divEntradasMD y ocultar los demás
+    ocultarTodosLosDivs();
+    divEntradasMD?.classList.remove("ocultarLG");
+    divEntradasMD?.classList.add("mostrarLG");
+    botonEntradasMD?.classList.remove("text-white");
+    botonEntradasMD?.classList.add("text-red-800");
   });
 </script>
 
 <!-- ocultar divscarnes, divCampo, si se muestra algun divMarsm o divGranjasm -->
-<script>
+<script define:vars={{ campoData }}>
   document.addEventListener("DOMContentLoaded", function () {
-    const campoData = [
-      {
-        src: "/imagenes/carta/parrilla/campo/filetes.webp",
-        name: "Bife de lomo",
-        description: "Cortes suaves totalmente magros",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/vacios.webp",
-        name: "Vacio",
-        description: "Corte jugoso, con marmoleo intermedio y textura firme",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/entrana.webp",
-        name: "Entraña",
-        description:
-          "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/asado.webp",
-        name: "Asado de tira",
-        description:
-          "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/bifedechorizo.webp",
-        name: "Bife de chorizo",
-        description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
-      },
-      {
-        src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-        name: "Especiales",
-        description: "Nuestros cortes especiales son bajo disponibilidad",
-      },
-    ];
+    // campoData injected via define:vars from menuData
 
     const botonCampo = document.getElementById("botonCampo");
     const botonMar = document.getElementById("botonMar");
@@ -1226,12 +812,13 @@ const postres = [
     );
     const botonesCerrar = document.querySelectorAll("#botonCerrar");
 
-    // ocultamos todos los divs en parrilla usamos setTiemeout para que se vea la animacion
+    function cambioClase(element, classRemove, classAdd) {
+      element.classList.remove(classRemove);
+      element.classList.add(classAdd);
+    }
+
+    // ocultamos todos los divs en parrilla
     function ocultarTodos() {
-      function cambioClase(element, classRemove, classAdd) {
-        element.classList.remove(classRemove);
-        element.classList.add(classAdd);
-      }
       cambioClase(divCampo, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divMar, "mostrarParrilla", "ocultarParrilla");
       cambioClase(divGranja, "mostrarParrilla", "ocultarParrilla");
@@ -1316,14 +903,9 @@ const postres = [
       });
     }
 
-    // // indicadores para elementos parrilla
+    // indicadores para elementos parrilla
     const botones = [botonCampo, botonMar, botonGranja];
     const divs = [divGranja, divCampo, divMar];
-
-    function cambioClase(elemento, classremove, classadd) {
-      elemento.classList.remove(classremove);
-      elemento.classList.add(classadd);
-    }
 
     // Inicializar todos los divs con opacity-0 solo una vez, al principio.
     divs.forEach((div) => {
@@ -1360,137 +942,11 @@ const postres = [
   });
 </script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const botonEmpanadaMD = document.getElementById("botonEmpanadasMD");
-    const divEmpanadaMD = document.getElementById("divEmpanadasMD");
-    const botonEntradasMD = document.getElementById("botonEntradasMD");
-    const divEntradasMD = document.getElementById("divEntradasMD");
-    const botonEnsaladasMD = document.getElementById("botonEnsaladasMD");
-    const divEnsaladasMD = document.getElementById("divEnsaladasMD");
-    const botonPizzasMD = document.getElementById("botonPizzasMD");
-    const divPizzasMD = document.getElementById("divPizzasMD");
-    const botonCocinaMD = document.getElementById("botonCocinaMD");
-    const divCocinaMD = document.getElementById("divCocinaMD");
-    const botonParrillaMD = document.getElementById("botonParrillaMD");
-    const divParrillaMD = document.getElementById("divParrillaMD");
-    const botonPostresMD = document.getElementById("botonPostresMD");
-    const divPostresMD = document.getElementById("divPostresMD");
-
-    const botonesMD = [
-      botonEmpanadaMD,
-      botonEntradasMD,
-      botonEnsaladasMD,
-      botonPizzasMD,
-      botonCocinaMD,
-      botonParrillaMD,
-      botonPostresMD,
-    ];
-
-    const divsMD = [
-      divEmpanadaMD,
-      divEntradasMD,
-      divEnsaladasMD,
-      divPizzasMD,
-      divCocinaMD,
-      divParrillaMD,
-      divPostresMD,
-    ];
-
-    function ocultarTodosLosDivs() {
-      // disv de menu MD
-      divsMD.forEach((div) => {
-        if (div) {
-          div.classList.remove("mostrarLG");
-          div.classList.add("ocultarLG");
-        }
-      });
-    }
-
-    function cambioClassMD(element, classRemove, classAdd) {
-      element.classList.remove(classRemove);
-      element.classList.add(classAdd);
-    }
-
-    function resetearBotones() {
-      botonesMD.forEach((boton) => {
-        if (boton) {
-          cambioClassMD(boton, "text-red-800", "text-white");
-        } else if (boton === botonParrillaMD) {
-        }
-      });
-    }
-
-    function mostrarDivMD(botonesMD, divsMD) {
-      botonesMD.forEach((boton, index) => {
-        if (boton) {
-          boton.addEventListener("click", function () {
-            ocultarTodosLosDivs();
-            resetearBotones();
-
-            const divMD = divsMD[index];
-            const divOcultoMD = divMD.classList.contains("ocultarLG");
-
-            if (divOcultoMD) {
-              cambioClassMD(boton, "text-white", "text-red-800");
-              cambioClassMD(divMD, "ocultarLG", "mostrarLG");
-            } else {
-              cambioClassMD(boton, "text-red-800", "text-white");
-              cambioClassMD(divMD, "mostrarLG", "ocultarLG");
-            }
-          });
-        }
-      });
-    }
-
-    mostrarDivMD(botonesMD, divsMD);
-
-    // Inicialmente mostrar divEntradasMD y ocultar los demás...
-    ocultarTodosLosDivs();
-    divEntradasMD.classList.remove("ocultarLG");
-    divEntradasMD.classList.add("mostrarLG");
-    botonEntradasMD.classList.remove("text-white");
-    botonEntradasMD.classList.add("text-red-800");
-  });
-</script>
 
 <!-- me quede en eset escript que eta copiadio igual al del sistema de sm pero sigue sin funcionar mis divs de parrilla estan ocultos y no responennen a los botones de parrilla -->
 
-<script>
-  const campoData = [
-    {
-      src: "/imagenes/carta/parrilla/campo/mapas/mapaFilete.webp",
-      name: "Bife de lomo",
-      description: "Cortes suaves totalmente magros",
-    },
-    {
-      src: "/imagenes/carta/parrilla/campo/mapas/mapaVacio.webp",
-      name: "Vacio",
-      description: "Corte jugoso, con marmoleo intermedio y textura firme",
-    },
-    {
-      src: "/imagenes/carta/parrilla/campo/mapas/mapaEntrana.webp",
-      name: "Entraña",
-      description:
-        "Corte con sabor intenso, se recomienda con piel que le aporta una textura crocante",
-    },
-    {
-      src: "/imagenes/carta/parrilla/campo/mapas/mapaAsado.webp",
-      name: "Asado de tira",
-      description:
-        "Costillas cortadas transversalmente, abundante marmoleo y mucho sabor",
-    },
-    {
-      src: "/imagenes/carta/parrilla/campo/mapas/mapaBife.webp",
-      name: "Bife de chorizo",
-      description: "Muy marmoleados y jugoso, nuestros cortes más suaves.",
-    },
-    {
-      src: "/imagenes/carta/parrilla/campo/tomahak.webp",
-      name: "Especiales",
-      description: "Nuestros cortes especiales son bajo disponibilidad",
-    },
-  ];
+<script define:vars={{ campoMapaData }}>
+  // campoData is injected via define:vars from menuData (campoMapaData)
 
   const divsCarnesMD = [
     document.getElementById("divFiletesMD"),
@@ -1509,16 +965,17 @@ const postres = [
   const divGranjaMD = document.getElementById("divGranjaMD");
 
   // usamos otro id en este caso en ves de "name" que ya lo usa el div en SM para que funcionaran los botones de parrilla teniamos que destinar otro ID diferente
-  const botonesCampo = campoData.map((item) =>
+  const botonesCampo = campoMapaData.map((item) =>
     document.getElementById(item.src)
   );
   const botonesCerrar = document.querySelectorAll("#botonCerrar");
 
+  function cambioClase(element, classRemove, classAdd) {
+    element.classList.remove(classRemove);
+    element.classList.add(classAdd);
+  }
+
   function ocultarTodos() {
-    function cambioClase(element, classRemove, classAdd) {
-      element.classList.remove(classRemove);
-      element.classList.add(classAdd);
-    }
     cambioClase(divCampoMD, "mostrarParrilla", "ocultarParrilla");
     cambioClase(divMarMD, "mostrarParrilla", "ocultarParrilla");
     cambioClase(divGranjaMD, "mostrarParrilla", "ocultarParrilla");
@@ -1607,11 +1064,6 @@ const postres = [
 
   const botones = [botonCampoMD, botonMarMD, botonGranjaMD];
   const divs = [divGranjaMD, divCampoMD, divMarMD];
-
-  function cambioClase(element, classremove, classadd) {
-    element.classList.remove(classremove);
-    element.classList.add(classadd);
-  }
 
   // Inicializar todos los divs con opacity-0 solo una vez, al principio.
   divs.forEach((div) => {

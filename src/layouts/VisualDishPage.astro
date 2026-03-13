@@ -1,0 +1,57 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+export interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <div class="relative flex justify-center h-screen w-full text-white">
+    <slot name="image" />
+    <slot name="annotations" />
+  </div>
+</Layout>
+
+<style>
+  .caja-texto {
+    animation: aparecer 500ms ease-in 900ms both;
+  }
+  .caja-texto2 {
+    animation: aparecer 500ms ease-in 1.6s both;
+  }
+  .caja-texto3 {
+    animation: aparecer 500ms ease-in 1.9s both;
+  }
+  .svg {
+    animation: aparecerFlecha 500ms ease-in 500ms both;
+  }
+  .svg2 {
+    animation: aparecerFlecha 500ms ease-in 1.2s both;
+  }
+  .svg3 {
+    animation: aparecerFlecha 500ms ease-in 1.7s both;
+  }
+
+  @keyframes aparecer {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.9;
+    }
+  }
+
+  @keyframes aparecerFlecha {
+    0% {
+      opacity: 0;
+      width: 0;
+    }
+    100% {
+      opacity: 0.9;
+    }
+  }
+</style>

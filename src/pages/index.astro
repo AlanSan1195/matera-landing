@@ -1,20 +1,9 @@
 ---
-import HomeReserva from "../components/HomeReserva.astro";
-import LandingHeader from "../components/LandingHeader.astro";
-import Carta from "../components/Carta.astro";
-import Eventos from "../components/Eventos.astro";
-import Layout from "../layouts/Layout.astro";
-import SmokeEffect from "@/components/SmokeEffect.astro";
-import Nosotros from "@/components/Nosotros.astro";
+import HomePage from "@/components/HomePage.astro";
 ---
 
-<Layout title=" La Matera - El sabor de Argentina en casa " description="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara. Ven y disfruta de la experiencia gastronómica de Argentina y conoce una de las cavas más reconocidas." >
-  <LandingHeader />
-  <main>
-    <SmokeEffect />
-    <HomeReserva />
-    <Carta />
-    <Eventos />
-    <Nosotros />
-  </main>
-</Layout>
+<HomePage
+  lang="es"
+  title="La Matera - El sabor de Argentina en casa"
+  description="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara. Ven y disfruta de la experiencia gastronómica de Argentina y conoce una de las cavas más reconocidas."
+/>

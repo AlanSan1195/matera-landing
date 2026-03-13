@@ -1,15 +1,15 @@
 ---
-const { title, id, color } = Astro.props
+import We from "./We.astro";
+import { type Lang } from "@/i18n/utils";
 
-import We from "./We.astro"
+interface Props {
+  id?: string;
+  lang: Lang;
+}
+const { id, lang } = Astro.props;
 ---
 <section
-  class="landing-section w-screen h-screen text-center    "
-  data-header-color={color}
- 
+  class="landing-section w-screen h-screen text-center"
 >
-
-<We title="nosotros" id="nosotros" />
-
+  <We title="nosotros" id="nosotros" lang={lang} />
 </section>
-

@@ -80,22 +80,20 @@
       animateSmoke();
     }
 
-    const smokeMesh = new THREE.Mesh(smokeGeo, smikeMaterial);
   });
 
-  // RENDERIZAR LA CAMARA CUANDO SE CAMBIEN LOS PARAMAETRO DE LA LA PANTALLA 
-   function reize() {
-   const newWidth = window.innerWidth;
-   const newHeight = window.innerHeight;
-
-   if (newWidth !== w || newHeight !== h) {
-     w = newWidth;
-     h = newHeight;
-     camara.aspect = w / h;
-     camara.updateProjectionMatrix();
-     renderer.setSize(w, h);
-   }
- }
+  function onResize() {
+    const newWidth = window.innerWidth;
+    const newHeight = window.innerHeight;
+    if (newWidth !== w || newHeight !== h) {
+      w = newWidth;
+      h = newHeight;
+      camara.aspect = w / h;
+      camara.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    }
+  }
+  window.addEventListener("resize", onResize);
 
   // animamos la ecena
   function animate() {

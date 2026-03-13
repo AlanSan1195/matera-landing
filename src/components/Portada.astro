@@ -1,7 +1,6 @@
 ---
-const { color, title, subtitle, id, showFooterContent } = Astro.props;
+const { color, subtitle, tagline, id } = Astro.props;
 const textColor = `text-${color}`;
-import Logo2 from "./Logo2.astro";
 ---
 
 <section
@@ -16,8 +15,7 @@ import Logo2 from "./Logo2.astro";
       <h1
         class={`${textColor} font-boldes mr-2 mt-4  lg:mr-4  lg:pt-28 xl:pt-48 text-[65px] leading-none text-opacity-95  lg:text-7xl xl:text-8xl  text-pretty`}
       >
-        <span class="text-red-700 text-7xl lg:text-8xl font-bold">"</span>Buenos
-        Amigos, Buenos Vinos, Buenos Aires.<span
+        <span class="text-red-700 text-7xl lg:text-8xl font-bold">"</span>{tagline ?? "Buenos Amigos, Buenos Vinos, Buenos Aires."}<span
           class="text-red-700 text-7xl lg:text-8xl font-bold">"</span
         >
       </h1>

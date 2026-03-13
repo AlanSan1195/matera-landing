@@ -1,61 +1,62 @@
 ---
-const { color, title, subtitle, id } = Astro.props;
-const textColor = `text-${color}`;
+import { useTranslations, type Lang } from "@/i18n/utils";
+
+interface Props {
+  id?: string;
+  lang: Lang;
+}
+
+const { id, lang } = Astro.props;
+const t = useTranslations(lang);
+
+const slideImages = [
+  {
+    img: "/imagenes/seleccion.webp",
+    title: t.carousel.slide1.title,
+    subtitle: "",
+    description: t.carousel.slide1.description,
+  },
+  {
+    img: "/imagenes/champagne.webp",
+    title: t.carousel.slide2.title,
+    subtitle: t.carousel.slide2.subtitle,
+    description: t.carousel.slide2.description,
+    contacto: "Casamatera@grupolamatera.mx",
+    ctaText: t.carousel.slide2.cta,
+  },
+  {
+    img: "/imagenes/productosCalidad2.webp",
+    title: t.carousel.slide3.title,
+    subtitle: t.carousel.slide3.subtitle,
+    description: t.carousel.slide3.description,
+  },
+  {
+    img: "/imagenes/ambiente.webp",
+    title: t.carousel.slide4.title,
+    subtitle: t.carousel.slide4.subtitle,
+    description: t.carousel.slide4.description,
+  },
+  {
+    img: "/imagenes/panNuestro.webp",
+    title: t.carousel.slide5.title,
+    subtitle: "",
+    description: t.carousel.slide5.description,
+    href: "https://www.instagram.com/pannuestrogdl/?hl=es",
+    ctaText: t.carousel.slide5.cta,
+    id: "panNuestro",
+  },
+];
 ---
 
 <div class="flex flex-wrap relative w-screen h-screen" id="carrusel">
   <div
     class="container max-w-[1950px] object-cover"
-    data-header-color={color}
     id={id}
   >
     <div class="slider"></div>
   </div>
-  <script>
+  <script define:vars={{ slideImages }}>
     (() => {
-      const slideImages = [
-        {
-          img: "/imagenes/seleccion.webp",
-          title: "Seleccionamos los mejores productos",
-          subtitle: "",
-          description:
-            "Todos los días escogemos nuestros ingredientes con el mayor cuidado, para ofrecerte la mejor calidad en cada platillo.",
-        },
-
-        {
-          img: "/imagenes/champagne.webp",
-          title: "Casa",
-          subtitle: "Matera",
-          description:
-            "Tus eventos en las mejores manos. Descubre más sobre nuestros servicios y etiquetas.",
-          contacto: "Casamatera@grupolamatera.mx",
-        },
-        {
-          img: "/imagenes/productosCalidad2.webp",
-          title: "Nuestro estandar de ",
-          subtitle: "calidad",
-          description:
-            " En La Matera nos preocupamos por ofrecerte los mejores productos y, sobre todo, la variedad de ellos. Pregunta por nuestros cortes especiales del día y su origen.",
-        },
-        {
-          img: "/imagenes/ambiente.webp",
-          title: "para los amantes del buen",
-          subtitle: "Vino",
-          description:
-            "Uno de los lugares de la ciudad más recomendados para los que quieren saber del tema y también de los preferidos para los expertos. Nuestra cava cuenta con más de 200 etiquetas de vino.",
-        },
-
-        {
-          img: "/imagenes/panNuestro.webp",
-          title: "De nuestra cocina a tu mesa ",
-          subtitle: "",
-          description:
-            "Conoce toda la variedad de productos que puedes encontrar en nuestra tienda de Pan Nuestro, ubicada sobre Nelson.",
-          href: "https://www.instagram.com/pannuestrogdl/?hl=es",
-          id: "panNuestro",
-        },
-      ];
-
       // este slice fue logrador por Fernando Herrera,divulgador de la programacion solo fue adaptado responsivamente,  dejo el repositorio https://github.com/Klerith/js-slider-from-codetheword
 
       const createHtmlStructure = (sliderSelector, images) => {
@@ -63,7 +64,7 @@ const textColor = `text-${color}`;
 
         // Slides
         images.forEach((slideImg, index) => {
-          const { img, title, description, contacto, href, id, subtitle } =
+          const { img, title, description, contacto, href, id, subtitle, ctaText } =
             slideImg;
           const slideItem = `
       <div
@@ -76,19 +77,15 @@ const textColor = `text-${color}`;
           <div class="description w-[200px] md:w-[350px] lg:w-[500px] lg:text-lg opacity-100 ">${description}</div>
         ${
           contacto
-            ? `<a href="mailto:Casamatera@grupolamatera.mx" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Cotiza tu evento</a>`
+            ? `<a href="mailto:Casamatera@grupolamatera.mx" class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">${ctaText || "Cotiza tu evento"}</a>`
             : ""
         }
         ${
           href
-            ? `<a href="https://www.instagram.com/pannuestrogdl/?hl=es target="_blank" rel="noopener noreferrer"  class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">Ver mas</a>`
+            ? `<a href="https://www.instagram.com/pannuestrogdl/?hl=es" target="_blank" rel="noopener noreferrer"  class="text-white  border-2   border-[#B56C09] rounded-xl bg-red-900/90 w-[130px] scale-110 hover:75 text-xs font-bold p-1 lg:w-[155px] lg:scale-125 md:m-4 lg:text-xs xl:text-sm xl:w-[180px] flex items-center justify-center hover:scale-110 transition ">${ctaText || "Ver más"}</a>`
             : ""
         }
         
-      
-
-          
-         
         </div>
       </div>
       `;
@@ -101,10 +98,8 @@ const textColor = `text-${color}`;
         // Buttons prev y nexts
         const html = `
     <div class="buttons">
-      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center hover:scale-125 transition  " arial-label="anterior"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
-
-
-      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center hover:scale-125 transition " arial-label="siguiente"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
+      <button class="prev text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09] rounded-xl bg-red-900 lg:w-20 flex items-center justify-center hover:scale-125 transition  " aria-label="anterior"><svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg></button>
+      <button class="next text-white scale-150 border-2 m-4 md:m-8 border-[#B56C09]  rounded-xl bg-red-900 lg:w-20  flex items-center justify-center hover:scale-125 transition " aria-label="siguiente"> <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg></button>
     </div>
     `;
         const fragment = document.createRange().createContextualFragment(html);

@@ -1,37 +1,36 @@
 ---
-import Portada from "./Portada.astro"
-import Dropbox from "@/pages/Dropbox.astro"
+import Portada from "./Portada.astro";
+import { useTranslations, type Lang } from "@/i18n/utils";
 
+interface Props {
+  lang: Lang;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<Portada 
- 
-  subtitle="Conoce esa sensación de hospitalidad y personalización de la que tanto se habla entre amigos."
+<Portada
+  subtitle={t.hero.subtitle}
+  tagline={t.hero.tagline}
   color="white"
   id="home"
 >
-
-
-
   <div slot="footer">
     <a
-      class="border-[2px]  border-red-900 bg-white/5 backdrop-blur-sm text-sm rounded font-boldes text-white px-12 py-2 inline-block hover:bg-red-800 hover:text-white transition-colors lg:text-xl"
+      class="border-[2px] border-red-900 bg-white/5 backdrop-blur-sm text-sm rounded font-boldes text-white px-12 py-2 inline-block hover:bg-red-800 hover:text-white transition-colors lg:text-xl"
       href="https://api.whatsapp.com/send/?phone=523313557728&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer"
     >
-      Reservar</a
+      {t.hero.cta}</a
     >
-   
-    </div>
   </div>
 
-   <video
+  <video
     slot="background"
-    class=" hidden md:block  object-center  object-cover h-screen w-full "
+    class="hidden md:block object-center object-cover h-screen w-full"
     autoplay
     muted
     loop
     src="/video.mp4"
-    >
-  </video> 
- 
+  >
+  </video>
 </Portada>

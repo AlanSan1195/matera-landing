@@ -1,0 +1,86 @@
+---
+import GlobeIcon from "@/components/icons/GlobeIcon.astro";
+import { languages, langNames, getLocalizedPath, type Lang } from "@/i18n/utils";
+
+interface Props {
+  currentLang: Lang;
+  currentPath: string;
+}
+
+const { currentLang, currentPath } = Astro.props;
+const langEntries = Object.entries(languages) as [Lang, string][];
+---
+
+<div id="lang-selector" class="relative">
+  <!-- Botón trigger -->
+  <button
+    id="lang-btn"
+    aria-label="Seleccionar idioma"
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    class="flex items-center gap-1.5 border-[2px] border-white/30 bg-white/5 backdrop-blur-sm rounded px-2.5 py-1.5 text-white/80 hover:border-red-900 hover:text-white transition-colors text-xs font-medium"
+  >
+    <GlobeIcon class="size-4 shrink-0" />
+    <span class="tracking-wider">{languages[currentLang]}</span>
+    <!-- Chevron -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" id="lang-chevron" class="transition-transform duration-200" aria-hidden="true">
+      <path d="M6 9l6 6l6 -6" />
+    </svg>
+  </button>
+
+  <!-- Dropdown -->
+  <ul
+    id="lang-dropdown"
+    role="listbox"
+    aria-label="Idiomas disponibles"
+    class="hidden absolute right-0 top-full mt-2 min-w-[130px] bg-black/90 backdrop-blur-md border border-white/10 rounded-lg shadow-xl overflow-hidden z-[100]"
+  >
+    {langEntries.map(([lang]) => {
+      const href = getLocalizedPath(currentPath, lang);
+      const isActive = lang === currentLang;
+      return (
+        <li role="option" aria-selected={isActive}>
+          <a
+            href={href}
+            class:list={[
+              "flex items-center justify-between gap-3 px-4 py-2.5 text-sm transition-colors",
+              isActive
+                ? "text-white bg-red-900/40 font-medium"
+                : "text-white/70 hover:text-white hover:bg-white/10",
+            ]}
+          >
+            <span>{langNames[lang]}</span>
+            <span class="text-xs font-bold tracking-wider text-white/40">{languages[lang]}</span>
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+</div>
+
+<script>
+  const btn = document.getElementById("lang-btn");
+  const dropdown = document.getElementById("lang-dropdown");
+  const chevron = document.getElementById("lang-chevron");
+
+  function toggleDropdown(open?: boolean) {
+    if (!btn || !dropdown || !chevron) return;
+    const isOpen = open ?? dropdown.classList.contains("hidden");
+    dropdown.classList.toggle("hidden", !isOpen);
+    chevron.style.transform = isOpen ? "rotate(180deg)" : "rotate(0deg)";
+    btn.setAttribute("aria-expanded", String(isOpen));
+  }
+
+  btn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleDropdown();
+  });
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener("click", () => toggleDropdown(false));
+
+  // Cerrar con Escape
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") toggleDropdown(false);
+  });
+</script>

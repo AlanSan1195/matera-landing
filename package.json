@@ -22,6 +22,8 @@
     "three": "^0.162.0"
   },
   "devDependencies": {
-    "@types/three": "^0.162.0"
+    "@astrojs/check": "^0.9.7",
+    "@types/three": "^0.162.0",
+    "typescript": "^5.9.3"
   }
 }
