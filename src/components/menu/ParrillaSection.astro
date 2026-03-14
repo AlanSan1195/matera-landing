@@ -29,6 +29,14 @@ function pNombre(nombre: string): string | undefined {
   const n = (plato as { nombre: string }).nombre;
   return n && lang !== "es" ? n : undefined;
 }
+
+// Helper: descripción traducida de un plato de parrilla
+function pDescripcion(nombre: string): string | undefined {
+  const plato = tc.platos[nombre as keyof typeof tc.platos];
+  if (!plato) return undefined;
+  const d = (plato as { descripcion: string }).descripcion;
+  return d && lang !== "es" ? d : undefined;
+}
 ---
 
 <div id="divParrilla" class="w-full justify-center text-white mt-4 mb-8">
@@ -87,7 +95,7 @@ function pNombre(nombre: string): string | undefined {
           {pNombre(item.name) && (
             <p class="text-[10px] text-white/45 italic">{pNombre(item.name)}</p>
           )}
-          <p class="text-[10px]">{item.description}</p>
+          <p class="text-[10px]">{pDescripcion(item.name) ?? item.description}</p>
         </div>
       ))
     }
@@ -107,6 +115,7 @@ function pNombre(nombre: string): string | undefined {
     info={campoData[0]}
     items={filetes}
     cols={2}
+    descripcionTraducida={pDescripcion(campoData[0].name)}
   />
   <CutCard
     id="divVacios"
@@ -114,6 +123,7 @@ function pNombre(nombre: string): string | undefined {
     info={campoData[1]}
     items={vacios}
     cols={3}
+    descripcionTraducida={pDescripcion(campoData[1].name)}
   />
   <CutCard
     id="divEntrañas"
@@ -121,6 +131,7 @@ function pNombre(nombre: string): string | undefined {
     info={campoData[2]}
     items={entranas}
     cols={2}
+    descripcionTraducida={pDescripcion(campoData[2].name)}
   />
   <CutCard
     id="divAsados"
@@ -128,6 +139,7 @@ function pNombre(nombre: string): string | undefined {
     info={campoData[3]}
     items={asados}
     cols={2}
+    descripcionTraducida={pDescripcion(campoData[3].name)}
   />
   <CutCard
     id="divRibEye"
@@ -136,6 +148,7 @@ function pNombre(nombre: string): string | undefined {
     items={bifes}
     cols={2}
     esBife={true}
+    descripcionTraducida={pDescripcion(campoData[4].name)}
   />
 
   <!-- Mar -->

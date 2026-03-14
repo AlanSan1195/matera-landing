@@ -8,9 +8,10 @@ export interface Props {
   items: CorteTalla[] | BifeItem[];
   cols?: number;
   esBife?: boolean;
+  descripcionTraducida?: string;
 }
 
-const { id, titulo, info, items, cols = 2, esBife = false } = Astro.props;
+const { id, titulo, info, items, cols = 2, esBife = false, descripcionTraducida } = Astro.props;
 ---
 
 <div
@@ -38,7 +39,7 @@ const { id, titulo, info, items, cols = 2, esBife = false } = Astro.props;
   <div class="flex flex-col justify-center items-center">
     <img class="size-28 mx-auto" src={info.src} alt={info.name} />
     <p class="text-sm mb-4 top-0 w-[280px] text-center text-wrap opacity-80">
-      {info.description}
+      {descripcionTraducida ?? info.description}
     </p>
   </div>
 
