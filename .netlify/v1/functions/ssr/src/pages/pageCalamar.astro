@@ -1,0 +1,50 @@
+---
+import VisualDishPage from "@/layouts/VisualDishPage.astro";
+import ArrowCurved from "@/components/icons/ArrowCurved.astro";
+import ArrowVertical from "@/components/icons/ArrowVertical.astro";
+
+const calamar = {
+  visualDescription:
+    "Un calamar que obtenemos de la Patagonia Argentina. Siempre intentamos reflejar el respeto por el producto.",
+  title: "Visual del platillo del calamar",
+  description: "Visual del platillo del calamar",
+  preparacion: "Previamente marinado con un Provenzal (ajo y perejil)",
+  acompañamiento:
+    "Tomates rostizados, una de las guarniciones más atesoradas de La Matera",
+};
+---
+
+<VisualDishPage title={calamar.title} description={calamar.description}>
+  <img
+    slot="image"
+    src="/imagenes/visuales/calamarVisual.webp"
+    alt="imagen en alta calidad del calamar"
+    class="object-cover h-full w-full"
+  />
+  <div slot="annotations">
+    <div class="absolute top-[135px] max-w-[180px] left-[195px]">
+      <p class="caja-texto font-pages opacity-80 text-sm">
+        {calamar.visualDescription}
+      </p>
+    </div>
+    <div class="svg absolute top-[220px] left-[110px] rotate-[-60deg]">
+      <ArrowCurved class="svg" width={70} height={68} />
+    </div>
+    <div class="absolute top-[515px] max-w-[115px] left-[10px]">
+      <p class="caja-texto2 font-pages opacity-80 text-sm">
+        {calamar.acompañamiento}
+      </p>
+    </div>
+    <div class="svg2 absolute top-[470px] left-[100px] rotate-[10deg]">
+      <ArrowVertical width={48} height={110} />
+    </div>
+    <div class="absolute top-[605px] max-w-[120px] left-[190px]">
+      <p class="caja-texto3 font-pages opacity-80 text-sm">
+        {calamar.preparacion}
+      </p>
+    </div>
+    <div class="svg3 absolute top-[430px] left-[220px] -rotate-[180deg]">
+      <ArrowVertical width={48} height={160} />
+    </div>
+  </div>
+</VisualDishPage>
