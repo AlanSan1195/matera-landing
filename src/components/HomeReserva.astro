@@ -30,7 +30,11 @@ const t = useTranslations(lang);
     autoplay
     muted
     loop
-    src="/video.mp4"
+    playsinline
+    preload="none"
+    poster="/imagenes/preview.webp"
   >
+    <source src="/video-compressed.webm" type="video/webm" />
+    <source src="/video-compressed.mp4" type="video/mp4" />
   </video>
 </Portada>

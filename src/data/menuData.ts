@@ -6,7 +6,7 @@ export interface MenuItem {
   src: string;
   name: string;
   description: string;
-  // price: string;
+  price?: string;
 }
 
 export interface ParrillaItem {
@@ -273,7 +273,7 @@ export const ensaladas: MenuItem[] = [
     // price: "$180",
   },
   {
-    src: "/imagenes/carta//ensaladas/corazones.webp",
+    src: "/imagenes/carta/ensaladas/corazones.webp",
     name: "Corazones de lechuga asados",
     description:
       "Bañados de un aderezo César casero, con un toque de queso Grana Padano. Una opción deliciosa.",

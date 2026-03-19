@@ -1,7 +1,5 @@
 ---
 import Logo from "./Logo.astro";
-import User from "./icons/User.astro";
-import Logo2 from "./Logo2.astro";
 import LangSelector from "./LangSelector.astro";
 import { getLangFromUrl, useTranslations, type Lang } from "@/i18n/utils";
 
@@ -12,13 +10,13 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="landing-header"
-  class="py-5 md:py-3 lg:py-3 px-10 flex items-center fixed top-0 w-full justify-between z-[70] text-white/65 bg-black/25 rounded-b-3xl"
+  class="py-5 md:py-3 lg:py-3 px-4 sm:px-6 md:px-10 flex items-center fixed top-0 left-0 right-0 w-full max-w-full box-border justify-between z-[70] text-white/65 bg-black/25 rounded-b-3xl overflow-x-hidden"
 >
   <div id="logo1" class="flex flex-grow basis-0 md:pointer-events-none">
-    <img /><Logo />
+    <Logo variant="main" />
   </div>
   <div id="logo2" class="opacity-0 md:flex absolute">
-    <img /><Logo2 />
+    <Logo variant="compact" />
   </div>
 
   <nav class="hidden md:block">
@@ -42,173 +40,162 @@ const currentPath = Astro.url.pathname;
     </ul>
   </nav>
 
-  <!-- Derecha: selector de idioma + icono usuario móvil -->
+  <!-- Derecha: selector de idioma + hamburguesa móvil -->
   <nav class="flex flex-grow justify-end basis-0 items-center gap-3">
-    <!-- Selector de idioma: visible siempre, separado del icono usuario -->
+    <!-- Selector de idioma: visible siempre -->
     <LangSelector currentLang={lang} currentPath={currentPath} />
 
-  
+    <!-- Botón hamburguesa móvil -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden flex items-center justify-center w-9 h-9 text-white/80 hover:text-white transition-colors"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="icon-close" class="hidden" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
   </nav>
 
-  <!-- Menú modal móvil (pantalla completa) -->
-  <!-- <nav
-    id="modal-menu"
-    class="hidden lg:hidden flex flex-col bg-orange-50 fixed top-0 left-0 right-0 bottom-0"
+  <!-- Menú móvil (pantalla completa) -->
+  <nav
+    id="mobile-menu"
+    class="fixed inset-0 top-0 z-[80] bg-black/95 backdrop-blur-md flex flex-col items-center justify-center gap-8 transition-all duration-300 opacity-0 pointer-events-none md:hidden"
+    aria-hidden="true"
   >
-    <button id="close-btn" class="w-screen flex justify-end p-5">
-      <img class="text-black h-6" src="/close-icon.svg" alt="close image" />
-    </button>
-    <ul
-      class="flex flex-col mt-4 [&>li]:m-3 [&>li>a]:flex [&>li>a]:justify-between [&>li>a]:duration-200 [&>li>a]:text-black [&>li>a]:font-medium [&>li>a]:inline-block [&>li>a]:px-6 [&>li>a]:py-3 [&>li>a]:rounded-md [&>li>a]:w-full"
+    <button
+      id="mobile-menu-close"
+      class="absolute top-5 right-5 w-10 h-10 flex items-center justify-center text-white/80 hover:text-white transition-colors"
+      aria-label="Cerrar menú"
     >
+      <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+    <ul class="flex flex-col items-center gap-6 text-center">
       <li>
-        <a class="hover:bg-slate-300 hover:text-red-500" href="#home">
-          {t.nav.reservar} <img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
+        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#home">
+          {t.nav.reserva}
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-300 hover:text-red-500" href="#carta"
-          >{t.nav.carta}<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
+        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#carta">
+          {t.nav.carta}
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-300 hover:text-red-500" href="#nosotros"
-          >{t.nav.nosotros}<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
+        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#eventos">
+          {t.nav.eventos}
+        </a>
       </li>
       <li>
-        <a class="hover:bg-slate-300 hover:text-red-500" href="#eventos"
-          >{t.nav.eventos}<img class="h-5" alt="arrow icon" src="/arrow-icon.svg" /></a
-        >
+        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#nosotros">
+          {t.nav.nosotros}
+        </a>
       </li>
-    </ul> -->
-
-    <!-- boton de usuario  -->
-
-    <!-- <SignedOut>
-      <SignInButton
-       class="mt-12 p-2  bg-slate-200 backdrop-blur-sm flex justify-center items-center border-2  border-slate-300 shadow-md hover:cursor-pointer transition hover:scale-110 font-medium  rounded-xl mx-auto"
-       mode="modal"
-
-     >
-       <img class="font-bold text-lg" />
-       <p class="flex justify-center mx-auto text-black  text-xs">Iniciar sesión</p> 
-     </SignInButton>
-    </SignedOut>
-    <SignedIn>
-      <div class="flex  items-center">
-        <a href="/Dropbox"  rel="noopener noreferrer" class="flex flex-col justify-center items-center mx-auto k mt-1 text-lg text-[#09f] font-semibold hover:scale-110">DropBox 
-        <Book class="size-8 text-black stroke-[#09f]" />
-      </a>
-      </div>
-    </SignedIn> -->
-  <!-- </nav>
-
-  <div
-    id="menu-backdrop"
-    class={` 
-      absolute bg-white/10 backdrop-blur-lg rounded
-      translate-x-[var(--left)] translate-y-[var(--top)]
-      left-0 top-0
-      w-[var(--width)] h-[var(--height)]
-      transition-all duration-400
-      ease-in-out opacity-1 -z-10
-    `}
-  >
-  </div> -->
-
-  <script>
-    const menuBtn = document.getElementById("menu-btn");
-    const modalMenu = document.querySelector("#modal-menu");
-    const menuItems = modalMenu.querySelectorAll("li>a ");
-    const closeBtn = document.querySelector("#close-btn");
-
-    function toggleDropdownMenu() {
-      modalMenu.classList.toggle("hidden");
-    }
-
-    menuBtn.addEventListener("click", toggleDropdownMenu);
-
-    closeBtn.addEventListener("click", toggleDropdownMenu);
-
-    menuItems.forEach((item) => {
-      item.addEventListener("click", toggleDropdownMenu);
-    });
-
-    menuBtn.addEventListener("scroll", () => {});
-  </script>
+    </ul>
+  </nav>
 
   <script>
     const listItem = document.querySelectorAll("#landing-header li");
-    const menuBackDrop = document.querySelector(
-      "#menu-backdrop"
-    ) as HTMLElement;
 
-    // desavilitamos interseccion de pagina
     listItem.forEach((item) => {
       item.addEventListener("mouseenter", () => {
-        const { left, top, width, height } = item.getBoundingClientRect();
-
-        menuBackDrop.style.setProperty("--left", `${left}px`);
-        menuBackDrop.style.setProperty("--top", `${top}px`);
-        menuBackDrop.style.setProperty("--width", `${width}px`);
-        menuBackDrop.style.setProperty("--height", `${height}px`);
-
-        menuBackDrop.style.opacity = "1";
-        menuBackDrop.style.visibility = "visible";
-        if (window.innerWidth < 768) menuBackDrop.style.opacity = "0";
-      });
-
-      item.addEventListener("mouseleave", () => {
-        menuBackDrop.style.opacity = "0";
-        menuBackDrop.style.visibility = "hidden";
+        // Efecto hover reservado para cuando se reactive el menu-backdrop
       });
     });
   </script>
 
   <script>
-    document.addEventListener("scroll", function () {
-      let logo1 = document.getElementById("logo1");
-      let logo2 = document.getElementById("logo2");
-      if (window.innerWidth >= 768) {
-        if (window.scrollY > 400) {
-          logo2.classList.remove("hidden");
-          logo1.style.transition = "opacity 0.3s";
-          logo1.style.opacity = "0";
+    // Menú móvil: abrir/cerrar
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
-          logo2.style.opacity = "1";
-          logo2.style.transition = "opacity 0.3s";
-        } else {
-          logo1.style.opacity = "1";
-          logo2.style.opacity = "0";
+    function openMobileMenu() {
+      if (!mobileMenu || !mobileMenuBtn) return;
+      mobileMenu.classList.remove("opacity-0", "pointer-events-none");
+      mobileMenu.classList.add("opacity-100", "pointer-events-auto");
+      mobileMenu.setAttribute("aria-hidden", "false");
+      mobileMenuBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileMenu() {
+      if (!mobileMenu || !mobileMenuBtn) return;
+      mobileMenu.classList.remove("opacity-100", "pointer-events-auto");
+      mobileMenu.classList.add("opacity-0", "pointer-events-none");
+      mobileMenu.setAttribute("aria-hidden", "true");
+      mobileMenuBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+    }
+
+    mobileMenuBtn?.addEventListener("click", openMobileMenu);
+    mobileMenuClose?.addEventListener("click", closeMobileMenu);
+    mobileNavLinks.forEach((link) => {
+      link.addEventListener("click", closeMobileMenu);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeMobileMenu();
+    });
+  </script>
+
+  <script>
+    // Scroll unificado: logo swap + header background
+    const logo1 = document.getElementById("logo1");
+    const logo2 = document.getElementById("logo2");
+    const header = document.getElementById("landing-header");
+
+    let ticking = false;
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+
+      requestAnimationFrame(() => {
+        const scrolled = window.scrollY > 400;
+        const isDesktop = window.innerWidth >= 768;
+
+        // Logo swap (solo desktop)
+        if (isDesktop && logo1 && logo2) {
+          if (scrolled) {
+            logo2.classList.remove("hidden");
+            logo1.style.transition = "opacity 0.3s";
+            logo1.style.opacity = "0";
+            logo2.style.opacity = "1";
+            logo2.style.transition = "opacity 0.3s";
+          } else {
+            logo1.style.opacity = "1";
+            logo2.style.opacity = "0";
+          }
         }
-      }
-    });
-  </script>
-  <script>
-    // estilamos el el header con scrollY
-    document.addEventListener("scroll", function () {
-      let header = document.getElementById("landing-header");
-      let user = document.getElementById("user-border");
 
-      if (window.scrollY > 400 && window.innerWidth < 768) {
-        header.style.transition = "background-color .5s";
-        header.style.borderBottom = "2px ridge #7F1C1D ";
-        header.style.backgroundColor = "black";
-      } else {
-        header.style.backgroundColor = "rgba(0, 0, 0, 0.30)";
-        header.style.borderBottom = "none";
-      }
+        // Header background
+        if (header) {
+          if (scrolled) {
+            header.style.transition = "background-color .5s";
+            header.style.borderBottom = isDesktop
+              ? "1px ridge #7F1C1D"
+              : "2px ridge #7F1C1D";
+            header.style.backgroundColor = "black";
+          } else {
+            header.style.backgroundColor = "rgba(0, 0, 0, 0.30)";
+            header.style.borderBottom = "none";
+            header.style.backdropFilter = "none";
+          }
+        }
 
-      if (window.scrollY > 400 && window.innerWidth > 768) {
-        header.style.transition = "background-color .5s";
-        header.style.borderBottom = "1px ridge #7F1C1D ";
+        ticking = false;
+      });
+    }
 
-        // header.style.backdropFilter = "  blur(10px)";
-        header.style.backgroundColor = "black";
-      } else {
-        header.style.backdropFilter = "none";
-      }
-    });
+    document.addEventListener("scroll", onScroll, { passive: true });
   </script>
 </header>

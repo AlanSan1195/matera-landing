@@ -1,119 +1,90 @@
-<div id="smoke-bkg" class="fixed  top-0  h-full w-full -z-10 opacity-25 "></div>
+<div id="smoke-bkg" class="fixed top-0 h-full w-full -z-10 opacity-25 hidden md:block"></div>
 
 <script>
-  //importamos la biobleoteca de Three.js
-  // hicimos este efecto en un proyecto con midudev junto con el y la comunidadad
-
   import * as THREE from "three";
 
-  const $bkg = document.getElementById("smoke-bkg");
+  // Solo inicializar en desktop (>= 768px)
+  if (window.innerWidth >= 768) {
+    const $bkg = document.getElementById("smoke-bkg");
 
-  let w = window.innerWidth;
-  let h = window.innerHeight;
+    if ($bkg) {
+      let w = window.innerWidth;
+      let h = window.innerHeight;
 
-  //inicializar Three.js
-  // 3 cosas basiscas:   Escena, Camara, Rednderizador
+      const scene = new THREE.Scene();
+      const camara = new THREE.PerspectiveCamera(75, w / h, 1, 1000);
+      camara.position.z = 10;
+      scene.add(camara);
 
-  //Escena
-  const scene = new THREE.Scene();
-
-  //Camara   el "h" es el frente y la "w" es los lados 1000 es la maxima para que mas ya no s eve esta muy lejos
-  const camara = new THREE.PerspectiveCamera(75, w / h, 1, 1000);
-  //activamos la profundidad deceada
-  camara.position.z = 10;
-  //a esta ecena le agregamos la camara
-  scene.add(camara);
-
-
-
-
-  //Renderizador ▶️   HAY DIFERENTES TIPOS PERO USAREMOS EL WEBGL
-  const renderer = new THREE.WebGLRenderer();
-  renderer.setSize(w, h);
-
-  //color de fondo
-  renderer.setClearColor(0x999999, 1);
-
-  $bkg?.appendChild(renderer.domElement);
-
-
-  // crear particulas de humo
-  const smokeParticles = [];
-
-  const loader = new THREE.TextureLoader();
-  loader.crossOrigin = ""; //<--- en locallhost no pasa nada pero si desplegamos a un servidor puede ser necesario
-
-  loader.load("/smoke.webp", (texture) => {
-    // 1. Geometria
-    //crear un plano geometrico de 300 x 300
-    const smokeGeo = new THREE.PlaneGeometry(300, 300);
-
-    //2. Material
-    const smikeMaterial = new THREE.MeshLambertMaterial({
-      map: texture,
-      transparent: true,
-    });
-
-    // 3. Malla
-    //creeamos las particulas y las posicionamos aleatoriamente
-    const NUM_OF_PARTICLES = 100;
-
-    for (let p = 0; p < NUM_OF_PARTICLES; p++) {
-      const particle = new THREE.Mesh(smokeGeo, smikeMaterial);
-
-      particle.position.set(
-        Math.random() * 500 - 250,
-        Math.random() * 500 - 250,
-        // REDUCIR LAS PARTICULAS O AUMENTAR LA CANTIDAD 
-        Math.random() * 1100 - 90
-      );
-
-      particle.rotation.z = Math.random() * 60;
-      scene.add(particle);
-      smokeParticles.push(particle);
-      function animateSmoke(){
-          requestAnimationFrame(animateSmoke);
-          particle.rotation.z += 0.008;
-           particle.position.y += 0.001;
-           particle.position.x += 0.001;
-      } 
-      animateSmoke();
-    }
-
-  });
-
-  function onResize() {
-    const newWidth = window.innerWidth;
-    const newHeight = window.innerHeight;
-    if (newWidth !== w || newHeight !== h) {
-      w = newWidth;
-      h = newHeight;
-      camara.aspect = w / h;
-      camara.updateProjectionMatrix();
+      const renderer = new THREE.WebGLRenderer();
       renderer.setSize(w, h);
+      renderer.setClearColor(0x999999, 1);
+      $bkg.appendChild(renderer.domElement);
+
+      const smokeParticles: THREE.Mesh[] = [];
+
+      const loader = new THREE.TextureLoader();
+      loader.crossOrigin = "";
+
+      loader.load("/smoke.webp", (texture) => {
+        const smokeGeo = new THREE.PlaneGeometry(300, 300);
+        const smokeMaterial = new THREE.MeshLambertMaterial({
+          map: texture,
+          transparent: true,
+        });
+
+        const NUM_OF_PARTICLES = 100;
+
+        for (let p = 0; p < NUM_OF_PARTICLES; p++) {
+          const particle = new THREE.Mesh(smokeGeo, smokeMaterial);
+          particle.position.set(
+            Math.random() * 500 - 250,
+            Math.random() * 500 - 250,
+            Math.random() * 1100 - 90
+          );
+          particle.rotation.z = Math.random() * 60;
+          scene.add(particle);
+          smokeParticles.push(particle);
+        }
+      });
+
+      function onResize() {
+        const newWidth = window.innerWidth;
+        const newHeight = window.innerHeight;
+        if (newWidth !== w || newHeight !== h) {
+          w = newWidth;
+          h = newHeight;
+          camara.aspect = w / h;
+          camara.updateProjectionMatrix();
+          renderer.setSize(w, h);
+        }
+      }
+      window.addEventListener("resize", onResize);
+
+      // Un solo loop de animación para todas las partículas + render
+      let animationId: number;
+
+      function animate() {
+        animationId = requestAnimationFrame(animate);
+
+        for (const particle of smokeParticles) {
+          particle.rotation.z += 0.008;
+          particle.position.y += 0.001;
+          particle.position.x += 0.001;
+        }
+
+        renderer.render(scene, camara);
+      }
+
+      animate();
+
+      // Cleanup al cambiar de página (Astro view transitions / SPA)
+      document.addEventListener("astro:before-swap", () => {
+        cancelAnimationFrame(animationId);
+        window.removeEventListener("resize", onResize);
+        renderer.dispose();
+        smokeParticles.length = 0;
+      });
     }
   }
-  window.addEventListener("resize", onResize);
-
-  // animamos la ecena
-  function animate() {
-    //ir llamando en cada frame a esta funciion que anima
-    requestAnimationFrame(animate);
- 
-    //renderizamos la escena
-    renderer.render(scene, camara);
-  }
-  //llamamos a la funcion animate para que se ejecute en cada frame
-
-  animate();
-    // se va a disparar frecuentemente cuando se cambie el tamaño de la ventana
-    const humo =document.getElementById("smoke-bkg")
-    if (window.innerWidth < 768) {
-      humo.classList.remove("fixed");
-      humo.classList.add("hidden");
-
-    } else  {
-      humo.classList.remove("hidden");
-      humo.classList.add("fixed");
-    }
 </script>

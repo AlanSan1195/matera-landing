@@ -11,7 +11,14 @@ export interface Props {
 
 const { id, items, cols = 4, extraClass = "" } = Astro.props;
 
-const baseClass = `w-full gap-y-16 md:grid md:grid-cols-${cols} p-7 mb-24 text-white/85`;
+// Mapa de clases literales para que Tailwind JIT las detecte
+const mdGridColsClass: Record<number, string> = {
+  3: "md:grid-cols-3",
+  4: "md:grid-cols-4",
+};
+const mdGridClass = mdGridColsClass[cols] ?? "md:grid-cols-4";
+
+const baseClass = `w-full gap-y-16 md:grid ${mdGridClass} p-7 mb-24 text-white/85`;
 const className = extraClass ? `${baseClass} ${extraClass}` : baseClass;
 ---
 

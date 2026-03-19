@@ -10,9 +10,11 @@ const { title, description } = Astro.props;
 ---
 
 <Layout title={title} description={description}>
-  <div class="relative flex justify-center h-screen w-full text-white">
+  <div class="relative flex justify-center h-screen w-full text-white overflow-hidden">
     <slot name="image" />
-    <slot name="annotations" />
+    <div class="absolute inset-0">
+      <slot name="annotations" />
+    </div>
   </div>
 </Layout>
 

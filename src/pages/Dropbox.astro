@@ -22,42 +22,38 @@ const platillos = [
 <Layout title="Dropbox" description="Todas las recetas completas y Speach recomendados para los platillos de la matera">
 
 
-  <header class="flex fixed justify-between items-center bg-orange-100 shadow-md w-full h-auto  ">
-    <div class=" my-2 ">
-      <img class=" size-16" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
+  <header class="flex fixed justify-between items-center bg-orange-100 shadow-md w-full h-auto z-50 px-4 md:px-8">
+    <div class="my-2">
+      <img class="size-12 md:size-16" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
     </div>
   
       <SignedIn>
-        
-          <UserButton   />
-  
+          <UserButton />
       </SignedIn>
   </header>
-  <section class=" flex  pt-24 pb-24  gap-y-12  w-full h-full  flex-col bg-orange-100 text-black ">
+  <section class="flex pt-24 pb-24 gap-y-8 md:gap-y-12 w-full h-full flex-col bg-orange-100 text-black px-4 md:px-8 lg:px-16">
     {
       platillos.map(({ imagen, titulo, descripcion, gramaje }) => (
-        <article class=" mx-12 flex justify-center items-center bg-slate-200 p-1 gap-x-4 m  ">
-          <div class=" h-auto w-auto">
+        <article class="flex flex-col md:flex-row justify-center items-center bg-slate-200 p-3 md:p-4 gap-4 rounded-xl">
+          <div class="shrink-0">
             <img
               src={imagen}
               alt=" "
-              class=" w-64 h-24 rounded-full object-cover "
+              class="w-full h-40 md:w-64 md:h-24 rounded-2xl md:rounded-full object-cover"
             />
           </div>
   
-          <div class="  bg-slate-300/60 shadow-xl flex w-[800px] flex-col justify-center p-4 ">
-            <h2 class=" font-bold text-3xl mb-4">{titulo}</h2>
-            <p class="  text-2xl mb-4">{descripcion}</p>
-            <p class=" font-semibold text-xl flex justify-end">{gramaje}</p>
+          <div class="bg-slate-300/60 shadow-xl flex w-full flex-col justify-center p-4 rounded-lg">
+            <h2 class="font-bold text-xl md:text-2xl lg:text-3xl mb-2 md:mb-4">{titulo}</h2>
+            <p class="text-base md:text-lg lg:text-2xl mb-2 md:mb-4">{descripcion}</p>
+            <p class="font-semibold text-lg md:text-xl flex justify-end">{gramaje}</p>
           </div>
         </article>
       ))
     }
   </section>
   
-  
-  
 </Layout>
-<footer class="flex justify-center items-center h-20 w-full  bg-orange-100 text-black ">Hecho con ❤️ para el equipo</footer>
+<footer class="flex justify-center items-center h-16 md:h-20 w-full bg-orange-100 text-black text-sm md:text-base">Hecho con ❤️ para el equipo</footer>
 
 

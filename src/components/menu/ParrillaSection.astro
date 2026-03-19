@@ -44,30 +44,42 @@ function pDescripcion(nombre: string): string | undefined {
   <ul class="flex justify-center gap-6 mb-4">
     <li>
       <button id="botonGranja" class="hover:cursor-pointer text-white">
-        <img
-          class="size-20 p-2 mx-auto"
-          src="/imagenes/carta/parrilla/cerdo.webp"
-          alt="Granja"
+          <img
+            class="size-16 sm:size-20 p-2 mx-auto"
+            src="/imagenes/carta/parrilla/cerdo.webp"
+            alt="Granja"
+          loading="lazy"
+          decoding="async"
+          width="80"
+          height="80"
         />
         <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.granja}</h2>
       </button>
     </li>
     <li>
       <button id="botonCampo" class="hover:cursor-pointer text-white">
-        <img
-          class="size-20 p-2 mx-auto"
-          src="/imagenes/carta/parrilla/vaca.webp"
-          alt="Campo"
+          <img
+            class="size-16 sm:size-20 p-2 mx-auto"
+            src="/imagenes/carta/parrilla/vaca.webp"
+            alt="Campo"
+          loading="lazy"
+          decoding="async"
+          width="80"
+          height="80"
         />
         <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.campo}</h2>
       </button>
     </li>
     <li>
       <button id="botonMar" class="hover:cursor-pointer text-white">
-        <img
-          class="size-20 p-2 mx-auto"
-          src="/imagenes/carta/parrilla/camaron.webp"
-          alt="Mar"
+          <img
+            class="size-16 sm:size-20 p-2 mx-auto"
+            src="/imagenes/carta/parrilla/camaron.webp"
+            alt="Mar"
+          loading="lazy"
+          decoding="async"
+          width="80"
+          height="80"
         />
         <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.mar}</h2>
       </button>
@@ -87,9 +99,13 @@ function pDescripcion(nombre: string): string | undefined {
         >
           <img
             id={item.src}
-            class="size-32 md:size-48 hover:cursor-pointer"
+            class="size-24 sm:size-32 md:size-48 hover:cursor-pointer"
             src={item.src}
             alt={item.name}
+            loading="lazy"
+            decoding="async"
+            width="128"
+            height="128"
           />
           <p class="text-sm font-boldes">{item.name}</p>
           {pNombre(item.name) && (
@@ -160,9 +176,13 @@ function pDescripcion(nombre: string): string | undefined {
       marData.map((item) => (
         <div class="flex justify-center flex-col relative mx-auto">
           <img
-            class="h-32 w-32 object-cover mx-auto"
+            class="h-24 w-24 sm:h-32 sm:w-32 object-cover mx-auto"
             src={item.src}
             alt={item.name}
+            loading="lazy"
+            decoding="async"
+            width="128"
+            height="128"
           />
           <p class="mt-2 font-boldes text-center text-pretty text-sm">
             {item.name}
@@ -173,15 +193,7 @@ function pDescripcion(nombre: string): string | undefined {
           <p class="mt-1 font-light text-center text-pretty text-xs">
             {item.gramaje}
           </p>
-          {item.boton && (
-            <div class="absolute top-[75px] left-[100px]">
-              <a
-                id="pulser-calamar"
-                href="/pageCalamar"
-                class="bg-white h-3 w-3 rounded-full absolute inset-0"
-              />
-            </div>
-          )}
+
         </div>
       ))
     }
@@ -196,9 +208,13 @@ function pDescripcion(nombre: string): string | undefined {
       granjaData.map((item) => (
         <div class="flex justify-center flex-col py-3 px-2 relative m-1">
           <img
-            class="h-32 w-32 object-cover mx-auto"
+            class="h-24 w-24 sm:h-32 sm:w-32 object-cover mx-auto"
             src={item.src}
             alt={item.name}
+            loading="lazy"
+            decoding="async"
+            width="128"
+            height="128"
           />
           <p class="mt-2 font-boldes text-sm text-center text-pretty">
             {item.name}
@@ -209,15 +225,7 @@ function pDescripcion(nombre: string): string | undefined {
           <p class="mt-1 font-light text-center text-pretty text-xs">
             {item.gramaje}
           </p>
-          {item.boton && (
-            <div class="absolute left-24 top-28">
-              <a
-                id="pulser-matambrito"
-                href="/pageMatambrito"
-                class="bg-white h-3 w-3 rounded-full absolute inset-0"
-              />
-            </div>
-          )}
+
         </div>
       ))
     }

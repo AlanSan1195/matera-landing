@@ -30,11 +30,11 @@ const imgClass = isEmpanada
 >
   {categoryName}
 </a>
-<div id={divId} class="flex overflow-x-auto ml-16 mt-2 rounded-s-3xl">
+<div id={divId} class="flex overflow-x-auto ml-4 sm:ml-8 md:ml-16 mt-2 rounded-s-3xl">
   {
     items.map((item) => (
       <div class="flex flex-col bg-white bg-opacity-15 border-2 border-red-900 rounded-xl m-3 min-w-32 text-white">
-        <img class={imgClass} src={item.src} alt={item.name} />
+        <img class={imgClass} src={item.src} alt={item.name} loading="lazy" decoding="async" width="96" height="96" />
         <p class="font-boldes text-sm text-start mt-2 ml-2 text-pretty opacity-85">
           {item.name}
         </p>
