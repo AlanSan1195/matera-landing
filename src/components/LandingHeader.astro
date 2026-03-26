@@ -39,6 +39,11 @@ const currentPath = Astro.url.pathname;
           >{t.nav.nosotros}</a
         >
       </li>
+      <SignedIn>
+        <li>
+          <a class="hover:text-red-800" href="/Dropbox" data-no-gate aria-label="Manual">Manual</a>
+        </li>
+      </SignedIn>
     </ul>
   </nav>
 
@@ -58,13 +63,6 @@ const currentPath = Astro.url.pathname;
       </a>
     </SignedOut>
     <SignedIn>
-      <a
-        href="/Dropbox"
-        aria-label="Panel interno"
-        class="hidden md:flex items-center justify-center w-9 h-9 text-white/80 hover:text-white transition-colors"
-      >
-        <UserIcon class="w-5 h-5" />
-      </a>
       <UserButton />
     </SignedIn>
 
@@ -84,6 +82,40 @@ const currentPath = Astro.url.pathname;
       </svg>
     </button>
   </nav>
+
+  <!-- Modal contraseña previa -->
+  <div
+    id="password-gate-modal"
+    class="fixed inset-0 z-[100] bg-black/80 backdrop-blur-sm flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+    aria-hidden="true"
+  >
+    <div class="bg-neutral-900 border border-red-900/40 rounded-2xl p-8 w-[90vw] max-w-sm flex flex-col items-center gap-5 shadow-2xl">
+      <h2 class="text-white font-boldes text-2xl text-center">Acceso restringido</h2>
+      <p class="text-white/60 text-sm text-center">Ingresá la contraseña para continuar</p>
+      <input
+        id="password-gate-input"
+        type="password"
+        placeholder="Contraseña"
+        autocomplete="off"
+        class="w-full rounded-lg bg-neutral-800 border border-white/10 text-white px-4 py-3 text-sm focus:outline-none focus:border-red-700 transition-colors"
+      />
+      <p id="password-gate-error" class="text-red-500 text-xs hidden">Contraseña incorrecta</p>
+      <div class="flex gap-3 w-full">
+        <button
+          id="password-gate-cancel"
+          class="flex-1 rounded-lg border border-white/10 text-white/70 py-2.5 text-sm hover:bg-white/5 transition-colors"
+        >
+          Cancelar
+        </button>
+        <button
+          id="password-gate-submit"
+          class="flex-1 rounded-lg bg-red-800 text-white py-2.5 text-sm hover:bg-red-700 transition-colors font-semibold"
+        >
+          Entrar
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Menú móvil (pantalla completa) -->
   <nav
@@ -123,8 +155,8 @@ const currentPath = Astro.url.pathname;
       </li>
       <SignedIn>
         <li>
-          <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="/Dropbox">
-            Dropbox
+          <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="/Dropbox" data-no-gate>
+            Manual
           </a>
         </li>
       </SignedIn>
@@ -174,6 +206,73 @@ const currentPath = Astro.url.pathname;
 
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeMobileMenu();
+    });
+  </script>
+
+  <script>
+    // Gate de contraseña previa a Clerk
+    const GATE_PASSWORD = "Chinchulines86";
+
+    const gateModal = document.getElementById("password-gate-modal");
+    const gateInput = document.getElementById("password-gate-input") as HTMLInputElement | null;
+    const gateError = document.getElementById("password-gate-error");
+    const gateCancel = document.getElementById("password-gate-cancel");
+    const gateSubmit = document.getElementById("password-gate-submit");
+
+    let pendingHref: string | null = null;
+
+    function openGateModal(href: string) {
+      pendingHref = href;
+      if (!gateModal || !gateInput) return;
+      gateInput.value = "";
+      gateError?.classList.add("hidden");
+      gateModal.classList.remove("opacity-0", "pointer-events-none");
+      gateModal.classList.add("opacity-100", "pointer-events-auto");
+      gateModal.setAttribute("aria-hidden", "false");
+      setTimeout(() => gateInput.focus(), 100);
+    }
+
+    function closeGateModal() {
+      if (!gateModal) return;
+      gateModal.classList.remove("opacity-100", "pointer-events-auto");
+      gateModal.classList.add("opacity-0", "pointer-events-none");
+      gateModal.setAttribute("aria-hidden", "true");
+      pendingHref = null;
+    }
+
+    function attemptGateSubmit() {
+      if (!gateInput) return;
+      if (gateInput.value === GATE_PASSWORD) {
+        const href = pendingHref;
+        closeGateModal();
+        if (href) window.location.href = href;
+      } else {
+        gateError?.classList.remove("hidden");
+        gateInput.value = "";
+        gateInput.focus();
+      }
+    }
+
+    // Interceptar solo enlaces a /Dropbox que NO tengan data-no-gate (usuarios no logueados)
+    const header = document.getElementById("landing-header");
+    header?.querySelectorAll<HTMLAnchorElement>('a[href="/Dropbox"]:not([data-no-gate])').forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        openGateModal(link.href);
+      });
+    });
+
+    gateCancel?.addEventListener("click", closeGateModal);
+    gateSubmit?.addEventListener("click", attemptGateSubmit);
+
+    gateInput?.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") attemptGateSubmit();
+      if (e.key === "Escape") closeGateModal();
+    });
+
+    // Cerrar modal al hacer click fuera del card
+    gateModal?.addEventListener("click", (e) => {
+      if (e.target === gateModal) closeGateModal();
     });
   </script>
 
