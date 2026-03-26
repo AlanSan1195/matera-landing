@@ -1,6 +1,8 @@
 ---
 import Logo from "./Logo.astro";
 import LangSelector from "./LangSelector.astro";
+import UserIcon from "./icons/User.astro";
+import { SignedIn, SignedOut, UserButton } from "@clerk/astro/components";
 import { getLangFromUrl, useTranslations, type Lang } from "@/i18n/utils";
 
 const lang = getLangFromUrl(Astro.url) as Lang;
@@ -40,10 +42,31 @@ const currentPath = Astro.url.pathname;
     </ul>
   </nav>
 
-  <!-- Derecha: selector de idioma + hamburguesa móvil -->
+  <!-- Derecha: selector de idioma + auth + hamburguesa móvil -->
   <nav class="flex flex-grow justify-end basis-0 items-center gap-3">
     <!-- Selector de idioma: visible siempre -->
     <LangSelector currentLang={lang} currentPath={currentPath} />
+
+    <!-- Auth: icono login o UserButton -->
+    <SignedOut>
+      <a
+        href="/Dropbox"
+        aria-label="Iniciar sesión"
+        class="flex items-center justify-center w-9 h-9 text-white/80 hover:text-white transition-colors"
+      >
+        <UserIcon class="w-6 h-6" />
+      </a>
+    </SignedOut>
+    <SignedIn>
+      <a
+        href="/Dropbox"
+        aria-label="Panel interno"
+        class="hidden md:flex items-center justify-center w-9 h-9 text-white/80 hover:text-white transition-colors"
+      >
+        <UserIcon class="w-5 h-5" />
+      </a>
+      <UserButton />
+    </SignedIn>
 
     <!-- Botón hamburguesa móvil -->
     <button
@@ -98,6 +121,13 @@ const currentPath = Astro.url.pathname;
           {t.nav.nosotros}
         </a>
       </li>
+      <SignedIn>
+        <li>
+          <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="/Dropbox">
+            Dropbox
+          </a>
+        </li>
+      </SignedIn>
     </ul>
   </nav>
 

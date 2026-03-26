@@ -1,59 +1,369 @@
 ---
 import { SignedIn, UserButton } from "@clerk/astro/components";
 import Layout from "@/layouts/Layout.astro";
+import { getPlatillos } from "@/db/supabase";
 
-const platillos = [
-  {
-    imagen: "dropbox/entradas/chistorraDropbox.webp",
-    titulo: "Chistorra  ( Spanish sausage style )",
-    descripcion:
-      "Embutido estilo espanol, la carne es 100% de cerdo, su color rojo caracteristico se lo aporta el pimienton como condimento bascio. contiene ajo y la  tripa en la que est embutida es de cordero",
-    gramaje: "220 grs.",
-  },
-  {
-    imagen: "dropbox/entradas/chistorraDropbox.webp",
-    titulo: "Chorizo argentino ( Argentinan sausage style )",
-    descripcion:
-      "Embutido clasico de las parrilladas argentinas. Elaborado con carne de cerdo y de res, conocido como chorizo criollo para los argentinos. Lo elaboramos en casa y contiene chile quebrado, oregano y ajo.",
-    gramaje: "130 grs.",
-  },
-];
+const userRole = Astro.locals.userRole ?? "user";
+const esAdmin = userRole === "admin";
+const platillos = await getPlatillos();
 ---
+
 <Layout title="Dropbox" description="Todas las recetas completas y Speach recomendados para los platillos de la matera">
-
-
   <header class="flex fixed justify-between items-center bg-orange-100 shadow-md w-full h-auto z-50 px-4 md:px-8">
     <div class="my-2">
-      <img class="size-12 md:size-16" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
+      <a href="/">
+        <img class="size-12 md:size-16" src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg" alt="logo de la matera">
+      </a>
     </div>
-  
+    <div class="flex items-center gap-3">
+      {esAdmin && (
+        <span class="hidden md:inline-flex items-center gap-1 bg-red-600 text-white text-xs font-bold px-2.5 py-1 rounded-full uppercase tracking-wide">
+          Admin
+        </span>
+      )}
       <SignedIn>
-          <UserButton />
+        <UserButton />
       </SignedIn>
+    </div>
   </header>
-  <section class="flex pt-24 pb-24 gap-y-8 md:gap-y-12 w-full h-full flex-col bg-orange-100 text-black px-4 md:px-8 lg:px-16">
-    {
-      platillos.map(({ imagen, titulo, descripcion, gramaje }) => (
-        <article class="flex flex-col md:flex-row justify-center items-center bg-slate-200 p-3 md:p-4 gap-4 rounded-xl">
+
+  <section class="flex pt-24 pb-24 gap-y-8 md:gap-y-12 w-full min-h-screen flex-col bg-orange-100 text-black px-4 md:px-8 lg:px-16">
+
+    <!-- Botón agregar platillo (solo admin) -->
+    {esAdmin && (
+      <div class="flex justify-end">
+        <button
+          id="btn-agregar"
+          class="flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold px-5 py-2.5 rounded-lg transition-colors shadow-md"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Agregar platillo
+        </button>
+      </div>
+    )}
+
+    <!-- Lista de platillos -->
+    {platillos.length === 0 && (
+      <p class="text-center text-gray-500 text-lg py-12">No hay platillos registrados todavia.</p>
+    )}
+
+    <div id="lista-platillos" class="flex flex-col gap-y-8 md:gap-y-12">
+      {platillos.map(({ id, imagen_url, titulo, descripcion, gramaje }) => (
+        <article class="group relative flex flex-col md:flex-row justify-center items-center bg-slate-200 p-3 md:p-4 gap-4 rounded-xl" data-id={id}>
           <div class="shrink-0">
             <img
-              src={imagen}
-              alt=" "
+              src={imagen_url || "/dropbox/entradas/chistorraDropbox.webp"}
+              alt={titulo}
               class="w-full h-40 md:w-64 md:h-24 rounded-2xl md:rounded-full object-cover"
             />
           </div>
-  
+
           <div class="bg-slate-300/60 shadow-xl flex w-full flex-col justify-center p-4 rounded-lg">
             <h2 class="font-bold text-xl md:text-2xl lg:text-3xl mb-2 md:mb-4">{titulo}</h2>
             <p class="text-base md:text-lg lg:text-2xl mb-2 md:mb-4">{descripcion}</p>
-            <p class="font-semibold text-lg md:text-xl flex justify-end">{gramaje}</p>
+            {gramaje && <p class="font-semibold text-lg md:text-xl flex justify-end">{gramaje}</p>}
           </div>
+
+          {/* Botones admin: editar y eliminar */}
+          {esAdmin && (
+            <div class="flex md:flex-col gap-2 md:absolute md:right-[-52px] md:top-1/2 md:-translate-y-1/2">
+              <button
+                class="btn-editar flex items-center justify-center w-10 h-10 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-md"
+                data-id={id}
+                data-titulo={titulo}
+                data-descripcion={descripcion}
+                data-gramaje={gramaje || ""}
+                data-imagen={imagen_url || ""}
+                aria-label="Editar platillo"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5-10.5a2.828 2.828 0 1 0-4-4L4 16v4"/><path d="M13.5 6.5l4 4"/></svg>
+              </button>
+              <button
+                class="btn-eliminar flex items-center justify-center w-10 h-10 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors shadow-md"
+                data-id={id}
+                data-titulo={titulo}
+                aria-label="Eliminar platillo"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+              </button>
+            </div>
+          )}
         </article>
-      ))
-    }
+      ))}
+    </div>
   </section>
-  
+
+  <footer class="flex justify-center items-center h-16 md:h-20 w-full bg-orange-100 text-black text-sm md:text-base">
+    Hecho con amor para el equipo
+  </footer>
+
+  <!-- Modal formulario (solo admin) -->
+  {esAdmin && (
+    <div id="modal-overlay" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+        <div class="flex items-center justify-between p-5 border-b border-gray-200">
+          <h3 id="modal-titulo" class="text-xl font-bold text-gray-900">Agregar platillo</h3>
+          <button id="btn-cerrar-modal" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700 transition-colors rounded-lg hover:bg-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+          </button>
+        </div>
+
+        <form id="form-platillo" class="p-5 flex flex-col gap-4">
+          <input type="hidden" id="input-id" value="" />
+
+          <div class="flex flex-col gap-1.5">
+            <label for="input-titulo" class="text-sm font-semibold text-gray-700">Titulo *</label>
+            <input
+              type="text"
+              id="input-titulo"
+              required
+              class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow"
+              placeholder="Nombre del platillo"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="input-descripcion" class="text-sm font-semibold text-gray-700">Descripcion *</label>
+            <textarea
+              id="input-descripcion"
+              required
+              rows="4"
+              class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow resize-y"
+              placeholder="Descripcion del platillo"
+            ></textarea>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="input-gramaje" class="text-sm font-semibold text-gray-700">Gramaje</label>
+            <input
+              type="text"
+              id="input-gramaje"
+              class="w-full px-3 py-2.5 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow"
+              placeholder="Ej: 220 grs."
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="input-imagen" class="text-sm font-semibold text-gray-700">Imagen</label>
+            <input
+              type="file"
+              id="input-imagen"
+              accept="image/*"
+              class="w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 file:cursor-pointer file:transition-colors"
+            />
+            <img id="preview-imagen" src="" alt="" class="hidden mt-2 w-full h-32 object-cover rounded-lg border border-gray-200" />
+          </div>
+
+          <div class="flex gap-3 pt-2">
+            <button
+              type="submit"
+              id="btn-guardar"
+              class="flex-1 flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span id="btn-guardar-texto">Guardar</span>
+              <svg id="btn-guardar-spinner" class="hidden animate-spin w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg>
+            </button>
+            <button
+              type="button"
+              id="btn-cancelar"
+              class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2.5 rounded-lg transition-colors"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )}
 </Layout>
-<footer class="flex justify-center items-center h-16 md:h-20 w-full bg-orange-100 text-black text-sm md:text-base">Hecho con ❤️ para el equipo</footer>
 
+{esAdmin && (
+  <script>
+    // ---- Elementos del DOM ----
+    const modal = document.getElementById("modal-overlay");
+    const modalTitulo = document.getElementById("modal-titulo");
+    const form = document.getElementById("form-platillo") as HTMLFormElement | null;
+    const inputId = document.getElementById("input-id") as HTMLInputElement | null;
+    const inputTitulo = document.getElementById("input-titulo") as HTMLInputElement | null;
+    const inputDescripcion = document.getElementById("input-descripcion") as HTMLTextAreaElement | null;
+    const inputGramaje = document.getElementById("input-gramaje") as HTMLInputElement | null;
+    const inputImagen = document.getElementById("input-imagen") as HTMLInputElement | null;
+    const previewImagen = document.getElementById("preview-imagen") as HTMLImageElement | null;
+    const btnGuardarTexto = document.getElementById("btn-guardar-texto");
+    const btnGuardarSpinner = document.getElementById("btn-guardar-spinner");
+    const btnGuardar = document.getElementById("btn-guardar") as HTMLButtonElement | null;
 
+    // ---- Helpers ----
+    function abrirModal(titulo: string) {
+      if (!modal || !modalTitulo) return;
+      modalTitulo.textContent = titulo;
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    }
+
+    function cerrarModal() {
+      if (!modal) return;
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      document.body.style.overflow = "";
+      form?.reset();
+      if (inputId) inputId.value = "";
+      if (previewImagen) {
+        previewImagen.classList.add("hidden");
+        previewImagen.src = "";
+      }
+    }
+
+    function setLoading(loading: boolean) {
+      if (btnGuardar) btnGuardar.disabled = loading;
+      if (btnGuardarTexto) btnGuardarTexto.textContent = loading ? "Guardando..." : "Guardar";
+      if (btnGuardarSpinner) {
+        btnGuardarSpinner.classList.toggle("hidden", !loading);
+      }
+    }
+
+    // ---- Subir imagen ----
+    async function subirImagenArchivo(file: File): Promise<string | null> {
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const res = await fetch("/api/admin/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!res.ok) return null;
+      const data = await res.json();
+      return data.url ?? null;
+    }
+
+    // ---- Preview de imagen ----
+    inputImagen?.addEventListener("change", () => {
+      const file = inputImagen.files?.[0];
+      if (!file || !previewImagen) return;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImagen.src = e.target?.result as string;
+        previewImagen.classList.remove("hidden");
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // ---- Abrir modal: Agregar ----
+    document.getElementById("btn-agregar")?.addEventListener("click", () => {
+      abrirModal("Agregar platillo");
+    });
+
+    // ---- Abrir modal: Editar ----
+    document.querySelectorAll(".btn-editar").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const el = btn as HTMLElement;
+        if (inputId) inputId.value = el.dataset.id ?? "";
+        if (inputTitulo) inputTitulo.value = el.dataset.titulo ?? "";
+        if (inputDescripcion) inputDescripcion.value = el.dataset.descripcion ?? "";
+        if (inputGramaje) inputGramaje.value = el.dataset.gramaje ?? "";
+
+        // Mostrar imagen actual si existe
+        const imagenActual = el.dataset.imagen;
+        if (imagenActual && previewImagen) {
+          previewImagen.src = imagenActual;
+          previewImagen.classList.remove("hidden");
+        }
+
+        abrirModal("Editar platillo");
+      });
+    });
+
+    // ---- Cerrar modal ----
+    document.getElementById("btn-cerrar-modal")?.addEventListener("click", cerrarModal);
+    document.getElementById("btn-cancelar")?.addEventListener("click", cerrarModal);
+    modal?.addEventListener("click", (e) => {
+      if (e.target === modal) cerrarModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal?.classList.contains("hidden")) cerrarModal();
+    });
+
+    // ---- Submit: Crear o Actualizar ----
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setLoading(true);
+
+      try {
+        const id = inputId?.value ?? "";
+        const titulo = inputTitulo?.value ?? "";
+        const descripcion = inputDescripcion?.value ?? "";
+        const gramaje = inputGramaje?.value ?? "";
+
+        // Subir imagen si hay un archivo seleccionado
+        let imagen_url: string | null = null;
+        const archivo = inputImagen?.files?.[0];
+        if (archivo) {
+          imagen_url = await subirImagenArchivo(archivo);
+          if (!imagen_url) {
+            alert("Error al subir la imagen. Intenta de nuevo.");
+            setLoading(false);
+            return;
+          }
+        }
+
+        const body: Record<string, string | null> = { titulo, descripcion, gramaje };
+        if (imagen_url) body.imagen_url = imagen_url;
+
+        // Si hay id, es update; sino es create
+        if (id) {
+          body.id = id;
+          // Si no se subio imagen nueva, no enviar imagen_url para no sobreescribir la existente
+          const res = await fetch("/api/admin/platillos", {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          if (!res.ok) throw new Error("Error al actualizar");
+        } else {
+          const res = await fetch("/api/admin/platillos", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          if (!res.ok) throw new Error("Error al crear");
+        }
+
+        cerrarModal();
+        window.location.reload();
+      } catch (err) {
+        alert("Ocurrio un error. Revisa la consola.");
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    // ---- Eliminar ----
+    document.querySelectorAll(".btn-eliminar").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const el = btn as HTMLElement;
+        const id = el.dataset.id;
+        const titulo = el.dataset.titulo ?? "este platillo";
+
+        if (!confirm(`¿Seguro que quieres eliminar "${titulo}"?`)) return;
+
+        try {
+          const res = await fetch("/api/admin/platillos", {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ id }),
+          });
+
+          if (!res.ok) throw new Error("Error al eliminar");
+          window.location.reload();
+        } catch (err) {
+          alert("Error al eliminar el platillo.");
+          console.error(err);
+        }
+      });
+    });
+  </script>
+)}
