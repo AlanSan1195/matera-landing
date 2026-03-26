@@ -38,7 +38,10 @@ export const onRequest = clerkMiddleware(async (auth, context) => {
     if (!usuario) {
       const clerkUser = await context.locals.currentUser();
       const email = clerkUser?.emailAddresses?.[0]?.emailAddress ?? "";
-      usuario = await crearUsuario(userId, email);
+      const name = [clerkUser?.firstName, clerkUser?.lastName]
+        .filter(Boolean)
+        .join(" ") || "Sin nombre";
+      usuario = await crearUsuario(userId, email, name);
     }
 
     context.locals.userRole = usuario?.rol ?? "user";
