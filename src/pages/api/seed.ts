@@ -8,6 +8,7 @@ const SEED_DATA = [
       "Embutido estilo espanol, la carne es 100% de cerdo, su color rojo caracteristico se lo aporta el pimienton como condimento bascio. contiene ajo y la  tripa en la que est embutida es de cordero",
     gramaje: "220 grs.",
     imagen_url: "/dropbox/entradas/chistorraDropbox.webp",
+    categoria: "entradas",
   },
   {
     titulo: "Chorizo argentino ( Argentinan sausage style )",
@@ -15,6 +16,7 @@ const SEED_DATA = [
       "Embutido clasico de las parrilladas argentinas. Elaborado con carne de cerdo y de res, conocido como chorizo criollo para los argentinos. Lo elaboramos en casa y contiene chile quebrado, oregano y ajo.",
     gramaje: "130 grs.",
     imagen_url: "/dropbox/entradas/chistorraDropbox.webp",
+    categoria: "entradas",
   },
 ];
 

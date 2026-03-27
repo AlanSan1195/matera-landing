@@ -19,6 +19,7 @@ export interface Usuario {
 
 export interface Platillo {
   id: string;
+  categoria: string | null;
   titulo: string;
   descripcion: string;
   gramaje: string | null;

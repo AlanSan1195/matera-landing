@@ -85,6 +85,22 @@ export const manualSecciones: ManualSeccion[] = [
     icono: "entrada",
     items: [
       {
+        nombre: "Provoleta con Tomate y Pimiento",
+        descripcion:
+          "Con rebanadas de tomate rostizadas y pimiento asado, orégano, pimienta y aceite de oliva.",
+        gramaje: "200 grs.",
+        notas:
+          "La rebanada de queso provolone es a la plancha. Es un queso hilado semi maduro de origen argentino que se corta en rodajas y se asa a la plancha. Clásico de las parrillas argentinas.",
+      },
+      {
+        nombre: "Provoleta con Jamón Serrano y Arúgula",
+        descripcion:
+          "Tomate deshidratado, toque de pimienta y aceite de oliva.",
+        gramaje: "200 grs.",
+        notas:
+          "",
+      },
+      {
         nombre: "Chorizo argentino",
         nombreEn: "Argentinian Style Sausage",
         descripcion:
@@ -177,31 +193,6 @@ export const manualSecciones: ManualSeccion[] = [
         nombre: "Tártara de Rib Eye",
         descripcion:
           "Se utiliza el centro del rib eye (corazón, 150 gr.) y se corta a cuchillo. Lleva anchoa, perejil frito, cebolla morada, mostaza dijon, alcaparras y yema de huevo. Se mezclan los ingredientes en la mesa y se sirve con croutones y papas rejilla.",
-      },
-    ],
-  },
-
-  // ===================== PROVOLETA =====================
-  {
-    id: "provoleta",
-    titulo: "Provoleta",
-    icono: "queso",
-    introduccion:
-      "La rebanada de queso provolone es a la plancha y tiene un peso de 200 grs. Es un queso hilado semi maduro de origen argentino que se corta en rodajas y se asa a la plancha. Clásico de las parrillas argentinas.",
-    items: [
-      {
-        nombre: "A la Parrilla",
-        descripcion: "Toque de aceite de oliva y orégano y chile quebrado.",
-      },
-      {
-        nombre: "Con Tomate y Pimiento",
-        descripcion:
-          "Con rebanadas de tomate rostizadas y pimiento asado, orégano, pimienta y aceite de oliva.",
-      },
-      {
-        nombre: "Con Jamón Serrano y Arúgula",
-        descripcion:
-          "Tomate deshidratado, toque de pimienta y aceite de oliva.",
       },
     ],
   },

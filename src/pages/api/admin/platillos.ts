@@ -18,11 +18,11 @@ export const GET: APIRoute = async () => {
 // POST — crear un platillo nuevo
 export const POST: APIRoute = async ({ request }) => {
   const body = await request.json();
-  const { titulo, descripcion, gramaje, imagen_url } = body;
+  const { titulo, descripcion, gramaje, imagen_url, categoria } = body;
 
-  if (!titulo || !descripcion) {
+  if (!titulo || !descripcion || !categoria) {
     return new Response(
-      JSON.stringify({ error: "Titulo y descripcion son obligatorios" }),
+      JSON.stringify({ error: "Titulo, descripcion y categoria son obligatorios" }),
       { status: 400, headers: { "Content-Type": "application/json" } },
     );
   }
@@ -32,6 +32,7 @@ export const POST: APIRoute = async ({ request }) => {
     descripcion,
     gramaje: gramaje ?? null,
     imagen_url: imagen_url ?? null,
+    categoria,
   });
 
   if (!platillo) {

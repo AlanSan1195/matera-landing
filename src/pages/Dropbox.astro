@@ -7,12 +7,21 @@ import { manualSecciones, terminosCoccion } from "@/data/manualData";
 const userRole = Astro.locals.userRole ?? "user";
 const esAdmin = userRole === "admin";
 const platillos = await getPlatillos();
+
+// Agrupar platillos de Supabase por categoría para inyectarlos en el manual
+const platillosPorCategoria = new Map<string, typeof platillos>();
+for (const p of platillos) {
+  if (!p.categoria) continue;
+  const arr = platillosPorCategoria.get(p.categoria) ?? [];
+  arr.push(p);
+  platillosPorCategoria.set(p.categoria, arr);
+}
 ---
 
 <Layout title="Dropbox — Manual Interno" description="Manual de alimentos y recetas del equipo La Matera. Solo para empleados autorizados.">
 
   <!-- ═══════════════ HEADER ═══════════════ -->
-  <header class="fixed top-0 left-0 right-0 z-50 dropbox-header">
+  <header class="fixed top-0 left-0 right-0 z-50 bg-[#FFFCF7] backdrop-blur-[12px] border-b border-[rgba(168,146,120,0.1)]">
     <div class="flex justify-between items-center px-4 md:px-8 py-3">
       <div class="flex items-center gap-4">
         <a href="/" class="shrink-0">
@@ -36,13 +45,13 @@ const platillos = await getPlatillos();
   </header>
 
   <!-- ═══════════════ TABS PRINCIPALES ═══════════════ -->
-  <nav class="fixed top-[52px] md:top-[56px] left-0 right-0 z-40 dropbox-tab-bar">
+  <nav class="fixed top-[64px] md:top-[72px] left-0 right-0 z-40 bg-[rgba(255,252,247,0.95)] backdrop-blur-[10px] border-b border-[rgba(168,146,120,0.1)]">
     <div class="flex px-4 md:px-8 gap-1">
-      <button data-tab-principal="manual" class="tab-principal activo" aria-label="Ver manual de alimentos">
+      <button data-tab-principal="manual" class="tab-principal activo flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-stone-400 border-b-2 border-transparent transition-all bg-transparent rounded-none cursor-pointer whitespace-nowrap hover:text-stone-600" aria-label="Ver manual de alimentos">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
         Manual
       </button>
-      <button data-tab-principal="platillos" class="tab-principal" aria-label="Ver platillos del equipo">
+      <button data-tab-principal="platillos" class="tab-principal flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-stone-400 border-b-2 border-transparent transition-all bg-transparent rounded-none cursor-pointer whitespace-nowrap hover:text-stone-600" aria-label="Ver platillos del equipo">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         Platillos
       </button>
@@ -55,7 +64,7 @@ const platillos = await getPlatillos();
   <main id="panel-manual" class="panel-contenido panel-visible">
 
     <!-- Hero compacto -->
-    <div class="manual-hero">
+    <div class="pt-8 pb-10 border-b border-[rgba(168,146,120,0.08)]">
       <div class="max-w-3xl mx-auto text-center px-4">
         <p class="text-xs uppercase tracking-[0.35em] text-stone-400 mb-3">Restaurante La Matera</p>
         <h1 class="text-3xl md:text-5xl font-bold text-stone-800 mb-4 leading-tight" style="font-family:'Lora Variable',serif;">Manual de Alimentos</h1>
@@ -65,17 +74,17 @@ const platillos = await getPlatillos();
     </div>
 
     <!-- Navegación de secciones (horizontal scroll) -->
-    <div class="sticky top-[96px] md:top-[100px] z-30 seccion-nav-bar">
-      <div id="seccion-nav" class="flex gap-2 px-4 md:px-8 py-3 overflow-x-auto scrollbar-oculto">
+    <div class="sticky top-[104px] md:top-[112px] z-30  backdrop-blur-[8px] border border-[rgba(168,146,120,0.25)]">
+      <div id="seccion-nav" class="flex gap-2 px-4 md:px-8 py-3 overflow-x-auto xl:justify-center [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {manualSecciones.map((seccion, idx) => (
           <button
             data-seccion-btn={seccion.id}
-            class:list={["seccion-btn", { "seccion-activa": idx === 0 }]}
+            class:list={["shrink-0 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-stone-400 bg-transparent border border-transparent rounded-[20px] cursor-pointer transition-all whitespace-nowrap hover:text-stone-600 hover:bg-[rgba(168,146,120,0.06)]", { "seccion-activa": idx === 0 }]}
           >
             {seccion.titulo}
           </button>
         ))}
-        <button data-seccion-btn="terminos" class="seccion-btn">
+        <button data-seccion-btn="terminos" class="shrink-0 px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.06em] text-stone-400 bg-transparent border border-transparent rounded-[20px] cursor-pointer transition-all whitespace-nowrap hover:text-stone-600 hover:bg-[rgba(168,146,120,0.06)]">
           Terminos
         </button>
       </div>
@@ -87,50 +96,50 @@ const platillos = await getPlatillos();
       {manualSecciones.map((seccion, idx) => (
         <section
           data-seccion={seccion.id}
-          class:list={["seccion-contenido", { "seccion-visible": idx === 0 }]}
+          class:list={["seccion-contenido pt-6 animate-[fadeInSeccion_0.35s_ease]", { "seccion-visible": idx === 0 }]}
         >
           <!-- Encabezado de sección -->
-          <div class="seccion-header">
-            <h2 class="seccion-titulo">{seccion.titulo}</h2>
+          <div class="mb-6 pb-5 border-b border-[rgba(168,146,120,0.1)]">
+            <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2" style="font-family:'Lora Variable',serif;">{seccion.titulo}</h2>
             {seccion.introduccion && (
-              <p class="seccion-intro">{seccion.introduccion}</p>
+              <p class="text-[13px] leading-[1.7] text-stone-500 max-w-3xl">{seccion.introduccion}</p>
             )}
           </div>
 
           <!-- Items -->
           <div class="grid gap-4 md:gap-5">
             {seccion.items.map((item) => (
-              <article class="manual-card">
+              <article class="flex gap-4 p-5 rounded-xl bg-black/5 border border-[rgba(168,146,120,0.50)] shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] hover:border-[rgba(168,146,120,0.15)]">
                 <div class="flex-1">
                   <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
-                    <h3 class="manual-card-titulo">{item.nombre}</h3>
+                    <h3 class="text-base md:text-lg font-bold text-stone-900" style="font-family:'Lora Variable',serif;">{item.nombre}</h3>
                     {item.nombreEn && (
-                      <span class="text-xs text-stone-400 italic">({item.nombreEn})</span>
+                      <span class="text-xs text-stone-600 italic">({item.nombreEn})</span>
                     )}
                     {item.gramaje && (
-                      <span class="inline-flex items-center text-xs font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded-full">{item.gramaje}</span>
+                      <span class="inline-flex items-center text-xs font-semibold text-red-700 px-2 py-0.5 rounded-full">{item.gramaje}</span>
                     )}
                   </div>
 
-                  <p class="manual-card-desc">{item.descripcion}</p>
+                  <p class="text-[13px] leading-[1.65] text-stone-600">{item.descripcion}</p>
 
                   {/* Gramajes detallados (cortes) */}
                   {item.gramajes && item.gramajes.length > 0 && (
                     <div class="mt-3 overflow-x-auto">
-                      <table class="tabla-gramajes">
+                      <table class="w-full text-xs border-collapse">
                         <thead>
                           <tr>
-                            <th>Porcion</th>
-                            <th>Personas</th>
-                            <th>Guarniciones</th>
+                            <th class="text-left px-2.5 py-1.5 font-semibold uppercase tracking-[0.05em] text-black text-[10px] border-b border-[rgba(168,146,120,0.1)]">Porcion</th>
+                            <th class="text-left px-2.5 py-1.5 font-semibold uppercase tracking-[0.05em] text-black text-[10px] border-b border-[rgba(168,146,120,0.1)]">Personas</th>
+                            <th class="text-left px-2.5 py-1.5 font-semibold uppercase tracking-[0.05em] text-black text-[10px] border-b border-[rgba(168,146,120,0.1)]">Guarniciones</th>
                           </tr>
                         </thead>
                         <tbody>
                           {item.gramajes.map((g) => (
-                            <tr>
-                              <td class="font-semibold">{g.porcion}</td>
-                              <td>{g.personas}</td>
-                              <td>{g.guarniciones}</td>
+                            <tr class="[&:last-child>td]:border-b-0">
+                              <td class="px-2.5 py-1.5 text-stone-500 font-semibold border-b border-[rgba(168,146,120,0.05)]">{g.porcion}</td>
+                              <td class="px-2.5 py-1.5 text-stone-500 border-b border-[rgba(168,146,120,0.05)]">{g.personas}</td>
+                              <td class="px-2.5 py-1.5 text-stone-500 border-b border-[rgba(168,146,120,0.05)]">{g.guarniciones}</td>
                             </tr>
                           ))}
                         </tbody>
@@ -149,14 +158,14 @@ const platillos = await getPlatillos();
                   {/* Badges de notas y alergias */}
                   <div class="flex flex-wrap gap-2 mt-3">
                     {item.notas && (
-                      <div class="badge-nota">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
+                      <div class="inline-flex items-start gap-1.5 text-[11px] leading-normal text-amber-800 bg-amber-50 border-[0.2px] border-amber-500 px-2.5 py-1.5 rounded-lg">
+                        <svg class="shrink-0 mt-px text-amber-600" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4"/><path d="M12 17h.01"/><circle cx="12" cy="12" r="10"/></svg>
                         <span>{item.notas}</span>
                       </div>
                     )}
                     {item.alergias && (
-                      <div class="badge-alergia">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                      <div class="inline-flex items-start gap-1.5 text-[11px] leading-normal text-red-900 bg-red-50 border-[0.2px] border-red-500 px-2.5 py-1.5 rounded-lg">
+                        <svg class="shrink-0 mt-px text-red-600" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
                         <span>{item.alergias}</span>
                       </div>
                     )}
@@ -165,19 +174,48 @@ const platillos = await getPlatillos();
               </article>
             ))}
           </div>
+
+          {/* Platillos agregados por el equipo (desde Supabase) */}
+          {(platillosPorCategoria.get(seccion.id) ?? []).length > 0 && (
+            <div class="mt-6">
+              <div class="flex items-center gap-3 mb-4">
+                <div class="h-px flex-1 bg-stone-200"></div>
+                <span class="text-[10px] font-bold uppercase tracking-[0.15em] text-red-700 bg-red-50 px-3 py-1 rounded-full">Agregados recientemente</span>
+                <div class="h-px flex-1 bg-stone-200"></div>
+              </div>
+              <div class="grid gap-4 md:gap-5">
+                {(platillosPorCategoria.get(seccion.id) ?? []).map((plat) => (
+                  <article class="flex gap-4 p-5  rounded-xl bg-black/5 border border-[rgba(168,146,120,0.50)] shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] hover:border-[rgba(168,146,120,0.15)] border-l-2 border-l-red-600">
+                    <div class="flex-1">
+                      <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
+                        <h3 class="text-base md:text-lg font-bold text-stone-900" style="font-family:'Lora Variable',serif;">{plat.titulo}</h3>
+                        {plat.gramaje && (
+                          <span class="inline-flex items-center text-xs font-semibold text-red-700 bg-red-50 px-2 py-0.5 rounded-full">{plat.gramaje}</span>
+                        )}
+                      </div>
+                      <p class="text-[13px] leading-[1.65] text-stone-600">{plat.descripcion}</p>
+                    </div>
+                    {plat.imagen_url && (
+                      <img src={plat.imagen_url} alt={plat.titulo} class="w-20 h-20 rounded-lg object-cover shrink-0" loading="lazy" />
+                    )}
+                  </article>
+                ))}
+              </div>
+            </div>
+          )}
         </section>
       ))}
 
       <!-- Sección especial: Términos de cocción -->
-      <section data-seccion="terminos" class="seccion-contenido">
-        <div class="seccion-header">
-          <h2 class="seccion-titulo">Terminos de Coccion</h2>
-          <p class="seccion-intro">Referencia visual de los puntos de coccion para cortes de carne. Es fundamental conocerlos para ofrecer una buena experiencia al cliente.</p>
+      <section data-seccion="terminos" class="seccion-contenido pt-6 animate-[fadeInSeccion_0.35s_ease]">
+        <div class="mb-6 pb-5 border-b border-[rgba(168,146,120,0.22)]">
+          <h2 class="text-2xl md:text-3xl font-bold text-stone-900 mb-2" style="font-family:'Lora Variable',serif;">Terminos de Coccion</h2>
+          <p class="text-[13px] leading-[1.7] text-stone-500 max-w-3xl">Referencia visual de los puntos de coccion para cortes de carne. Es fundamental conocerlos para ofrecer una buena experiencia al cliente.</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {terminosCoccion.map((termino) => (
-            <div class="termino-card">
+            <div class="p-5  rounded-xl  transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] hover:border-[rgba(168,146,120,0.15)]">
               <div class="flex items-center gap-3 mb-3">
                 <div class="w-10 h-10 rounded-full shrink-0 shadow-inner border-2 border-white/40" style={`background-color: ${termino.color};`}></div>
                 <div>
@@ -231,23 +269,32 @@ const platillos = await getPlatillos();
       )}
 
       <div id="lista-platillos" class="flex flex-col gap-y-5 md:gap-y-6">
-        {platillos.map(({ id, imagen_url, titulo, descripcion, gramaje }) => (
-          <article class="group relative platillo-card" data-id={id}>
-            <div class="shrink-0">
-              <img
-                src={imagen_url || "/dropbox/entradas/chistorraDropbox.webp"}
-                alt={titulo}
-                class="w-full h-40 md:w-56 md:h-28 rounded-xl object-cover"
-                loading="lazy"
-              />
-            </div>
-
+        {platillos.map(({ id, imagen_url, titulo, descripcion, gramaje, categoria }) => (
+          <article class="group relative flex flex-col gap-4 p-4 rounded-xl bg-black/5 border border-[rgba(168,146,120,0.50)] shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] md:flex-row md:items-center md:p-5" data-id={id}>
+            {imagen_url && (
+              <div class="shrink-0">
+                <img
+                  src={imagen_url}
+                  alt={titulo}
+                  class="w-full h-40 md:w-56 md:h-auto rounded-xl object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
+            
+            {/* cards platillos agregados admin */}
             <div class="flex-1 flex flex-col justify-center">
               <h2 class="font-bold text-lg md:text-xl text-stone-800 mb-1.5">{titulo}</h2>
               <p class="text-sm md:text-base text-stone-600 leading-relaxed mb-2">{descripcion}</p>
-              {gramaje && (
-                <p class="text-xs font-semibold text-red-700 bg-red-50 px-2.5 py-1 rounded-full self-end w-fit">{gramaje}</p>
-              )}
+              <div class="flex flex-wrap gap-2 items-center">
+                
+                {categoria && (
+                  <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-600 bg-black/5 border border-[rgba(168,146,120,0.50)] px-2 py-0.5 rounded-lg">{categoria}</span>
+                )}
+                {gramaje && (
+                  <p class="text-xs font-semibold text-red-700  px-2.5 py-1 rounded-full w-fit">{gramaje}</p>
+                )}
+              </div>
             </div>
 
             {/* Botones admin: editar y eliminar */}
@@ -260,6 +307,7 @@ const platillos = await getPlatillos();
                   data-descripcion={descripcion}
                   data-gramaje={gramaje || ""}
                   data-imagen={imagen_url || ""}
+                  data-categoria={categoria || ""}
                   aria-label="Editar platillo"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5-10.5a2.828 2.828 0 1 0-4-4L4 16v4"/><path d="M13.5 6.5l4 4"/></svg>
@@ -281,14 +329,14 @@ const platillos = await getPlatillos();
   </main>
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
-  <footer class="flex justify-center items-center h-14 md:h-16 w-full text-stone-400 text-xs tracking-wide dropbox-footer">
+  <footer class="flex justify-center items-center h-14 md:h-16 w-full text-stone-400 text-xs tracking-wide bg-[#FFFCF7]   border-t border-[rgba(168,146,120,0.8)]">
     Hecho con amor para el equipo La Matera
   </footer>
 
   <!-- ═══════════════ MODAL (solo admin) ═══════════════ -->
   {esAdmin && (
     <div id="modal-overlay" class="hidden fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
-      <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div class="bg-[rgba(255,252,247,0.92)] rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
         <div class="flex items-center justify-between p-5 border-b border-stone-100">
           <h3 id="modal-titulo" class="text-lg font-bold text-stone-800">Agregar platillo</h3>
           <button id="btn-cerrar-modal" class="w-8 h-8 flex items-center justify-center text-stone-400 hover:text-stone-700 transition-colors rounded-lg hover:bg-stone-100">
@@ -305,9 +353,27 @@ const platillos = await getPlatillos();
               type="text"
               id="input-titulo"
               required
-              class="w-full px-3 py-2.5 border border-stone-200 rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow text-sm"
+              class="w-full px-3 py-2.5 border bg-black/5 border-[rgba(168,146,120,0.50)] rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow text-sm"
               placeholder="Nombre del platillo"
             />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label for="input-categoria" class="text-xs font-semibold text-stone-500 uppercase tracking-wide">Categoria *</label>
+            <select
+              id="input-categoria"
+              required
+              class="w-full px-3 py-2.5 bg-black/5 border border-[rgba(168,146,120,0.50)] rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow text-sm"
+            >
+              <option value="" disabled selected>Selecciona una categoria</option>
+              <option value="empanadas">Empanadas</option>
+              <option value="entradas">Entradas</option>
+              <option value="ensaladas">Ensaladas</option>
+              <option value="pizzas">Pizzas</option>
+              <option value="cocina">Nuestra Cocina</option>
+              <option value="mar">Mar</option>
+              <option value="campo">Campo - Cortes</option>
+            </select>
           </div>
 
           <div class="flex flex-col gap-1.5">
@@ -316,7 +382,7 @@ const platillos = await getPlatillos();
               id="input-descripcion"
               required
               rows="4"
-              class="w-full px-3 py-2.5 border border-stone-200 rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow resize-y text-sm"
+              class="w-full px-3 py-2.5 bg-black/5 border border-[rgba(168,146,120,0.50)] rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow resize-y text-sm"
               placeholder="Descripcion del platillo"
             ></textarea>
           </div>
@@ -326,23 +392,23 @@ const platillos = await getPlatillos();
             <input
               type="text"
               id="input-gramaje"
-              class="w-full px-3 py-2.5 border border-stone-200 rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow text-sm"
+              class="w-full px-3 py-2.5 bg-black/5 border border-[rgba(168,146,120,0.50)] rounded-lg text-stone-800 focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none transition-shadow text-sm"
               placeholder="Ej: 220 grs."
             />
           </div>
 
-          <div class="flex flex-col gap-1.5">
+          <div class="flex flex-col gap-1.5 ">
             <label for="input-imagen" class="text-xs font-semibold text-stone-500 uppercase tracking-wide">Imagen</label>
             <input
               type="file"
               id="input-imagen"
               accept="image/*"
-              class="w-full text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-700 hover:file:bg-red-100 file:cursor-pointer file:transition-colors"
+              class="w-full text-sm text-stone-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm  file:bg-blue-100 file:text-blue-400 hover:file:bg-blue-400 hover:file:text-white file:cursor-pointer file:transition-colors"
             />
             <img id="preview-imagen" src="" alt="" class="hidden mt-2 w-full h-32 object-cover rounded-lg border border-stone-200" />
           </div>
 
-          <div class="flex gap-3 pt-2">
+          <div class="flex gap-3 pt-2 ">
             <button
               type="submit"
               id="btn-guardar"
@@ -367,286 +433,36 @@ const platillos = await getPlatillos();
 
 <!-- ═══════════════ ESTILOS ═══════════════ -->
 <style>
-  /* --- Layout base --- */
-  .dropbox-header {
-    background: rgba(255, 252, 247, 0.92);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(168, 146, 120, 0.1);
-  }
-
-  .dropbox-tab-bar {
-    background: rgba(255, 252, 247, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(168, 146, 120, 0.1);
-  }
-
-  .dropbox-footer {
-    background: rgba(255, 252, 247, 0.95);
-    border-top: 1px solid rgba(168, 146, 120, 0.08);
-  }
-
-  /* --- Paneles --- */
+  /* Paneles toggled por JS */
   .panel-contenido {
     display: none;
-    padding-top: 100px;
+    padding-top: 112px;
     min-height: 100vh;
-    background:
-      radial-gradient(ellipse at 20% 0%, rgba(255, 237, 213, 0.3) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 100%, rgba(254, 215, 170, 0.15) 0%, transparent 50%),
-      #FFFCF7;
+    background: #FFFCF7
   }
-  .panel-visible {
-    display: block;
-  }
+  .panel-visible { display: block; }
 
-  /* --- Tabs principales --- */
-  .tab-principal {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    padding: 8px 16px;
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #9c9386;
-    border-bottom: 2px solid transparent;
-    transition: all 0.2s ease;
-    background: none;
-    border-radius: 0;
-    cursor: pointer;
-    white-space: nowrap;
-  }
-  .tab-principal:hover {
-    color: #57534e;
-  }
+  /* Tab activa toggled por JS */
   .tab-principal.activo {
     color: #b91c1c;
     border-bottom-color: #b91c1c;
   }
 
-  /* --- Hero --- */
-  .manual-hero {
-    padding: 2rem 0 2.5rem;
-    border-bottom: 1px solid rgba(168, 146, 120, 0.08);
-    margin-bottom: 0;
-  }
-
-  /* --- Navegación de secciones --- */
-  .seccion-nav-bar {
-    background: rgba(255, 252, 247, 0.97);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(168, 146, 120, 0.08);
-  }
-
-  .scrollbar-oculto {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .scrollbar-oculto::-webkit-scrollbar {
-    display: none;
-  }
-
-  .seccion-btn {
-    flex-shrink: 0;
-    padding: 6px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #a8a29e;
-    background: transparent;
-    border: 1px solid transparent;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-  .seccion-btn:hover {
-    color: #57534e;
-    background: rgba(168, 146, 120, 0.06);
-  }
+  /* Sección activa toggled por JS */
   .seccion-activa {
     color: #b91c1c !important;
     background: rgba(185, 28, 28, 0.06) !important;
     border-color: rgba(185, 28, 28, 0.15) !important;
   }
 
-  /* --- Contenido secciones --- */
-  .seccion-contenido {
-    display: none;
-    padding-top: 1.5rem;
-    animation: fadeInSeccion 0.35s ease;
-  }
-  .seccion-visible {
-    display: block;
-  }
+  /* Sección contenido toggled por JS */
+  .seccion-contenido { display: none; }
+  .seccion-visible { display: block !important; }
 
+  /* Keyframe de animación */
   @keyframes fadeInSeccion {
     from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-
-  .seccion-header {
-    margin-bottom: 1.5rem;
-    padding-bottom: 1.25rem;
-    border-bottom: 1px solid rgba(168, 146, 120, 0.1);
-  }
-
-  .seccion-titulo {
-    font-family: 'Lora Variable', serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #292524;
-    margin-bottom: 0.5rem;
-  }
-  @media (min-width: 768px) {
-    .seccion-titulo {
-      font-size: 1.875rem;
-    }
-  }
-
-  .seccion-intro {
-    font-size: 0.8125rem;
-    line-height: 1.7;
-    color: #78716c;
-    max-width: 48rem;
-  }
-
-  /* --- Tarjetas del manual --- */
-  .manual-card {
-    display: flex;
-    gap: 1rem;
-    padding: 1.25rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid rgba(168, 146, 120, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    transition: all 0.2s ease;
-  }
-  .manual-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    border-color: rgba(168, 146, 120, 0.15);
-  }
-
-  .manual-card-titulo {
-    font-family: 'Lora Variable', serif;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #292524;
-  }
-  @media (min-width: 768px) {
-    .manual-card-titulo {
-      font-size: 1.125rem;
-    }
-  }
-
-  .manual-card-desc {
-    font-size: 0.8125rem;
-    line-height: 1.65;
-    color: #57534e;
-  }
-
-  /* --- Tabla de gramajes --- */
-  .tabla-gramajes {
-    width: 100%;
-    font-size: 0.75rem;
-    border-collapse: collapse;
-  }
-  .tabla-gramajes th {
-    text-align: left;
-    padding: 6px 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #a8a29e;
-    font-size: 0.625rem;
-    border-bottom: 1px solid rgba(168, 146, 120, 0.1);
-  }
-  .tabla-gramajes td {
-    padding: 6px 10px;
-    color: #57534e;
-    border-bottom: 1px solid rgba(168, 146, 120, 0.05);
-  }
-  .tabla-gramajes tr:last-child td {
-    border-bottom: none;
-  }
-
-  /* --- Badges --- */
-  .badge-nota {
-    display: inline-flex;
-    align-items: start;
-    gap: 6px;
-    font-size: 0.6875rem;
-    line-height: 1.5;
-    color: #92400e;
-    background: #fef3c7;
-    border: 1px solid rgba(245, 158, 11, 0.15);
-    padding: 6px 10px;
-    border-radius: 8px;
-  }
-  .badge-nota svg {
-    flex-shrink: 0;
-    margin-top: 1px;
-    color: #d97706;
-  }
-
-  .badge-alergia {
-    display: inline-flex;
-    align-items: start;
-    gap: 6px;
-    font-size: 0.6875rem;
-    line-height: 1.5;
-    color: #991b1b;
-    background: #fee2e2;
-    border: 1px solid rgba(239, 68, 68, 0.15);
-    padding: 6px 10px;
-    border-radius: 8px;
-  }
-  .badge-alergia svg {
-    flex-shrink: 0;
-    margin-top: 1px;
-    color: #dc2626;
-  }
-
-  /* --- Tarjeta término cocción --- */
-  .termino-card {
-    padding: 1.25rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid rgba(168, 146, 120, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    transition: all 0.2s ease;
-  }
-  .termino-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-    border-color: rgba(168, 146, 120, 0.15);
-  }
-
-  /* --- Tarjeta platillo (panel platillos) --- */
-  .platillo-card {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    padding: 1rem;
-    background: white;
-    border-radius: 12px;
-    border: 1px solid rgba(168, 146, 120, 0.08);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
-    transition: all 0.2s ease;
-  }
-  .platillo-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-  }
-  @media (min-width: 768px) {
-    .platillo-card {
-      flex-direction: row;
-      align-items: center;
-      padding: 1.25rem;
-    }
   }
 </style>
 
@@ -696,6 +512,7 @@ const platillos = await getPlatillos();
     const form = document.getElementById("form-platillo") as HTMLFormElement | null;
     const inputId = document.getElementById("input-id") as HTMLInputElement | null;
     const inputTitulo = document.getElementById("input-titulo") as HTMLInputElement | null;
+    const inputCategoria = document.getElementById("input-categoria") as HTMLSelectElement | null;
     const inputDescripcion = document.getElementById("input-descripcion") as HTMLTextAreaElement | null;
     const inputGramaje = document.getElementById("input-gramaje") as HTMLInputElement | null;
     const inputImagen = document.getElementById("input-imagen") as HTMLInputElement | null;
@@ -720,6 +537,7 @@ const platillos = await getPlatillos();
       document.body.style.overflow = "";
       form?.reset();
       if (inputId) inputId.value = "";
+      if (inputCategoria) inputCategoria.value = "";
       if (previewImagen) {
         previewImagen.classList.add("hidden");
         previewImagen.src = "";
@@ -773,6 +591,7 @@ const platillos = await getPlatillos();
         const el = btn as HTMLElement;
         if (inputId) inputId.value = el.dataset.id ?? "";
         if (inputTitulo) inputTitulo.value = el.dataset.titulo ?? "";
+        if (inputCategoria) inputCategoria.value = el.dataset.categoria ?? "";
         if (inputDescripcion) inputDescripcion.value = el.dataset.descripcion ?? "";
         if (inputGramaje) inputGramaje.value = el.dataset.gramaje ?? "";
 
@@ -805,6 +624,7 @@ const platillos = await getPlatillos();
       try {
         const id = inputId?.value ?? "";
         const titulo = inputTitulo?.value ?? "";
+        const categoria = inputCategoria?.value ?? "";
         const descripcion = inputDescripcion?.value ?? "";
         const gramaje = inputGramaje?.value ?? "";
 
@@ -820,7 +640,7 @@ const platillos = await getPlatillos();
           }
         }
 
-        const body: Record<string, string | null> = { titulo, descripcion, gramaje };
+        const body: Record<string, string | null> = { titulo, descripcion, gramaje, categoria };
         if (imagen_url) body.imagen_url = imagen_url;
 
         // Si hay id, es update; sino es create
