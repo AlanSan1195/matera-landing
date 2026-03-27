@@ -3,6 +3,8 @@
 [![Astro](https://img.shields.io/badge/Astro-5.7.11-FF5D01?logo=astro&logoColor=white)](https://astro.build/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.3.2-38B2AC?logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Three.js](https://img.shields.io/badge/Three.js-0.162.0-000000?logo=three.js&logoColor=white)](https://threejs.org/)
+[![Supabase](https://img.shields.io/badge/Supabase-2.100.0-3ECF8E?logo=supabase&logoColor=white)](https://supabase.com/)
+[![Clerk](https://img.shields.io/badge/Clerk-Auth-6C47FF?logo=clerk&logoColor=white)](https://clerk.com/)
 
 ![Vista previa del sitio](public/imagenes/preview.webp)
 
@@ -22,7 +24,8 @@ Este fue mi primer proyecto freelance real: un rediseño completo del sitio web 
 - **Astro 5.7.11** - Framework principal (SSR mode)
 - **Tailwind CSS 3.3.2** - Estilos y diseño responsivo
 - **Three.js 0.162.0** - Efectos visuales 3D (partículas de humo)
-- **Clerk** - Sistema de autenticación (implementado pero no utilizado en producción)
+- **Clerk** - Autenticación y gestión de sesiones de usuario
+- **Supabase 2.100.0** - Base de datos PostgreSQL, Storage para imágenes y API
 - **Node.js Adapter** - Para renderizado del lado del servidor
 
 ## ✨ Características Principales
@@ -54,6 +57,58 @@ Este fue mi primer proyecto freelance real: un rediseño completo del sitio web 
 - Carruseles horizontales optimizados para touch
 - Imágenes optimizadas en formato WebP
 
+### 🔐 Panel Interno del Equipo (Dropbox)
+
+Una sección privada del sitio diseñada exclusivamente para el equipo del restaurante, orientada a la **capacitación del menú** y la **gestión interna de platillos y recetas**. Combina Clerk para autenticación y Supabase como base de datos y storage.
+
+#### Autenticación y Roles
+- **Clerk** gestiona el login, sesiones y la UI de autenticación (`<SignedIn>`, `<UserButton>`)
+- Al iniciar sesión por primera vez, el middleware sincroniza automáticamente el usuario de Clerk con la tabla `usuarios` en Supabase, asignándole el rol `"user"` por defecto
+- Los **administradores** (`rol: "admin"`) tienen acceso completo al CRUD de platillos; los usuarios regulares solo pueden consultar el manual y los platillos existentes
+- Las rutas `/api/admin/*` están protegidas a nivel de middleware: sin autenticación devuelve `401`, sin rol admin devuelve `403`
+
+#### Tab "Manual" — Capacitación del menú
+- Contenido del manual oficial de alimentos del restaurante, organizado por categorías: Empanadas, Entradas, Ensaladas, Pizzas, Cocina, Mar, Campo (Cortes) y Términos de Cocción
+- Dentro de cada sección, se inyectan los **platillos agregados desde Supabase** que coinciden por categoría, marcados con la etiqueta "Agregados recientemente" y un borde rojo para diferenciarlos del contenido base
+
+#### Tab "Platillos" — Gestión interna (solo admins)
+- Lista de todos los platillos almacenados en Supabase con imagen, título, descripción, gramaje y categoría
+- **CRUD completo** disponible para administradores:
+  - **Crear**: Formulario modal con campos de título, categoría, descripción, gramaje e imagen (con preview)
+  - **Editar**: Modifica cualquier platillo existente reutilizando el mismo modal
+  - **Eliminar**: Eliminación con confirmación
+- Las imágenes se suben al bucket `imagenes-platillos` de Supabase Storage y se vinculan automáticamente al platillo
+
+#### Arquitectura del backend
+
+```
+Usuario → Clerk (login) → middleware.ts → Supabase (consulta por clerk_id)
+```
+
+| Recurso | Ruta | Descripción |
+|---|---|---|
+| Platillos (CRUD) | `GET/POST/PUT/DELETE /api/admin/platillos` | Operaciones sobre la tabla `platillos` |
+| Upload de imágenes | `POST /api/admin/upload` | Sube imagen a Supabase Storage |
+
+#### Modelo de datos (Supabase)
+
+```
+┌──────────────┐    ┌─────────────────────────┐
+│   usuarios   │    │       platillos          │
+├──────────────┤    ├─────────────────────────┤
+│ id (uuid)    │    │ id (uuid)               │
+│ clerk_id     │    │ categoria (text)        │
+│ name         │    │ titulo (text)           │
+│ email        │    │ descripcion (text)      │
+│ rol (enum)   │    │ gramaje (text)          │
+└──────────────┘    │ imagen_url (text)       │
+                    │ created_at (timestamptz)│
+                    │ updated_at (timestamptz)│
+                    └─────────────────────────┘
+
+Storage: Bucket "imagenes-platillos"
+```
+
 ## 🎓 Lo Que Aprendí (Reflexión Honesta)
 
 ### ✅ Logros
@@ -66,13 +121,12 @@ Este fue mi primer proyecto freelance real: un rediseño completo del sitio web 
 ### 🔧 Áreas de Mejora (Lo Que Haría Diferente Hoy)
 
 #### Organización del Código
-- **Datos hardcodeados**: El menú está directamente en el componente en lugar de estar en archivos JSON o una base de datos
+- **Datos del menú principal aún hardcodeados**: El menú público sigue directamente en el componente, aunque los platillos del panel interno ya se gestionan desde Supabase
 - **Componentes grandes**: Algunos componentes como `pruebaCartaContenedor.astro` tienen demasiada responsabilidad
 - **Nombres inconsistentes**: Mezcla de español e inglés en nombres de archivos y variables (ej: `Caurosel` en lugar de `Carousel`)
 - **Componentes sin usar**: Varios archivos como `AsadosDeTira.astro`, `Filetes.astro` parecen no estar en uso
 
 #### Arquitectura
-- **Clerk sin uso**: Se instaló un sistema de autenticación completo que no se utiliza en producción
 - **Falta de separación de concerns**: Lógica, datos y presentación mezclados en los mismos archivos
 - **No hay gestión de estado**: Para una aplicación más compleja se necesitaría algo como Nanostores
 
@@ -105,6 +159,22 @@ pnpm build
 pnpm preview
 ```
 
+### 🔑 Variables de Entorno
+
+Crea un archivo `.env` en la raíz del proyecto con las siguientes variables:
+
+```bash
+# Clerk — Autenticación
+PUBLIC_CLERK_PUBLISHABLE_KEY=pk_...   # Key pública (client-side)
+CLERK_SECRET_KEY=sk_...               # Key secreta (server-side)
+
+# Supabase — Base de datos y Storage
+SUPABASE_URL=https://xxxxx.supabase.co
+SUPABASE_KEY=eyJhbGci...              # anon key o service role key
+```
+
+> Las keys de Clerk se obtienen en [dashboard.clerk.com](https://dashboard.clerk.com) y las de Supabase en [supabase.com/dashboard](https://supabase.com/dashboard) > Settings > API.
+
 ## 🌐 Despliegue
 
 El sitio está configurado para SSR (Server-Side Rendering) con el adaptador de Node.js en modo standalone.
@@ -117,17 +187,29 @@ node dist/server/entry.mjs
 ## 📁 Estructura del Proyecto
 
 ```
-├── public/              # Archivos estáticos
-│   ├── imagenes/       # Imágenes del sitio
-│   ├── fuentes/        # Tipografías personalizadas
-│   └── video.mp4       # Video hero
+├── public/                    # Archivos estáticos
+│   ├── imagenes/             # Imágenes del sitio (WebP)
+│   ├── fuentes/              # Tipografías personalizadas
+│   └── video.mp4             # Video hero
 ├── src/
-│   ├── components/     # Componentes Astro reutilizables
-│   ├── layouts/        # Layout principal
-│   ├── pages/          # Rutas del sitio
-│   └── middleware.ts   # Middleware de Clerk
-├── astro.config.mjs    # Configuración de Astro
-└── tailwind.config.cjs # Configuración de Tailwind
+│   ├── components/           # Componentes Astro reutilizables
+│   │   └── icons/            # Componentes SVG de iconos
+│   ├── data/
+│   │   └── manualData.ts     # Datos del manual de capacitación
+│   ├── db/
+│   │   └── supabase.ts       # Cliente Supabase, tipos e interfaces, CRUD
+│   ├── layouts/              # Layout principal (HTML shell, CSS global)
+│   ├── pages/
+│   │   ├── api/
+│   │   │   └── admin/
+│   │   │       ├── platillos.ts  # CRUD de platillos (GET/POST/PUT/DELETE)
+│   │   │       └── upload.ts     # Subida de imágenes a Supabase Storage
+│   │   ├── Dropbox.astro     # Panel interno del equipo (manual + gestión)
+│   │   └── index.astro       # Página principal del restaurante
+│   ├── middleware.ts         # Clerk auth + sincronización Supabase + protección de rutas
+│   └── env.d.ts              # Tipos de Astro, Clerk y Astro.locals extendidos
+├── astro.config.mjs          # Configuración de Astro (SSR + Clerk + Node adapter)
+└── tailwind.config.cjs       # Configuración de Tailwind (colores, fuentes)
 ```
 
 ## 🎨 Personalización
@@ -158,16 +240,16 @@ node dist/server/entry.mjs
 
 ### Corto Plazo
 - [ ] Migrar datos del menú a archivos JSON
-- [ ] Implementar un CMS headless (Strapi, Contentful)
+- [x] ~~Implementar un CMS headless~~ — Resuelto con Supabase como backend de datos
 - [ ] Mejorar accesibilidad (ARIA labels, navegación por teclado)
 - [ ] Optimizar el video hero
 - [ ] Implementar lazy loading en todas las imágenes
 
 ### Mediano Plazo
 - [ ] Sistema de reservas integrado (no solo WhatsApp)
-- [ ] Página de administración para actualizar menú
+- [x] ~~Página de administración para actualizar menú~~ — Implementado en `/Dropbox` con CRUD de platillos y roles admin
 - [ ] Integración con sistema de pedidos en línea
-- [ ] Blog de recetas o noticias del restaurante
+- [x] ~~Blog de recetas o noticias del restaurante~~ — Parcialmente cubierto con el manual interno de capacitación
 - [ ] Galería de fotos de clientes
 
 ### Largo Plazo
