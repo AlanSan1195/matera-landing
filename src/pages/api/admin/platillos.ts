@@ -17,7 +17,16 @@ export const GET: APIRoute = async () => {
 
 // POST — crear un platillo nuevo
 export const POST: APIRoute = async ({ request }) => {
-  const body = await request.json();
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ error: "Cuerpo de solicitud invalido" }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
   const { titulo, descripcion, gramaje, imagen_url, categoria } = body;
 
   if (!titulo || !descripcion || !categoria) {
@@ -28,11 +37,11 @@ export const POST: APIRoute = async ({ request }) => {
   }
 
   const platillo = await crearPlatillo({
-    titulo,
-    descripcion,
-    gramaje: gramaje ?? null,
-    imagen_url: imagen_url ?? null,
-    categoria,
+    titulo: titulo as string,
+    descripcion: descripcion as string,
+    gramaje: (gramaje as string) ?? null,
+    imagen_url: (imagen_url as string) ?? null,
+    categoria: categoria as string,
   });
 
   if (!platillo) {
@@ -102,7 +111,16 @@ export const PUT: APIRoute = async ({ request }) => {
 
 // DELETE — eliminar un platillo
 export const DELETE: APIRoute = async ({ request }) => {
-  const body = await request.json();
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ error: "Cuerpo de solicitud invalido" }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
   const { id } = body;
 
   if (!id) {
@@ -112,7 +130,7 @@ export const DELETE: APIRoute = async ({ request }) => {
     );
   }
 
-  const ok = await eliminarPlatillo(id);
+  const ok = await eliminarPlatillo(id as string);
 
   if (!ok) {
     return new Response(
