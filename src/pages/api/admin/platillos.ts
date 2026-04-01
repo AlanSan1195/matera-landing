@@ -48,10 +48,22 @@ export const POST: APIRoute = async ({ request }) => {
   });
 };
 
+// Campos que se pueden actualizar en un platillo
+const CAMPOS_ACTUALIZABLES = ["titulo", "descripcion", "gramaje", "imagen_url", "categoria"] as const;
+
 // PUT — actualizar un platillo existente
 export const PUT: APIRoute = async ({ request }) => {
-  const body = await request.json();
-  const { id, ...cambios } = body;
+  let body: Record<string, unknown>;
+  try {
+    body = await request.json();
+  } catch {
+    return new Response(
+      JSON.stringify({ error: "Cuerpo de solicitud invalido" }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
+  const { id } = body;
 
   if (!id) {
     return new Response(
@@ -60,7 +72,20 @@ export const PUT: APIRoute = async ({ request }) => {
     );
   }
 
-  const platillo = await actualizarPlatillo(id, cambios);
+  // Solo extraer campos permitidos, ignorar el resto
+  const cambios: Record<string, unknown> = {};
+  for (const campo of CAMPOS_ACTUALIZABLES) {
+    if (campo in body) cambios[campo] = body[campo];
+  }
+
+  if (Object.keys(cambios).length === 0) {
+    return new Response(
+      JSON.stringify({ error: "No se enviaron campos validos para actualizar" }),
+      { status: 400, headers: { "Content-Type": "application/json" } },
+    );
+  }
+
+  const platillo = await actualizarPlatillo(id as string, cambios);
 
   if (!platillo) {
     return new Response(

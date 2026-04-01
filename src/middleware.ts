@@ -36,12 +36,16 @@ export const onRequest = clerkMiddleware(async (auth, context) => {
 
     // Si el usuario no existe en la DB, crearlo con rol 'user'
     if (!usuario) {
-      const clerkUser = await context.locals.currentUser();
-      const email = clerkUser?.emailAddresses?.[0]?.emailAddress ?? "";
-      const name = [clerkUser?.firstName, clerkUser?.lastName]
-        .filter(Boolean)
-        .join(" ") || "Sin nombre";
-      usuario = await crearUsuario(userId, email, name);
+      try {
+        const clerkUser = await context.locals.currentUser();
+        const email = clerkUser?.emailAddresses?.[0]?.emailAddress ?? "";
+        const name = [clerkUser?.firstName, clerkUser?.lastName]
+          .filter(Boolean)
+          .join(" ") || "Sin nombre";
+        usuario = await crearUsuario(userId, email, name);
+      } catch (err) {
+        console.error("[middleware] Error al crear usuario en Supabase:", err);
+      }
     }
 
     context.locals.userRole = usuario?.rol ?? "user";
