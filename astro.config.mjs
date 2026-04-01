@@ -11,7 +11,7 @@ import { esES } from "@clerk/localizations";
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), clerk({
-    localizations: esES,
+    localization: esES,
     appearance: {
       baseTheme: neobrutalism
     }

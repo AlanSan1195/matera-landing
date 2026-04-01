@@ -24,12 +24,13 @@ const imgClass = isEmpanada
   : "image-drop-shadow relative left-4 rounded-2xl";
 ---
 
-<a
+<button
   id={buttonId}
+  type="button"
   class="hover:cursor-pointer flex justify-center text-white mt-6 font-boldes text-4xl"
 >
   {categoryName}
-</a>
+</button>
 <div id={divId} class="flex overflow-x-auto ml-4 sm:ml-8 md:ml-16 mt-2 rounded-s-3xl">
   {
     items.map((item) => (

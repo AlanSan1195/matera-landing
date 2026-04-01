@@ -3,10 +3,9 @@ import We from "./We.astro";
 import { type Lang } from "@/i18n/utils";
 
 interface Props {
-  id?: string;
   lang: Lang;
 }
-const { id, lang } = Astro.props;
+const { lang } = Astro.props;
 ---
 <section
   class="landing-section w-screen min-h-screen text-center"

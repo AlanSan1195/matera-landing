@@ -13,6 +13,9 @@ export interface Props {
 
 const { id, titulo, info, items, cols = 2, esBife = false, descripcionTraducida } = Astro.props;
 
+// ID único para el botón cerrar, evitando duplicados cuando hay múltiples CutCards
+const botonCerrarId = `botonCerrar-${id}`;
+
 // Mapa de clases literales para que Tailwind JIT las detecte
 const gridColsClass: Record<number, string> = {
   2: "grid-cols-2",
@@ -32,7 +35,8 @@ const gridClass = gridColsClass[cols] ?? "grid-cols-2";
       {titulo}
     </p>
     <button
-      id="botonCerrar"
+      id={botonCerrarId}
+      data-cerrar-modal
       type="button"
       class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-[#B56C09] dark:hover:text-white"
       data-modal-hide="top-left-modal"

@@ -253,7 +253,7 @@ const categories = [
     });
 
     // Close buttons inside CutCards → return to campo map
-    document.querySelectorAll("#divParrilla #botonCerrar").forEach((btn) => {
+    document.querySelectorAll("#divParrilla [data-cerrar-modal]").forEach((btn) => {
       btn.addEventListener("click", () => {
         divsCortes.forEach((div) => {
           div.classList.add("hidden");

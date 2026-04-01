@@ -1,6 +1,15 @@
 ---
 const { color, subtitle, tagline, id } = Astro.props;
-const textColor = `text-${color}`;
+
+// Mapa de clases literales para que Tailwind JIT las detecte
+const textColorMap: Record<string, string> = {
+  white: "text-white",
+  black: "text-black",
+  red: "text-red-700",
+  secundary: "text-secundary",
+  primary: "text-primary",
+};
+const textColor = textColorMap[color] ?? "text-white";
 ---
 
 <section
@@ -9,7 +18,7 @@ const textColor = `text-${color}`;
   id={id}
 >
   <div
-    class="opacity-85 z-30 relative h-auto text-end m-2  w-[90%] md:w-[70%] lg:w-[65%] xl:w-[60%] max-w-[1200px] flex flex-col flex-wrap ml-auto text-prett "
+    class="opacity-85 z-30 relative h-auto text-end m-2 w-[90%] md:w-[70%] lg:w-[65%] xl:w-[60%] max-w-[1200px] flex flex-col flex-wrap ml-auto text-pretty"
   >
     <header class="lg:p-2">
       <h1

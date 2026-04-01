@@ -332,7 +332,7 @@ export const cocina: MenuItem[] = [
   {
     src: "/imagenes/empanadas.webp",
     name: "Farroto: vegetales y grana padano",
-    description: "",
+    description: "Farroto de vegetales de temporada con grana padano.",
     // price: "$210",
   },
   {

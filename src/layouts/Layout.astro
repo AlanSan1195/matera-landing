@@ -1,12 +1,9 @@
 ---
-// Supports weights 100-900
-
 import LightsBackground from "@/components/LightsBackground.astro";
-
 
 import "@fontsource-variable/lora";
 import "@fontsource/permanent-marker";
-// Supports weights 400-700
+
 export interface Props {
   title: string;
   description: string;
@@ -14,6 +11,19 @@ export interface Props {
 }
 
 const { title, description, lang = "es" } = Astro.props;
+
+const SITE_URL = "https://www.lamatera.club";
+const canonicalUrl = `${SITE_URL}${Astro.url.pathname}`;
+const ogImageUrl = `${SITE_URL}/imagenes/preview.webp`;
+
+const ogLocaleMap: Record<string, string> = {
+  es: "es_ES",
+  en: "en_US",
+  ko: "ko_KR",
+  zh: "zh_CN",
+  ja: "ja_JP",
+};
+const ogLocale = ogLocaleMap[lang] ?? "es_ES";
 ---
 
 <!DOCTYPE html>
@@ -22,36 +32,35 @@ const { title, description, lang = "es" } = Astro.props;
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="preconnect" href="https://www.lamatera.mx" crossorigin />
-    <link rel="dns-prefetch" href="https://www.lamatera.mx" />
     <link rel="preconnect" href="https://accounts.dev" crossorigin />
     <link rel="dns-prefetch" href="https://accounts.dev" />
+    <link rel="preload" href="/fuentes/Magical Night.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="icon"
-      type="image/svg+xml"
+      type="image/webp"
       href="/imagenes/logo-cabecera.webp"
     />
     <link rel="apple-touch-icon" sizes="180x180" href="/imagenes/logo-cabecera.webp" />
-    <link rel="canonical" href="https://lamatera.online">
+    <link rel="canonical" href={canonicalUrl} />
     <meta
       name="description"
       content={description}
     />
     <meta name="google-site-verification" content="zuRgqcQ25AX8z3a-qvX5CG-Gfy_eYJSoUt_T7LDRQG4" />
-    <meta name="keywords" content="comida,vino,restaurante,argenita,cava,servicio,chef,eventos,argentino,cortes,bife,lomo,vacio,entraña,asado,chorizo,lomito, rib eye, parrilla, facturación.">
-    <meta property="og:locale" content="es_ES">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="La Matera, Restaurante Argentino una referencia gastronomica en Guadalajara">
-    <meta property="og:description" content="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara.">
-    <meta property="og:url" content="https://www.matera.online/">
-    <meta property="og:site_name" content="La Matera, Restaurante Argentino una referencia gastronomica en Guadalajara">
-    <meta property="og:image" content="https://www.lamatera.online/imagenes/preview.webp">
-    <meta content="summary_large_image" name="twitter:card">
-    <meta name="twitter:site" content="@lamateragdl">
-    <meta name="twitter:creator" content="@AlanSan86780460">
-    <meta name="twitter:title" content="La Matera">
-    <meta name="twitter:description" content="Somos un punto de referencia en la ciudad, un restaurante con gran trayectoria en Guadalajara. Ven y disfruta de la experiencia gastronómica de Argentina y conoce una de las cavas más reconocidas.">
-    <meta name="twitter:image"content="https://wwww.lamatera.online/imagenes/preview.webp">
+    <meta name="keywords" content="comida,vino,restaurante,argentina,cava,servicio,chef,eventos,argentino,cortes,bife,lomo,vacio,entraña,asado,chorizo,lomito,rib eye,parrilla,facturacion" />
+    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="La Matera — Restaurante Argentino en Guadalajara" />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta name="twitter:site" content="@lamateragdl" />
+    <meta name="twitter:creator" content="@AlanSan86780460" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
   </head>
   <body>
     <LightsBackground />
@@ -77,16 +86,7 @@ const { title, description, lang = "es" } = Astro.props;
     font-family: "Lora Variable";
   }
 
-  /* estilos de las imagenes de la carta  */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  /* body {
-    background-color: var(--primary);
-    height: 100dvh;
-  } */
+  /* Tailwind Preflight ya aplica el reset universal (margin, padding, box-sizing) */
   video {
     mask-image: linear-gradient(grey 90%, transparent 100%);
 
