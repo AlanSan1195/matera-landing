@@ -1,133 +1,108 @@
 # AGENTS.md — matera-prototipe
 
-Restaurant website for Matera. Built with Astro (SSR), Tailwind CSS, Three.js, and Clerk authentication. No test framework is configured.
-
----
+Restaurant website for Matera. Astro 5 SSR, Tailwind CSS, Three.js, Clerk auth, Supabase backend.
 
 ## Commands
 
 ```bash
-pnpm dev          # Start local dev server (http://localhost:4321)
-pnpm build        # Production build → dist/
-pnpm preview      # Serve the built output locally
-node dist/server/entry.mjs  # Run the standalone SSR server in production
+pnpm dev            # Dev server at http://localhost:4321
+pnpm build          # Production build → dist/
+pnpm preview        # Serve built output locally
+pnpm astro check    # Type-check all .astro and .ts files (run before committing)
 ```
 
-**No `lint`, `test`, or `typecheck` scripts exist.** If you add them, use:
+No `lint`, `test`, or `typecheck` scripts exist. The only verification is:
 
 ```bash
-pnpm astro check  # Astro's built-in type checker (runs tsc under the hood)
+pnpm astro check && pnpm build   # Both must pass before committing
 ```
 
-There are no test files in this project. Do not introduce a test framework unless explicitly asked.
-
----
+There are no test files. Do not introduce a test framework unless explicitly asked.
 
 ## Tech Stack
 
-| Layer            | Tool / Library                      |
-|------------------|-------------------------------------|
-| Framework        | Astro 5 (SSR, `output: "server"`)   |
-| Adapter          | `@astrojs/node` (standalone mode)   |
-| Styling          | Tailwind CSS 3                      |
-| Auth             | `@clerk/astro` (route protection)   |
-| 3D Effects       | Three.js 0.162                      |
-| Package manager  | **pnpm** (always use pnpm)          |
-| Language         | TypeScript (Astro base, not strict) |
-
----
+| Layer       | Tool                                               |
+|-------------|----------------------------------------------------|
+| Framework   | Astro 5 (`output: "server"`)                       |
+| Adapter     | `@astrojs/netlify` (serverless functions)           |
+| Styling     | Tailwind CSS 3 (only styling solution)             |
+| Auth        | `@clerk/astro` (middleware-based route protection)  |
+| Database    | Supabase (via `@supabase/supabase-js`)             |
+| 3D Effects  | Three.js 0.162 (desktop smoke effect)              |
+| i18n        | Astro built-in — locales: `es` (default), `en`, `ko`, `zh`, `ja` |
+| Pkg manager | **pnpm** (always use pnpm, never npm/yarn)         |
+| Language    | TypeScript (base config, not strict)               |
 
 ## Project Structure
 
 ```
 src/
-  components/     # All .astro UI components
-    icons/        # Inline SVG icon components
-  layouts/        # Layout.astro (root HTML shell, global CSS, fonts)
-  pages/          # File-based routing (index, Dropbox, visual pages)
-  middleware.ts   # Clerk auth — protects /Dropbox
-  env.d.ts        # Astro + env type references
+  components/        # .astro UI components
+    icons/           # Inline SVG icon components
+    menu/            # Menu sub-components (ParrillaSection, MobileMenuCard, DesktopMenuGrid)
+  data/              # Typed data arrays (menuData.ts, manualData.ts)
+  db/                # Supabase client & CRUD helpers (supabase.ts)
+  layouts/           # Layout.astro — root HTML shell, global CSS, fonts
+  pages/             # File-based routing
+    api/             # API routes (admin/platillos, admin/upload, seed, debug)
+    en/ ko/ zh/ ja/  # Locale-specific page overrides
+  middleware.ts      # Clerk auth — protects /Dropbox and /api/admin/*
+  env.d.ts           # Type refs; extends App.Locals with userRole, clerkId
 public/
-  imagenes/       # All site images (WebP)
-  fuentes/        # Custom font (Magical Night.woff2)
+  imagenes/          # Site images (WebP)
+  fuentes/           # Custom font (Magical Night.woff2)
 ```
-
----
 
 ## TypeScript
 
-- Config extends `astro/tsconfigs/base`. Strict mode is **not enabled** — match existing looseness.
-- Path alias `@/*` → `./src/*`. Prefer `@/` over relative paths for imports across directories.
-- Provide `interface Props` in Astro components when there are multiple props (see `Layout.astro`):
+- Extends `astro/tsconfigs/base`. Strict mode is **not** enabled — match existing looseness.
+- Path alias `@/*` maps to `./src/*`. Prefer `@/` over relative paths across directories.
+- Provide `interface Props` for components with multiple props:
 
 ```astro
 ---
-export interface Props {
-  title: string;
-  description: string;
-}
+export interface Props { title: string; description: string; }
 const { title, description } = Astro.props;
 ---
 ```
 
-- Avoid `any`. Prefer type inference. For simple single-prop components, inline destructuring without an interface is acceptable.
-- Do not break existing type-correctness. Run `pnpm astro check` before committing.
-
----
+- Avoid `any`. Prefer inference. Single-prop components may use inline destructuring.
+- `App.Locals` is extended in `env.d.ts` — add new server-side locals there.
 
 ## Code Style
 
 ### Imports
 
-- Use the `@/` path alias for imports that cross directories:
-
-```ts
-import Layout from "@/layouts/Layout.astro";
-import SmokeEffect from "@/components/SmokeEffect.astro";
-```
-
-- Relative imports (`../`) are acceptable for closely related siblings.
-- Font packages are imported as bare side-effects in `Layout.astro`:
-
-```ts
-import "@fontsource-variable/lora";
-```
-
-- Three.js uses a namespace import: `import * as THREE from "three"`.
-- Clerk components are imported explicitly (no barrel re-exports):
-
-```ts
-import { SignedIn, UserButton } from "@clerk/astro/components";
-```
+- `@/` alias for cross-directory: `import Layout from "@/layouts/Layout.astro";`
+- Relative `../` is fine for close siblings.
+- Font packages as bare side-effects: `import "@fontsource-variable/lora";`
+- Three.js namespace import: `import * as THREE from "three";`
+- Clerk explicit imports: `import { SignedIn, UserButton } from "@clerk/astro/components";`
+- Supabase helpers from `@/db/supabase`: `import { getPlatillos } from "@/db/supabase";`
 
 ### Naming
 
-- **Components**: PascalCase `.astro` files (`LandingHeader.astro`, `CardsComponent.astro`).
-- **Pages**: PascalCase is the existing convention (`Dropbox.astro`); match existing style for new pages.
-- **Variables**: Mixed Spanish/English exists throughout — use Spanish for UI-facing identifiers (e.g., `botonEmpanadas`, `campoData`) and English for utility/technical ones (e.g., `smokeParticles`, `createHtmlStructure`).
-- **CSS custom classes**: Spanish by convention (`mostrar`, `ocultar`, `mostrarLG`, `ocultarParrilla`).
-- **Data arrays**: Spanish (`campoData`, `marData`, `granjaData`).
-- Do not introduce new inconsistencies — match the naming language already used in the surrounding code.
+- **Components**: PascalCase `.astro` (`LandingHeader.astro`, `CardsComponent.astro`).
+- **Pages**: PascalCase (`Dropbox.astro`). Locale pages live under `src/pages/<locale>/`.
+- **Variables**: Spanish for UI-facing (`botonEmpanadas`, `campoData`), English for technical (`smokeParticles`, `createHtmlStructure`).
+- **CSS classes**: Spanish (`mostrar`, `ocultar`, `mostrarLG`, `ocultarParrilla`).
+- **Data arrays/types**: Spanish (`campoData`, `ManualSeccion`, `Platillo`).
+- Match the naming language already used in surrounding code.
 
 ### Tailwind CSS
 
-- Tailwind is the **only** styling solution. Do not add CSS-in-JS or CSS modules.
-- Arbitrary values are used and accepted: `text-[65px]`, `top-[135px]`, `border-[3px]`.
-- Use `md:hidden` / `hidden md:flex` for responsive dual-implementation sections.
-- Custom theme tokens defined in `tailwind.config.cjs`:
-  - `text-primary` → `#0C1018` (near-black bg)
-  - `text-secundary` → `#efefef` (light gray)
-  - `text-tercero` → `#ff3b3f` (red accent)
-  - `font-sans` → Gotham SSm A
-  - `font-pages` → Permanent Marker
-  - `font-boldes` → Magical Night (custom woff2)
-- Global CSS lives in `Layout.astro` inside `<style is:global>`. Add new global rules there.
-- Per-component scoped styles go in a `<style>` block inside the component.
+- Only styling solution. No CSS-in-JS, no CSS modules.
+- Arbitrary values accepted: `text-[65px]`, `top-[135px]`, `border-[3px]`.
+- Responsive: `md:hidden` / `hidden md:flex` for mobile/desktop dual implementations.
+- Theme tokens in `tailwind.config.cjs`:
+  - Colors: `primary` (#0C1018), `secundary` (#efefef), `tercero` (#ff3b3f)
+  - Fonts: `font-sans` (Gotham SSm A), `font-pages` (Permanent Marker), `font-boldes` (custom woff2)
+- Global CSS in `Layout.astro` `<style is:global>`. Scoped styles in component `<style>`.
 
 ### Astro Components
 
-- Use the frontmatter `---` block for all TypeScript/imports.
-- Client-side interactivity uses plain browser JS in `<script>` blocks (no reactive framework):
+- All TS/imports in the frontmatter `---` block.
+- Client-side JS uses plain `<script>` blocks (no reactive framework):
 
 ```astro
 <script>
@@ -138,62 +113,59 @@ import { SignedIn, UserButton } from "@clerk/astro/components";
 </script>
 ```
 
-- Show/hide is toggled via class manipulation (`classList.add("mostrar")`, `classList.remove("ocultar")`), not JS visibility or display styles.
-- The animated navigation highlight pattern uses CSS custom properties set via `style.setProperty("--left", ...)` — follow this pattern for position-animated UI elements.
-- Slots are used in wrapper components (`Portada.astro`): name them clearly.
+- Show/hide via `classList.add("mostrar")` / `classList.remove("ocultar")`.
+- Animated nav uses `style.setProperty("--left", ...)` — follow this pattern.
+
+### API Routes
+
+- Located in `src/pages/api/`. Export named handlers (`GET`, `POST`, `PUT`, `DELETE`).
+- Always return `new Response(JSON.stringify(...), { status, headers })`.
+- Admin routes under `/api/admin/` are protected by middleware (auth + role check).
 
 ### Error Handling
 
-- No error boundary pattern is established. Use optional chaining for nullable DOM refs:
-
-```ts
-element?.addEventListener("click", handler);
-$container?.appendChild(child);
-```
-
+- Optional chaining for nullable DOM refs: `element?.addEventListener("click", handler);`
 - Guard DOM lookups with early returns: `if (!btn) return;`
-- No try/catch is used anywhere in this project. Only add it when dealing with async operations or external calls.
-
----
+- Only use try/catch for async operations or external calls (Supabase, fetch).
+- API routes: return proper HTTP status codes (400, 401, 403, 500).
 
 ## Architecture Notes
 
-### SSR and Auth
+### SSR & Auth
 
-- All pages are server-rendered (`output: "server"`). There is no static generation.
-- `src/middleware.ts` uses `clerkMiddleware` to protect `/Dropbox`. Any new protected routes must be added to the `createRouteMatcher` array there.
-- `.env` is gitignored and required for Clerk keys (`CLERK_SECRET_KEY`, `PUBLIC_CLERK_PUBLISHABLE_KEY`).
+- All pages are server-rendered. No static generation.
+- `src/middleware.ts` protects `/Dropbox` (requires auth) and `/api/admin/*` (requires auth + admin role).
+- New protected routes: add to `createRouteMatcher` arrays in middleware.
+- `.env` is gitignored. Required keys: `CLERK_SECRET_KEY`, `PUBLIC_CLERK_PUBLISHABLE_KEY`, `SUPABASE_URL`, `SUPABASE_KEY`.
+
+### Database (Supabase)
+
+- Client initialized in `src/db/supabase.ts`. All CRUD helpers live there.
+- Types (`Usuario`, `Platillo`, `PlatilloInsert`, etc.) are defined alongside the client.
+- Access env vars via `import.meta.env.SUPABASE_URL` (Astro convention).
 
 ### Menu Data
 
-- All menu data (empanadas, pizzas, entradas, etc.) is hardcoded as arrays inside `pruebaCartaContenedor.astro`. Do not duplicate this data in new components — extract to a shared `src/data/` file if new consumers need it.
+- Static menu data lives in `src/data/menuData.ts` and `src/data/manualData.ts`.
+- Dynamic dish data comes from Supabase via `/api/admin/platillos`.
+- Do not duplicate data — import from `@/data/` or `@/db/supabase`.
 
-### Responsive Strategy
+### i18n
 
-- Mobile (< `md`) and desktop (`md+`) often render separate implementations within the same component, hidden via Tailwind breakpoint classes.
-- The main menu component (`pruebaCartaContenedor.astro`) is ~1600 lines as a result — avoid making it longer; prefer extracting sub-components.
-
-### Three.js Smoke
-
-- `SmokeEffect.astro` is desktop-only (hidden below 768px via JS check). Any changes to the scene must use the existing `requestAnimationFrame` loop.
-- The mobile equivalent is `LightsBackground.astro` (CSS-only blur effect).
-
----
+- Default locale is `es` (no prefix). Other locales get prefixed paths (`/en/`, `/ko/`, etc.).
+- Locale pages override the default in `src/pages/<locale>/index.astro`.
 
 ## Known Issues / Tech Debt
 
 - `Caurosel.astro` is a typo — do not rename without updating all imports.
-- `arial-label` misspellings exist in several components (should be `aria-label`) — fix when touching those components.
-- Several components exist that may be unused (`AsadosDeTira.astro`, `Contacto.astro`, `MenuArray.astro`). Do not delete without verifying.
-- `pruebaCartaContenedor.astro` name is a leftover prototype name — do not rename without updating `Carta.astro` and `index.astro`.
-
----
+- `arial-label` misspellings exist in several components (should be `aria-label`) — fix when touching those.
+- `pruebaCartaContenedor.astro` is a prototype name — do not rename without updating `Carta.astro` and `index.astro`.
 
 ## Before Committing
 
 ```bash
-pnpm astro check   # Type-check all .astro files
+pnpm astro check   # Type-check
 pnpm build         # Ensure production build succeeds
 ```
 
-There is no CI pipeline. Verification is manual.
+No CI pipeline. Verification is manual.
