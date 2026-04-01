@@ -12,7 +12,7 @@ const currentPath = Astro.url.pathname;
 
 <header
   id="landing-header"
-  class="py-4 md:py-3 lg:py-3 px-4 sm:px-6 md:px-10 flex items-center fixed top-0 left-0 right-0 w-full max-w-full box-border justify-between z-[70] text-white/65 bg-black/25 rounded-b-3xl overflow-x-hidden"
+  class="py-4 md:py-3 lg:py-3 px-4 sm:px-6 md:px-10 flex items-center fixed top-0 left-0 right-0 w-full max-w-full box-border justify-between z-[70] text-white/65 bg-black/25 rounded-b-3xl"
 >
   <div id="logo1" class="flex shrink-0 w-10 md:flex-grow md:basis-0 md:w-auto md:pointer-events-none">
     <Logo variant="main" />
@@ -231,9 +231,7 @@ const currentPath = Astro.url.pathname;
   </script>
 
   <script>
-    // Gate de contraseña previa a Clerk
-    const GATE_PASSWORD = "Chinchulines86";
-
+    // Gate de contraseña — validación server-side via /api/gate
     const gateModal = document.getElementById("password-gate-modal");
     const gateInput = document.getElementById("password-gate-input") as HTMLInputElement | null;
     const gateError = document.getElementById("password-gate-error");
@@ -244,6 +242,7 @@ const currentPath = Astro.url.pathname;
     const iconEyeClosed = document.getElementById("icon-eye-closed");
 
     let pendingHref: string | null = null;
+    let submitting = false;
 
     // Toggle visibilidad de contraseña
     gateToggle?.addEventListener("click", () => {
@@ -278,16 +277,31 @@ const currentPath = Astro.url.pathname;
       pendingHref = null;
     }
 
-    function attemptGateSubmit() {
-      if (!gateInput) return;
-      if (gateInput.value === GATE_PASSWORD) {
-        const href = pendingHref;
-        closeGateModal();
-        if (href) window.location.href = href;
-      } else {
+    async function attemptGateSubmit() {
+      if (!gateInput || submitting) return;
+      submitting = true;
+      gateError?.classList.add("hidden");
+
+      try {
+        const res = await fetch("/api/gate", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ password: gateInput.value }),
+        });
+
+        if (res.ok) {
+          const href = pendingHref;
+          closeGateModal();
+          if (href) window.location.href = href;
+        } else {
+          gateError?.classList.remove("hidden");
+          gateInput.value = "";
+          gateInput.focus();
+        }
+      } catch {
         gateError?.classList.remove("hidden");
-        gateInput.value = "";
-        gateInput.focus();
+      } finally {
+        submitting = false;
       }
     }
 
@@ -301,7 +315,7 @@ const currentPath = Astro.url.pathname;
     });
 
     gateCancel?.addEventListener("click", closeGateModal);
-    gateSubmit?.addEventListener("click", attemptGateSubmit);
+    gateSubmit?.addEventListener("click", () => attemptGateSubmit());
 
     gateInput?.addEventListener("keydown", (e) => {
       if (e.key === "Enter") attemptGateSubmit();
