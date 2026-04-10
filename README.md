@@ -1,5 +1,7 @@
 # La Matera — Rediseño Web
 
+![Vista previa del sitio](public/imagenes/preview.webp)
+
 Rediseño completo del sitio web de [La Matera](https://lamatera.mx), restaurante argentino en Guadalajara, sede mundialista FIFA 2026.
 
 El sitio original cumplía su función pero se quedaba corto en experiencia visual y no reflejaba la calidad real del restaurante. Este proyecto reconstruye la interfaz desde cero con un diseño moderno, una carta digital interactiva, soporte multilingue pensado para el turismo asiático del Mundial, y un panel interno para capacitación del equipo.
@@ -41,9 +43,13 @@ Sección privada en `/Dropbox`, accesible solo con autenticación vía Clerk.
 
 **Manual de capacitacion** — Contiene el manual oficial de alimentos del restaurante organizado por categorías (empanadas, entradas, ensaladas, pizzas, cocina, mar, campo, postres, terminos de coccion). Cada platillo incluye descripcion, gramaje, notas de servicio y alergias. Los platillos nuevos agregados desde Supabase se inyectan en su categoría correspondiente.
 
+![Manual de alimentos](public/imagenes/manual-foto1.png)
+
 **Gestion de platillos (admin)** — CRUD completo para administradores: crear, editar y eliminar platillos con imagen, descripcion, gramaje y categoría. Las imagenes se suben a Supabase Storage.
 
 **Roles** — El middleware sincroniza usuarios de Clerk con Supabase. Usuarios nuevos entran con rol `user`; los admins tienen acceso al CRUD. Las rutas `/api/admin/*` devuelven `401` sin auth y `403` sin rol admin.
+
+![Gestion de platillos](public/imagenes/manual-foto2.png)
 
 ## Estructura
 
