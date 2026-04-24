@@ -233,98 +233,100 @@ for (const p of platillos) {
     </div>
   </section>
 
-  <section id="panel-platillos" class="panel-contenido">
+  {esAdmin && (
+    <section id="panel-platillos" class="panel-contenido">
 
-    <div class="pt-8 pb-20 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
+      <div class="pt-8 pb-20 px-4 md:px-8 lg:px-16 max-w-6xl mx-auto">
 
-      <div class="text-center mb-10">
-        <p class="text-xs uppercase tracking-[0.35em] text-stone-400 mb-3">Gestion del equipo</p>
-        <h1 class="text-3xl md:text-5xl font-bold text-stone-800 mb-2" style="font-family:'Lora Variable',serif;">Platillos Personalizados</h1>
-        <div class="w-12 h-0.5 bg-red-600 mx-auto mb-3"></div>
-        <p class="text-stone-500 text-sm md:text-base max-w-lg mx-auto">Informacion adicional creada por el equipo para complementar el manual oficial.</p>
-      </div>
-
-      <!-- Botón agregar platillo (solo admin) -->
-      {esAdmin && (
-        <div class="flex justify-end mb-6">
-          <button
-            id="btn-agregar"
-            class="flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
-            Agregar platillo
-          </button>
+        <div class="text-center mb-10">
+          <p class="text-xs uppercase tracking-[0.35em] text-stone-400 mb-3">Gestion del equipo</p>
+          <h1 class="text-3xl md:text-5xl font-bold text-stone-800 mb-2" style="font-family:'Lora Variable',serif;">Platillos Personalizados</h1>
+          <div class="w-12 h-0.5 bg-red-600 mx-auto mb-3"></div>
+          <p class="text-stone-500 text-sm md:text-base max-w-lg mx-auto">Informacion adicional creada por el equipo para complementar el manual oficial.</p>
         </div>
-      )}
 
-      <!-- Lista de platillos -->
-      {platillos.length === 0 && (
-        <div class="text-center py-16">
-          <svg class="mx-auto mb-4 text-stone-300" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-          <p class="text-stone-400 text-lg">No hay platillos registrados todavia.</p>
-          {esAdmin && <p class="text-stone-400 text-sm mt-1">Usa el boton de arriba para agregar el primero.</p>}
+        <!-- Botón agregar platillo (solo admin) -->
+        {esAdmin && (
+          <div class="flex justify-end mb-6">
+            <button
+              id="btn-agregar"
+              class="flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white font-semibold px-5 py-2.5 rounded-lg transition-all shadow-md hover:shadow-lg text-sm"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              Agregar platillo
+            </button>
+          </div>
+        )}
+
+        <!-- Lista de platillos -->
+        {platillos.length === 0 && (
+          <div class="text-center py-16">
+            <svg class="mx-auto mb-4 text-stone-300" xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            <p class="text-stone-400 text-lg">No hay platillos registrados todavia.</p>
+            {esAdmin && <p class="text-stone-400 text-sm mt-1">Usa el boton de arriba para agregar el primero.</p>}
+          </div>
+        )}
+
+        <div id="lista-platillos" class="flex flex-col gap-y-5 md:gap-y-6">
+          {platillos.map(({ id, imagen_url, titulo, descripcion, gramaje, categoria }) => (
+            <article class="group relative flex flex-col gap-4 p-4 rounded-xl bg-black/5 border border-[rgba(168,146,120,0.50)] shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] md:flex-row md:items-center md:p-5" data-id={id}>
+              {imagen_url && (
+                <div class="shrink-0">
+                  <img
+                    src={imagen_url}
+                    alt={titulo}
+                    class="w-full h-40 md:w-56 md:h-auto rounded-xl object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              
+              {/* cards platillos agregados admin */}
+              <div class="flex-1 flex flex-col justify-center">
+                <h2 class="font-bold text-lg md:text-xl text-stone-800 mb-1.5">{titulo}</h2>
+                <p class="text-sm md:text-base text-stone-600 leading-relaxed mb-2">{descripcion}</p>
+                <div class="flex flex-wrap gap-2 items-center">
+                  
+                  {categoria && (
+                    <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-600 bg-black/5 border border-[rgba(168,146,120,0.50)] px-2 py-0.5 rounded-lg">{categoria}</span>
+                  )}
+                  {gramaje && (
+                    <p class="text-xs font-semibold text-red-700  px-2.5 py-1 rounded-full w-fit">{gramaje}</p>
+                  )}
+                </div>
+              </div>
+
+              {/* Botones admin: editar y eliminar */}
+              {esAdmin && (
+                <div class="flex md:flex-col gap-2 shrink-0">
+                  <button
+                    class="btn-editar flex items-center justify-center w-9 h-9 bg-stone-200 hover:bg-blue-600 hover:text-white text-stone-500 rounded-lg transition-all"
+                    data-id={id}
+                    data-titulo={titulo}
+                    data-descripcion={descripcion}
+                    data-gramaje={gramaje || ""}
+                    data-imagen={imagen_url || ""}
+                    data-categoria={categoria || ""}
+                    aria-label="Editar platillo"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5-10.5a2.828 2.828 0 1 0-4-4L4 16v4"/><path d="M13.5 6.5l4 4"/></svg>
+                  </button>
+                  <button
+                    class="btn-eliminar flex items-center justify-center w-9 h-9 bg-stone-200 hover:bg-red-600 hover:text-white text-stone-500 rounded-lg transition-all"
+                    data-id={id}
+                    data-titulo={titulo}
+                    aria-label="Eliminar platillo"
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
+                  </button>
+                </div>
+              )}
+            </article>
+          ))}
         </div>
-      )}
-
-      <div id="lista-platillos" class="flex flex-col gap-y-5 md:gap-y-6">
-        {platillos.map(({ id, imagen_url, titulo, descripcion, gramaje, categoria }) => (
-          <article class="group relative flex flex-col gap-4 p-4 rounded-xl bg-black/5 border border-[rgba(168,146,120,0.50)] shadow-[0_1px_3px_rgba(0,0,0,0.02)] transition-all hover:shadow-[0_4px_12px_rgba(0,0,0,0.04)] md:flex-row md:items-center md:p-5" data-id={id}>
-            {imagen_url && (
-              <div class="shrink-0">
-                <img
-                  src={imagen_url}
-                  alt={titulo}
-                  class="w-full h-40 md:w-56 md:h-auto rounded-xl object-cover"
-                  loading="lazy"
-                />
-              </div>
-            )}
-            
-            {/* cards platillos agregados admin */}
-            <div class="flex-1 flex flex-col justify-center">
-              <h2 class="font-bold text-lg md:text-xl text-stone-800 mb-1.5">{titulo}</h2>
-              <p class="text-sm md:text-base text-stone-600 leading-relaxed mb-2">{descripcion}</p>
-              <div class="flex flex-wrap gap-2 items-center">
-                
-                {categoria && (
-                  <span class="text-[10px] font-semibold uppercase tracking-wider text-stone-600 bg-black/5 border border-[rgba(168,146,120,0.50)] px-2 py-0.5 rounded-lg">{categoria}</span>
-                )}
-                {gramaje && (
-                  <p class="text-xs font-semibold text-red-700  px-2.5 py-1 rounded-full w-fit">{gramaje}</p>
-                )}
-              </div>
-            </div>
-
-            {/* Botones admin: editar y eliminar */}
-            {esAdmin && (
-              <div class="flex md:flex-col gap-2 shrink-0">
-                <button
-                  class="btn-editar flex items-center justify-center w-9 h-9 bg-stone-200 hover:bg-blue-600 hover:text-white text-stone-500 rounded-lg transition-all"
-                  data-id={id}
-                  data-titulo={titulo}
-                  data-descripcion={descripcion}
-                  data-gramaje={gramaje || ""}
-                  data-imagen={imagen_url || ""}
-                  data-categoria={categoria || ""}
-                  aria-label="Editar platillo"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4l10.5-10.5a2.828 2.828 0 1 0-4-4L4 16v4"/><path d="M13.5 6.5l4 4"/></svg>
-                </button>
-                <button
-                  class="btn-eliminar flex items-center justify-center w-9 h-9 bg-stone-200 hover:bg-red-600 hover:text-white text-stone-500 rounded-lg transition-all"
-                  data-id={id}
-                  data-titulo={titulo}
-                  aria-label="Eliminar platillo"
-                >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-12"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>
-                </button>
-              </div>
-            )}
-          </article>
-        ))}
       </div>
-    </div>
-  </section>
+    </section>
+  )}
   </main>
 
   <!-- ═══════════════ FOOTER ═══════════════ -->
