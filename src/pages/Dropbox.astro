@@ -472,59 +472,62 @@ for (const p of platillos) {
 <!-- ═══════════════ SCRIPTS ═══════════════ -->
 <script>
   // ---- Tabs principales (Manual / Platillos) ----
-  document.querySelectorAll<HTMLButtonElement>("[data-tab-principal]").forEach((btn) => {
+  document.querySelectorAll("[data-tab-principal]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.tabPrincipal;
       if (!target) return;
 
       // Actualizar tabs
-      document.querySelectorAll<HTMLButtonElement>("[data-tab-principal]").forEach((t) => t.classList.remove("activo"));
+      document.querySelectorAll("[data-tab-principal]").forEach((t) => t.classList.remove("activo"));
       btn.classList.add("activo");
 
       // Mostrar/ocultar paneles
-      document.querySelectorAll<HTMLElement>(".panel-contenido").forEach((p) => p.classList.remove("panel-visible"));
-      document.getElementById(`panel-${target}`)?.classList.add("panel-visible");
+      document.querySelectorAll(".panel-contenido").forEach((p) => p.classList.remove("panel-visible"));
+      const panel = document.getElementById(`panel-${target}`);
+      if (panel) panel.classList.add("panel-visible");
     });
   });
 
   // ---- Navegación de secciones del manual ----
-  document.querySelectorAll<HTMLButtonElement>("[data-seccion-btn]").forEach((btn) => {
+  document.querySelectorAll("[data-seccion-btn]").forEach((btn) => {
     btn.addEventListener("click", () => {
       const target = btn.dataset.seccionBtn;
       if (!target) return;
 
       // Actualizar botones
-      document.querySelectorAll<HTMLButtonElement>("[data-seccion-btn]").forEach((b) => b.classList.remove("seccion-activa"));
+      document.querySelectorAll("[data-seccion-btn]").forEach((b) => b.classList.remove("seccion-activa"));
       btn.classList.add("seccion-activa");
 
       // Mostrar/ocultar secciones
-      document.querySelectorAll<HTMLElement>("[data-seccion]").forEach((s) => s.classList.remove("seccion-visible"));
-      document.querySelector<HTMLElement>(`[data-seccion="${target}"]`)?.classList.add("seccion-visible");
+      document.querySelectorAll("[data-seccion]").forEach((s) => s.classList.remove("seccion-visible"));
+      const seccion = document.querySelector(`[data-seccion="${target}"]`);
+      if (seccion) seccion.classList.add("seccion-visible");
 
       // Scroll suave al top
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
   });
-</script>
 
-<script>
-  // ---- Elementos del DOM ----
-    const modal = document.getElementById("modal-overlay");
+  // ---- Admin Logic ----
+  const modal = document.getElementById("modal-overlay");
+  
+  // Si el modal existe, entonces el usuario es admin y podemos activar los listeners
+  if (modal) {
     const modalTitulo = document.getElementById("modal-titulo");
-    const form = document.getElementById("form-platillo") as HTMLFormElement | null;
-    const inputId = document.getElementById("input-id") as HTMLInputElement | null;
-    const inputTitulo = document.getElementById("input-titulo") as HTMLInputElement | null;
-    const inputCategoria = document.getElementById("input-categoria") as HTMLSelectElement | null;
-    const inputDescripcion = document.getElementById("input-descripcion") as HTMLTextAreaElement | null;
-    const inputGramaje = document.getElementById("input-gramaje") as HTMLInputElement | null;
-    const inputImagen = document.getElementById("input-imagen") as HTMLInputElement | null;
-    const previewImagen = document.getElementById("preview-imagen") as HTMLImageElement | null;
+    const form = document.getElementById("form-platillo");
+    const inputId = document.getElementById("input-id");
+    const inputTitulo = document.getElementById("input-titulo");
+    const inputCategoria = document.getElementById("input-categoria");
+    const inputDescripcion = document.getElementById("input-descripcion");
+    const inputGramaje = document.getElementById("input-gramaje");
+    const inputImagen = document.getElementById("input-imagen");
+    const previewImagen = document.getElementById("preview-imagen");
     const btnGuardarTexto = document.getElementById("btn-guardar-texto");
     const btnGuardarSpinner = document.getElementById("btn-guardar-spinner");
-    const btnGuardar = document.getElementById("btn-guardar") as HTMLButtonElement | null;
+    const btnGuardar = document.getElementById("btn-guardar");
 
     // ---- Helpers ----
-    function abrirModal(titulo: string) {
+    function abrirModal(titulo) {
       if (!modal || !modalTitulo) return;
       modalTitulo.textContent = titulo;
       modal.classList.remove("hidden");
@@ -537,7 +540,7 @@ for (const p of platillos) {
       modal.classList.add("hidden");
       modal.classList.remove("flex");
       document.body.style.overflow = "";
-      form?.reset();
+      if (form) form.reset();
       if (inputId) inputId.value = "";
       if (inputCategoria) inputCategoria.value = "";
       if (previewImagen) {
@@ -546,7 +549,7 @@ for (const p of platillos) {
       }
     }
 
-    function setLoading(loading: boolean) {
+    function setLoading(loading) {
       if (btnGuardar) btnGuardar.disabled = loading;
       if (btnGuardarTexto) btnGuardarTexto.textContent = loading ? "Guardando..." : "Guardar";
       if (btnGuardarSpinner) {
@@ -555,7 +558,7 @@ for (const p of platillos) {
     }
 
     // ---- Subir imagen ----
-    async function subirImagenArchivo(file: File): Promise<string | null> {
+    async function subirImagenArchivo(file) {
       const formData = new FormData();
       formData.append("file", file);
 
@@ -570,17 +573,19 @@ for (const p of platillos) {
     }
 
     // ---- Preview de imagen ----
-    inputImagen?.addEventListener("change", () => {
-      const file = inputImagen.files?.[0];
-      if (!file || !previewImagen) return;
+    if (inputImagen && previewImagen) {
+      inputImagen.addEventListener("change", () => {
+        const file = inputImagen.files?.[0];
+        if (!file) return;
 
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        previewImagen.src = e.target?.result as string;
-        previewImagen.classList.remove("hidden");
-      };
-      reader.readAsDataURL(file);
-    });
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          previewImagen.src = e.target?.result;
+          previewImagen.classList.remove("hidden");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
     // ---- Abrir modal: Agregar ----
     document.getElementById("btn-agregar")?.addEventListener("click", () => {
@@ -590,7 +595,7 @@ for (const p of platillos) {
     // ---- Abrir modal: Editar ----
     document.querySelectorAll(".btn-editar").forEach((btn) => {
       btn.addEventListener("click", () => {
-        const el = btn as HTMLElement;
+        const el = btn;
         if (inputId) inputId.value = el.dataset.id ?? "";
         if (inputTitulo) inputTitulo.value = el.dataset.titulo ?? "";
         if (inputCategoria) inputCategoria.value = el.dataset.categoria ?? "";
@@ -611,72 +616,74 @@ for (const p of platillos) {
     // ---- Cerrar modal ----
     document.getElementById("btn-cerrar-modal")?.addEventListener("click", cerrarModal);
     document.getElementById("btn-cancelar")?.addEventListener("click", cerrarModal);
-    modal?.addEventListener("click", (e) => {
+    modal.addEventListener("click", (e) => {
       if (e.target === modal) cerrarModal();
     });
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !modal?.classList.contains("hidden")) cerrarModal();
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) cerrarModal();
     });
 
     // ---- Submit: Crear o Actualizar ----
-    form?.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      setLoading(true);
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        setLoading(true);
 
-      try {
-        const id = inputId?.value ?? "";
-        const titulo = inputTitulo?.value ?? "";
-        const categoria = inputCategoria?.value ?? "";
-        const descripcion = inputDescripcion?.value ?? "";
-        const gramaje = inputGramaje?.value ?? "";
+        try {
+          const id = inputId?.value ?? "";
+          const titulo = inputTitulo?.value ?? "";
+          const categoria = inputCategoria?.value ?? "";
+          const descripcion = inputDescripcion?.value ?? "";
+          const gramaje = inputGramaje?.value ?? "";
 
-        // Subir imagen si hay un archivo seleccionado
-        let imagen_url: string | null = null;
-        const archivo = inputImagen?.files?.[0];
-        if (archivo) {
-          imagen_url = await subirImagenArchivo(archivo);
-          if (!imagen_url) {
-            alert("Error al subir la imagen. Intenta de nuevo.");
-            setLoading(false);
-            return;
+          // Subir imagen si hay un archivo seleccionado
+          let imagen_url = null;
+          const archivo = inputImagen?.files?.[0];
+          if (archivo) {
+            imagen_url = await subirImagenArchivo(archivo);
+            if (!imagen_url) {
+              alert("Error al subir la imagen. Intenta de nuevo.");
+              setLoading(false);
+              return;
+            }
           }
+
+          const body = { titulo, descripcion, gramaje, categoria };
+          if (imagen_url) body.imagen_url = imagen_url;
+
+          // Si hay id, es update; sino es create
+          if (id) {
+            body.id = id;
+            const res = await fetch("/api/admin/platillos", {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            });
+            if (!res.ok) throw new Error("Error al actualizar");
+          } else {
+            const res = await fetch("/api/admin/platillos", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(body),
+            });
+            if (!res.ok) throw new Error("Error al crear");
+          }
+
+          cerrarModal();
+          window.location.reload();
+        } catch (err) {
+          alert("Ocurrio un error. Revisa la consola.");
+          console.error(err);
+        } finally {
+          setLoading(false);
         }
-
-        const body: Record<string, string | null> = { titulo, descripcion, gramaje, categoria };
-        if (imagen_url) body.imagen_url = imagen_url;
-
-        // Si hay id, es update; sino es create
-        if (id) {
-          body.id = id;
-          const res = await fetch("/api/admin/platillos", {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          });
-          if (!res.ok) throw new Error("Error al actualizar");
-        } else {
-          const res = await fetch("/api/admin/platillos", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(body),
-          });
-          if (!res.ok) throw new Error("Error al crear");
-        }
-
-        cerrarModal();
-        window.location.reload();
-      } catch (err) {
-        alert("Ocurrio un error. Revisa la consola.");
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    });
+      });
+    }
 
     // ---- Eliminar ----
     document.querySelectorAll(".btn-eliminar").forEach((btn) => {
       btn.addEventListener("click", async () => {
-        const el = btn as HTMLElement;
+        const el = btn;
         const id = el.dataset.id;
         const titulo = el.dataset.titulo ?? "este platillo";
 
@@ -697,4 +704,5 @@ for (const p of platillos) {
         }
       });
     });
-  </script>
+  }
+</script>
