@@ -51,10 +51,12 @@ for (const p of platillos) {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>
         Manual
       </button>
-      <button data-tab-principal="platillos" class="tab-principal flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-stone-400 border-b-2 border-transparent transition-all bg-transparent rounded-none cursor-pointer whitespace-nowrap hover:text-stone-600" aria-label="Ver platillos del equipo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
-        Platillos
-      </button>
+      {esAdmin && (
+        <button data-tab-principal="platillos" class="tab-principal flex items-center gap-1.5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-stone-400 border-b-2 border-transparent transition-all bg-transparent rounded-none cursor-pointer whitespace-nowrap hover:text-stone-600" aria-label="Ver platillos del equipo">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          Platillos
+        </button>
+      )}
     </div>
   </nav>
 
@@ -505,9 +507,8 @@ for (const p of platillos) {
   });
 </script>
 
-{esAdmin && (
-  <script>
-    // ---- Elementos del DOM ----
+<script>
+  // ---- Elementos del DOM ----
     const modal = document.getElementById("modal-overlay");
     const modalTitulo = document.getElementById("modal-titulo");
     const form = document.getElementById("form-platillo") as HTMLFormElement | null;
@@ -697,4 +698,3 @@ for (const p of platillos) {
       });
     });
   </script>
-)}
