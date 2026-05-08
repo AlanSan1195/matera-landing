@@ -1,7 +1,7 @@
 export const en = {
   // Header nav
   nav: {
-    reserva: "Reserve",
+    reserva: "Home",
     carta: "Menu",
     eventos: "Events",
     nosotros: "About Us",

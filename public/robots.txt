@@ -1,0 +1,14 @@
+# https://www.lamatera.app/robots.txt
+User-agent: *
+Allow: /
+
+# Bloquear áreas administrativas y privadas
+Disallow: /Dropbox
+Disallow: /api/
+Disallow: /api/admin/
+
+# Recursos necesarios para rendering
+Allow: /imagenes/
+Allow: /fuentes/
+
+Sitemap: https://www.lamatera.app/sitemap.xml
