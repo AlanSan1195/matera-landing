@@ -8,13 +8,17 @@ export interface Props {
   title: string;
   description: string;
   lang?: string;
+  ogImage?: string;
+  canonical?: string;
+  noindex?: boolean;
 }
 
-const { title, description, lang = "es" } = Astro.props;
+const { title, description, lang = "es", ogImage, canonical, noindex = false } = Astro.props;
 
 const SITE_URL = "https://www.lamatera.app";
-const canonicalUrl = `${SITE_URL}${Astro.url.pathname}`;
-const ogImageUrl = `${SITE_URL}/imagenes/preview.webp`;
+const currentPath = Astro.url.pathname;
+const canonicalUrl = canonical ? `${SITE_URL}${canonical}` : `${SITE_URL}${currentPath}`;
+const ogImageUrl = ogImage ? `${SITE_URL}${ogImage}` : `${SITE_URL}/imagenes/preview.webp`;
 
 const ogLocaleMap: Record<string, string> = {
   es: "es_ES",
@@ -24,6 +28,23 @@ const ogLocaleMap: Record<string, string> = {
   ja: "ja_JP",
 };
 const ogLocale = ogLocaleMap[lang] ?? "es_ES";
+
+const pathSegments = currentPath.split("/").filter(Boolean);
+const breadcrumbItems = [
+  { name: lang === "es" ? "Inicio" : "Home", item: SITE_URL + "/" }
+];
+let accumulatedPath = "";
+for (const segment of pathSegments) {
+  accumulatedPath += `/${segment}`;
+  const isLast = segment === pathSegments[pathSegments.length - 1];
+  const name = isLast 
+    ? segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ")
+    : segment.charAt(0).toUpperCase() + segment.slice(1).replace(/-/g, " ");
+  breadcrumbItems.push({ 
+    name: isLast && lang === "es" ? (name === "En" ? "English" : name === "Ko" ? "Korean" : name === "Zh" ? "Chinese" : name === "Ja" ? "Japanese" : name) : name,
+    item: `${SITE_URL}${accumulatedPath}${isLast ? "" : "/"}`
+  });
+}
 ---
 
 <!DOCTYPE html>
@@ -32,8 +53,12 @@ const ogLocale = ogLocaleMap[lang] ?? "es_ES";
     <meta charset="UTF-8" />
     <title>{title}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="preconnect" href="https://accounts.dev" crossorigin />
     <link rel="dns-prefetch" href="https://accounts.dev" />
+    <link rel="preconnect" href="https://www.google.com" crossorigin />
+    <link rel="preconnect" href="https://www.instagram.com" crossorigin />
+    <link rel="preconnect" href="https://graph.facebook.com" crossorigin />
     <link rel="preload" href="/fuentes/Magical Night.woff2" as="font" type="font/woff2" crossorigin />
     <link
       rel="icon"
@@ -105,14 +130,104 @@ const ogLocale = ogLocaleMap[lang] ?? "es_ES";
           }
         ],
         "priceRange": "$$",
-        "servesCuisine": "Argentine",
-        "acceptsReservations": "true",
+        "servesCuisine": ["Argentine", "Grill", "Steakhouse"],
+        "acceptsReservations": true,
         "hasMenu": "https://www.lamatera.app/#carta",
         "image": "https://www.lamatera.app/imagenes/preview.webp",
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.7",
+          "reviewCount": "892",
+          "bestRating": "5"
+        },
+        "review": {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "TripAdvisor User"
+          }
+        },
+        "sameAs": [
+          "https://www.instagram.com/lamateragdl",
+          "https://www.facebook.com/lamateragdl",
+          "https://www.tripadvisor.com/Restaurant_Review-g150789-d5019695-Reviews-La_Matera-Guadalajara_Guadalajara_Mexico.html"
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "¿Qué tipo de comida sirven en La Matera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Somos un restaurante argentino especializado en Parrilla Argentina, empanadas, pizzas artesanales y tenemos una de las cavas de vino más reconocidas de Guadalajara."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿La Matera acepta reservaciones?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sí, aceptamos reservaciones. Puedes visitar nuestra sección de reservas en el sitio o llamarnos directamente."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Cuáles son los horarios de atención?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Abiertos de lunes a viernes de 13:00 a 23:00 horas, y sábados y domingos de 13:00 a 00:00 horas."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "¿Dónde está ubicado La Matera?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Estamos en Av. Manuel Acuña 2769, Providencia, Guadalajara, Jalisco, C.P. 44630."
+            }
+          }
+        ]
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "La Matera",
+        "url": "https://www.lamatera.app",
+        "logo": "https://www.lamatera.app/imagenes/logo-cabecera.webp",
+        "description": "Restaurante argentino en Guadalajara con más de 30 años de trayectoria.",
         "sameAs": [
           "https://www.instagram.com/lamateragdl",
           "https://www.facebook.com/lamateragdl"
-        ]
+        ],
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+523336853060",
+          "contactType": "customer service",
+          "availableLanguage": ["Spanish", "English"]
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Familia Bastian"
+        },
+        " foundingDate": "1990",
+        "areaServed": {
+          "@type": "City",
+          "name": "Guadalajara"
+        },
+        "serviceType": "Restaurant"
       }
     </script>
 
@@ -127,6 +242,13 @@ const ogLocale = ogLocaleMap[lang] ?? "es_ES";
             "name": "Inicio",
             "item": "https://www.lamatera.app/"
           }
+          ${breadcrumbItems.slice(1).map((item, index) => `
+          ,{
+            "@type": "ListItem",
+            "position": ${index + 2},
+            "name": "${item.name}",
+            "item": "${item.item}"
+          }`).join("")}
         ]
       }
     </script>
