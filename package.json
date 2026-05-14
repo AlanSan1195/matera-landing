@@ -15,12 +15,15 @@
     "@clerk/astro": "^2.7.1",
     "@clerk/localizations": "^3.15.1",
     "@clerk/themes": "^2.2.42",
-    "@fontsource-variable/lora": "^5.0.14",
     "@fontsource/permanent-marker": "^5.0.12",
     "@supabase/supabase-js": "^2.100.0",
     "astro": "^5.7.11",
     "tailwindcss": "^3.3.2",
-    "three": "^0.162.0"
+    "three": "^0.162.0",
+    "@fontsource/bebas-neue": "latest",
+    "@fontsource/bitter": "latest",
+    "@fontsource/jetbrains-mono": "latest",
+    "@fontsource/barlow": "latest"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.7",
