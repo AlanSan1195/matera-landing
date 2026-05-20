@@ -9,53 +9,59 @@ const { lang = "es" } = Astro.props;
 const t = useTranslations(lang);
 ---
 
-<footer class="relative  md:mt-32 lg:mt-44 overflow-hidden">
+<footer class="relative md:mt-24 lg:mt-32 overflow-hidden">
   <!-- Línea decorativa roja -->
-  <div class="h-px w-full md:hidden bg-gradient-to-r from-transparent via-red-800 to-transparent"></div>
+  <div class="h-px w-full bg-gradient-to-r from-transparent via-red-900/50 to-transparent"></div>
 
-  <div class="mx-auto w-full px-6 py-6 md:py-8 ">
+  <div class="mx-auto w-full px-6 md:px-12 py-10 md:py-14">
 
     <!-- Fila principal: logo | dirección | horarios | acciones -->
-    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6 md:gap-4">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 md:gap-8">
 
       <!-- Logo -->
-      <img
-        class="h-10 md:h-12 self-center md:self-auto shrink-0 opacity-90"
-        src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg"
-        alt="Logo de La Matera"
-        loading="lazy"
-        width="120"
-        height="48"
-      />
+      <div class="flex justify-center md:justify-start">
+        <img
+          class="h-10 md:h-12 opacity-80"
+          src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-logotipo-rojo.svg"
+          alt="Logo de La Matera"
+          loading="lazy"
+          width="120"
+          height="48"
+        />
+      </div>
 
       <!-- Dirección -->
-      <address class="not-italic text-[12px] text-white/45 leading-snug text-center md:text-left">
-        <span class="font-boldes text-[13px] text-white/65">Av. M&eacute;xico 2895</span><br />
-        Col. Vallarta Norte C.P 44690<br />
-        Guadalajara, Jalisco
-      </address>
+      <div class="text-center md:text-left">
+        <address class="not-italic text-sm text-white/50 leading-relaxed font-light">
+          <span class="font-display text-base text-white/70 tracking-wide block mb-1">Av. M&eacute;xico 2895</span>
+          Col. Vallarta Norte C.P 44690<br />
+          Guadalajara, Jalisco
+        </address>
+      </div>
 
       <!-- Horarios -->
-      <div class="text-center md:text-left text-[12px] text-white/45 leading-snug">
-        <span class="font-boldes text-[13px] text-white/65">{t.footer.horarios}</span><br />
-        {t.footer.lunes}<br />
-        {t.footer.domingo}
+      <div class="text-center md:text-left">
+        <div class="text-sm text-white/50 leading-relaxed font-light">
+          <span class="font-display text-base text-white/70 tracking-wide block mb-1">{t.footer.horarios}</span>
+          {t.footer.lunes}<br />
+          {t.footer.domingo}
+        </div>
       </div>
 
       <!-- Facturar + Redes -->
-      <div class="flex items-center gap-4 self-center md:self-auto shrink-0">
+      <div class="flex flex-col items-center md:items-end gap-4">
         <a
-          class="group inline-flex items-center gap-2 rounded-lg
-                 border border-red-800 px-5 py-2
-                 text-[12px] font-boldes text-white/75
+          class="group inline-flex items-center gap-2.5
+                 border border-red-900/40 px-5 py-2.5
+                 text-xs font-display text-white/60
                  transition-all duration-300
-                 hover:border-red-900/60 hover:text-white hover:bg-white/[0.03]"
+                 hover:border-red-800 hover:text-white tracking-[0.15em] uppercase"
           href="https://api.whatsapp.com/send/?phone=523318457029&text&type=phone_number&app_absent=0"
           target="_blank"
           rel="noopener noreferrer"
         >
           <img
-            class="h-3.5 w-3.5 opacity-70 transition-opacity duration-300 group-hover:opacity-100"
+            class="h-3.5 w-3.5 opacity-60 transition-opacity duration-300 group-hover:opacity-100"
             src="https://www.lamatera.mx/wp-content/themes/bmx-lamatera/assets/img-whatsapplogo.svg"
             alt=""
             aria-hidden="true"
@@ -70,8 +76,8 @@ const t = useTranslations(lang);
     </div>
 
     <!-- Copyright -->
-    <div class="mt-5 pt-4 border-t border-white/[0.06]">
-      <p class="text-center text-[11px] text-white/25 tracking-wide">
+    <div class="mt-10 pt-6 border-t border-white/[0.06]">
+      <p class="text-center text-[11px] text-white/20 tracking-[0.2em] uppercase font-light">
         {t.footer.derechos}
       </p>
     </div>

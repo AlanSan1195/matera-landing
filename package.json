@@ -15,15 +15,17 @@
     "@clerk/astro": "^2.7.1",
     "@clerk/localizations": "^3.15.1",
     "@clerk/themes": "^2.2.42",
+    "@fontsource-variable/cormorant-garamond": "^5.2.6",
+    "@fontsource-variable/dm-sans": "^5.2.8",
+    "@fontsource/barlow": "latest",
+    "@fontsource/bebas-neue": "latest",
+    "@fontsource/bitter": "latest",
+    "@fontsource/jetbrains-mono": "latest",
     "@fontsource/permanent-marker": "^5.0.12",
     "@supabase/supabase-js": "^2.100.0",
     "astro": "^5.7.11",
     "tailwindcss": "^3.3.2",
-    "three": "^0.162.0",
-    "@fontsource/bebas-neue": "latest",
-    "@fontsource/bitter": "latest",
-    "@fontsource/jetbrains-mono": "latest",
-    "@fontsource/barlow": "latest"
+    "three": "^0.162.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.7",

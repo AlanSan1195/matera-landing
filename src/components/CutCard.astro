@@ -31,7 +31,7 @@ const gridClass = gridColsClass[cols] ?? "grid-cols-2";
 >
   <div class="flex items-center mx-6 mt-3 md:justify-between md:w-screen md:px-8">
     <p class="opacity-0 flex">........</p>
-    <p class="text-white font-boldes text-xl flex w-full justify-center opacity-80 md:text-red-800">
+    <p class="text-white font-display text-xl flex w-full justify-center opacity-80 md:text-red-800 tracking-wide italic">
       {titulo}
     </p>
     <button
@@ -60,7 +60,7 @@ const gridClass = gridColsClass[cols] ?? "grid-cols-2";
       esBife
         ? (items as BifeItem[]).map((bife) => (
             <div class="justify-between flex flex-col text-sm leading-none items-center text-center gap-y-1">
-              <p class="font-boldes mb-2">{bife.name}</p>
+              <p class="font-display mb-2 tracking-wide">{bife.name}</p>
               <div class="flex gap-2">
                 <p class="font-bold text-xs text-red-600/80">{bife.quality}</p>
               </div>
@@ -74,7 +74,7 @@ const gridClass = gridColsClass[cols] ?? "grid-cols-2";
           ))
         : (items as CorteTalla[]).map((item) => (
             <div class="justify-between flex flex-col text-sm leading-none items-center text-center gap-y-1">
-              <p class="font-boldes">{item.name}</p>
+              <p class="font-display tracking-wide">{item.name}</p>
               <p class="text-sm opacity-50">{item.size}</p>
             </div>
           ))

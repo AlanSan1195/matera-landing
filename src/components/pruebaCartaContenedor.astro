@@ -53,20 +53,24 @@ const categories = [
   <nav id="navegacion-carta" class="flex flex-col items-center">
 
     <!-- Header -->
-    <header class="text-center mt-12 mb-6 text-white">
-      <p class="text-5xl md:text-7xl font-boldes">{tc.heading}</p>
-      <h3 class="text-2xl md:text-5xl font-boldes opacity-55">
-        {tc.subheading}
-      </h3>
+    <header class="text-center mt-20 mb-12 text-white">
+      <p class="text-7xl md:text-8xl lg:text-9xl font-display italic tracking-[-0.03em] leading-[0.85]">{tc.heading}</p>
+      <div class="flex items-center justify-center gap-4 mt-4 mb-2">
+        <div class="h-px w-20 bg-red-900/60"></div>
+        <h3 class="text-sm md:text-base font-light opacity-50 tracking-[0.25em] uppercase">
+          {tc.subheading}
+        </h3>
+        <div class="h-px w-20 bg-red-900/60"></div>
+      </div>
     </header>
 
     <!-- Tabs de categorías -->
-    <div class="flex justify-center flex-wrap gap-x-6 gap-y-2 px-4 opacity-90">
+    <div class="flex justify-center flex-wrap gap-x-6 md:gap-x-8 gap-y-3 px-4 mb-8">
       {
         categories.map((cat) => (
           <button
             id={`btn${cat.id}`}
-            class="menu-tab hover:cursor-pointer font-bold text-xl md:text-3xl text-white transition-colors duration-200"
+            class="menu-tab hover:cursor-pointer font-display text-base md:text-lg lg:text-xl text-white/70 hover:text-white transition-all duration-300 tracking-[0.1em] uppercase relative after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-px after:bg-red-700 after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
           >
             {cat.name}
           </button>
@@ -77,13 +81,13 @@ const categories = [
         aria-label="cavamatera"
         target="_blank"
         rel="noopener noreferrer"
-        class="hover:cursor-pointer font-boldes text-2xl md:text-3xl text-white"
+        class="hover:cursor-pointer font-display text-base md:text-lg text-white/70 hover:text-white tracking-[0.1em] uppercase transition-all duration-300"
       >
         {tc.tabs.vinos}
       </a> -->
       <button
         id="btnParrilla"
-        class="menu-tab hover:cursor-pointer font-boldes text-xl md:text-3xl text-white transition-colors duration-200"
+        class="menu-tab hover:cursor-pointer font-display text-base md:text-lg lg:text-xl text-white/70 hover:text-white transition-all duration-300 tracking-[0.1em] uppercase relative after:absolute after:bottom-0 after:left-1/2 after:w-0 after:h-px after:bg-red-700 after:transition-all after:duration-300 hover:after:w-full hover:after:left-0"
       >
         {tc.tabs.parrilla}
       </button>
@@ -136,7 +140,8 @@ const categories = [
     function hideAll() {
       pairs.forEach(({ btn, panel }) => {
         btn.classList.remove("text-red-600");
-        btn.classList.add("text-white");
+        btn.classList.add("text-white/70");
+        btn.querySelector(":after")?.style.setProperty("width", "0");
         panel.classList.add("hidden");
         panel.classList.remove("grid", "block");
       });
@@ -147,7 +152,7 @@ const categories = [
         const alreadyOpen = !panel.classList.contains("hidden");
         hideAll();
         if (!alreadyOpen) {
-          btn.classList.remove("text-white");
+          btn.classList.remove("text-white/70");
           btn.classList.add("text-red-600");
           panel.classList.remove("hidden");
           panel.classList.add(isGrid ? "grid" : "block");
@@ -158,7 +163,7 @@ const categories = [
     // Open Entradas by default
     const entradasPair = pairs.find((p) => p.btn?.id === "btnEntradas");
     if (entradasPair) {
-      entradasPair.btn.classList.remove("text-white");
+      entradasPair.btn.classList.remove("text-white/70");
       entradasPair.btn.classList.add("text-red-600");
       entradasPair.panel.classList.remove("hidden");
       entradasPair.panel.classList.add("grid");
@@ -191,6 +196,10 @@ const categories = [
       divsCortes.forEach((div) => {
         div.classList.add("hidden");
         div.classList.remove("grid");
+      });
+      parrillaSubBtns.forEach((b) => {
+        b.classList.remove("text-red-600");
+        b.classList.add("text-white/70");
       });
     }
 

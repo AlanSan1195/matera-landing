@@ -73,21 +73,21 @@ const slides = [
         ]}
         data-slide-content={i}
       >
-        <div class="px-5 md:px-12 max-w-[85%] sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[800px]">
-          <h3 class="font-boldes text-[32px] md:text-[4rem] 2xl:text-[6rem] leading-tight uppercase text-white/90 drop-shadow-lg">
+        <div class="px-5 md:px-12 max-w-[95%] pb-24 sm:max-w-[400px] md:max-w-[500px] lg:max-w-[600px] 2xl:max-w-[900px] text-left md:text-center">
+          <h3 class="font-display text-pretty text-4xl md:text-[4rem] 2xl:text-[6rem] leading-tight italic text-white/90 drop-shadow-lg tracking-tight uppercase">
             {slide.title}
             {slide.subtitle && (
-              <span class="text-red-900">{slide.subtitle}</span>
+              <span class="text-red-900 not-italic text-pretty">{slide.subtitle}</span>
             )}
           </h3>
-          <p class="mt-2 mb-5 text-xs md:text-lg 2xl:text-xl text-gray-300 leading-relaxed">
+          <p class="mt-2 mb-5 text-sm md:text-lg 2xl:text-xl text-white/85 leading-relaxed text-pretty drop-shadow-lg ">
             {slide.description}
           </p>
 
           {slide.contacto && (
             <a
               href={`mailto:${slide.contacto}`}
-              class="inline-flex items-center justify-center px-4 py-2 text-xs lg:text-sm text-white font-bold bg-red-900 border-2 border-[#B56C09] rounded-xl hover:scale-105 transition-transform"
+              class="inline-flex items-center justify-center px-4 py-2 text-xs lg:text-sm text-white font-display bg-red-900 border-2 border-[#B56C09] hover:scale-105 transition-transform tracking-wider uppercase rounded-md"
             >
               {slide.ctaText}
             </a>
@@ -97,7 +97,7 @@ const slides = [
               href={slide.href}
               target="_blank"
               rel="noopener noreferrer"
-              class="inline-flex items-center justify-center px-4 py-2 text-xs lg:text-sm text-white font-bold bg-red-900/90 border-2 border-[#B56C09] rounded-xl hover:scale-105 transition-transform"
+              class="inline-flex items-center justify-center px-4 py-2 text-xs lg:text-sm text-white font-display bg-red-900/90 border-2 border-[#B56C09] hover:scale-105 transition-transform tracking-wider uppercase rounded-md"
             >
               {slide.ctaText}
             </a>

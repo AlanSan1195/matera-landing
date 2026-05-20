@@ -18,25 +18,25 @@ const textColor = textColorMap[color] ?? "text-white";
   id={id}
 >
   <div
-    class="opacity-85 z-30 relative h-auto text-end m-2 w-[90%] md:w-[70%] lg:w-[65%] xl:w-[60%] max-w-[1200px] flex flex-col flex-wrap ml-auto text-pretty"
+    class="z-30 relative h-auto text-end m-2 w-[90%] md:w-[80%] lg:w-[65%] xl:w-[70%] max-w-[1200px] flex flex-col flex-wrap ml-auto text-pretty"
   >
     <header class="lg:p-2">
       <h1
-        class={`${textColor} font-boldes mr-2 mt-4 lg:mr-4 pt-16 md:pt-20 lg:pt-28 xl:pt-48 text-7xl lg:text-7xl xl:text-8xl leading-none text-opacity-95 text-pretty`}
+        class={`${textColor} font-display mr-2 mt-4 lg:mr-4 pt-16 md:pt-20 lg:pt-28 xl:pt-48 text-[5rem] sm:text-7xl md:text-8xl lg:text-8xl xl:text-9xl 2xl:text-[10rem] leading-[.95] text-opacity-95 tracking-[-0.02em] italic`}
       >
-        <span class="text-red-700 text-[1.1em] font-bold">"</span>{tagline ?? "Buenos Amigos, Buenos Vinos, Buenos Aires."}<span
-          class="text-red-700 text-[1.1em] font-bold">"</span
+        <span class="text-red-700 text-[0.85em] not-italic font-semibold align-top inline-block mt-2">"</span>{tagline ?? "Buenos Amigos, Buenos Vinos, Buenos Aires."}<span
+          class="text-red-700 text-[0.85em] not-italic font-semibold align-top inline-block mt-2">"</span
         >
       </h1>
       <p
-        class={`${textColor} opacity-85 mr-2 ml-5 text-pretty lg:mr-4 text-md md:text-lg xl:text-xl font-semibold md:font-medium mt-3`}
+        class={`${textColor} mr-2 ml-5 text-pretty lg:mr-4 text-xs sm:text-base md:text-lg xl:text-xl font-light mt-6 md:mt-8 tracking-[0.15em] uppercase opacity-75 leading-relaxed max-w-2xl sm:max-w-3xl ml-auto`}
       >
         {subtitle}
       </p>
     </header>
 
     <footer
-      class="py-6 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
+      class="py-8 md:py-10 flex flex-col flex-grow justify-end mr-auto ml-auto md:mr-14"
     >
       <slot name="footer" />
     </footer>

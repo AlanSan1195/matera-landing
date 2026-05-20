@@ -12,49 +12,55 @@ const t = useTranslations(lang);
 ---
 
 <section
-  class="bg-black/75 text-white flex flex-col items-center justify-center gap-y-12"
+  class="bg-black/75 text-white flex flex-col items-center justify-center gap-y-20 md:gap-y-24"
   id={id}
   title={title}
 >
-  <div class="flex justify-center mt-28">
-    <p class="text-5xl text-white font-boldes">{t.nosotros.heading}</p>
+  <div class="flex justify-center mt-28 md:mt-32">
+    <div class="flex items-center gap-4">
+      <div class="h-px w-20 bg-red-900/60"></div>
+      <p class="text-5xl md:text-6xl lg:text-7xl text-white font-display italic tracking-[-0.02em]">{t.nosotros.heading}</p>
+      <div class="h-px w-20 bg-red-900/60"></div>
+    </div>
   </div>
 
   <article
-    class="flex flex-col items-center justify-center mx-8 md:flex-row mb-2 gap-x-8 lg:mt-4"
+    class="flex flex-col items-center justify-center mx-6 md:mx-12 lg:mx-16 md:flex-row gap-x-12 lg:gap-x-16"
   >
     <img
       src="/imagenes/nosotros/nosotros2.webp"
       alt="foto del restaurante "
-      class="nosotros-img w-full md:w-1/2 lg:w-1/2 xl:w-3/5 mb-12 lg:mb-0 md:order-2 object-cover rounded-3xl"
+      class="nosotros-img w-full md:w-1/2 lg:w-1/2 xl:w-3/5 mb-10 md:mb-0 md:order-2 object-cover rounded-2xl"
       loading="lazy"
       decoding="async"
       width="700"
       height="467"
     />
-    <div class="md:order-1 md:w-1/2 lg:w-1/2 xl:w-2/5">
-      <h1 class="text-3xl font-boldes mb-4 lg:text-6xl">{t.nosotros.ambienteTitle}</h1>
-      <p class="text-md">
+    <div class="md:order-1 md:w-1/2 lg:w-1/2 xl:w-2/5 text-center md:text-left">
+      <h1 class="text-3xl md:text-4xl lg:text-5xl font-display italic mb-5 tracking-[-0.01em]">{t.nosotros.ambienteTitle}</h1>
+      <div class="h-px w-20 bg-red-900/50 mb-5 mx-auto md:mx-0"></div>
+      <p class="text-base md:text-lg leading-relaxed font-light text-white/75">
         {t.nosotros.ambienteText}
       </p>
     </div>
   </article>
 
   <article
-    class="flex flex-col items-center justify-center mx-8 md:flex-row mb-2 gap-x-8 mt-4 lg:mx-24"
+    class="flex flex-col items-center justify-center mx-6 md:mx-12 lg:mx-16 md:flex-row gap-x-12 lg:gap-x-16"
   >
     <img
       src="/imagenes/nosotros/nosotros1.webp"
       alt="foto de nosotros "
-      class="nosotros-img2 w-full md:w-1/2 h-auto aspect-[4/5] mb-12 lg:mb-12 object-cover rounded-3xl shadow-slate-100/20"
+      class="nosotros-img2 w-full md:w-1/2 h-auto aspect-[4/5] mb-10 md:mb-0 object-cover rounded-2xl"
       loading="lazy"
       decoding="async"
       width="500"
       height="500"
     />
-    <div class="mb-2 md:m-2">
-      <p class="text-3xl font-bold mb-4 lg:text-6xl">{t.nosotros.equipoTitle}</p>
-      <p class="text-md">
+    <div class="text-center md:text-left">
+      <p class="text-3xl md:text-4xl lg:text-5xl font-display italic mb-5 tracking-[-0.01em]">{t.nosotros.equipoTitle}</p>
+      <div class="h-px w-20 bg-red-900/50 mb-5 mx-auto md:mx-0"></div>
+      <p class="text-base md:text-lg leading-relaxed font-light text-white/75">
         {t.nosotros.equipoText}
       </p>
     </div>

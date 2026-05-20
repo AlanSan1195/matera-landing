@@ -39,11 +39,11 @@ function pDescripcion(nombre: string): string | undefined {
 }
 ---
 
-<div id="divParrilla" class="w-full justify-center text-white mt-4 mb-8">
+<div id="divParrilla" class="w-full justify-center text-white mt-6 mb-10">
   <!-- Sub-nav: Granja / Campo / Mar -->
-  <ul class="flex justify-center gap-6 mb-4">
+  <ul class="flex justify-center gap-8 md:gap-12 mb-6">
     <li>
-      <button id="botonGranja" class="hover:cursor-pointer text-white">
+      <button id="botonGranja" class="hover:cursor-pointer text-white/70 hover:text-white transition-colors duration-300">
           <img
             class="size-16 sm:size-20 p-2 mx-auto"
             src="/imagenes/carta/parrilla/cerdo.webp"
@@ -53,11 +53,11 @@ function pDescripcion(nombre: string): string | undefined {
           width="80"
           height="80"
         />
-        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.granja}</h2>
+        <h2 class="flex justify-center font-display text-lg md:text-xl tracking-[0.1em] uppercase">{tc.parrillaTabs.granja}</h2>
       </button>
     </li>
     <li>
-      <button id="botonCampo" class="hover:cursor-pointer text-white">
+      <button id="botonCampo" class="hover:cursor-pointer text-white/70 hover:text-white transition-colors duration-300">
           <img
             class="size-16 sm:size-20 p-2 mx-auto"
             src="/imagenes/carta/parrilla/vaca.webp"
@@ -67,11 +67,11 @@ function pDescripcion(nombre: string): string | undefined {
           width="80"
           height="80"
         />
-        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.campo}</h2>
+        <h2 class="flex justify-center font-display text-lg md:text-xl tracking-[0.1em] uppercase">{tc.parrillaTabs.campo}</h2>
       </button>
     </li>
     <li>
-      <button id="botonMar" class="hover:cursor-pointer text-white">
+      <button id="botonMar" class="hover:cursor-pointer text-white/70 hover:text-white transition-colors duration-300">
           <img
             class="size-16 sm:size-20 p-2 mx-auto"
             src="/imagenes/carta/parrilla/camaron.webp"
@@ -81,7 +81,7 @@ function pDescripcion(nombre: string): string | undefined {
           width="80"
           height="80"
         />
-        <h2 class="flex justify-center font-boldes text-xl">{tc.parrillaTabs.mar}</h2>
+        <h2 class="flex justify-center font-display text-lg md:text-xl tracking-[0.1em] uppercase">{tc.parrillaTabs.mar}</h2>
       </button>
     </li>
   </ul>
@@ -107,7 +107,7 @@ function pDescripcion(nombre: string): string | undefined {
             width="128"
             height="128"
           />
-          <p class="text-sm font-boldes">{item.name}</p>
+          <p class="text-sm font-display tracking-wide">{item.name}</p>
           {pNombre(item.name) && (
             <p class="text-[10px] text-white/45 italic">{pNombre(item.name)}</p>
           )}
@@ -184,7 +184,7 @@ function pDescripcion(nombre: string): string | undefined {
             width="128"
             height="128"
           />
-          <p class="mt-2 font-boldes text-center text-pretty text-sm">
+          <p class="mt-2 font-display text-center text-pretty text-sm tracking-wide">
             {item.name}
           </p>
           {pNombre(item.name) && (
@@ -216,7 +216,7 @@ function pDescripcion(nombre: string): string | undefined {
             width="128"
             height="128"
           />
-          <p class="mt-2 font-boldes text-sm text-center text-pretty">
+          <p class="mt-2 font-display text-sm text-center text-pretty tracking-wide">
             {item.name}
           </p>
           {pNombre(item.name) && (

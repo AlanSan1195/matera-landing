@@ -1,9 +1,5 @@
 ---
 import LightsBackground from "@/components/LightsBackground.astro";
-
-import "@fontsource-variable/lora";
-import "@fontsource/permanent-marker";
-
 export interface Props {
   title: string;
   description: string;
@@ -59,9 +55,10 @@ for (const segment of pathSegments) {
     <link rel="preconnect" href="https://www.google.com" crossorigin />
     <link rel="preconnect" href="https://www.instagram.com" crossorigin />
     <link rel="preconnect" href="https://graph.facebook.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="/fuentes/Magical Night.woff2" as="font" type="font/woff2" crossorigin />
-    <link
-      rel="icon"
+    <link rel="icon"
       type="image/webp"
       href="/imagenes/logo-cabecera.webp"
     />
@@ -274,7 +271,12 @@ for (const segment of pathSegments) {
     overflow-x: hidden;
   }
   html {
-    font-family: "Lora Variable";
+    font-family: "DM Sans Variable", "system-ui", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+    line-height: 1.6;
   }
 
   /* Tailwind Preflight ya aplica el reset universal (margin, padding, box-sizing) */
@@ -341,6 +343,26 @@ for (const segment of pathSegments) {
   }
   .simple-radial {
     background: radial-gradient(rgb(80, 82, 78), rgb(0, 0, 0));
+  }
+
+  /* Mejoras de tipografía global */
+  .font-display {
+    font-variation-settings: "wght" 400;
+  }
+  
+  .font-body {
+    font-variation-settings: "wght" 400;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Selection color */
+  ::selection {
+    background: rgba(185, 28, 28, 0.3);
+    color: white;
   }
 
 </style>

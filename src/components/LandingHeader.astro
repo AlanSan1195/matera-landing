@@ -23,7 +23,7 @@ const currentPath = Astro.url.pathname;
 
   <nav class="hidden md:block">
     <ul
-      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-boldes [&>li>a]:text-xl [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2"
+      class="flex text-sm [&>li>a]:transition-colors [&>li>a]:duration-500 [&>li>a]:text-current [&>li>a]:font-display [&>li>a]:text-lg [&>li>a]:inline-block [&>li>a]:px-4 [&>li>a]:py-2 [&>li>a]:tracking-wide [&>li>a]:uppercase"
     >
       <li>
         <a class="hover:text-red-800" href="#home" aria-label={t.nav.reserva}
@@ -93,7 +93,7 @@ const currentPath = Astro.url.pathname;
     aria-hidden="true"
   >
     <div class="bg-neutral-900 border border-red-900/40 rounded-2xl p-8 w-[90vw] max-w-sm flex flex-col items-center gap-5 shadow-2xl">
-      <h2 id="password-gate-title" class="text-white font-boldes text-2xl text-center">Acceso solo a personal autorizado.</h2>
+      <h2 id="password-gate-title" class="text-white font-display text-2xl text-center tracking-wide">Acceso solo a personal autorizado.</h2>
       <p class="text-white/60 text-sm text-center">Ingresá la contraseña para continuar</p>
       <div class="relative w-full">
         <label for="password-gate-input" class="sr-only">Contraseña de acceso</label>
@@ -159,28 +159,28 @@ const currentPath = Astro.url.pathname;
     </button>
     <ul class="flex flex-col items-center gap-6 text-center">
       <li>
-        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#home">
+        <a class="text-white/90 font-display text-3xl hover:text-red-700 transition-colors mobile-nav-link tracking-wide uppercase" href="#home">
           {t.nav.reserva}
         </a>
       </li>
       <li>
-        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#carta">
+        <a class="text-white/90 font-display text-3xl hover:text-red-700 transition-colors mobile-nav-link tracking-wide uppercase" href="#carta">
           {t.nav.carta}
         </a>
       </li>
       <li>
-        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#eventos">
+        <a class="text-white/90 font-display text-3xl hover:text-red-700 transition-colors mobile-nav-link tracking-wide uppercase" href="#eventos">
           {t.nav.eventos}
         </a>
       </li>
       <li>
-        <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="#nosotros">
+        <a class="text-white/90 font-display text-3xl hover:text-red-700 transition-colors mobile-nav-link tracking-wide uppercase" href="#nosotros">
           {t.nav.nosotros}
         </a>
       </li>
       <SignedIn>
         <li>
-          <a class="text-white/90 font-boldes text-2xl hover:text-red-700 transition-colors mobile-nav-link" href="/Dropbox" data-no-gate>
+          <a class="text-white/90 font-display text-3xl hover:text-red-700 transition-colors mobile-nav-link tracking-wide uppercase" href="/Dropbox" data-no-gate>
             Manual
           </a>
         </li>

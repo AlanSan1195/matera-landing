@@ -6,9 +6,11 @@ module.exports = {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
 		fontFamily: {
-			sans: ['Gotham SSm A', 'system-ui', '-apple-system', 'sans-serif'],
+			sans: ['DM Sans Variable', 'system-ui', '-apple-system', 'sans-serif'],
 			pages: ['Permanent Marker', 'cursive'],
-			boldes: ['boldes', 'serif']
+			boldes: ['Cormorant Garamond Variable', 'Georgia', 'serif'],
+			display: ['Playfair Display', 'Georgia', 'serif'],
+			body: ['DM Sans Variable', 'system-ui', 'sans-serif'],
 		},
 		extend: {
 			colors: {
